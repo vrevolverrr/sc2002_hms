@@ -1,0 +1,7 @@
+# All file patterns listed in this file are ignored by Git for version control
+
+# Local configurations
+/.vscode
+
+# Compiled code
+/bin
