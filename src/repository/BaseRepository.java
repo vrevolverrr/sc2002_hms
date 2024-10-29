@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import model.BaseModel;
 
-public abstract class BaseRepository<T extends BaseModel>{
+public abstract class BaseRepository<T extends BaseModel> implements Repository<T> {
     private static final String BASE_PATH = "./data/";
 
     private Map<String, T> items = null;
