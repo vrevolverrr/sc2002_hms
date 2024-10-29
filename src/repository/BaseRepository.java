@@ -7,7 +7,11 @@ import java.util.stream.Collectors;
 
 import model.BaseModel;
 
-public abstract class BaseRepository<T extends BaseModel> implements Repository<T> {
+/**
+ * The base implementation of a {@link Repository} that provides most basic functionality.
+ * This class can be extended to provide more specific functionality such as a {@link UserRepository}.
+ */
+public class BaseRepository<T extends BaseModel> implements Repository<T> {
     private static final String BASE_PATH = "./data/";
 
     private Map<String, T> items = null;
@@ -37,8 +41,7 @@ public abstract class BaseRepository<T extends BaseModel> implements Repository<
     /**
      * Finds the item that matches the given ID.
      * @param id the ID of the item.
-     * @return the {@link Optional} containing a copy of the item matching the ID, or an 
-     * empty {@link Optional} if no item with such ID exists in the collection.
+     * @return a copy of the item matching the ID, or null if such item does not exist.
      */
     @SuppressWarnings("unchecked")
     // Type cast is always valid since implementations of copy() does a covariant return.
@@ -54,6 +57,10 @@ public abstract class BaseRepository<T extends BaseModel> implements Repository<
 
     /**
      * Finds all the items that matches a given predicate (condition).
+     * <pre>
+     * List<User> maleUsers = userRepository.findBy((User user) -> user.getGender() == Gender.MALE);
+     * </pre>
+     * 
      * @param predicate the condition to check whether an item should be included.
      * @return a list of copies of the items satisfying the predicate.
      */
@@ -65,6 +72,8 @@ public abstract class BaseRepository<T extends BaseModel> implements Repository<
 
     /**
      * Removes the item that matches the given ID and persist the changes.
+     * @param id the ID of the item.
+     * @return the item that was removed.
      */
     final public T deleteById(String id) {
         T item = items.remove(id);
@@ -90,6 +99,12 @@ public abstract class BaseRepository<T extends BaseModel> implements Repository<
         return item;
     }
 
+    /**
+     * Updates the {@link BaseRepository#items} with a copy of each of the new items and 
+     * persists the changes to the file.
+     * @param collection the collection of items with changes to be saved.
+     * @return the same reference to the collection.
+     */
     public List<T> save(List<T> collection) {
         if (collection.size() <= 0) return null;
 
@@ -100,20 +115,39 @@ public abstract class BaseRepository<T extends BaseModel> implements Repository<
         return collection;
     }
 
+    /**
+     * Checks whether an item matching the given ID exists in the repository.
+     * @param id the ID of the item.
+     * @return whether or not the item with such ID exists.
+    */
     public boolean exists(String id) {
         return findById(id) != null;
     }
 
+    /**
+     * Checks whether an item matching the given predicate (condition) exists in the repository.
+     * <pre>
+     * boolean hasUserBob = userRepository.exists((User user) -> user.getName().equals("Bob"));
+     * </pre>
+     * 
+     * @param predicate the predicate (condition) to check against.
+     * @return whether or not the item matching the predicate exists.
+     * 
+    */
     public boolean exists(Predicate<T> predicate) {
         return findBy(predicate).size() > 0;
     }
 
+    /**
+     * Gets the total number of items in {@link BaseRepository#items}.
+     * @return The number of items held by the repository.
+     */
     public int count() {
         return items.size();
     }
 
     /**
-     * Reads the serealised data from the provided file path into the {@link BaseRepository#items}.
+     * Reads the serialised data from the provided file path into the {@link BaseRepository#items}.
      */
     @SuppressWarnings("unchecked")
     protected void readFromSerialized() {

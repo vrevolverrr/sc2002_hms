@@ -1,10 +1,8 @@
 package lib.uilib.widgets.base;
 
-import java.util.function.Predicate;
 import java.util.stream.*;
 
 import lib.uilib.framework.BuildContext;
-import lib.uilib.framework.InputWidget;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.Widget;
@@ -53,6 +51,7 @@ public class Menu extends Widget {
             new TextInput(selectedOption).read(context, (String _) -> true);
 
             if (isInt(selectedOption.getValue()) && inRange(Integer.parseInt(selectedOption.getValue()))) {
+                this.options[Integer.parseInt(selectedOption.getValue()) - 1].getAction().run();
                 break;
             }
 

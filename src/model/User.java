@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import model.enums.Gender;
 import model.enums.UserRole;
@@ -95,6 +96,10 @@ public abstract class User extends BaseModel {
 
     public void setDob(LocalDate dob) {
         this.dob = dob;
+    }
+
+    public String getDobString() {
+        return this.dob.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     public String getPhoneNumber() {

@@ -32,15 +32,14 @@ public class Table extends Widget {
             }
         }
 
-        int remainingSpace = context.getWidth() - IntStream.of(columnWidths).sum();
-        
-        if (remainingSpace > 0) {
-            int extraSpacePerColumn = remainingSpace / columnWidths.length;
+        int remainingSpace = Math.max(0, context.getWidth() - IntStream.of(columnWidths).sum()) - (columnWidths.length + 1);
+        int extraSpacePerColumn = (int) Math.ceil(1.0 * remainingSpace / columnWidths.length)  ;
 
-            for (int i = 0; i < columnWidths.length; i++) {
-                columnWidths[i] += extraSpacePerColumn;
-            }
+        for (int i = 0; i < columnWidths.length; i++) {
+            columnWidths[i] += extraSpacePerColumn;
         }
+
+        
     }
 
     @Override
@@ -59,20 +58,24 @@ public class Table extends Widget {
 
             String[] columnValues = this.records[i].getValues();
 
+            // For each column
             for (int j = 0; j < columnValues.length; j++) {
-            // for (String column : this.records[i].getValues()) {
+                // Set the size (context) to match the size of the column
                 BuildContext columnContext = new BuildContext(columnWidths[j], 1);
                 
-                topBorder.append(Border.THIN.horizontal().repeat(columnWidths[j]) + "\u252C");
+                // Draw the top border of the column
+                if (i == 0) {
+                    topBorder.append(Border.THIN.horizontal().repeat(columnWidths[j]) + ((j == columnValues.length - 1) ? Border.THIN.topRight() : "\u252C"));
+                }
                 
                 valueLine.append(new Align(Alignment.CENTER, new Text(columnValues[j], (j == 0) ? TextStyle.BOLD : TextStyle.NORMAL))
                     .build(columnContext) + Border.THIN.vertical());
 
                 // Check if its the last row in the table
                 if (i == this.records.length - 1) {
-                    bottomBorder.append(Border.THIN.horizontal().repeat(columnWidths[j]) + "\u2534");
+                    bottomBorder.append(Border.THIN.horizontal().repeat(columnWidths[j]) + ((j == columnValues.length - 1) ? Border.THIN.bottomRight() : "\u2534"));
                 } else {
-                    bottomBorder.append(Border.THIN.horizontal().repeat(columnWidths[j]) + "\u253C");
+                    bottomBorder.append(Border.THIN.horizontal().repeat(columnWidths[j]) + ((j == columnValues.length - 1) ? "\u2524" : "\u253C"));
                 }
 
             }

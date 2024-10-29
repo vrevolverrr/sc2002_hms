@@ -10,7 +10,8 @@ public class Patient extends User {
     private final String patientId;
     private BloodType bloodType;
 
-    public Patient(String patientId, String name, String password, Gender gender, LocalDate dob, String phoneNumber, String emailAddress, BloodType bloodType) {
+    public Patient(String patientId, String name, String password, Gender gender, LocalDate dob, 
+    String phoneNumber, String emailAddress, BloodType bloodType) {
         super(patientId, UserRole.PATIENT, password, name, gender, dob, phoneNumber, emailAddress);
         this.patientId = patientId;
         this.bloodType = bloodType;

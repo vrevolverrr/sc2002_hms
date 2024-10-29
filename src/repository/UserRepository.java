@@ -14,7 +14,7 @@ public class UserRepository extends BaseRepository<User> {
     final static String FILENAME = "users.dat";
 
     /**
-     *
+     * The constructor of a {@link UserRepository}.
      */
     public UserRepository() {
         super(FILENAME);

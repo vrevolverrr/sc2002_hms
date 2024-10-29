@@ -4,15 +4,11 @@ import model.User;
 import repository.UserRepository;
 
 public class UserManager extends Manager<UserManager> {
-    final UserRepository repository = new UserRepository();
+    private final UserRepository repository = new UserRepository();
 
     private User activeUser;
 
     protected UserManager() {}
-
-    public UserRepository getRepository() {
-        return repository;
-    }
 
     public User getActiveUser() {
         return activeUser;

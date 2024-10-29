@@ -54,6 +54,9 @@ public class LoginView extends View {
             context, (String[] values) -> handleLogin(values[0], values[1]),
             "Incorrect User ID or password. Please try again.");
 
-        Navigator.navigateTo(new PatientView());
+        // if (userManager.getActiveUser().getRole() == UserRole.PATIENT) {
+         Navigator.navigateTo(new PatientView());
+        // } else if ()
+        
     }
 }

@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 
  /**
-  * The base class for all data models used in this application.
+  * The base class for all data models with support for serialisation.
 */
 public abstract class BaseModel implements Serializable {
     /**
