@@ -1,4 +1,4 @@
-package view;
+package view.Patient;
 
 import controller.UserManager;
 import lib.uilib.framework.BuildContext;
@@ -12,27 +12,27 @@ import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.VSpacer;
 import lib.uilib.widgets.layout.Align;
 import model.Patient;
-import model.User;
 import services.Navigator;
+import view.View;
 
 public class PatientView extends View {
         UserManager userManager = UserManager.getInstance(UserManager.class);
 
     private void handleUpdateDetails() {
-        Navigator.navigateTo(new LoginView());
+        Navigator.navigateTo(new PatientUpdateView());
     }
     
     private void handleAppointments() {
-
+        Navigator.navigateTo(new PatientAppointmentView());
     }
 
     private void handleViewPastDiagnosis() {
-
+        Navigator.navigateTo(new PatientDiagnosisView() );
     }
 
     @Override
     public String getViewName() {
-        return "Patient Overview";
+        return "Overview";
     }
 
     @Override

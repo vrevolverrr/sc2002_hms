@@ -12,17 +12,34 @@ import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.VSpacer;
 import lib.uilib.widgets.layout.Column;
 import model.User;
+import model.enums.UserRole;
 import services.Navigator;
+import view.Admin.AdminView;
+import view.Doctor.DoctorView;
+import view.Patient.PatientView;
+import view.Pharmacist.PharmacistView;
 
 public class LoginView extends View {
-    @Override
-    public String getViewName() {
-        return "Login";
-    }
 
+    /**
+     * The singleton instance of {@link UserManager}.
+     */
     UserManager userManager = UserManager.getInstance(UserManager.class);
 
+    @Override
+    public String getViewName() {
+        // Omitted since this view doesn't have to be in the breadcrumbs. 
+        return "";
+    }
+
+    /**
+     * Event handler for the login action.
+     * @param userID
+     * @param password
+     * @return whether the login was succesful or not.
+     */
     private boolean handleLogin(String userID, String password) {
+        // All handlers must be defined in their own methods and prefixed with "handleXXX"
         User user = userManager.authenticate(userID, password);
         if (user == null) {
             return false;
@@ -46,17 +63,44 @@ public class LoginView extends View {
             .setVerticalAlignment(Alignment.CENTER)
             .setBorder(Border.DOUBLE)
             .setShrink(false).buildContainer(context).paint(context);
-            
+        
+        // Define the fields required to be read and their labels.
         TextInputField userId = new TextInputField("User ID");
         TextInputField password = new TextInputField("Password");
         
+        // Use MultiTextInput on each of the required fields to read all the fields
+        // and perform validation logic on all the fieds read.
         new MultiTextInput(userId, password).readAll(
             context, (String[] values) -> handleLogin(values[0], values[1]),
             "Incorrect User ID or password. Please try again.");
 
-        // if (userManager.getActiveUser().getRole() == UserRole.PATIENT) {
-         Navigator.navigateTo(new PatientView());
-        // } else if ()
+        // Logic after the input is typically navigation logic, or actions that trigger
+        // after the input is validated and complete, since each read() or readAll() call
+        // will block the UI.
+        View nextView;
+
+        switch (userManager.getActiveUser().getRole()) {
+            case UserRole.PATIENT:
+                nextView = new PatientView();
+                break;
+
+            case UserRole.ADMIN:
+                nextView = new AdminView();
+                break;
+
+            case UserRole.PHARMACIST:
+                nextView = new PharmacistView();
+                break;
+
+            case UserRole.DOCTOR:
+                nextView = new DoctorView();
+                break;
         
+            default:
+                nextView = new LoginView();
+                break;
+        }
+           
+         Navigator.navigateTo(nextView);        
     }
 }
