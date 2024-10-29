@@ -7,6 +7,7 @@ import model.BaseModel;
 
 /**
  * The interface that defines the behavaiour of a data repository of a {@link BaseModel}.
+ * Each implementation of repositories of models must implement this interface.
  */
 public interface Repository<T extends BaseModel> {
     /**
