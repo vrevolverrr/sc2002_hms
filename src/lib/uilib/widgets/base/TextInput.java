@@ -4,10 +4,10 @@ import java.util.*;
 import java.util.function.*;
 
 import lib.uilib.framework.BuildContext;
-import lib.uilib.framework.InputWidget;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.Widget;
 import lib.uilib.framework.enums.TextStyle;
+import lib.uilib.framework.interfaces.InputWidget;
 import view.View;
 
 public class TextInput extends Widget implements InputWidget {

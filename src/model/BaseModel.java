@@ -1,12 +1,12 @@
-package model;
-
-import java.io.Serializable;
-
 /**
  * @author Bryan Soong
  * @version 1.0
  * @since 2024-10-26
  */
+
+package model;
+
+import java.io.Serializable;
 
  /**
   * The base class for all data models with support for serialisation.

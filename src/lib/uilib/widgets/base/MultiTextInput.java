@@ -3,12 +3,15 @@ package lib.uilib.widgets.base;
 import java.util.function.*;
 
 import lib.uilib.framework.BuildContext;
-import lib.uilib.framework.MultiInputWidget;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.Widget;
 import lib.uilib.framework.enums.TextStyle;
+import lib.uilib.framework.interfaces.MultiInputWidget;
 import view.View;
 
+/**
+ * A widget
+ */
 public class MultiTextInput extends Widget implements MultiInputWidget {
     private final TextInputField[] fields;
 
