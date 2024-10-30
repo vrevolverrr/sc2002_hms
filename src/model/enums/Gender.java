@@ -11,8 +11,7 @@ package model.enums;
  */
 public enum Gender {
     MALE("Male"),
-    FEMALE("Female"),
-    OTHER("Other");
+    FEMALE("Female");
 
     /**
      * The {@code String} value of the enum. This value is used for display.
