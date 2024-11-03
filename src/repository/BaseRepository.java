@@ -111,13 +111,16 @@ public class BaseRepository<T extends BaseModel> implements Repository<T> {
      * @param collection the collection of items with changes to be saved.
      * @return the same reference to the collection.
      */
+    @SuppressWarnings("unchecked")
+    // Type cast is always valid since implementations of copy() does a covariant return.
     public List<T> save(List<T> collection) {
         if (collection.size() <= 0) return null;
 
         for (T item : collection) {
-            items.put(item.getId(), item);
+            items.put(item.getId(), (T) item.copy());
         }
 
+        writeToSerialized();
         return collection;
     }
 
