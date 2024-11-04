@@ -5,6 +5,8 @@ package controller;
  * a singleton pattern on all of its subclasses. This is to prevent the manager classes from being
  * instantiated more than once.
  */
+
+  
 public abstract class Manager<T> {
     /**
      * The internal store of a {@link Manager} instance, if instantiated.
@@ -37,3 +39,5 @@ public abstract class Manager<T> {
         return clazz.cast(instance);
     }
 }
+
+
