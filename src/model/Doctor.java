@@ -2,17 +2,16 @@ package model;
 
 import java.time.LocalDate;
 
-import model.enums.BloodType;
 import model.enums.Gender;
 import model.enums.UserRole;
 
-public class Doctor {
+public class Doctor extends User{
 
     // Private attributes
-    private final String doctorId;
+    private String doctorId;
     private Specialisation specialisation;
 
-    // Patient contructor, with all patient information as input parameters
+    // Doctor contructor, with all doctor information as input parameters
     public Doctor(String doctorId, String name, String password, Gender gender, LocalDate dob, 
     String phoneNumber, String emailAddress, Specialisation specialisation) { 
         super(doctorId, UserRole.DOCTOR, password, name, gender, dob, phoneNumber, emailAddress);
@@ -25,7 +24,7 @@ public class Doctor {
         return doctorId;
     }
 
-    public BloodType getSpecialisation() {
+    public Specialisation getSpecialisation() {
         return this.specialisation;
     }
 
