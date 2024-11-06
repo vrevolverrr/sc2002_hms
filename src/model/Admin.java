@@ -33,7 +33,7 @@ public class Admin extends User{
     
     public Admin(String adminId, String name, String password, Gender gender, LocalDate dob, 
     String phoneNumber, String emailAddress, String age) {
-        super(adminId, UserRole.PATIENT, password, name, gender, dob, phoneNumber, emailAddress, age);
+        super(adminId, UserRole.ADMIN, password, name, gender, dob, phoneNumber, emailAddress, age);
         this.adminId = adminId;
     }
 

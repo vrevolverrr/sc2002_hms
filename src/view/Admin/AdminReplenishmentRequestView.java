@@ -8,21 +8,21 @@ import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.layout.Align;
 import services.Navigator;
 import view.View;
-import controller.AppointmentManager;
 
-public class AdminAppointmentView extends View{
+public class AdminReplenishmentRequestView extends View{
+
     @Override
     public String getViewName() {
-        return("Admin Appointment View");
+        return("Inventory Replenishment Request View");
     }
 
     @Override
     public void render() {
         BuildContext context = new BuildContext(100, 10);
-        new Align(Alignment.CENTER, new Text(" [ Scheduled Appointments ] ", TextStyle.BOLD)).paint(context);
+        new Align(Alignment.CENTER, new Text(" [ Inventory Replenishment Request ] ", TextStyle.BOLD)).paint(context);
         new Menu(
-            new MenuOption("View All Appointments", () -> {
-                AppointmentManager.printAppointment();;
+            new MenuOption("View All Request", () -> {
+                this.viewReplenishmentRequest();;
             }),
             new MenuOption("Exit this view", ()-> {
                 this.exitView();;
@@ -33,4 +33,9 @@ public class AdminAppointmentView extends View{
     private void exitView(){
         Navigator.navigateTo(new AdminView());
     }
+
+    private void viewReplenishmentRequest(){
+        
+    }
+    
 }
