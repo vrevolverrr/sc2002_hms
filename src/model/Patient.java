@@ -7,15 +7,13 @@
 package model;
 
 import java.time.LocalDate;
-
 import model.enums.BloodType;
 import model.enums.Gender;
 import model.enums.UserRole;
-
 /**
  * The concrete implementation of a {@link User} corresponding to a patient.
  */
-public class Patient extends User {
+public class Patient extends User{
     /**
      * The unique ID of the patient.
      */
@@ -25,6 +23,7 @@ public class Patient extends User {
      * The blood type of the patient.
      */
     private BloodType bloodType;
+    private Appointment appointment;
 
     /**
      * The constructor of a {@link Patient}. Calls the constructor of {@link User}.
@@ -38,10 +37,11 @@ public class Patient extends User {
      * @param bloodType the blood type of the patient.
      */
     public Patient(String patientId, String name, String password, Gender gender, LocalDate dob, 
-    String phoneNumber, String emailAddress, BloodType bloodType) {
+    String phoneNumber, String emailAddress, BloodType bloodType, Appointment appointment) {
         super(patientId, UserRole.PATIENT, password, name, gender, dob, phoneNumber, emailAddress);
         this.patientId = patientId;
         this.bloodType = bloodType;
+        this.appointment = appointment;
     }
 
     /**
@@ -68,13 +68,20 @@ public class Patient extends User {
         this.bloodType = bloodType;
     }
 
+    public Appointment getAppointment(){
+        return appointment;
+    }
+
+    public void setAppointment(Appointment appointment){
+        this.appointment = appointment;
+    }
     /**
      * Creates a copy of the current {@link Patient} instance.
      * @return the exact copy (shallow) of the {@link Patient}.
      */
     @Override
     public Patient copy() {
-        return new Patient(patientId, getName(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress(), getBloodType());
+        return new Patient(patientId, getName(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress(), getBloodType(),getAppointment());
     }
 
 }
