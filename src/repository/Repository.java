@@ -64,7 +64,6 @@ public interface Repository<T extends BaseModel> {
      */
     public T save(T item);
 
-
     /**
      * Saves a collection of items to the repository.
      * @param collection
@@ -78,4 +77,9 @@ public interface Repository<T extends BaseModel> {
      * @return the item that was removed.
      */
     public T deleteById(String id);
+
+    /**
+     * Removes all the items in the repository and persist the changes.
+     */
+    public void clear();
 }

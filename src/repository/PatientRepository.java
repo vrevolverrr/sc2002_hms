@@ -140,4 +140,16 @@ public class PatientRepository implements Repository<Patient> {
         
         return null;
     }
+
+    /**
+     * Clears all the {@link Patient} stored in the repository.
+     */
+    @Override
+    public void clear() {
+        repository.findBy(
+            // Filter out all patients
+            (User user) -> user.getRole() == UserRole.PATIENT).stream().forEach((User user) -> {
+                repository.deleteById(user.getId());
+            });
+    }
 }
