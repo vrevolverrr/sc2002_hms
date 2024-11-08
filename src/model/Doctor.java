@@ -3,37 +3,70 @@ package model;
 import java.time.LocalDate;
 
 import model.enums.Gender;
+import model.enums.Specialisation;
 import model.enums.UserRole;
 
-public class Doctor extends User{
+/**
+ * The concrete implementation of a {@link User} corresponding to a doctor.
+ */
+public class Doctor extends User {
 
-    // Private attributes
+    /**
+     * The unique ID of the doctor.
+     */
     private String doctorId;
+
+    /**
+     * The specialisation of the doctor.
+     */
     private Specialisation specialisation;
 
-    // Doctor contructor, with all doctor information as input parameters
-    public Doctor(String doctorId, String name, String password, Gender gender, LocalDate dob, 
+    /**
+     * Constructor for a {@link Doctor}. Calls the constructor of {@link User}.
+     * @param doctorId
+     * @param name
+     * @param age
+     * @param password
+     * @param gender
+     * @param dob
+     * @param phoneNumber
+     * @param emailAddress
+     * @param specialisation
+     */
+    public Doctor(String doctorId, String name, int age, String password, Gender gender, LocalDate dob, 
     String phoneNumber, String emailAddress, Specialisation specialisation) { 
-        super(doctorId, UserRole.DOCTOR, password, name, gender, dob, phoneNumber, emailAddress);
+        super(doctorId, UserRole.DOCTOR, password, name, age, gender, dob, phoneNumber, emailAddress);
+                
         this.doctorId = doctorId;
         this.specialisation = specialisation;
     }
 
-    // Method: to retrieve information about the doctor -> functions are self-explanatory
+    /**
+     * Gets the ID of the doctor.
+     * @return the ID of the doctor.
+     */
     public String getDoctorId() {
         return doctorId;
     }
 
+    /**
+     * Get the specialisation of the doctor.
+     * @return the specialisation of the doctor.
+     */
     public Specialisation getSpecialisation() {
         return this.specialisation;
     }
 
-    public void updateSpecialisation(Specialisation new_specialisation) {
-        this.specialisation = new_specialisation;
+    /**
+     * Set the specialisation of the doctor. 
+     * @param specialisation
+     */
+    public void setSpecialisation(Specialisation specialisation) {
+        this.specialisation = specialisation;
     }
 
     @Override
     public Doctor copy() {
-        return new Doctor(doctorId, getName(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress(), getSpecialisation());
+        return new Doctor(doctorId, getName(), getAge(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress(), getSpecialisation());
     }
 }
