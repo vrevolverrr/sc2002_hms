@@ -12,6 +12,9 @@ import model.enums.UserRole;
  */
 
 
+ /**
+  * The concrete implementation of a {@link User} corresponding to an admin.
+  */
 public class Admin extends User{
 
     /**
@@ -31,9 +34,10 @@ public class Admin extends User{
      * @param age the age of the admin.
      */
     
-    public Admin(String adminId, String name, String password, Gender gender, LocalDate dob, 
-    String phoneNumber, String emailAddress, String age) {
-        super(adminId, UserRole.ADMIN, password, name, gender, dob, phoneNumber, emailAddress, age);
+    public Admin(String adminId, String name, int age, String password, Gender gender, LocalDate dob, 
+    String phoneNumber, String emailAddress) {
+        super(adminId, UserRole.ADMIN, password, name, age, gender, dob, phoneNumber, emailAddress);
+        
         this.adminId = adminId;
     }
 
@@ -51,7 +55,7 @@ public class Admin extends User{
      */
     @Override
     public Admin copy() {
-        return new Admin(adminId, getName(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress(), getAge());
+        return new Admin(adminId, getName(), getAge(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress());
     }
 
 }
