@@ -61,7 +61,7 @@ public abstract class User extends BaseModel {
     /**
      * The age of the user.
     */
-    private String age;
+    private int age;
 
     /**
      * The constructor of a {@link User}. Calls the constructor of {@link BaseModel}.
@@ -75,7 +75,7 @@ public abstract class User extends BaseModel {
      * @param emailAddress the email address of the user.
      * @param age the age of the user.
      */
-    public User(String id, UserRole role, String password, String name, Gender gender, LocalDate dob, String phoneNumber, String emailAddress, String age) {
+    public User(String id, UserRole role, String password, String name, Gender gender, LocalDate dob, String phoneNumber, String emailAddress, int age) {
         super(id);
         
         this.userId = id;
@@ -215,7 +215,7 @@ public abstract class User extends BaseModel {
      * Gets the age of the user.
      * @return the age of the user.
      */
-    public String getAge() {
+    public int getAge() {
         return this.age;
     }
 
@@ -223,7 +223,7 @@ public abstract class User extends BaseModel {
      * Sets the age of the user.
      * @param age the new age of the user.
      */
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 }
