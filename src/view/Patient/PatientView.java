@@ -45,8 +45,8 @@ public class PatientView extends View {
         new Align(Alignment.CENTER, new Text(" [ Patient Overview ] ", TextStyle.BOLD)).paint(context);
 
         new Table(
-            new TableRow("Patient ID", "Name", "Date of Birth", "Gender", "Blood Type"),
-            new TableRow(patient.getPatientId(), patient.getName(), patient.getDobString(), patient.getGender().getValue(), patient.getBloodType().getValue())
+            new TableRow("Patient ID", "Name", "Date of Birth", "Gender", "Age", "Blood Type"),
+            new TableRow(patient.getPatientId(), patient.getName(), patient.getDobString(), patient.getGender().getValue(), patient.getAge(), patient.getBloodType().getValue())
         ).paint(context);
 
         new VSpacer(1).paint(context);

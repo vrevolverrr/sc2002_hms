@@ -19,6 +19,7 @@ import view.Doctor.DoctorView;
 import view.Patient.PatientView;
 import view.Pharmacist.PharmacistView;
 
+
 public class LoginView extends View {
 
     /**

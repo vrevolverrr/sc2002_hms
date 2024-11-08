@@ -38,8 +38,8 @@ public class Patient extends User {
      * @param bloodType the blood type of the patient.
      */
     public Patient(String patientId, String name, String password, Gender gender, LocalDate dob, 
-    String phoneNumber, String emailAddress, BloodType bloodType) {
-        super(patientId, UserRole.PATIENT, password, name, gender, dob, phoneNumber, emailAddress);
+    String phoneNumber, String emailAddress, String age, BloodType bloodType) {
+        super(patientId, UserRole.PATIENT, password, name, gender, dob, phoneNumber, emailAddress, age);
         this.patientId = patientId;
         this.bloodType = bloodType;
     }
@@ -74,7 +74,7 @@ public class Patient extends User {
      */
     @Override
     public Patient copy() {
-        return new Patient(patientId, getName(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress(), getBloodType());
+        return new Patient(patientId, getName(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress(), getAge(), getBloodType());
     }
 
 }
