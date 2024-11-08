@@ -16,5 +16,10 @@ public class InventoryManager extends Manager<InventoryManager>{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateInventory'");
     }
+
+	public static void printReplenishmentRequest() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'printReplenishmentRequest'");
+	}
     
 }

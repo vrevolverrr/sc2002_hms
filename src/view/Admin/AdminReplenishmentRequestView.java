@@ -1,4 +1,5 @@
 package view.Admin;
+import controller.InventoryManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.enums.Alignment;
@@ -8,6 +9,8 @@ import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.layout.Align;
 import services.Navigator;
 import view.View;
+import model.Inventory;
+import model.enums.ReplenishmentStatus;
 
 public class AdminReplenishmentRequestView extends View{
 
@@ -35,7 +38,9 @@ public class AdminReplenishmentRequestView extends View{
     }
 
     private void viewReplenishmentRequest(){
+        InventoryManager.printReplenishmentRequest();
         
+
     }
     
 }
