@@ -75,7 +75,7 @@ public abstract class User extends BaseModel {
      * @param emailAddress the email address of the user.
      * @param age the age of the user.
      */
-    public User(String id, UserRole role, String password, String name, Gender gender, LocalDate dob, String phoneNumber, String emailAddress, int age) {
+    public User(String id, UserRole role, String password, String name, int age, Gender gender, LocalDate dob, String phoneNumber, String emailAddress) {
         super(id);
         
         this.userId = id;
