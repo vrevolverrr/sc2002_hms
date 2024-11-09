@@ -4,11 +4,12 @@
  * @since 2024-10-27
  */
 
-package model;
+package model.users;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import model.BaseModel;
 import model.enums.Gender;
 import model.enums.UserRole;
 

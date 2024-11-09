@@ -4,7 +4,7 @@
  * @since 2024-10-28
  */
 
-package model;
+package model.users;
 
 import java.time.LocalDate;
 
