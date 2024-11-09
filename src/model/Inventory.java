@@ -1,6 +1,6 @@
 package model;
 
-public class Inventory extends BaseModel{
+public class Inventory extends BaseModel {
 
     private String medicId;
     private String medicName;

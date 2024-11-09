@@ -1,9 +1,12 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.*;
+
 import model.Appointment;
-import model.Patient;
-import model.Doctor;
-import model.Administrator;
+import model.User;
+import model.enums.AppointmentStatus;
 
 /* Appointment Manager implements an access-control logic (using encapsulation)
 1. Which appointments do they have access to? 
@@ -16,7 +19,7 @@ import model.Administrator;
     c. Administrator - has full access to edit all information in each appointment
 */
 public class AppointmentManager {
-    private List<Appointment> appointments = new ArrayList<>();
+    private List<Appointment> appointments = new ArrayList<Appointment>();
 
     public AppointmentManager(List<Appointment> appointments) {
         this.appointments = appointments;

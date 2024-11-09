@@ -30,6 +30,7 @@ public class Patient extends User {
      * The constructor of a {@link Patient}. Calls the constructor of {@link User}.
      * @param patientId the unique ID of the patient.
      * @param name the name of the patient.
+     * @param age the age of the patient.
      * @param password the password of the patient's user account.
      * @param gender the gender of the patient.
      * @param dob the date of birth of the patient.
