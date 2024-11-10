@@ -7,3 +7,5 @@
 /bin
 
 *.class
+
+*.dat
