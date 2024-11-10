@@ -1,91 +1,169 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.*;
+import model.users.Doctor;
+import model.Appointment;
+import java.time.LocalDate;
+import java.time.LocalTime; 
+import java.time.format.DateTimeParseException;
+import java.util.*;
 
-import model.appointments.Appointment;
-import model.enums.AppointmentStatus;
-import model.users.User;
+public class AppointmentManager extends Manager<AppointmentManager> {
+    private static AppointmentManager instance;
 
-/* Appointment Manager implements an access-control logic (using encapsulation)
-1. Which appointments do they have access to? 
-    a. Patient - can only view and manage their own appointments
-    b. Doctor - can only view and manage appointments associated with them
-    c. Administrator - has full access to all appointments 
-2. Which pieces of information within their appointment can they edit?
-    a. Patient - 
-    b. Doctor - can view all information
-    c. Administrator - has full access to edit all information in each appointment
-*/
-public class AppointmentManager {
-    private List<Appointment> appointments = new ArrayList<Appointment>();
+    private List<Appointment> appointments = new ArrayList<>();
 
-    public AppointmentManager(List<Appointment> appointments) {
-        this.appointments = appointments;
+    private AppointmentManager() {}
+
+    public static AppointmentManager getInstance() {
+        if (instance == null) {
+            instance = new AppointmentManager();
+        }
+        return instance;
     }
 
-    public List<Appointment> getAppointments(User user) {
-        switch (user.getRole()) {
-            case PATIENT:
-                // Patients can only view their own appointments
-                return appointments.stream()
-                        .filter(a -> a.getPatientId().equals(user.getUserId()))
-                        .collect(Collectors.toList());
+    // Method to schedule a new appointment
+    public void schedule() {
+        System.out.println("Scheduling a new appointment...");
 
-            case DOCTOR:
-                // Doctors can view only their own patients' appointments
-                return appointments.stream()
-                        .filter(a -> a.getDoctorId().equals(user.getUserId()))
-                        .collect(Collectors.toList());
+        Doctor selectedDoctor = selectDoctor();
+        if (selectedDoctor == null) {
+            System.out.println("No doctor selected. Returning to menu.");
+            return;
+        }
 
-            case ADMIN:
-                // Administrators have full access to all appointments
-                return appointments;
+        LocalDate selectedDate = selectDate();
+        if (selectedDate == null) {
+            System.out.println("No date selected. Returning to menu.");
+            return;
+        }
 
-            default:
-                throw new UnsupportedOperationException("Unknown user role");
+        LocalTime selectedTime = selectTimeSlot();
+        if (selectedTime == null) {
+            System.out.println("No time slot selected. Returning to menu.");
+            return;
+        }
+
+        Appointment newAppointment = new Appointment(selectedDoctor, selectedDate, selectedTime);
+        appointments.add(newAppointment); // Store the new appointment
+
+        System.out.println("Appointment successfully scheduled with Dr. " + selectedDoctor.getName() +
+                           " on " + selectedDate + " at " + selectedTime + ".");
+    }
+
+    // Method to reschedule an existing appointment
+    public void reschedule() {
+        System.out.println("Rescheduling an appointment...");
+
+        Appointment selectedAppointment = selectAppointment();
+        if (selectedAppointment == null) {
+            System.out.println("No appointment selected. Returning to menu.");
+            return;
+        }
+
+        LocalDate newDate = selectDate();
+        if (newDate == null) {
+            System.out.println("No date selected. Returning to menu.");
+            return;
+        }
+
+        LocalTime newTime = selectTimeSlot();
+        if (newTime == null) {
+            System.out.println("No time slot selected. Returning to menu.");
+            return;
+        }
+
+        selectedAppointment.setDate(newDate);
+        selectedAppointment.setSlot(newTime);
+
+        System.out.println("Appointment rescheduled to " + newDate + " at " + newTime + ".");
+    }
+
+    // Method to cancel an existing appointment
+    public void cancel() {
+        System.out.println("Canceling an appointment...");
+
+        Appointment selectedAppointment = selectAppointment();
+        if (selectedAppointment == null) {
+            System.out.println("No appointment selected. Returning to menu.");
+            return;
+        }
+
+        appointments.remove(selectedAppointment);
+        System.out.println("Appointment successfully canceled.");
+    }
+
+    // Method to select an appointment
+    private Appointment selectAppointment() {
+        System.out.println("Please select an appointment to manage:");
+        
+        for (int i = 0; i < appointments.size(); i++) {
+            Appointment appointment = appointments.get(i);
+            System.out.println((i + 1) + ". Dr. " + appointment.getDoc().getName() + 
+                               " on " + appointment.getDate() + " at " + appointment.getSlot());
+        }
+
+        int appointmentIndex = getUserInputAsInt() - 1;
+        if (appointmentIndex >= 0 && appointmentIndex < appointments.size()) {
+            return appointments.get(appointmentIndex);
+        }
+        System.out.println("Invalid selection.");
+        return null;
+    }
+
+    // Method to select a doctor
+    private Doctor selectDoctor() {
+        System.out.println("Please select a doctor:");
+        
+        // This should ideally fetch active doctors; using a placeholder list for demonstration
+        List<Doctor> doctors = UserManager.getAllDoctors(); // come back later
+        
+        for (Doctor doc : doctors) {
+            System.out.println(doc.getDocId() + ". " + doc.getName()); //come back later
+        }
+
+        int doctorId = getUserInputAsInt();
+        return doctors.stream().filter(doc -> doc.getId() == doctorId).findFirst().orElse(null);
+    }
+
+    // Method to select a date
+    private LocalDate selectDate() {
+        System.out.println("Please enter the appointment date (YYYY-MM-DD):");
+        String dateInput = getUserInputAsString();
+        try {
+            return LocalDate.parse(dateInput);
+        } catch (DateTimeParseException e) {
+            System.out.println("Invalid date format. Please use YYYY-MM-DD.");
+            return null;
         }
     }
 
-    public void updateAppointmentStatus(User user, String appointmentId, AppointmentStatus newStatus) {
-        Appointment appointment = appointments.stream()
-                .filter(a -> a.getAppointmentId().equals(appointmentId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Appointment not found"));
-
-        switch (user.getRole()) {
-            case PATIENT:
-                if (!appointment.getPatientId().equals(user.getUserId())) {
-                    throw new SecurityException("Patients can only update their own appointments");
-                }
-                // Patients may have limited status update permissions (e.g., only to cancel)
-                if (newStatus == AppointmentStatus.CANCELLED) {
-                    appointment.setStatus(newStatus);
-                } else {
-                    throw new UnsupportedOperationException("Patients can only cancel appointments");
-                }
-                break;
-
-            case DOCTOR:
-                if (!appointment.getDoctorId().equals(user.getUserId())) {
-                    throw new SecurityException("Doctors can only update their own appointments");
-                }
-                // Allow doctors to update certain statuses
-                appointment.setStatus(newStatus);
-                break;
-
-            case ADMIN:
-                // Admins can update any appointment status
-                appointment.setStatus(newStatus);
-                break;
-
-            default:
-                throw new UnsupportedOperationException("Unknown user role");
+    // Method to select a time slot
+    private LocalTime selectTimeSlot() {
+        System.out.println("Please enter the appointment time (HH:MM):");
+        String timeInput = getUserInputAsString();
+        try {
+            return LocalTime.parse(timeInput);
+        } catch (DateTimeParseException e) {
+            System.out.println("Invalid time format. Please use HH:MM.");
+            return null;
         }
     }
 
-    public void addAppointment(Appointment appointment) {
-        appointments.add(appointment);
+    // Method to get integer input from user
+    private int getUserInputAsInt() {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+            scanner.next(); // Clear invalid input
+            return -1;
+        }
+    }
+
+    // Method to get string input from user
+    private String getUserInputAsString() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 }
