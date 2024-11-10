@@ -3,11 +3,13 @@ package utils;
 import java.time.LocalDate;
 import java.util.*;
 
+import model.InventoryItem;
 import model.enums.BloodType;
 import model.enums.Gender;
 import model.users.Admin;
 import model.users.Patient;
 import repository.AdminRepository;
+import repository.InventoryRepository;
 import repository.PatientRepository;
 import repository.UserRepository;
 
@@ -47,5 +49,19 @@ public class MockData {
         mockData.add(new Admin("A1003", "James Anderson", 50, "adminPass3", Gender.MALE, LocalDate.of(1973, 5, 30), "83456789", "james.anderson@example.com"));
 
         adminRepository.save(mockData);
+    }
+
+    public static void mockInventoryData() {
+        InventoryRepository inventoryRepository = new InventoryRepository();
+        
+        inventoryRepository.save(new InventoryItem("I1002", "Ibuprofen", 200, 30));
+        inventoryRepository.save(new InventoryItem("I1003", "Amoxicillin", 150, 20));
+        inventoryRepository.save(new InventoryItem("I1004", "Ciprofloxacin", 120, 40));
+        inventoryRepository.save(new InventoryItem("I1005", "Metformin", 300, 25));
+        inventoryRepository.save(new InventoryItem("I1006", "Amlodipine", 250, 35));
+        inventoryRepository.save(new InventoryItem("I1007", "Omeprazole", 180, 45));
+        inventoryRepository.save(new InventoryItem("I1008", "Simvastatin", 220, 60));
+        inventoryRepository.save(new InventoryItem("I1009", "Lisinopril", 160, 55));
+        inventoryRepository.save(new InventoryItem("I1010", "Levothyroxine", 140, 50));
     }
 }
