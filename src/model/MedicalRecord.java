@@ -13,15 +13,16 @@ public class MedicalRecord extends BaseModel {
      */
     private String doctorId;
 
+    private String patientId;
+
     
-
-
-    public MedicalRecord(String recordId, String appointmentId, String doctorId) {
+    public MedicalRecord(String recordId, String appointmentId, String doctorId, String patientId) {
         super(recordId);
         
         this.recordId = recordId;
         this.appointmentId = appointmentId;
         this.doctorId = doctorId;
+        this.patientId = patientId;
     }
 
 

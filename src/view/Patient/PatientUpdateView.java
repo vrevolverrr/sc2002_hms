@@ -11,8 +11,6 @@ public class PatientUpdateView extends View {
 
     @Override
     public void render() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'render'");
+        System.out.println("Test View");
     }
-    
 }
