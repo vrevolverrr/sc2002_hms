@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import model.enums.Gender;
 import model.enums.UserRole;
+import model.users.User;
 
 /**
  * The concrete implementation of a {@link User} corresponding to a pharmacist.
@@ -24,9 +25,9 @@ public class Pharmacist extends User {
      * @param phoneNumber the phone number of the pharmacist.
      * @param emailAddress the email address of the pharmacist.
      */
-    public Pharmacist(String pharmacistId, String name, String password, Gender gender, LocalDate dob, 
+    public Pharmacist(String pharmacistId, String name, int age, String password, Gender gender, LocalDate dob, 
                       String phoneNumber, String emailAddress) {
-        super(pharmacistId, UserRole.PHARMACIST, password, name, gender, dob, phoneNumber, emailAddress);
+        super(pharmacistId, UserRole.PHARMACIST, password, name, age, gender, dob, phoneNumber, emailAddress);
         this.pharmacistId = pharmacistId;
     }
 
@@ -44,7 +45,7 @@ public class Pharmacist extends User {
      */
     @Override
     public Pharmacist copy() {
-        return new Pharmacist(pharmacistId, getName(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress());
+        return new Pharmacist(pharmacistId, getName(), getAge(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress());
     }
 
 }

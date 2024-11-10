@@ -11,7 +11,7 @@ import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.layout.Align;
-import model.Inventory;
+import model.InventoryItem;
 import services.Navigator;
 import view.View;
 

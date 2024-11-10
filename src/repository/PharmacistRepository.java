@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import model.enums.UserRole;
 import model.Pharmacist;
-import model.User;
+import model.users.User;
 
 /**
  * An implementation of {@link Repository} that operates on {@link Pharmacist} data models. It extends
@@ -132,6 +132,12 @@ public class PharmacistRepository implements Repository<Pharmacist> {
         }
         
         return null;
+    }
+
+    @Override
+    public void clear() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'clear'");
     }
 }
 
