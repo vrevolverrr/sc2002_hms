@@ -3,7 +3,7 @@ import model.users.User;
 import repository.UserRepository;
 
 public class UserManager extends Manager<UserManager> {
-    private final UserRepository repository = new UserRepository();
+    private final UserRepository repository = UserRepository.getInstance();
 
     private User activeUser;
 

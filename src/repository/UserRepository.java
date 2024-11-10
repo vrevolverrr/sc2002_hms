@@ -26,10 +26,26 @@ public class UserRepository extends BaseRepository<User> {
     final static String ID_PREFIX = "U";
 
     /**
+     * The singleton instance of a {@link UserRepository}.
+     */
+    private static UserRepository instance;
+
+    /**
      * The constructor of a {@link UserRepository}.
      */
-    public UserRepository() {
+    private UserRepository() {
         super(FILENAME);
+    }
+
+    /**
+     * Gets the singleton instance of a {@link UserRepository}.
+     * @return the instance of a {@link UserRepository}.
+     */
+    public static UserRepository getInstance() {
+        if (instance == null) {
+            instance = new UserRepository();
+        }
+        return instance;
     }
 
     /**
