@@ -3,6 +3,7 @@ package view.Pharmacist;
 import java.util.List;
 
 import controller.InventoryManager;
+import controller.InventoryRequest;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.enums.Alignment;
@@ -39,12 +40,12 @@ public class PharmacistReplenishRequestView extends View {
     }
 
     private void viewReplenishmentRequest(BuildContext context){
-        List<InventoryManager.InventoryRequest> requests = InventoryManager.getInventoryRequests();
+        List<InventoryRequest> requests = InventoryManager.getInventoryRequests();
         if (requests.isEmpty()) {
             new Align(Alignment.CENTER, new Text("No inventory requests.", TextStyle.NORMAL)).paint(context);
         } else {
             new Align(Alignment.CENTER, new Text("Inventory Requests:", TextStyle.BOLD)).paint(context);
-            for (InventoryManager.InventoryRequest request : requests) {
+            for (InventoryRequest request : requests) {
                 new Text(request.toString()).paint(context);
             }
         }
