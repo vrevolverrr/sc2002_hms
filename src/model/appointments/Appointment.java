@@ -56,7 +56,7 @@ public class Appointment extends BaseModel {
         this.dateTime = dateTime;
         this.status = status;
 
-        this.outcome = new AppointmentOutcomeRecord();
+        this.outcome = null;
     }
 
     /**
