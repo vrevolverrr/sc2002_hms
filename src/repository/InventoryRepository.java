@@ -3,7 +3,7 @@ package repository;
 import model.InventoryItem;
 
 public class InventoryRepository extends BaseRepository<InventoryItem> {
-    final static String FILENAME = "users.dat";
+    final static String FILENAME = "inventory.dat";
 
     public InventoryRepository() {
         super(FILENAME);
