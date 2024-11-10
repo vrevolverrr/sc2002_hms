@@ -11,6 +11,7 @@ public class InventoryRepository extends BaseRepository<InventoryItem> {
         super(FILENAME);
     }
 
+    @SuppressWarnings("unused")
     @Override
     public String generateId() {
         return ID_PREFIX + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(

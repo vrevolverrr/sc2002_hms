@@ -55,6 +55,7 @@ public class PatientRepository implements Repository<Patient> {
         return this.getItems().size();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public String generateId() {
         return "P" + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(

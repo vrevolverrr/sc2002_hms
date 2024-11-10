@@ -82,4 +82,10 @@ public interface Repository<T extends BaseModel> {
      * Removes all the items in the repository and persist the changes.
      */
     public void clear();
+
+    /**
+     * Generates a unique ID for the item to be stored in the repository.
+     * @return the unique ID.
+     */
+    public String generateId();
 }

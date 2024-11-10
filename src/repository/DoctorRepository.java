@@ -9,7 +9,6 @@ import model.users.Doctor;
 import model.users.User;
 
 public class DoctorRepository implements Repository<Doctor> {
-    // General class definition and constructors
     private final UserRepository repository;
     
     /**
@@ -35,6 +34,7 @@ public class DoctorRepository implements Repository<Doctor> {
      * Generates a new ID for a {@link Doctor}.
      * @return the new ID for a {@link Doctor}.
      */
+    @SuppressWarnings("unused")
     @Override
     public String generateId() {
         return "D" + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(

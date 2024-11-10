@@ -35,6 +35,7 @@ public class UserRepository extends BaseRepository<User> {
     /**
      * Generates a new ID for a {@link User}.
      */
+    @SuppressWarnings("unused")
     @Override
     public String generateId() {
         return "U" + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(

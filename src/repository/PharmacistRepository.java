@@ -55,6 +55,7 @@ public class PharmacistRepository implements Repository<Pharmacist> {
     /**
      * Generates a new ID for a {@link Pharmacist}. 
      */
+    @SuppressWarnings("unused")
     @Override
     public String generateId() {
         return "F" + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(
