@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.HashMap;
+
 /**
  * The base class to be inherited by all manager (controller) classes. The {@link Manager} class enforces
  * a singleton pattern on all of its subclasses. This is to prevent the manager classes from being
@@ -9,9 +11,9 @@ package controller;
   
 public abstract class Manager<T> {
     /**
-     * The internal store of a {@link Manager} instance, if instantiated.
+     * The internal store of a {@link Manager} instances, if instantiated.
      */
-    private static Manager<?> instance;
+    private static HashMap<Class<?>, Manager<?>> instances = new HashMap<Class<?>, Manager<?>>();
 
     protected Manager() {}
 
@@ -26,10 +28,13 @@ public abstract class Manager<T> {
      */
     public static <T extends Manager<T>> T getInstance(Class<T> clazz) {
         // If no instance has been instantiated before
+        Manager<?> instance = instances.get(clazz);
+
         if (instance == null) {
             try {
                 // Attempt to instantiate a new instance of the class needed.
                 instance = clazz.getDeclaredConstructor().newInstance();
+                instances.put(clazz, instance);
             } catch (Exception e) {
                 throw new RuntimeException("Could not create manager instance", e);
             }

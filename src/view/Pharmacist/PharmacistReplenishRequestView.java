@@ -1,4 +1,9 @@
-// package view.Admin;
+// package view.Pharmacist;
+
+// import java.util.List;
+
+// import controller.InventoryManager;
+// import controller.InventoryRequest;
 // import lib.uilib.framework.BuildContext;
 // import lib.uilib.framework.MenuOption;
 // import lib.uilib.framework.enums.Alignment;
@@ -9,7 +14,7 @@
 // import services.Navigator;
 // import view.View;
 
-// public class AdminReplenishmentRequestView extends View{
+// public class PharmacistReplenishRequestView extends View {
 
 //     @Override
 //     public String getViewName() {
@@ -22,20 +27,28 @@
 //         new Align(Alignment.CENTER, new Text(" [ Inventory Replenishment Request ] ", TextStyle.BOLD)).paint(context);
 //         new Menu(
 //             new MenuOption("View All Request", () -> {
-//                 this.viewReplenishmentRequest();;
+//                 this.viewReplenishmentRequest(context);
 //             }),
 //             new MenuOption("Exit this view", ()-> {
-//                 this.exitView();;
+//                 this.exitView();
 //             })
 //         ).readOption(context);
 //     }
 
 //     private void exitView(){
-//         Navigator.navigateTo(new AdminView());
+//         Navigator.navigateTo(new PharmacistView());
 //     }
 
-//     private void viewReplenishmentRequest(){
-        
+//     private void viewReplenishmentRequest(BuildContext context){
+//         List<InventoryRequest> requests = InventoryManager.getInventoryRequests();
+//         if (requests.isEmpty()) {
+//             new Align(Alignment.CENTER, new Text("No inventory requests.", TextStyle.NORMAL)).paint(context);
+//         } else {
+//             new Align(Alignment.CENTER, new Text("Inventory Requests:", TextStyle.BOLD)).paint(context);
+//             for (InventoryRequest request : requests) {
+//                 new Text(request.toString()).paint(context);
+//             }
+//         }
 //     }
     
 // }

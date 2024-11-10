@@ -3,13 +3,16 @@ package utils;
 import java.time.LocalDate;
 import java.util.*;
 
+import model.InventoryItem;
 import model.enums.BloodType;
 import model.enums.Gender;
 import model.enums.Specialisation;
+import model.enums.ReplenishmentStatus;
 import model.users.Admin;
 import model.users.Patient;
 import model.users.Doctor;
 import repository.AdminRepository;
+import repository.InventoryRepository;
 import repository.PatientRepository;
 import repository.UserRepository;
 import repository.DoctorRepository;
@@ -64,5 +67,17 @@ public class MockData {
         mockData.add(new Doctor("D1004", "Dr Will Santiago", 39, "doctorPwd4", Gender.MALE, LocalDate.of(1985, 11, 10), "81093321", "will.santiago@example.com", Specialisation.RADIOLOGIST));
 
         doctorRepository.save(mockData);
+    public static void mockInventoryData() {
+        InventoryRepository inventoryRepository = new InventoryRepository();
+        
+        inventoryRepository.save(new InventoryItem("I1002", "Ibuprofen", 200, 30, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1003", "Amoxicillin", 150, 20, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1004", "Ciprofloxacin", 120, 40, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1005", "Metformin", 300, 25, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1006", "Amlodipine", 250, 35, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1007", "Omeprazole", 180, 45, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1008", "Simvastatin", 220, 60, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1009", "Lisinopril", 160, 55, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1010", "Levothyroxine", 140, 50, ReplenishmentStatus.NULL));
     }
 }

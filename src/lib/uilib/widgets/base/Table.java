@@ -23,8 +23,8 @@ import lib.uilib.widgets.layout.Align;
  * </pre>
  */
 public class Table extends Widget {
-    private final TableRow[] rows;
-    private int[] columnWidths;
+    protected final TableRow[] rows;
+    protected int[] columnWidths;
 
     public Table(TableRow... rows) {
         this.rows = rows;
@@ -45,7 +45,7 @@ public class Table extends Widget {
         }
     }
  
-    private void calculateWidths(BuildContext context) {
+    protected void calculateWidths(BuildContext context) {
         columnWidths = new int[rows[0].getValues().length];
         
         for (TableRow row : rows) {
@@ -64,8 +64,6 @@ public class Table extends Widget {
         for (int i = 0; i < columnWidths.length; i++) {
             columnWidths[i] += extraSpacePerColumn;
         }
-
-        
     }
 
     @Override

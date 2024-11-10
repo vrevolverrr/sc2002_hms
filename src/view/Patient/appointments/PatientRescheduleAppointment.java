@@ -1,12 +1,13 @@
-package view.Patient;
+package view.Patient.appointments;
 
 import view.View;
 
-public class PatientAppointmentView extends View {
+public class PatientRescheduleAppointment extends View{
 
     @Override
     public String getViewName() {
-        return "Manage Appointments";
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getViewName'");
     }
 
     @Override

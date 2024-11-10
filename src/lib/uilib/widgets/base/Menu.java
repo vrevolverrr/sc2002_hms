@@ -1,7 +1,6 @@
 package lib.uilib.widgets.base;
 
 import java.util.stream.*;
-
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TextInputField;

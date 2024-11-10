@@ -112,4 +112,13 @@ public abstract class View {
             clearLine();
         }
     }
+
+    public static boolean validateInput(String input, int rangeLength) {
+        try {
+            int value = Integer.parseInt(input);
+            return value >= 1 && value <= rangeLength;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
