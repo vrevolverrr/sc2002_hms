@@ -10,9 +10,9 @@ import java.util.*;
 import java.util.stream.*;
 import java.util.function.Predicate;
 
-import model.Patient;
-import model.User;
 import model.enums.UserRole;
+import model.users.Patient;
+import model.users.User;
 
 /**
  * An implementation of {@link Repository} that on {@link Patient} data models. It extends
@@ -139,5 +139,17 @@ public class PatientRepository implements Repository<Patient> {
         }
         
         return null;
+    }
+
+    /**
+     * Clears all the {@link Patient} stored in the repository.
+     */
+    @Override
+    public void clear() {
+        repository.findBy(
+            // Filter out all patients
+            (User user) -> user.getRole() == UserRole.PATIENT).stream().forEach((User user) -> {
+                repository.deleteById(user.getId());
+            });
     }
 }

@@ -13,7 +13,7 @@ import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.MultiTextInput;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.layout.Align;
-import model.Patient;
+import model.users.Patient;
 import model.enums.Gender;
 import view.View;
 

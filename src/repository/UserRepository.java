@@ -8,7 +8,7 @@ package repository;
 
 import java.util.*;
 
-import model.User;
+import model.users.User;
 
 /**
  * A {@link Repository} for {@link User} with specific functionality.

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 import model.enums.AppointmentStatus;
+import model.users.Doctor;
 
 public class Appointment {
     private Doctor doc;

@@ -47,7 +47,7 @@ public class Menu extends Widget {
         TextInputField selectedOption = new TextInputField("Select an option");
 
         while (true) {
-            new TextInput(selectedOption).read(context, (String _) -> true);
+            new TextInput(selectedOption).read(context, (String input) -> true);
 
             if (isInt(selectedOption.getValue()) && inRange(Integer.parseInt(selectedOption.getValue()))) {
                 System.out.println("Hello");

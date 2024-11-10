@@ -6,7 +6,7 @@
 
 package model.enums;
 
-import model.Patient;
+import model.users.Patient;
 
 /**
  * The enum corresponding to the bloodtype of a {@link Patient}

@@ -11,13 +11,14 @@ import lib.uilib.widgets.base.MultiTextInput;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.VSpacer;
 import lib.uilib.widgets.layout.Column;
-import model.User;
 import model.enums.UserRole;
+import model.users.User;
 import services.Navigator;
 import view.Admin.AdminView;
 import view.Doctor.DoctorView;
 import view.Patient.PatientView;
 import view.Pharmacist.PharmacistView;
+
 
 public class LoginView extends View {
 

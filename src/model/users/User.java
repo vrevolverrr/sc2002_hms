@@ -4,11 +4,12 @@
  * @since 2024-10-27
  */
 
-package model;
+package model.users;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import model.BaseModel;
 import model.enums.Gender;
 import model.enums.UserRole;
 
@@ -59,6 +60,11 @@ public abstract class User extends BaseModel {
     private String emailAddress;
 
     /**
+     * The age of the user.
+    */
+    private int age;
+
+    /**
      * The constructor of a {@link User}. Calls the constructor of {@link BaseModel}.
      * @param id the unique ID of the user.
      * @param role the role of the user.
@@ -68,8 +74,9 @@ public abstract class User extends BaseModel {
      * @param dob the date of birth of the user.
      * @param phoneNumber the phone number of the user.
      * @param emailAddress the email address of the user.
+     * @param age the age of the user.
      */
-    public User(String id, UserRole role, String password, String name, Gender gender, LocalDate dob, String phoneNumber, String emailAddress) {
+    public User(String id, UserRole role, String password, String name, int age, Gender gender, LocalDate dob, String phoneNumber, String emailAddress) {
         super(id);
         
         this.userId = id;
@@ -82,6 +89,7 @@ public abstract class User extends BaseModel {
         this.dob = dob;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
+        this.age = age;
     }
 
     /**
@@ -202,5 +210,21 @@ public abstract class User extends BaseModel {
      */
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    /**
+     * Gets the age of the user.
+     * @return the age of the user.
+     */
+    public int getAge() {
+        return this.age;
+    }
+
+    /**
+     * Sets the age of the user.
+     * @param age the new age of the user.
+     */
+    public void setAge(int age) {
+        this.age = age;
     }
 }
