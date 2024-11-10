@@ -1,7 +1,9 @@
 package model.users;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,6 +74,42 @@ public class Doctor extends User {
      */
     public void setSpecialisation(Specialisation specialisation) {
         this.specialisation = specialisation;
+    }
+
+    // Set default availability from 9 AM to 6 PM on weekdays
+    public void setDefaultAvailability(LocalDate startDate, LocalDate endDate) {
+        for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
+            if (isWeekday(date)) {
+                List<LocalTime> timeSlots = generateTimeSlots(LocalTime.of(9, 0), LocalTime.of(18, 0), 1);
+                availability.put(date, timeSlots);
+            }
+        }
+        System.out.println("Default availability set from " + startDate + " to " + endDate);
+    }
+
+    // Generate time slots with a specified interval (in hours)
+    private List<LocalTime> generateTimeSlots(LocalTime startTime, LocalTime endTime, int intervalHours) {
+        List<LocalTime> timeSlots = new ArrayList<>();
+        while (!startTime.isAfter(endTime)) {
+            timeSlots.add(startTime);
+            startTime = startTime.plusHours(intervalHours);
+        }
+        return timeSlots;
+    }
+
+    // Check if a date is a weekday (Monday to Friday)
+    private boolean isWeekday(LocalDate date) {
+        DayOfWeek day = date.getDayOfWeek();
+        return day != DayOfWeek.SATURDAY && day != DayOfWeek.SUNDAY;
+    }
+
+    // Check availability for testing purposes
+    public void checkAvailability() {
+        System.out.println("Current Availability:");
+        availability.forEach((date, timeSlots) -> {
+            System.out.println("Date: " + date);
+            timeSlots.forEach(time -> System.out.println("  Time: " + time));
+        });
     }
 
     @Override

@@ -12,6 +12,7 @@ import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.VSpacer;
 import lib.uilib.widgets.layout.Align;
 import model.users.Patient;
+import model.users.Doctor;
 import services.Navigator;
 import view.View;
 
