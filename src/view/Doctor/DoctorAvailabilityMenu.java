@@ -3,25 +3,19 @@ package view.Doctor;
 import controller.UserManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.MenuOption;
-import lib.uilib.framework.TableRow;
-import lib.uilib.framework.enums.Alignment;
 import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.widgets.base.Menu;
-import lib.uilib.widgets.base.Table;
 import lib.uilib.widgets.base.Text;
-import lib.uilib.widgets.base.VSpacer;
-import lib.uilib.widgets.layout.Align;
-import model.users.Patient;
-import model.users.Doctor;
 import services.Navigator;
+import view.LoginView;
 import view.View;
 
-public class DoctorView extends View {
+public class DoctorAvailabilityMenu extends View {
 
     UserManager userManager = UserManager.getInstance(UserManager.class);
 
-    private void viewAndUpdatePatientMedicalRecord(){
-        Navigator.navigateTo(new PatientMedicalRecordView());
+    private void viewSchedule(){
+        Navigator.navigateTo(new DoctorScheduleView());
     }
 
     private void viewDoctorPersonalSchedule(){
@@ -42,7 +36,7 @@ public class DoctorView extends View {
 
     @Override
     public String getViewName() {
-        return("AdminView");
+        return("DoctorAvailabilityView");
     }
 
     @Override
@@ -51,26 +45,21 @@ public class DoctorView extends View {
         BuildContext context = new BuildContext(100, 10);
 
         final int[] validChoice = {-1};
-        
+
+        // Print out the list of options
         while(validChoice[0] != 1){
             new Menu(
-                new MenuOption("View and Update Patient Medical Record", () -> {
-                    this.viewAndUpdatePatientMedicalRecord();; validChoice[0] = 1;}),
+                new MenuOption("View Schedule", () -> {
+                    this.viewSchedule();; validChoice[0] = 1;}),
 
-                new MenuOption("View Personal Schedule", () -> {
-                    this.viewDoctorPersonalSchedule();; validChoice[0] = 1;}),
+                new MenuOption("Add Availability", () -> {
+                    this.addAvailability();; validChoice[0] = 1;}),
 
-                new MenuOption("Edit Personal Availability", () -> {
-                    this.setDoctorPersonalAvailability();; validChoice[0] = 1;}),
+                new MenuOption("Remove Availability", () -> {
+                    this.removeAvailability();; validChoice[0] = 1;}),
 
-                new MenuOption("View Upcoming Appointments", () -> {
-                    this.viewandUpdateDoctorUpcomingAppointments();; validChoice[0] = 1;}),
-
-                new MenuOption("Update Appointment Outcome", () -> {
-                    this.viewAndUpdatePatientMedicalRecord();; validChoice[0] = 1;}),
-                
-                new MenuOption("Log Out", () -> {
-                    this.logOut();; validChoice[0] = 1;})
+                new MenuOption("Exit Availability Menu", () -> {
+                    this.exitAvailability();; validChoice[0] = 1;}),
 
             ).readOption(context);
 
@@ -81,5 +70,5 @@ public class DoctorView extends View {
             }
         }
     }
-    
+
 }
