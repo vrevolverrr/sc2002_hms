@@ -1,6 +1,10 @@
 package model.users;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import model.enums.Gender;
 import model.enums.Specialisation;
@@ -20,6 +24,11 @@ public class Doctor extends User {
      * The specialisation of the doctor.
      */
     private Specialisation specialisation;
+
+    /**
+     * The availability of the doctor.
+     */
+    private Map<LocalDate, List<LocalTime>> availability = new HashMap<>();
 
     /**
      * Constructor for a {@link Doctor}. Calls the constructor of {@link User}.

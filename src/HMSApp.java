@@ -11,5 +11,6 @@ import view.LoginView;
 public class HMSApp {
     public static void main(String[] args) throws Exception {
         Navigator.navigateTo(new LoginView());
+        // MockData.mockAllData();
     }
 }
