@@ -11,6 +11,7 @@ import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.layout.Align;
+import model.Inventory;
 import services.Navigator;
 import view.View;
 
@@ -21,14 +22,14 @@ public class PharmacistInventoryView extends View {
     new Align(Alignment.CENTER, new Text(" [ Medication Inventory Stock ] ", TextStyle.BOLD)).paint(context);
     
     // Fetch the inventory from the InventoryManager
-    List<InventoryManager.InventoryItem> items = InventoryManager.getInventory();
+    List<Inventory> items = InventoryManager.getInventory();
 
     // Check if the inventory is empty and display a message if it is
     if (items.isEmpty()) {
         new Align(Alignment.CENTER, new Text("No items in inventory.", TextStyle.NORMAL)).paint(context);
     } else {
         // Iterate through the inventory items and display each one
-        for (InventoryManager.InventoryItem item : items) {
+        for (Inventory item : items) {
             new Text(item.toString()).paint(context);
         }
     }
@@ -40,8 +41,8 @@ public class PharmacistInventoryView extends View {
         BuildContext context = new BuildContext(100, 10);
         new Align(Alignment.CENTER, new Text(" [ Update Medication Inventory ] ", TextStyle.BOLD)).paint(context);
         TextInputField medicName = new TextInputField("Please enter the name of the medication that you wish to request: ");
-        TextInputField requestedStock = new TextInputField("Please enter the quantity you like to request: ");
-        if(!InventoryManager.requestInventory(medicName.getValue(), Integer.parseInt(requestedStock.getValue()))){
+        //TextInputField requestedStock = new TextInputField("Please enter the quantity you like to request: ");
+        if(!InventoryManager.requestInventory(medicName.getValue(), 0)){
             new Text("Failed to request stock.");
         }
         else{
