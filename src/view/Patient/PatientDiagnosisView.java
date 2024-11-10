@@ -2,24 +2,20 @@ package view.Patient;
 
 import controller.UserManager;
 import lib.uilib.framework.BuildContext;
-import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.enums.Alignment;
 import lib.uilib.framework.enums.TextStyle;
-import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.Table;
 import lib.uilib.widgets.base.Text;
-import lib.uilib.widgets.base.VSpacer;
 import lib.uilib.widgets.layout.Align;
 import model.Patient;
-import services.Navigator;
 import view.View;
 
-public class PatientDiagnosisView extends View {
+public class PatientDiagnosisView extends View  {
+    UserManager userManager = UserManager.getInstance(UserManager.class);
 
     @Override
     public String getViewName() {
-        UserManager userManager = UserManager.getInstance(UserManager.class);
         return "View Past Diagnosis";
     }
 
