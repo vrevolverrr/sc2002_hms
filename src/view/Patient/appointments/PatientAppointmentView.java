@@ -1,6 +1,5 @@
 package view.Patient.appointments;
 
-import controller.AppointmentManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.enums.Alignment;
@@ -8,11 +7,17 @@ import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.layout.Align;
+import model.users.Patient;
+import model.users.User;
 import services.Navigator;
 import view.View;
 
 public class PatientAppointmentView extends View {
-    private AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
+    private Patient patient;
+
+    public PatientAppointmentView(Patient patient) {
+        this.patient = patient;
+    }
 
     @Override
     public String getViewName() {
@@ -29,8 +34,7 @@ public class PatientAppointmentView extends View {
     }
 
     private void handleCancel() {
-        // System.out.println("Canceling your appointment...");
-        // appointmentManager.cancel(); 
+        Navigator.navigateTo(new PatientCancelAppointmentView(patient));
     }
 
     @Override
@@ -42,7 +46,8 @@ public class PatientAppointmentView extends View {
         new Menu(
             new MenuOption("Schedule appointment", () -> this.handleSchedule()),
             new MenuOption("Reschedule appointment", () -> this.handleReschedule()),
-            new MenuOption("Cancel appointment", () -> this.handleCancel())
+            new MenuOption("Cancel appointment", () -> this.handleCancel()),
+            new MenuOption("Back", () -> Navigator.pop())
         ).readOption(context);
     }
 }

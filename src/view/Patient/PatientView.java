@@ -14,20 +14,22 @@ import lib.uilib.widgets.layout.Align;
 import model.users.Patient;
 import services.Navigator;
 import view.View;
+import view.Patient.appointments.PatientAppointmentView;
 
 public class PatientView extends View {
-        UserManager userManager = UserManager.getInstance(UserManager.class);
+    private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    private final Patient patient = (Patient) userManager.getActiveUser();
 
     private void handleUpdateDetails() {
         Navigator.navigateTo(new PatientUpdateView());
     }
     
     private void handleAppointments() {
-        Navigator.navigateTo(new PatientAppointmentView());
+        Navigator.navigateTo(new PatientAppointmentView(patient));
     }
 
     private void handleViewPastDiagnosis() {
-        Navigator.navigateTo(new PatientDiagnosisView() );
+        // Navigator.navigateTo(new PatientDiagnosisView() );
     }
 
     @Override
@@ -38,9 +40,6 @@ public class PatientView extends View {
     @Override
     public void render() {
         BuildContext context = new BuildContext(100, 10);
-
-        // Type cast is valid since user is guaranteed to be a Patient.
-        Patient patient = (Patient) userManager.getActiveUser();
 
         new Align(Alignment.CENTER, new Text(" [ Patient Overview ] ", TextStyle.BOLD)).paint(context);
 
@@ -54,7 +53,8 @@ public class PatientView extends View {
         new Menu(
             new MenuOption("Update patient details", () -> this.handleUpdateDetails()),
             new MenuOption("Manage Appointments", () -> this.handleAppointments()),
-            new MenuOption("View Past Diagnosis", () -> this.handleViewPastDiagnosis())
+            new MenuOption("View Past Diagnosis", () -> this.handleViewPastDiagnosis()),
+            new MenuOption("Log Out", () -> Navigator.pop())
         ).readOption(context);
     }
     

@@ -6,6 +6,7 @@ import java.util.*;
 import model.InventoryItem;
 import model.enums.BloodType;
 import model.enums.Gender;
+import model.enums.ReplenishmentStatus;
 import model.users.Admin;
 import model.users.Patient;
 import repository.AdminRepository;
@@ -54,14 +55,14 @@ public class MockData {
     public static void mockInventoryData() {
         InventoryRepository inventoryRepository = new InventoryRepository();
         
-        inventoryRepository.save(new InventoryItem("I1002", "Ibuprofen", 200, 30));
-        inventoryRepository.save(new InventoryItem("I1003", "Amoxicillin", 150, 20));
-        inventoryRepository.save(new InventoryItem("I1004", "Ciprofloxacin", 120, 40));
-        inventoryRepository.save(new InventoryItem("I1005", "Metformin", 300, 25));
-        inventoryRepository.save(new InventoryItem("I1006", "Amlodipine", 250, 35));
-        inventoryRepository.save(new InventoryItem("I1007", "Omeprazole", 180, 45));
-        inventoryRepository.save(new InventoryItem("I1008", "Simvastatin", 220, 60));
-        inventoryRepository.save(new InventoryItem("I1009", "Lisinopril", 160, 55));
-        inventoryRepository.save(new InventoryItem("I1010", "Levothyroxine", 140, 50));
+        inventoryRepository.save(new InventoryItem("I1002", "Ibuprofen", 200, 30, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1003", "Amoxicillin", 150, 20, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1004", "Ciprofloxacin", 120, 40, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1005", "Metformin", 300, 25, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1006", "Amlodipine", 250, 35, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1007", "Omeprazole", 180, 45, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1008", "Simvastatin", 220, 60, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1009", "Lisinopril", 160, 55, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1010", "Levothyroxine", 140, 50, ReplenishmentStatus.NULL));
     }
 }

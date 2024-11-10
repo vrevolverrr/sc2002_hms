@@ -45,7 +45,6 @@ public class Appointment extends BaseModel {
      * @param dateTime
      * @param doctorId
      * @param patientId
-     * @param outcome
      */
     public Appointment(String appointmentId, AppointmentStatus status, LocalDateTime dateTime, String doctorId, String patientId) {
         super(appointmentId);

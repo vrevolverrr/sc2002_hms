@@ -1,4 +1,4 @@
-import repository.InventoryRepository;
+import controller.AppointmentManager;
 import services.Navigator;
 import utils.MockData;
 import view.LoginView;
@@ -10,11 +10,6 @@ import view.LoginView;
  */
 public class HMSApp {
     public static void main(String[] args) throws Exception {
-        // Initialize repository and populate with mock data
-        InventoryRepository inventoryRepository = new InventoryRepository();
-        inventoryRepository.populateMockData();
-        
-        // Ensure Navigator has access to repositories if needed, and proceed to the initial view
         Navigator.navigateTo(new LoginView());
     }
 }
