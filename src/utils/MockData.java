@@ -6,22 +6,18 @@ import java.util.*;
 import model.InventoryItem;
 import model.enums.BloodType;
 import model.enums.Gender;
-import model.enums.Specialisation;
 import model.enums.ReplenishmentStatus;
 import model.users.Admin;
 import model.users.Patient;
-import model.users.Doctor;
 import repository.AdminRepository;
 import repository.InventoryRepository;
 import repository.PatientRepository;
 import repository.UserRepository;
-import repository.DoctorRepository;
 
 public class MockData {
     public static void mockAllData() {
         mockPatientData();
         mockAdminData();
-        mockDoctorData();
     }
 
     public static void mockPatientData() {
@@ -56,17 +52,6 @@ public class MockData {
         adminRepository.save(mockData);
     }
 
-    public static void mockDoctorData() {
-        UserRepository userRepository = new UserRepository();
-        DoctorRepository doctorRepository = new DoctorRepository(userRepository);
-        
-        List<Doctor> mockData = new ArrayList<Doctor>();
-        mockData.add(new Doctor("D1001", "Dr Alexander Smith", 46, "doctorPwd1", Gender.MALE, LocalDate.of(1978, 5, 24), "81892818", "alexander.smith@example.com", Specialisation.CARDIOLOGIST));
-        mockData.add(new Doctor("D1002", "Dr Janice Teo", 51, "doctorPwd2", Gender.FEMALE, LocalDate.of(1973, 8, 12), "81923415", "janice.teo@example.com", Specialisation.SURGEON));
-        mockData.add(new Doctor("D1003", "Dr Emily Chan", 31, "doctorPwd3", Gender.FEMALE, LocalDate.of(1993, 3, 29), "82298312", "emily.chan@example.com", Specialisation.PEDIATRIST));
-        mockData.add(new Doctor("D1004", "Dr Will Santiago", 39, "doctorPwd4", Gender.MALE, LocalDate.of(1985, 11, 10), "81093321", "will.santiago@example.com", Specialisation.RADIOLOGIST));
-
-        doctorRepository.save(mockData);
     public static void mockInventoryData() {
         InventoryRepository inventoryRepository = new InventoryRepository();
         
