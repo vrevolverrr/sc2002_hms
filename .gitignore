@@ -9,3 +9,4 @@
 *.class
 
 *.dat
+.DS_Store
