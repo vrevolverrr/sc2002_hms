@@ -20,6 +20,10 @@ public class TextInput extends Widget implements InputWidget {
 
     @Override
     public String build(BuildContext context) {
+        if (field.getLabel() == "") {
+            return "";
+        }
+
         return new Text(field.getLabel() + ": ", TextStyle.BOLD).build(context);
     }
 

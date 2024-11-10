@@ -50,7 +50,6 @@ public class Menu extends Widget {
             new TextInput(selectedOption).read(context, (String input) -> true);
 
             if (isInt(selectedOption.getValue()) && inRange(Integer.parseInt(selectedOption.getValue()))) {
-                System.out.println("Hello");
                 this.options[Integer.parseInt(selectedOption.getValue()) - 1].getAction().run();
                 break;
             }
