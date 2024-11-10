@@ -6,7 +6,7 @@
 
 package model.enums;
 
-import model.User;
+import model.users.User;
 
 /**
  * The enum corresponding to the role of a {@link User}

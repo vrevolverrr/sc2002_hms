@@ -125,6 +125,14 @@ public class BaseRepository<T extends BaseModel> implements Repository<T> {
     }
 
     /**
+     * Clears all the items in the {@link BaseRepository#items} and persists the changes.
+     */
+    public void clear() {
+        items.clear();
+        writeToSerialized();
+    }
+
+    /**
      * Checks whether an item matching the given ID exists in the repository.
      * @param id the ID of the item.
      * @return whether or not the item with such ID exists.

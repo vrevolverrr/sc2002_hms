@@ -4,7 +4,7 @@
  * @since 2024-10-28
  */
 
-package model;
+package model.users;
 
 import java.time.LocalDate;
 
@@ -30,6 +30,7 @@ public class Patient extends User {
      * The constructor of a {@link Patient}. Calls the constructor of {@link User}.
      * @param patientId the unique ID of the patient.
      * @param name the name of the patient.
+     * @param age the age of the patient.
      * @param password the password of the patient's user account.
      * @param gender the gender of the patient.
      * @param dob the date of birth of the patient.
@@ -37,9 +38,10 @@ public class Patient extends User {
      * @param emailAddress the email address of the patient.
      * @param bloodType the blood type of the patient.
      */
-    public Patient(String patientId, String name, String password, Gender gender, LocalDate dob, 
+    public Patient(String patientId, String name, int age, String password, Gender gender, LocalDate dob, 
     String phoneNumber, String emailAddress, BloodType bloodType) {
-        super(patientId, UserRole.PATIENT, password, name, gender, dob, phoneNumber, emailAddress);
+        super(patientId, UserRole.PATIENT, password, name, age, gender, dob, phoneNumber, emailAddress);
+
         this.patientId = patientId;
         this.bloodType = bloodType;
     }
@@ -74,7 +76,7 @@ public class Patient extends User {
      */
     @Override
     public Patient copy() {
-        return new Patient(patientId, getName(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress(), getBloodType());
+        return new Patient(getId(), getName(), getAge(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress(), getBloodType());
     }
 
 }
