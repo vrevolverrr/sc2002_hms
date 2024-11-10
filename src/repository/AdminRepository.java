@@ -4,10 +4,10 @@
  import java.util.*;
  import java.util.stream.*;
  import java.util.function.Predicate;
- 
- import model.Admin;
- import model.User;
- import model.enums.UserRole;
+
+import model.enums.UserRole;
+import model.users.Admin;
+import model.users.User;
  
  /**
   * An implementation of {@link Repository} that on {@link Admin} data models. It extends

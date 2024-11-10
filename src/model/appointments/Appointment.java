@@ -1,5 +1,6 @@
-package model;
+package model.appointments;
 
+import model.BaseModel;
 import model.enums.AppointmentStatus;
 import java.time.LocalDateTime;
 
@@ -33,12 +34,18 @@ public class Appointment extends BaseModel {
     private String patientId;
 
     /**
+     * The outcome of the appointment.
+     */
+    private AppointmentOutcomeRecord outcome;
+
+    /**
      * The constructor of an {@link Appointment}. Calls the constructor of {@link BaseModel}.
      * @param appointmentId
      * @param status
      * @param dateTime
      * @param doctorId
      * @param patientId
+     * @param outcome
      */
     public Appointment(String appointmentId, AppointmentStatus status, LocalDateTime dateTime, String doctorId, String patientId) {
         super(appointmentId);
@@ -48,6 +55,8 @@ public class Appointment extends BaseModel {
         this.patientId = patientId;
         this.dateTime = dateTime;
         this.status = status;
+
+        this.outcome = new AppointmentOutcomeRecord();
     }
 
     /**
@@ -58,12 +67,44 @@ public class Appointment extends BaseModel {
         return this.appointmentId;
     }
 
+        /**
+     * Gets the status of the appointment.
+     * @return the status of the appointment.
+     */
+    public AppointmentStatus getStatus() { 
+        return status; 
+    }
+
     /**
      * Sets the status of the appointment.
      * @param status the new status of the appointment.
      */
     public void setStatus(AppointmentStatus status) { 
         this.status = status; 
+    }
+
+        /**
+     * Gets the date and time of the appointment.
+     * @return the date and time of the appointment.
+     */
+    public LocalDateTime getDateTime() { 
+        return dateTime; 
+    }
+
+    /**
+     * Sets the date and time of the appointment.
+     * @param newDateTime the new date and time of the appointment.
+     */
+    public void setDateTime(LocalDateTime newDateTime) {
+        this.dateTime = newDateTime;
+    }
+    
+    /**
+     * Sets the ID of the doctor assigned to the appointment.
+     * @param newDoctorId the ID of the doctor.
+     */
+    public void getDoctorId(String newDoctorId) { 
+        this.doctorId = newDoctorId; 
     }
     
     /**
@@ -73,7 +114,7 @@ public class Appointment extends BaseModel {
     public String getDoctorId() { 
         return doctorId; 
     }
-    
+
     /**
      * Gets the ID of the patient assigned to the appointment.
      * @return the ID of the patient.
@@ -83,19 +124,19 @@ public class Appointment extends BaseModel {
     }
 
     /**
-     * Gets the status of the appointment.
-     * @return the status of the appointment.
+     * Sets the ID of the patient assigned to the appointment.
+     * @param newPatientId
      */
-    public AppointmentStatus getStatus() { 
-        return status; 
+    public void setPatientId(String newPatientId) {
+        this.patientId = newPatientId;
     }
 
     /**
-     * Gets the date and time of the appointment.
-     * @return the date and time of the appointment.
+     * Gets the outcome record of the appointment.
+     * @return the appointment outcome record.
      */
-    public LocalDateTime getDateTime() { 
-        return dateTime; 
+    public AppointmentOutcomeRecord getOutcomeRecord() {
+        return outcome;
     }
 
     /**

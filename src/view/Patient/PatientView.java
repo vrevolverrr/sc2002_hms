@@ -11,7 +11,7 @@ import lib.uilib.widgets.base.Table;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.VSpacer;
 import lib.uilib.widgets.layout.Align;
-import model.Patient;
+import model.users.Patient;
 import services.Navigator;
 import view.View;
 

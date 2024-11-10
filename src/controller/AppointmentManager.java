@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.*;
 
-import model.Appointment;
-import model.User;
+import model.appointments.Appointment;
 import model.enums.AppointmentStatus;
+import model.users.User;
 
 /* Appointment Manager implements an access-control logic (using encapsulation)
 1. Which appointments do they have access to? 

@@ -1,5 +1,5 @@
 package controller;
-import model.User;
+import model.users.User;
 import repository.UserRepository;
 
 public class UserManager extends Manager<UserManager> {

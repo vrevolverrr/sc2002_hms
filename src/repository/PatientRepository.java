@@ -10,9 +10,9 @@ import java.util.*;
 import java.util.stream.*;
 import java.util.function.Predicate;
 
-import model.Patient;
-import model.User;
 import model.enums.UserRole;
+import model.users.Patient;
+import model.users.User;
 
 /**
  * An implementation of {@link Repository} that on {@link Patient} data models. It extends

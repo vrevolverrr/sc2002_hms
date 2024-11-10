@@ -3,10 +3,10 @@ package utils;
 import java.time.LocalDate;
 import java.util.*;
 
-import model.Admin;
-import model.Patient;
 import model.enums.BloodType;
 import model.enums.Gender;
+import model.users.Admin;
+import model.users.Patient;
 import repository.AdminRepository;
 import repository.PatientRepository;
 import repository.UserRepository;
