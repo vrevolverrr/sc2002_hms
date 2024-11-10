@@ -18,6 +18,11 @@ public class PharmacistRepository implements Repository<Pharmacist> {
      * The {@link UserRepository} dependency to extend.
      */
     private final UserRepository repository;
+
+    /**
+     * The prefix for the ID of a {@link Pharmacist}.
+     */
+    public final static String ID_PREFIX = "F";
     
     /**
      * The constructor of {@link PharmacistRepository}.
@@ -46,6 +51,16 @@ public class PharmacistRepository implements Repository<Pharmacist> {
     public int count() {
         return this.getItems().size();
     }
+
+    /**
+     * Generates a new ID for a {@link Pharmacist}. 
+     */
+    @Override
+    public String generateId() {
+        return "F" + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(
+            last -> String.format("%04d", Integer.parseInt(last.substring(1)) + 1)).orElse("1001");
+    }
+
 
     /**
      * Finds the {@link Pharmacist} matching the pharmacist ID.

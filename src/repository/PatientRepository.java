@@ -10,6 +10,7 @@ import java.util.*;
 import java.util.stream.*;
 import java.util.function.Predicate;
 
+import model.Pharmacist;
 import model.enums.UserRole;
 import model.users.Patient;
 import model.users.User;
@@ -52,6 +53,12 @@ public class PatientRepository implements Repository<Patient> {
     @Override
     public int count() {
         return this.getItems().size();
+    }
+
+    @Override
+    public String generateId() {
+        return "P" + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(
+            last -> String.format("%04d", Integer.parseInt(last.substring(1)) + 1)).orElse("1001");
     }
 
     /**

@@ -17,7 +17,7 @@ import model.BaseModel;
  * The base implementation of a {@link Repository} that provides most basic functionality.
  * This class can be extended to provide more specific functionality such as a {@link UserRepository}.
  */
-public class BaseRepository<T extends BaseModel> implements Repository<T> {
+public abstract class BaseRepository<T extends BaseModel> implements Repository<T> {
     private static final String BASE_PATH = "./data/";
 
     private Map<String, T> items = null;

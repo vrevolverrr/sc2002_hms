@@ -20,10 +20,25 @@ public class UserRepository extends BaseRepository<User> {
     final static String FILENAME = "users.dat";
 
     /**
+     * The prefix for the ID of a {@link User}, though it is not used since each specific
+     * user role has its own ID prefix.
+     */
+    final static String ID_PREFIX = "U";
+
+    /**
      * The constructor of a {@link UserRepository}.
      */
     public UserRepository() {
         super(FILENAME);
+    }
+
+    /**
+     * Generates a new ID for a {@link User}.
+     */
+    @Override
+    public String generateId() {
+        return "U" + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(
+            last -> String.format("%04d", Integer.parseInt(last.substring(1)) + 1)).orElse("1001");
     }
 
     /**

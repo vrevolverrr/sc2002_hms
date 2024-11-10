@@ -3,10 +3,18 @@ package repository;
 import model.InventoryItem;
 
 public class InventoryRepository extends BaseRepository<InventoryItem> {
-    final static String FILENAME = "inventory.dat";
+    private final static String FILENAME = "inventory.dat";
+    
+    public final static String ID_PREFIX = "I";
 
     public InventoryRepository() {
         super(FILENAME);
+    }
+
+    @Override
+    public String generateId() {
+        return ID_PREFIX + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(
+            last -> String.format("%04d", Integer.parseInt(last.substring(1)) + 1)).orElse("1001");
     }
 
     public InventoryItem findByItemName(String itemName) {

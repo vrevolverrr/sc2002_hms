@@ -20,6 +20,11 @@ import model.users.User;
       * The {@link UserRepository} dependency to extend.
       */
      private final UserRepository repository;
+
+     /**
+      * The prefix for the ID of an {@link Admin}.
+      */
+    public static final String ID_PREFIX = "A"; 
      
      /**
       * The constructor of {@link PatientRepository}. 
@@ -40,6 +45,15 @@ import model.users.User;
                  Collectors.toMap(e -> (String) e.getKey(), e -> (Admin) e.getValue()));
      }
  
+     /**
+      * Generates a new ID for a {@link Admin}.
+      */
+    @Override
+    public String generateId() {
+        return ID_PREFIX + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(
+            last -> String.format("%04d", Integer.parseInt(last.substring(1)) + 1)).orElse("1001");
+    }
+
      /**
       * Gets the total number of {@code Admin} stored in the repository.
       * @return the number of entries of {@link Admin} stored.
