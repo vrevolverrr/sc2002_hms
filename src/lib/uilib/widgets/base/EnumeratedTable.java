@@ -19,7 +19,7 @@ public class EnumeratedTable extends Table {
         for (int i = 0; i < rows.length; i++) {
             List<String> values = new ArrayList<String>(Arrays.asList(rows[i].getValues()));
             values.addFirst(String.valueOf(i + 1));
-            enumeratedRows[i] = new TableRow(values.toArray(new String[rows.length]));
+            enumeratedRows[i] = new TableRow(values.toArray(new String[rows[i].getValues().length]));
         }
 
         return enumeratedRows;
