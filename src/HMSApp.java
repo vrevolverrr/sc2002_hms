@@ -1,6 +1,4 @@
-import controller.AppointmentManager;
 import services.Navigator;
-import utils.MockData;
 import view.LoginView;
 
 /**
