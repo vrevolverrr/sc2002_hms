@@ -52,13 +52,13 @@ public class Table extends Widget {
             String[] values = row.getValues();
             
             for (int i = 0; i < values.length; i++) {
-                if (values.length > columnWidths[i]) {
-                    columnWidths[i] = values.length;
+                if (values[i].length() > columnWidths[i]) {
+                    columnWidths[i] = values[i].length();
                 }
             }
         }
 
-        int remainingSpace = Math.max(0, context.getWidth() - IntStream.of(columnWidths).sum()) - (columnWidths.length + 1);
+        int remainingSpace = Math.max(0, context.getWidth() - IntStream.of(columnWidths).sum() - (columnWidths.length + 1));
         int extraSpacePerColumn = (int) Math.ceil(1.0 * remainingSpace / columnWidths.length)  ;
 
         for (int i = 0; i < columnWidths.length; i++) {

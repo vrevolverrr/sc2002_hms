@@ -46,15 +46,21 @@ public class EnumeratedTable extends Table {
         for (TableRow row : rows) {
             String[] values = row.getValues();
             
+            // For each column in row, find the maximum length of the column
             for (int i = 0; i < values.length; i++) {
-                if (values.length > columnWidths[i]) {
-                    columnWidths[i] = values.length;
+                if (values[i].length() > columnWidths[i]) {
+                    columnWidths[i] = values[i].length();
                 }
             }
         }
 
-        int remainingSpace = Math.max(0, context.getWidth() - IntStream.of(columnWidths).sum()) - (columnWidths.length + 1);
-        int extraSpacePerColumn = (int) Math.ceil(1.0 * remainingSpace / (columnWidths.length - 1))  ;
+        int indexColumnPadding = 2;
+        int remainingSpace = Math.max(0, context.getWidth() - 
+            IntStream.of(columnWidths).sum() - (columnWidths.length + 1) - indexColumnPadding);
+        
+        int extraSpacePerColumn = (int) Math.ceil(1.0 * remainingSpace / (columnWidths.length - 1));
+
+        columnWidths[0] += indexColumnPadding;
 
         for (int i = 1; i < columnWidths.length; i++) {
             columnWidths[i] += extraSpacePerColumn;
