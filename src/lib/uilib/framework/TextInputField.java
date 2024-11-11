@@ -20,6 +20,14 @@ public class TextInputField {
         this.value = value;
     }
 
+    /**
+     * Get the integer value of the input field. This method assumes that the input is a number.
+     * @return The integer value of the input field.
+     */
+    public int getInt() {
+        return Integer.parseInt(this.value) - 1;
+    }
+
     @Override
     public String toString() {
         return this.value.toString();

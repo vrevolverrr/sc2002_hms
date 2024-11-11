@@ -1,19 +1,22 @@
 package view.Patient.appointments;
 
+import java.util.List;
+
+import controller.AppointmentManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.MenuOption;
-import lib.uilib.framework.enums.Alignment;
-import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.widgets.base.Menu;
-import lib.uilib.widgets.base.Text;
-import lib.uilib.widgets.layout.Align;
+import lib.uilib.widgets.base.VSpacer;
+import model.appointments.Appointment;
 import model.users.Patient;
-import model.users.User;
 import services.Navigator;
 import view.View;
+import view.Patient.appointments.widgets.AppointmentsTable;
+import view.widgets.Title;
 
 public class PatientAppointmentView extends View {
-    private Patient patient;
+    private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
+    private final Patient patient;
 
     public PatientAppointmentView(Patient patient) {
         this.patient = patient;
@@ -25,12 +28,11 @@ public class PatientAppointmentView extends View {
     }
 
     private void handleSchedule() {
-        Navigator.navigateTo(new PatientScheduleAppointmentView());
+        Navigator.navigateTo(new PatientScheduleAppointmentView(patient));
     }
 
     private void handleReschedule() {
-        // System.out.println("Rescheduling your appointment...");
-        // appointmentManager.reschedule();  
+        Navigator.navigateTo(new PatientRescheduleAppointment(patient));
     }
 
     private void handleCancel() {
@@ -41,7 +43,15 @@ public class PatientAppointmentView extends View {
     public void render() {
         BuildContext context = new BuildContext(100, 10);
 
-        new Align(Alignment.CENTER, new Text(" [ Manage Appointments ] ", TextStyle.BOLD)).paint(context);
+        new Title("Manage Appointments").paint(context);
+        new VSpacer(1).paint(context);
+        
+        new Title("Upcoming Appointments").paint(context);
+        List<Appointment> appointments = appointmentManager.getAppointments(patient);
+        
+        new AppointmentsTable(appointments).paint(context);
+
+        new VSpacer(1).paint(context);
 
         new Menu(
             new MenuOption("Schedule appointment", () -> this.handleSchedule()),

@@ -5,16 +5,26 @@ import java.util.function.Predicate;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.Widget;
+import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.framework.interfaces.InputWidget;
 import lib.uilib.widgets.layout.Column;
 
 public class Pause extends Widget implements InputWidget {
+    private final String pauseString;
+
+    public Pause() {
+        this.pauseString = "Press Enter to continue...";
+    }
+
+    public Pause(String pauseString) {
+        this.pauseString = pauseString;
+    }
 
     @Override
     public String build(BuildContext context) {
        return new Column(
             new VSpacer(1),
-            new Text("Press any key to continue.")
+            new Text(pauseString, TextStyle.BOLD)
         ).build(context);
     }
 

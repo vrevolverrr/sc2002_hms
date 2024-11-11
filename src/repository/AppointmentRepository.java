@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.appointments.TimeSlot;
 import model.appointments.Appointment;
+import model.appointments.TimeSlot;
 import model.users.Doctor;
 import model.users.Patient;
 
@@ -32,11 +32,28 @@ public class AppointmentRepository extends BaseRepository<Appointment> {
     }
 
     public List<Appointment> getAppointmentsByDateAndDoctor(LocalDate date, Doctor doctor) {
-        return new ArrayList<Appointment>();
+        return findBy((appointment) -> 
+            appointment.getDoctorId().equals(doctor.getDoctorId()) && 
+            appointment.getDateTime().getDate().equals(date) &&
+            !appointment.isCancelled()
+        );
     }
 
+    /**
+     * Returns a list of appointments for a given patient.
+     * The appointments are sorted by descending order of date and time.
+     * Only future appointments are returned.
+     * @param patient the patient to get the appointments for.
+     * @return the list of appointments for the patient.
+     */
     public List<Appointment> getAppointmentsByPatient(Patient patient) {
-        return new ArrayList<Appointment>();
+        return findBy((appointment) -> 
+            appointment.getPatientId().equals(patient.getPatientId()) && 
+            !appointment.getDateTime().getDate().isBefore(LocalDate.now()) &&
+            !appointment.isCancelled()
+        )
+        .stream()
+        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
     }
 
     public List<Appointment> getAppointmentsByDateAndPatient(LocalDate date, Patient patient) {

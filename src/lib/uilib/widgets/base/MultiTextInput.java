@@ -41,7 +41,7 @@ public class MultiTextInput extends Widget implements MultiInputWidget {
             }
 
             new VSpacer(1).paint(context);
-            new Text("Invalid user credentials. Please try again.", TextStyle.BOLD).paint(context);
+            new Text(failedMessage, TextStyle.BOLD).paint(context);
 
             View.gotoPrevNthLine(2);
             View.clearLines(fields.length);

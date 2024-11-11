@@ -2,7 +2,6 @@ package model.appointments;
 
 import model.BaseModel;
 import model.enums.AppointmentStatus;
-import java.time.LocalDateTime;
 
 /**
  * The class representing a medical appointment.
@@ -21,7 +20,7 @@ public class Appointment extends BaseModel {
     /**
      * The date and time of the appointment.
      */
-    private LocalDateTime dateTime;
+    private TimeSlot dateTime;
 
     /**
      * The IDs of the doctor assigned to the appointment.
@@ -46,7 +45,7 @@ public class Appointment extends BaseModel {
      * @param doctorId
      * @param patientId
      */
-    public Appointment(String appointmentId, AppointmentStatus status, LocalDateTime dateTime, String doctorId, String patientId) {
+    public Appointment(String appointmentId, AppointmentStatus status, TimeSlot dateTime, String doctorId, String patientId) {
         super(appointmentId);
 
         this.appointmentId = appointmentId;
@@ -66,7 +65,7 @@ public class Appointment extends BaseModel {
         return this.appointmentId;
     }
 
-        /**
+    /**
      * Gets the status of the appointment.
      * @return the status of the appointment.
      */
@@ -82,11 +81,19 @@ public class Appointment extends BaseModel {
         this.status = status; 
     }
 
-        /**
+    /**
+     * Gets whether the appointment is cancelled.
+     * @return whether the appointment is cancelled.
+     */
+    public boolean isCancelled() {
+        return status == AppointmentStatus.CANCELLED;
+    }
+
+    /**
      * Gets the date and time of the appointment.
      * @return the date and time of the appointment.
      */
-    public LocalDateTime getDateTime() { 
+    public TimeSlot getDateTime() { 
         return dateTime; 
     }
 
@@ -94,7 +101,7 @@ public class Appointment extends BaseModel {
      * Sets the date and time of the appointment.
      * @param newDateTime the new date and time of the appointment.
      */
-    public void setDateTime(LocalDateTime newDateTime) {
+    public void setDateTime(TimeSlot newDateTime) {
         this.dateTime = newDateTime;
     }
     

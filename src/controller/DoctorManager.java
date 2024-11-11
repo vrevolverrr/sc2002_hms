@@ -11,7 +11,11 @@ public class DoctorManager extends Manager<DoctorManager> {
     private final DoctorRepository doctorRepository = new DoctorRepository(UserRepository.getInstance());
     
     public List<Doctor> getAllDoctors() {
+        return doctorRepository.getItems().values().stream().distinct().toList();
+    }
 
+    public Doctor getDoctorById(String doctorId) {
+        return doctorRepository.findById(doctorId);
     }
 
     // // Add availability for a specific date

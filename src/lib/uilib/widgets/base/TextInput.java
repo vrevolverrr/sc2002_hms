@@ -8,6 +8,7 @@ import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.Widget;
 import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.framework.interfaces.InputWidget;
+import services.Navigator;
 import view.View;
 
 public class TextInput extends Widget implements InputWidget {
@@ -40,6 +41,11 @@ public class TextInput extends Widget implements InputWidget {
             this.paint(context);
             line = scanner.nextLine();
 
+            if (line.equals("0")) {
+                Navigator.pop();
+                return;
+            }
+
             if (predicate.test(line)) {
                 break;
             }
@@ -49,4 +55,32 @@ public class TextInput extends Widget implements InputWidget {
 
         field.setValue(line);
     }
+
+    public void read(BuildContext context, String failedMessage, Predicate<String> predicate) {
+        String line = null;
+
+        while (true) {
+            this.paint(context);
+            line = scanner.nextLine();
+
+            // TODO remove this
+            if (line.equals("0")) {
+                Navigator.pop();
+                return;
+            }
+
+            if (predicate.test(line)) {
+                break;
+            }
+
+            new VSpacer(1).paint(context);
+            new Text(failedMessage, TextStyle.BOLD).paint(context);
+
+            View.gotoPrevNthLine(2);
+            View.clearLines(1);
+        }
+
+        field.setValue(line);
+    }
+    
 }
