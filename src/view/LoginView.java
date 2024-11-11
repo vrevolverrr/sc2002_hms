@@ -14,6 +14,7 @@ import lib.uilib.widgets.layout.Column;
 import model.enums.UserRole;
 import model.users.User;
 import services.Navigator;
+import view.Admin.AdminView;
 // import view.Admin.AdminView;
 import view.Doctor.DoctorView;
 import view.Patient.PatientView;
@@ -85,9 +86,9 @@ public class LoginView extends View {
                 nextView = new PatientView();
                 break;
 
-            // case UserRole.ADMIN:
-            //     nextView = new AdminView();
-            //     break;
+            case UserRole.ADMIN:
+                nextView = new AdminView();
+                break;
 
             // case UserRole.PHARMACIST:
             //     nextView = new PharmacistView();

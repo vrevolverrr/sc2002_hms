@@ -12,5 +12,3 @@ public class HMSApp {
         // MockData.mockAllData();
     }
 }
-
-// 1435

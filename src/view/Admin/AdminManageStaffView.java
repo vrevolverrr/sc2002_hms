@@ -13,6 +13,7 @@ import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.layout.Align;
 import services.Navigator;
 import view.View;
+import view.Admin.staff.AdminAllStaffView;
 import view.widgets.Title;
 import model.enums.*;
 import java.time.LocalDate;
@@ -32,8 +33,7 @@ public class AdminManageStaffView extends View{
         new Title("Manage Hospital Staff").paint(context);
 
         new Menu(
-            new MenuOption("View All Staff", () -> this.viewStaff()),
-            new MenuOption("Search Staff", () -> this.viewStaff()),
+            new MenuOption("View All Staff", () -> Navigator.navigateTo(new AdminAllStaffView())),
             new MenuOption("Add New Staff", () -> this.promptAddStaff()),
             new MenuOption("Update Existing Staff", () -> this.promptUpdateStaff()),
             new MenuOption("Remove Staff", () -> this.promptRemoveStaff()),

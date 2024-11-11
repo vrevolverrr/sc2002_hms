@@ -34,6 +34,15 @@ public class BuildContext {
     }
 
     /**
+     * Creates a context with an finite width and unbounded (theoretically) height.
+     * @param width the width of the context in characters.
+     * @return a new context with the specified width and unbounded height.
+     */
+    public static BuildContext unboundedVertical(int width) {
+        return new BuildContext(width, 999999999);
+    }
+
+    /**
      * Gets the width of the context.
      * @return the width of the context in characters.
      */

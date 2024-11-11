@@ -20,6 +20,14 @@ public class Text extends Widget {
     
     @Override
     public String build(BuildContext context) {
-        return this.style.seqStart() + this.text + this.style.seqEnd();
+        return this.style.seqStart() + truncateString(context.getWidth()) + this.style.seqEnd();
+    }
+
+    private String truncateString(int maxLength) {
+        if (this.text.length() > maxLength) {
+            return this.text.substring(0, maxLength - 3) + "...";
+        }
+
+        return this.text;
     }
 }
