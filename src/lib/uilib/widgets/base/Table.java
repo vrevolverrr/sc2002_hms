@@ -92,7 +92,7 @@ public class Table extends Widget {
                     topBorder.append(Border.THIN.horizontal().repeat(columnWidths[j]) + ((j == columnValues.length - 1) ? Border.THIN.topRight() : "\u252C"));
                 }
                 
-                valueLine.append(new Align(Alignment.CENTER, new Text(columnValues[j], (j == 0) ? TextStyle.BOLD : TextStyle.NORMAL))
+                valueLine.append(new Align(Alignment.CENTER, new Text(columnValues[j], (i == 0) ? TextStyle.BOLD : TextStyle.NORMAL))
                     .build(columnContext) + Border.THIN.vertical());
 
                 // Check if its the last row in the table
