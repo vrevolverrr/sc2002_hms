@@ -20,7 +20,7 @@ public class DoctorsSelectionTable extends Widget {
         TableRow[] doctorRows = doctors.stream().map((doctor) -> new TableRow(
            doctor.getName(), doctor.getSpecialisation().toString(), doctor.getGender().toString())).toArray(TableRow[]::new);
 
-        return new EnumeratedTable(doctorRows).build(context);
+        return EnumeratedTable.headerless(doctorRows).build(context);
     }
     
 }

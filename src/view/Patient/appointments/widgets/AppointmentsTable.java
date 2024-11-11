@@ -25,6 +25,8 @@ public class AppointmentsTable extends Widget {
             return new Table(new TableRow("No appointments found")).build(context);
         }
 
+        TableRow header = new TableRow("Date", "Time", "Doctor", "Status");
+
         TableRow[] appointmentRows = appointments.stream().map((Appointment appointment) -> 
         new TableRow(
             appointment.getDateTime().getFormattedDate(),
@@ -33,7 +35,7 @@ public class AppointmentsTable extends Widget {
             appointment.getStatus().toString()))
         .toArray(TableRow[]::new);
 
-        return new EnumeratedTable(appointmentRows).build(context);
+        return EnumeratedTable.withHeader(header, appointmentRows).build(context);
     }
 
     private String getDoctorNameById(String doctorId) {

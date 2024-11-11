@@ -23,6 +23,6 @@ public class AppointmentSlotSelectionTable extends Widget {
             slot.getTimeSlot().getFormattedTime(),
             slot.getDoctor().getName(), slot.getDoctor().getSpecialisation().toString())).toArray(TableRow[]::new);
         
-      return new EnumeratedTable(appoinmentSlotRows).build(context);
+      return EnumeratedTable.headerless(appoinmentSlotRows).build(context);
     }
 }

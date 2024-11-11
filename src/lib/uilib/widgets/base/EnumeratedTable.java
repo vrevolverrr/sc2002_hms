@@ -4,13 +4,27 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
 
 public class EnumeratedTable extends Table {
-    public EnumeratedTable(TableRow... rows) {
-        super(enumerateRows(rows));
+    private EnumeratedTable(TableRow... rows) {
+        super(rows);
+    }
+
+    public static EnumeratedTable headerless(TableRow... rows) {
+        return new EnumeratedTable(enumerateRows(rows));
+    }
+
+    public static EnumeratedTable withHeader(TableRow header, TableRow... rows) {
+        TableRow[] enumeratedRows = enumerateRows(rows);
+        TableRow enumeratedHeader = new TableRow(Stream.concat(Stream.of(""), Arrays.stream(header.getValues())).toArray(String[]::new));
+        
+        TableRow[] newRows = Stream.concat(Stream.of(enumeratedHeader), Arrays.stream(enumeratedRows)).toArray(TableRow[]::new);
+        
+        return new EnumeratedTable(newRows);
     }
     
     private static TableRow[] enumerateRows(TableRow[] rows) {

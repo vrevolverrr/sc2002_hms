@@ -29,9 +29,11 @@ public class DoctorAppointmentsTable extends Widget {
             new TableRow(
                 appointment.getDateTime().getFormattedDate(),
                 appointment.getDateTime().getFormattedTime(), 
-                getPatientNameById(appointment.getPatientId()))).toArray(TableRow[]::new);
+                getPatientNameById(appointment.getPatientId()),
+                appointment.getStatus().toString()
+            )).toArray(TableRow[]::new);
 
-        return new EnumeratedTable(appointmentRows).build(context);
+        return EnumeratedTable.headerless(appointmentRows).build(context);
     }
 
     private String getPatientNameById(String patientId) {
