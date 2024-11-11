@@ -53,7 +53,7 @@ public class PatientRescheduleAppointment extends View {
         new Title("Upcoming Appointments").paint(context);
 
         /// Draw the appointments table
-        List<Appointment> appointments = appointmentManager.getAppointments(patient);
+        List<Appointment> appointments = appointmentManager.getScheduledAppointments(patient);
         new AppointmentsTable(appointments).paint(context);
 
         new VSpacer(1).paint(context);

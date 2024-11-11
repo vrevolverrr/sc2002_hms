@@ -39,7 +39,7 @@ public class PatientCancelAppointmentView extends View {
         new VSpacer(1).paint(context);
 
         new Title("Upcoming Appointments").paint(context);
-        List<Appointment> appointments = appointmentManager.getAppointments(patient);
+        List<Appointment> appointments = appointmentManager.getUpcomingAppointments(patient);
         
         new AppointmentsTable(appointments).paint(context);
 
@@ -66,7 +66,7 @@ public class PatientCancelAppointmentView extends View {
         new Title("Cancel Appointment").paint(context);
         new VSpacer(1).paint(context);
 
-        new AppointmentsTable(appointmentManager.getAppointments(patient)).paint(context);
+        new AppointmentsTable(appointmentManager.getUpcomingAppointments(patient)).paint(context);
 
         new Text("Appointment cancelled successfully", TextStyle.BOLD).paint(context);
 

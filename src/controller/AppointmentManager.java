@@ -18,12 +18,13 @@ public class AppointmentManager extends Manager<AppointmentManager> {
     protected AppointmentManager() {}
 
     /**
-     * Schedules an appointment for a patient.
+     * Schedules an appointment for a patient. Marks the appointment as {@code REQUESTED} 
+     * for doctor approval.
      * @param slot the appointment slot to schedule the appointment.
      * @param patient the patient to schedule the appointment for.
      */
     public void scheduleAppointment(AppointmentSlot slot, Patient patient) {
-        Appointment newAppointment = new Appointment(appointmentRepository.generateId(), AppointmentStatus.SCHEDULED, slot.getTimeSlot(), slot.getDoctor().getDoctorId(), patient.getPatientId());
+        Appointment newAppointment = new Appointment(appointmentRepository.generateId(), AppointmentStatus.REQUESTED, slot.getTimeSlot(), slot.getDoctor().getDoctorId(), patient.getPatientId());
         appointmentRepository.save(newAppointment);
     }
 
@@ -45,8 +46,18 @@ public class AppointmentManager extends Manager<AppointmentManager> {
         initialAppointment.setStatus(AppointmentStatus.CANCELLED);
         appointmentRepository.save(initialAppointment);
 
-        Appointment newAppointment = new Appointment(appointmentRepository.generateId(), AppointmentStatus.SCHEDULED, newSlot.getTimeSlot(), newSlot.getDoctor().getDoctorId(), initialAppointment.getPatientId());
+        Appointment newAppointment = new Appointment(appointmentRepository.generateId(), AppointmentStatus.REQUESTED, newSlot.getTimeSlot(), newSlot.getDoctor().getDoctorId(), initialAppointment.getPatientId());
         appointmentRepository.save(newAppointment);
+    }
+
+    public void acceptAppointment(Appointment appointment) {
+        appointment.setStatus(AppointmentStatus.SCHEDULED);
+        appointmentRepository.save(appointment);
+    }
+
+    public void declineAppointment(Appointment appointment) {
+        appointment.setStatus(AppointmentStatus.CANCELLED);
+        appointmentRepository.save(appointment);
     }
 
     /**
@@ -59,7 +70,7 @@ public class AppointmentManager extends Manager<AppointmentManager> {
         List<AppointmentSlot> availableSlots = new ArrayList<AppointmentSlot>();
         
         for (TimeSlot slot : generateTimeSlots(date)) {
-            if (appointmentRepository.isAppointmentSlotAvailable(slot, doctor)) {
+            if (isAppointmentSlotAvailable(slot, doctor)) {
                 availableSlots.add(new AppointmentSlot(doctor, slot));
             }
         }
@@ -67,27 +78,108 @@ public class AppointmentManager extends Manager<AppointmentManager> {
         return availableSlots;
     }
 
-    public List<Appointment> getAppointments(Doctor doctor) {
-        return appointmentRepository.getUpcomingAppointmentsByDoctor(doctor);
+    /**
+     * Gets the upcoming scheduled appointments of a doctor.
+     * @param doctor the doctor to get the appointments for.
+     * @return the list of appointments.
+     */
+    public List<Appointment> getScheduledAppointments(Doctor doctor) {
+        return appointmentRepository.findBy((appointment) -> 
+            appointment.getDoctorId().equals(doctor.getDoctorId()) && 
+            !appointment.getDateTime().getDate().isBefore(LocalDate.now()) &&
+            appointment.isScheduled()
+        );
     }
 
     /**
-     * Gets the appointments of a doctor on a given date.
+     * Gets the upcoming scheduled appointments of a doctor scheduled on a given date.
      * @param doctor the doctor to get the appointments for.
      * @param date the date to get the appointments for.
      * @return the list of appointments.
      */
-    public List<Appointment> getAppointments(Doctor doctor, LocalDate date) {
-        return appointmentRepository.getUpcomingAppointmentsByDateAndDoctor(date, doctor);
+    public List<Appointment> getScheduledAppointments(Doctor doctor, LocalDate date) {
+        return appointmentRepository.findBy((appointment) -> 
+            appointment.getDoctorId().equals(doctor.getDoctorId()) && 
+            appointment.getDateTime().getDate().equals(date) &&
+            appointment.isScheduled()
+        );
     }
 
     /**
-     * Gets the upcoming appointments of the patient.
+     * Gets the upcoming scheduled appointments of the patient, ordered by most recent first.
      * @param patient the patient to get the appointments for.
      * @return the list of appointments, ordered by most recent first.
      */
-    public List<Appointment> getAppointments(Patient patient) {
-        return appointmentRepository.getUpcomingAppointmentsByPatient(patient);
+    public List<Appointment> getScheduledAppointments(Patient patient) {
+        return appointmentRepository.findBy((appointment) -> 
+            appointment.getPatientId().equals(patient.getPatientId()) && 
+            !appointment.getDateTime().getDate().isBefore(LocalDate.now()) &&
+            appointment.isScheduled()
+        )
+        .stream()
+        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+    }
+
+    /**
+     * Gets the upcoming pending appointments of a patient, that is pending doctor approval.
+     * @param patient the patient to get the appointments for.
+     * @return the list of pending appointments, ordered by most recent first.
+     */
+    public List<Appointment> getPendingAppointments(Patient patient) {
+        return appointmentRepository.findBy((appointment) -> 
+            appointment.getPatientId().equals(patient.getPatientId()) && 
+            !appointment.getDateTime().getDate().isBefore(LocalDate.now()) &&
+            appointment.isRequested()
+        )
+        .stream()
+        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+    }
+
+    /**
+     * Gets both upcoming {@code SCHEDULED} and {@code REQUESTED} appointments of a patient, 
+     * ordered by most recent first.
+     * @param patient the patient to get the appointments for.
+     * @return the list of appointments, ordered by most recent first.
+     */
+    public List<Appointment> getUpcomingAppointments(Patient patient) {
+        return appointmentRepository.findBy((appointment) -> 
+            appointment.getPatientId().equals(patient.getPatientId()) && 
+            !appointment.getDateTime().getDate().isBefore(LocalDate.now()) &&
+            (appointment.isScheduled() || appointment.isRequested())
+        );
+    }
+
+    /**
+     * Gets the upcoming pending appointments assigned to a doctor.
+     * @param doctor the doctor to get the appointments for.
+     * @return the list of pending appointments, ordered by most recent first.
+     */
+    public List<Appointment> getPendingAppointments(Doctor doctor) {
+        return appointmentRepository.findBy((appointment) -> 
+            appointment.getDoctorId().equals(doctor.getDoctorId()) && 
+            !appointment.getDateTime().getDate().isBefore(LocalDate.now()) &&
+            appointment.isRequested()
+        )
+        .stream()
+        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+    }
+
+    /**
+     * Checks whether a time slot is available for an appointment with a doctor.
+     * @param slot the time slot to check.
+     * @param doctor the doctor to check the availability for.
+     * @return whether the slot is available.
+     */
+    public boolean isAppointmentSlotAvailable(TimeSlot slot, Doctor doctor) {
+        List<Appointment> scheduledAppointments = getScheduledAppointments(doctor, slot.getDateTime().toLocalDate());
+
+        for (Appointment appointment : scheduledAppointments) {
+            if (appointment.getDateTime().equals(slot)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**

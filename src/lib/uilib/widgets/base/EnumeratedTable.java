@@ -12,7 +12,7 @@ public class EnumeratedTable extends Table {
     public EnumeratedTable(TableRow... rows) {
         super(enumerateRows(rows));
     }
-
+    
     private static TableRow[] enumerateRows(TableRow[] rows) {
         TableRow[] enumeratedRows = new TableRow[rows.length];
         

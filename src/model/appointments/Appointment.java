@@ -82,11 +82,35 @@ public class Appointment extends BaseModel {
     }
 
     /**
+     * Gets whether the appointment has been requested and pending approval.
+     * @return whether the appointment is requested.
+     */
+    public boolean isRequested() {
+        return status == AppointmentStatus.REQUESTED;
+    }
+
+    /**
+     * Gets whether the appointment has been scheduled.
+     * @return whether the appointment is scheduled.
+     */
+    public boolean isScheduled() {
+        return status == AppointmentStatus.SCHEDULED;
+    }
+
+    /**
      * Gets whether the appointment is cancelled.
      * @return whether the appointment is cancelled.
      */
     public boolean isCancelled() {
         return status == AppointmentStatus.CANCELLED;
+    }
+    
+    public boolean isFulfilled() {
+        return status == AppointmentStatus.FULFILLED;
+    }
+
+    public boolean isCompleted() {
+        return status == AppointmentStatus.COMPLETED;
     }
 
     /**

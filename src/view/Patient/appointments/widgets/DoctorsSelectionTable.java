@@ -18,7 +18,7 @@ public class DoctorsSelectionTable extends Widget {
     @Override
     public String build(BuildContext context) {
         TableRow[] doctorRows = doctors.stream().map((doctor) -> new TableRow(
-           doctor.getName(), doctor.getSpecialisation().toString(), doctor.getDobString())).toArray(TableRow[]::new);
+           doctor.getName(), doctor.getSpecialisation().toString(), doctor.getGender().toString())).toArray(TableRow[]::new);
 
         return new EnumeratedTable(doctorRows).build(context);
     }

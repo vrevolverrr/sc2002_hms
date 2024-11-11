@@ -1,10 +1,5 @@
-import java.time.LocalDate;
-
-import controller.AppointmentManager;
 import services.Navigator;
-import utils.MockData;
 import view.LoginView;
-import model.appointments.TimeSlot;
 
 /**
  * The starting point of the application.
