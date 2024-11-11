@@ -10,7 +10,6 @@ import java.util.*;
 import java.util.stream.*;
 import java.util.function.Predicate;
 
-import model.Pharmacist;
 import model.enums.UserRole;
 import model.users.Patient;
 import model.users.User;

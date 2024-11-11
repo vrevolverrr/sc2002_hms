@@ -23,6 +23,7 @@ public class AdminAllStaffView extends View {
         return "Search Staff";
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void render() {
         List<User> staffs;

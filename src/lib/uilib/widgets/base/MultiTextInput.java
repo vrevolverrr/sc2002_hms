@@ -31,7 +31,7 @@ public class MultiTextInput extends Widget implements MultiInputWidget {
             int i = 0;
 
             for (TextInputField field : fields) {
-                new TextInput(field).read(context, (String input) -> true);
+                new TextInput(field).read(context, (@SuppressWarnings("unused") String input) -> true);
                 fieldValues[i] = field.getValue();
                 i++;
             }

@@ -1,7 +1,6 @@
 package view.Patient.appointments;
 
 import controller.AppointmentManager;
-import lib.uilib.framework.BuildContext;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.VSpacer;
 import model.users.Patient;

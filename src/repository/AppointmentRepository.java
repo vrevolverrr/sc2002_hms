@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.appointments.Appointment;
-import model.appointments.TimeSlot;
-import model.users.Doctor;
-import model.users.Patient;
 
 public class AppointmentRepository extends BaseRepository<Appointment> {
     private final static String FILENAME = "appointments.dat";
@@ -21,6 +18,7 @@ public class AppointmentRepository extends BaseRepository<Appointment> {
         super(FILENAME);
     }
 
+    @SuppressWarnings("unused")
     @Override
     public String generateId() {
         return ID_PREFIX + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(

@@ -40,6 +40,7 @@ public class Menu extends Widget {
         return new Column(optionLabels).build(context);
     }
 
+    @SuppressWarnings("unused")
     public void readOption(BuildContext context) {
         this.paint(context);
         new VSpacer(1).paint(context);

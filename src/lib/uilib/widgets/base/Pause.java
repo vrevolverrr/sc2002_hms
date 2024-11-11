@@ -36,6 +36,7 @@ public class Pause extends Widget implements InputWidget {
         new TextInput(tempField).read(context, predicate);
     }
     
+    @SuppressWarnings("unused")
     public void pause(BuildContext context) {
        this.read(context, (input) -> true);
     }

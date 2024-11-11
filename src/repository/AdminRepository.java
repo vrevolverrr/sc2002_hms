@@ -48,6 +48,7 @@ import model.users.User;
      /**
       * Generates a new ID for a {@link Admin}.
       */
+    @SuppressWarnings("unused")
     @Override
     public String generateId() {
         return ID_PREFIX + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(

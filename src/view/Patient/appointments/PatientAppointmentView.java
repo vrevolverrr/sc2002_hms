@@ -1,7 +1,6 @@
 package view.Patient.appointments;
 
 import controller.AppointmentManager;
-import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.VSpacer;

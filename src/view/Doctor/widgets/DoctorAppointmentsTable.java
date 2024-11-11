@@ -1,8 +1,6 @@
 package view.Doctor.widgets;
 
 import java.util.List;
-import java.util.stream.Stream;
-
 import controller.PatientManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;

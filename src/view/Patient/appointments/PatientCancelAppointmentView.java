@@ -3,7 +3,6 @@ package view.Patient.appointments;
 import java.util.List;
 
 import controller.AppointmentManager;
-import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.widgets.base.Pause;

@@ -1,16 +1,11 @@
 package view.Doctor;
 
 import controller.UserManager;
-import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TableRow;
-import lib.uilib.framework.enums.Alignment;
-import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.Table;
-import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.VSpacer;
-import lib.uilib.widgets.layout.Align;
 import model.users.Doctor;
 import services.Navigator;
 import view.View;
