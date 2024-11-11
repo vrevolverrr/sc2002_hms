@@ -67,6 +67,10 @@ public class AppointmentManager extends Manager<AppointmentManager> {
         return availableSlots;
     }
 
+    public List<Appointment> getAppointments(Doctor doctor) {
+        return appointmentRepository.getUpcomingAppointmentsByDoctor(doctor);
+    }
+
     /**
      * Gets the appointments of a doctor on a given date.
      * @param doctor the doctor to get the appointments for.
@@ -74,7 +78,7 @@ public class AppointmentManager extends Manager<AppointmentManager> {
      * @return the list of appointments.
      */
     public List<Appointment> getAppointments(Doctor doctor, LocalDate date) {
-        return appointmentRepository.getAppointmentsByDateAndDoctor(date, doctor);
+        return appointmentRepository.getUpcomingAppointmentsByDateAndDoctor(date, doctor);
     }
 
     /**
@@ -83,7 +87,7 @@ public class AppointmentManager extends Manager<AppointmentManager> {
      * @return the list of appointments, ordered by most recent first.
      */
     public List<Appointment> getAppointments(Patient patient) {
-        return appointmentRepository.getAppointmentsByPatient(patient);
+        return appointmentRepository.getUpcomingAppointmentsByPatient(patient);
     }
 
     /**

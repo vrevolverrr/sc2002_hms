@@ -31,7 +31,14 @@ public class AppointmentRepository extends BaseRepository<Appointment> {
         return new ArrayList<Appointment>();
     }
 
-    public List<Appointment> getAppointmentsByDateAndDoctor(LocalDate date, Doctor doctor) {
+    public List<Appointment> getUpcomingAppointmentsByDoctor(Doctor doctor) {
+        return findBy((appointment) -> 
+            appointment.getDoctorId().equals(doctor.getDoctorId()) && 
+            !appointment.isCancelled()
+        );
+    }
+
+    public List<Appointment> getUpcomingAppointmentsByDateAndDoctor(LocalDate date, Doctor doctor) {
         return findBy((appointment) -> 
             appointment.getDoctorId().equals(doctor.getDoctorId()) && 
             appointment.getDateTime().getDate().equals(date) &&
@@ -40,13 +47,13 @@ public class AppointmentRepository extends BaseRepository<Appointment> {
     }
 
     /**
-     * Returns a list of appointments for a given patient.
+     * Returns a list of upcoming appointments for a given patient.
      * The appointments are sorted by descending order of date and time.
      * Only future appointments are returned.
      * @param patient the patient to get the appointments for.
      * @return the list of appointments for the patient.
      */
-    public List<Appointment> getAppointmentsByPatient(Patient patient) {
+    public List<Appointment> getUpcomingAppointmentsByPatient(Patient patient) {
         return findBy((appointment) -> 
             appointment.getPatientId().equals(patient.getPatientId()) && 
             !appointment.getDateTime().getDate().isBefore(LocalDate.now()) &&
@@ -61,7 +68,7 @@ public class AppointmentRepository extends BaseRepository<Appointment> {
     }
 
     public boolean isAppointmentSlotAvailable(TimeSlot slot, Doctor doctor) {
-        List<Appointment> scheduledAppointments = getAppointmentsByDateAndDoctor(slot.getDateTime().toLocalDate(), doctor);
+        List<Appointment> scheduledAppointments = getUpcomingAppointmentsByDateAndDoctor(slot.getDateTime().toLocalDate(), doctor);
 
         for (Appointment appointment : scheduledAppointments) {
             if (appointment.getDateTime().equals(slot)) {
