@@ -14,6 +14,12 @@ import lib.uilib.framework.*;
  */
 public abstract class View {
     /**
+     * The default {@link BuildContext} implemented by a view. Can be overriden to use
+     * a new build context.
+     */
+    public BuildContext context = new BuildContext(100, 5000);
+
+    /**
      * Gets the name of the {@link View} to be used in generating the breadcrumbs using
      * {@link Navigator#getBreadcrumbs}.
      * @return the name of the view.
@@ -75,7 +81,8 @@ public abstract class View {
      */
     public static void clear() {
         System.out.print("\033[H\033[2J");  
-        System.out.flush();  
+        System.out.flush();
+        gotoPrevLine();
     }
 
     /**
