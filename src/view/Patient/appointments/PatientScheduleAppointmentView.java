@@ -54,7 +54,7 @@ public class PatientScheduleAppointmentView extends View {
 
         /// Choose a doctor
         TextInputField doctorField = new TextInputField("Choose a doctor");
-        new TextInput(doctorField).read(context, "Choose a doctor from the list above.", (input) -> validateInput(input, doctors.size()));
+        new TextInput(doctorField).read(context, "Choose a doctor from the list above.", (input) -> InputValidators.validateRange(input, doctors.size()));
 
         final Doctor selectedDoctor = doctors.get(Integer.parseInt(doctorField.getValue()) - 1);
         new VSpacer(1).paint(context);
@@ -76,7 +76,7 @@ public class PatientScheduleAppointmentView extends View {
 
         /// Choose an appointment slot
         TextInputField slotField = new TextInputField("Choose an appointment slot");
-        new TextInput(slotField).read(context, "Choose a slot from the list above.", (input) -> validateInput(input, appointmentSlots.size()));
+        new TextInput(slotField).read(context, "Choose a slot from the list above.", (input) -> InputValidators.validateRange(input, appointmentSlots.size()));
 
         final AppointmentSlot appointmentSlot = appointmentSlots.get(slotField.getInt());
         

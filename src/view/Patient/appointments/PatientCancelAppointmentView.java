@@ -13,6 +13,7 @@ import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
 import model.users.Patient;
 import services.Navigator;
+import utils.InputValidators;
 import view.View;
 import view.Patient.appointments.widgets.AppointmentsTable;
 import view.widgets.Title;
@@ -54,7 +55,8 @@ public class PatientCancelAppointmentView extends View {
         /// Choose the appointment to cancel by index on the table, the input is automatically
         /// validated.
         TextInputField timeslotField = new TextInputField("Choose an appointment to cancel");
-        new TextInput(timeslotField).read(context, "Choose an appointment to cancel.", (input) -> validateInput(input, appointments.size()));
+        new TextInput(timeslotField).read(context, "Choose an appointment to cancel.", 
+            (input) -> InputValidators.validateRange(input, appointments.size()));
 
         final Appointment selectedAppointment = appointments.get(timeslotField.getInt());
 

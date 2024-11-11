@@ -21,4 +21,13 @@ public class InputValidators {
     public static boolean validateDate(String dateString) {
         return validateDate(dateString, "dd/MM/yy");
     }
+
+    public static boolean validateRange(String input, int rangeLength) {
+        try {
+            int value = Integer.parseInt(input);
+            return value >= 1 && value <= rangeLength;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
