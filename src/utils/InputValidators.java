@@ -3,7 +3,16 @@ package utils;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Utility class for validating user input.
+ */
 public class InputValidators {
+    /**
+     * Validates a date string to a given pattern.
+     * @param dateString the date string to validate.
+     * @param pattern the pattern to validate against.
+     * @return whether the date is valid.
+     */
     public static boolean validateDate(String dateString, String pattern) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         try {
@@ -18,10 +27,21 @@ public class InputValidators {
         }
     }
 
+    /**
+     * Validates a date string in the format dd/MM/yy.
+     * @param dateString the date string to validate.
+     * @return whether the date is valid.
+     */
     public static boolean validateDate(String dateString) {
         return validateDate(dateString, "dd/MM/yy");
     }
 
+    /**
+     * Validates a range input, from 1 to rangeLength inclusive.
+     * @param input the input to validate.
+     * @param rangeLength the maximum value of the range.
+     * @return whether the input is a valid range.
+     */
     public static boolean validateRange(String input, int rangeLength) {
         try {
             int value = Integer.parseInt(input);
