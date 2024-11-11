@@ -1,15 +1,12 @@
 package view.Patient.appointments;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 import controller.AppointmentManager;
 import controller.DoctorManager;
 import lib.uilib.framework.BuildContext;
-import lib.uilib.framework.TableRow;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.Alignment;
 import lib.uilib.framework.enums.TextStyle;
@@ -17,9 +14,7 @@ import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
-import lib.uilib.widgets.base.EnumeratedTable;
 import lib.uilib.widgets.layout.Align;
-import lib.uilib.widgets.layout.Column;
 import model.appointments.AppointmentSlot;
 import model.users.Doctor;
 import model.users.Patient;

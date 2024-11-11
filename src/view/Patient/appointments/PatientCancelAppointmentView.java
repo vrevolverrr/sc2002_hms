@@ -1,28 +1,15 @@
 package view.Patient.appointments;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.print.Doc;
-
 import controller.AppointmentManager;
-import controller.DoctorManager;
-import controller.UserManager;
 import lib.uilib.framework.BuildContext;
-import lib.uilib.framework.TableRow;
 import lib.uilib.framework.TextInputField;
-import lib.uilib.framework.enums.Alignment;
 import lib.uilib.framework.enums.TextStyle;
-import lib.uilib.widgets.base.EnumeratedTable;
 import lib.uilib.widgets.base.Pause;
-import lib.uilib.widgets.base.Table;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
-import lib.uilib.widgets.layout.Align;
 import model.appointments.Appointment;
 import model.users.Patient;
 import services.Navigator;
@@ -32,7 +19,6 @@ import view.widgets.Title;
 
 public class PatientCancelAppointmentView extends View {
     private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
-    private final DoctorManager doctorManager = DoctorManager.getInstance(DoctorManager.class);
 
     private Patient patient;
     
