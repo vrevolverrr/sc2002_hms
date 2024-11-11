@@ -58,7 +58,18 @@ public class Table extends Widget {
             }
         }
 
-        int remainingSpace = Math.max(0, context.getWidth() - IntStream.of(columnWidths).sum() - (columnWidths.length + 1));
+        int numCellDividers = columnWidths.length + 1;
+        int minCellPadding = 2;
+
+        // If needed, iteratively reduce the length of the longest column until the table fits the context
+        while (IntStream.of(columnWidths).sum() + numCellDividers + (minCellPadding * columnWidths.length) > context.getWidth()) {
+            int maxColumnIndex = IntStream.range(0, columnWidths.length)
+                .reduce((i, j) -> columnWidths[i] > columnWidths[j] ? i : j)
+                .getAsInt();
+            columnWidths[maxColumnIndex]--;
+        }
+
+        int remainingSpace = Math.max(0, context.getWidth() - IntStream.of(columnWidths).sum() - numCellDividers);
         int extraSpacePerColumn = (int) Math.ceil(1.0 * remainingSpace / columnWidths.length)  ;
 
         for (int i = 0; i < columnWidths.length; i++) {
