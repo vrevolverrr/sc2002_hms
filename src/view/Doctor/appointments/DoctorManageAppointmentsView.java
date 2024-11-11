@@ -30,7 +30,7 @@ public class DoctorManageAppointmentsView extends View {
 
     @Override
     public void render() {
-        BuildContext context = new BuildContext(100, 10);
+        BuildContext context = new BuildContext(100, 1000);
 
         new Title("Manage Appointments").paint(context);
         new VSpacer(1).paint(context);
@@ -44,6 +44,7 @@ public class DoctorManageAppointmentsView extends View {
 
         new Menu(
             new MenuOption("Manage Appointment Requests", () -> Navigator.navigateTo(new DoctorAppointmentRequestsView(doctor))),
+            new MenuOption("Update Appointment Outcome", () -> Navigator.navigateTo(new DoctorUpdateAppointmentOutcomeView(doctor))),
             new MenuOption("Back", () -> Navigator.pop())
         ).readOption(context);
     }

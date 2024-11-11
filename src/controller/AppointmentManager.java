@@ -60,6 +60,13 @@ public class AppointmentManager extends Manager<AppointmentManager> {
         appointmentRepository.save(appointment);
     }
 
+    public void updateAppointmentOutcome(Appointment appointment, String outcome) {
+        // appointment.getOutcomeRecord().setOutcome(outcome);
+        
+        appointment.setStatus(AppointmentStatus.COMPLETED);
+        appointmentRepository.save(appointment);
+    }
+
     /**
      * Gets the available time slots for an appointment of a doctor on a given date.
      * @param date the date to get the available slots for.
@@ -146,7 +153,9 @@ public class AppointmentManager extends Manager<AppointmentManager> {
             appointment.getPatientId().equals(patient.getPatientId()) && 
             !appointment.getDateTime().getDate().isBefore(LocalDate.now()) &&
             (appointment.isScheduled() || appointment.isRequested())
-        );
+        )
+        .stream()
+        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
     }
 
     /**
@@ -159,6 +168,20 @@ public class AppointmentManager extends Manager<AppointmentManager> {
             appointment.getDoctorId().equals(doctor.getDoctorId()) && 
             !appointment.getDateTime().getDate().isBefore(LocalDate.now()) &&
             appointment.isRequested()
+        )
+        .stream()
+        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+    }
+
+    /**
+     * Gets the fulfilled appointments of a doctor.
+     * @param doctor the doctor to get the appointments for.
+     * @return the list of fulfilled appointments, ordered by most recent first.
+     */
+    public List<Appointment> getFulfilledAppointments(Doctor doctor) {
+        return appointmentRepository.findBy((appointment) -> 
+            appointment.getDoctorId().equals(doctor.getDoctorId()) && 
+            appointment.isFulfilled()
         )
         .stream()
         .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();

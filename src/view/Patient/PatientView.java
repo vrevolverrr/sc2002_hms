@@ -36,8 +36,6 @@ public class PatientView extends View {
 
     @Override
     public void render() {
-        BuildContext context = new BuildContext(100, 10);
-
         new Title("Patient Overview").paint(context);
 
         new Table(

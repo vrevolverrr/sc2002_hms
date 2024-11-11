@@ -50,4 +50,18 @@ public class InputValidators {
             return false;
         }
     }
+
+    /**
+     * Validates a yes/no input.
+     * @param input the input to validate.
+     * @return whether the input is a valid yes/no input.
+     */
+    public static boolean validateYesNo(String input) {
+        if (input.isBlank()) {
+            return false;
+        }
+
+        input = input.charAt(0) + "";
+        return input.equalsIgnoreCase("y") || input.equalsIgnoreCase("n");
+    }
 }

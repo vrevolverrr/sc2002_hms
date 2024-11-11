@@ -28,6 +28,11 @@ public class TextInputField {
         return Integer.parseInt(this.value) - 1;
     }
 
+    public boolean getYesNo() {
+        String value = this.value.charAt(0) + "";
+        return value.equalsIgnoreCase("y");
+    }
+
     @Override
     public String toString() {
         return this.value.toString();

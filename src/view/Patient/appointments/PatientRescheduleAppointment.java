@@ -45,8 +45,6 @@ public class PatientRescheduleAppointment extends View {
 
     @Override
     public void render() {
-         BuildContext context = new BuildContext(100, 1000);
-        
         new Title("Reschedule Appointment").paint(context);
         new VSpacer(1).paint(context);
 

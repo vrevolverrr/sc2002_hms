@@ -26,8 +26,6 @@ public class PatientAppointmentView extends View {
 
     @Override
     public void render() {
-        BuildContext context = new BuildContext(100, 10);
-
         new Title("Manage Appointments").paint(context);
         new VSpacer(1).paint(context);
         

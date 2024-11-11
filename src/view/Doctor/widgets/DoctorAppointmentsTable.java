@@ -15,15 +15,25 @@ public class DoctorAppointmentsTable extends Widget {
     private final List<Appointment> appointments;
     private final PatientManager patientManager = PatientManager.getInstance(PatientManager.class);
 
+    private final String emptyMessage;
+
     public DoctorAppointmentsTable(List<Appointment> appointments) {
         this.appointments = appointments;
+        this.emptyMessage = "No upcoming appointments";
+    }
+
+    public DoctorAppointmentsTable(String emptyMessage, List<Appointment> appointments) {
+        this.appointments = appointments;
+        this.emptyMessage = emptyMessage;
     }
 
     @Override
     public String build(BuildContext context) {
         if (appointments.isEmpty()) {
-            return new Table(new TableRow("No upcoming appointments")).build(context);
+            return new Table(new TableRow(emptyMessage)).build(context);
         }
+
+        TableRow header = new TableRow("Date", "Time", "Patient", "Status");
 
         TableRow[] appointmentRows = appointments.stream().map((Appointment appointment) -> 
             new TableRow(
@@ -33,7 +43,7 @@ public class DoctorAppointmentsTable extends Widget {
                 appointment.getStatus().toString()
             )).toArray(TableRow[]::new);
 
-        return EnumeratedTable.headerless(appointmentRows).build(context);
+        return EnumeratedTable.withHeader(header, appointmentRows).build(context);
     }
 
     private String getPatientNameById(String patientId) {

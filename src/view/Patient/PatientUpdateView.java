@@ -16,6 +16,7 @@ import lib.uilib.widgets.layout.Align;
 import model.users.Patient;
 import model.enums.Gender;
 import view.View;
+import view.widgets.Title;
 
 public class PatientUpdateView extends View {
     UserManager userManager = UserManager.getInstance(UserManager.class);
@@ -27,9 +28,7 @@ public class PatientUpdateView extends View {
 
     @Override
     public void render() {
-        BuildContext context = new BuildContext(100, 10);
-
-        new Align(Alignment.CENTER, new Text(" [ Update Patient Details ] ", TextStyle.BOLD)).paint(context);
+        new Title("Update Patient Details").paint(context);
 
         System.out.println("Choose the details you want to update:");
 

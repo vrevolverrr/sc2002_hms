@@ -42,8 +42,6 @@ public class PatientScheduleAppointmentView extends View {
 
     @Override
     public void render() {
-        BuildContext context = new BuildContext(100, 1000);
-        
         new Align(Alignment.CENTER, new Text("[ Schedule Appointment ]", TextStyle.BOLD)).paint(context);
         new VSpacer(1).paint(context);
 

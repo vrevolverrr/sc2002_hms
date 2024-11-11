@@ -17,10 +17,12 @@ public class DoctorsSelectionTable extends Widget {
 
     @Override
     public String build(BuildContext context) {
+        TableRow header = new TableRow("Name", "Specialisation", "Gender");
+
         TableRow[] doctorRows = doctors.stream().map((doctor) -> new TableRow(
            doctor.getName(), doctor.getSpecialisation().toString(), doctor.getGender().toString())).toArray(TableRow[]::new);
 
-        return EnumeratedTable.headerless(doctorRows).build(context);
+        return EnumeratedTable.withHeader(header, doctorRows).build(context);
     }
     
 }

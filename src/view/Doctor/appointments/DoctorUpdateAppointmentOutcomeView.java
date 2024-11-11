@@ -5,9 +5,7 @@ import java.util.List;
 import controller.AppointmentManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
-import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.widgets.base.Pause;
-import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
@@ -18,30 +16,30 @@ import view.View;
 import view.Doctor.widgets.DoctorAppointmentsTable;
 import view.widgets.Title;
 
-public class DoctorAppointmentRequestsView extends View {
+public class DoctorUpdateAppointmentOutcomeView extends View {
     private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
     private final Doctor doctor;
 
-    public DoctorAppointmentRequestsView(Doctor doctor) {
+    public DoctorUpdateAppointmentOutcomeView(Doctor doctor) {
         this.doctor = doctor;
     }
 
     @Override
     public String getViewName() {
-        return "Manage Appointment Requests";
+        return "Update Appointment Outcome";
     }
 
     @Override
     public void render() {
         BuildContext context = new BuildContext(100, 1000);
 
-        new Title("Manage Appointment Requests").paint(context);
+        new Title("Update Appointment Outcomes").paint(context);
         new VSpacer(1).paint(context);
         
-        new Title("Pending Appointments").paint(context);
-        List<Appointment> appointments = appointmentManager.getPendingAppointments(doctor);
+        new Title("Fulfilled Appointments").paint(context);
+        List<Appointment> appointments = appointmentManager.getFulfilledAppointments(doctor);
         
-        new DoctorAppointmentsTable(appointments).paint(context);
+        new DoctorAppointmentsTable("No appointments pending outcome",  appointments).paint(context);
 
         new VSpacer(1).paint(context);
 
@@ -52,30 +50,13 @@ public class DoctorAppointmentRequestsView extends View {
         }
 
         /// Choose an appointment to update
-        TextInputField apptField = new TextInputField("Choose an appointment to approve/decline");
+        TextInputField apptField = new TextInputField("Choose an appointment to update outcome");
         new TextInput(apptField).read(context, "Choose an appointment from the list above.",
             (input) -> InputValidators.validateRange(input, appointments.size()));
 
         final Appointment selectedAppointment = appointments.get(apptField.getInt());
         
         new VSpacer(1).paint(context);
-        
-        TextInputField statusField = new TextInputField("Do you accept this appointment? (Y/N)");
-        new TextInput(statusField).read(context, "Specify \"Y\" to accept and \"N\" to decline.", 
-            (input) -> InputValidators.validateYesNo(input));
-
-        final boolean accept = statusField.getYesNo();
-
-        if (accept) {
-            appointmentManager.acceptAppointment(selectedAppointment);
-        } else {
-            appointmentManager.declineAppointment(selectedAppointment);
-        }
-
-        new Text("Appointment status updated successfully.", TextStyle.BOLD).paint(context);
-        new Pause().pause(context);
-
-        clear();
-        render();
     }
+    
 }

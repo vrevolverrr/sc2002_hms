@@ -3,10 +3,13 @@ package view.Doctor;
 import controller.UserManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.MenuOption;
+import lib.uilib.framework.TableRow;
 import lib.uilib.framework.enums.Alignment;
 import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.widgets.base.Menu;
+import lib.uilib.widgets.base.Table;
 import lib.uilib.widgets.base.Text;
+import lib.uilib.widgets.base.VSpacer;
 import lib.uilib.widgets.layout.Align;
 import model.users.Doctor;
 import services.Navigator;
@@ -41,10 +44,14 @@ public class DoctorView extends View {
 
     @Override
     public void render() {
-        BuildContext context = new BuildContext(100, 50);
-
         new Title("Welcome Dr. " + userManager.getActiveUser().getName()).paint(context);
+        
+        new Table(
+            new TableRow("Doctor ID", "Name", "Date of Birth", "Gender", "Age", "Specialisation"),
+            new TableRow(doctor.getDoctorId(), doctor.getName(), doctor.getDobString(), doctor.getGender().getValue(), String.valueOf(doctor.getAge()), doctor.getSpecialisation().toString())
+        ).paint(context);
 
+        new VSpacer(1).paint(context);
         new Menu(
             new MenuOption("Edit Personal Availability", () -> 
                this.handlePersonalAvailability()),

@@ -18,7 +18,7 @@ public class VSpacer extends Widget {
 
     @Override
     public String build(BuildContext context) {
-        String newLine = "\n";
-        return newLine.repeat(lines - 1);
+        String spaceLine = " ".repeat(context.getWidth()) + "\n";
+        return spaceLine.repeat(lines - 1);
     }
 }

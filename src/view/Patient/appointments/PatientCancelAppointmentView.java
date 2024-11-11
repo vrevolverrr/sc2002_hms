@@ -34,8 +34,6 @@ public class PatientCancelAppointmentView extends View {
 
     @Override
     public void render() {
-        BuildContext context = new BuildContext(100, 1000);
-        
         new Title("Cancel Appointment").paint(context);
         new VSpacer(1).paint(context);
 
@@ -70,6 +68,7 @@ public class PatientCancelAppointmentView extends View {
 
         new AppointmentsTable(appointmentManager.getUpcomingAppointments(patient)).paint(context);
 
+        new VSpacer(1).paint(context);
         new Text("Appointment cancelled successfully", TextStyle.BOLD).paint(context);
 
         new Pause().pause(context);
