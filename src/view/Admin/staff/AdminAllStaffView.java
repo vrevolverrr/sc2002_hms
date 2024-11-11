@@ -39,7 +39,7 @@ public class AdminAllStaffView extends View {
         new VSpacer(1).paint(context);
 
         TextInputField searchField = new TextInputField("Search for staff");
-        new TextInput(searchField).read(context, (input) -> true);
+        new TextInput(searchField).read(context, input -> true);
         
         searchKeywords = searchField.getValue();
         clear();

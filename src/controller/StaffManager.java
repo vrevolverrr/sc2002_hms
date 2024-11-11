@@ -1,10 +1,17 @@
 package controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import model.Pharmacist;
 import model.enums.Gender;
+import model.enums.Specialisation;
 import model.enums.UserRole;
+import model.users.Admin;
+import model.users.Doctor;
 import model.users.User;
+import repository.DoctorRepository;
+import repository.PharmacistRepository;
 import repository.UserRepository;
 
 public class StaffManager extends Manager<StaffManager> {
@@ -35,6 +42,31 @@ public class StaffManager extends Manager<StaffManager> {
             user.getRole(), user.getDob(), user.getEmailAddress())
         .toLowerCase().contains(keywords) && isStaff(user)
         );
+    }
+
+    public void addDoctor(String name, int age, String password, Gender gender, LocalDate dob,
+            String emailAddress, String phoneNumber, Specialisation specialisation) {
+        
+        final Doctor user = new Doctor(null, name, age, password, gender, dob, phoneNumber, emailAddress, specialisation);
+        final DoctorRepository repository = new DoctorRepository(UserRepository.getInstance());
+        
+        repository.save(user);
+    }
+
+    public void addAdmin(String name, int age, String password, Gender gender, LocalDate dob, 
+            String emailAddress, String phoneNumber) {
+       
+        final Admin user = new Admin(null, name, age, password, gender, dob, phoneNumber, emailAddress);
+        userRepository.save(user);
+    }
+
+    public void addPharmacist(String name, int age, String password, Gender gender, LocalDate dob, 
+            String emailAddress, String phoneNumber) {
+
+        final Pharmacist user = new Pharmacist(null, name, age, password, gender, dob, phoneNumber, emailAddress);   
+        final PharmacistRepository repository = new PharmacistRepository(UserRepository.getInstance());
+        
+        repository.save(user);
     }
 
     public static boolean isStaff(User user) {

@@ -13,7 +13,7 @@ public class Pause extends Widget implements InputWidget {
     private final String pauseString;
 
     public Pause() {
-        this.pauseString = "Press Enter to continue...";
+        this.pauseString = "Press Enter to continue.";
     }
 
     public Pause(String pauseString) {

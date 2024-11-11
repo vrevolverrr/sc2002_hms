@@ -20,7 +20,7 @@ public class Admin extends User{
     /**
      * The unique ID of the patient.
      */
-    private final String adminId;
+    private String adminId;
 
     /**
      * The constructor of a {@link Admin}. Calls the constructor of {@link User}.
@@ -47,6 +47,15 @@ public class Admin extends User{
      */
     public String getAdminId() {
         return adminId;
+    }
+
+    /**
+     * Sets the ID of the admin.
+     * @param id the ID of the admin.
+     */
+    public void setAdminId(String id) {
+        this.adminId = id;
+        super.setId(id);
     }
 
     /**

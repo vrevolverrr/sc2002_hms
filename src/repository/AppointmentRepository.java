@@ -30,4 +30,13 @@ public class AppointmentRepository extends BaseRepository<Appointment> {
     public List<Appointment> getAppointmentsByDate(LocalDate date) {
         return new ArrayList<Appointment>();
     }
+
+    @Override
+    public Appointment save(Appointment item) {
+        if (item.getId() == null || item.getId().isBlank()) { // If the doctor does not have an ID
+            item.setId(generateId()); // Generate a new ID for the doctor
+        }
+
+        return super.save(item);
+    }
 }

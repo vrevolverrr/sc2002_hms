@@ -19,7 +19,7 @@ public class Patient extends User {
     /**
      * The unique ID of the patient.
      */
-    private final String patientId;
+    private String patientId;
 
     /**
      * The blood type of the patient.
@@ -52,6 +52,15 @@ public class Patient extends User {
      */
     public String getPatientId() {
         return patientId;
+    }
+
+    /**
+     * Sets the ID of the patient.
+     * @param id the ID of the patient.
+     */
+    public void setPatientId(String id) {
+        this.patientId = id;
+        super.setId(id);
     }
 
     /**

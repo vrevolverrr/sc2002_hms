@@ -120,6 +120,10 @@ import model.users.User;
       */
      @Override
      public Admin save(Admin item) {
+        if (item.getId() == null || item.getId().isBlank()) { // If the doctor does not have an ID
+            item.setId(generateId()); // Generate a new ID for the doctor
+        }
+
          repository.save(item);
          return item;
      }

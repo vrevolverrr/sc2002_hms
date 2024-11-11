@@ -35,4 +35,13 @@ public class InventoryRepository extends BaseRepository<InventoryItem> {
         inventoryItem.setStock(stock);
         save(inventoryItem);
     }
+
+    @Override
+    public InventoryItem save(InventoryItem item) {
+        if (item.getId() == null || item.getId().isBlank()) { // If the doctor does not have an ID
+            item.setId(generateId()); // Generate a new ID for the doctor
+        }
+
+        return super.save(item);
+    }
 }

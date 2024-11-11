@@ -13,7 +13,7 @@ public class InputValidators {
      * @param pattern the pattern to validate against.
      * @return whether the date is valid.
      */
-    public static boolean validateDate(String dateString, String pattern) {
+    public static boolean validateFutureDate(String dateString, String pattern) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         try {
             final LocalDate date = LocalDate.parse(dateString, formatter);
@@ -32,6 +32,21 @@ public class InputValidators {
      * @param dateString the date string to validate.
      * @return whether the date is valid.
      */
+    public static boolean validateFutureDate(String dateString) {
+        return validateDate(dateString, "dd/MM/yy");
+    }
+
+    public static boolean validateDate(String dateString, String pattern) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        try {
+            LocalDate.parse(dateString, formatter);
+            return true;
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public static boolean validateDate(String dateString) {
         return validateDate(dateString, "dd/MM/yy");
     }
@@ -63,5 +78,27 @@ public class InputValidators {
 
         input = input.charAt(0) + "";
         return input.equalsIgnoreCase("y") || input.equalsIgnoreCase("n");
+    }
+
+    /**
+     * Validates an age input.
+     * @param input the input to validate.
+     * @return whether the input is a valid age.
+     */
+    public static boolean validateAge(String input) {
+        try {
+            int age = Integer.parseInt(input);
+            return age >= 0 && age <= 150;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static boolean validateEmail(String email) {
+        return email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+    }
+
+    public static boolean validatePhoneNumber(String phoneNumber) {
+        return phoneNumber.matches("^\\d{8}$");
     }
 }

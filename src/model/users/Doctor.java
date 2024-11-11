@@ -61,6 +61,15 @@ public class Doctor extends User {
     }
 
     /**
+     * Sets the ID of the doctor.
+     * @param id the ID of the doctor.
+     */
+    public void setDoctorId(String id) {
+        this.doctorId = id;
+        super.setId(id);
+    }
+
+    /**
      * Get the specialisation of the doctor.
      * @return the specialisation of the doctor.
      */

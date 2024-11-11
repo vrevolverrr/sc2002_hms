@@ -120,6 +120,10 @@ public class PharmacistRepository implements Repository<Pharmacist> {
      */
     @Override
     public Pharmacist save(Pharmacist item) {
+        if (item.getId() == null || item.getId().isBlank()) {
+            item.setId(generateId());
+        }
+
         repository.save(item);
         return item;
     }

@@ -83,7 +83,7 @@ public class PatientRescheduleAppointment extends View {
 
         TextInputField dateField = new TextInputField("Choose a date (dd/mm/yy)");
         new TextInput(dateField).read(context, "Enter a valid date starting from today.", 
-            (input) -> InputValidators.validateDate(input));
+            (input) -> InputValidators.validateFutureDate(input));
 
         final LocalDate selectedDate = LocalDate.parse(dateField.getValue(), DateTimeFormatter.ofPattern("dd/MM/yy"));
 

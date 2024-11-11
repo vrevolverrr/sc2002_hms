@@ -31,6 +31,7 @@ public class MockData {
 
     public static void mockPatientData() {
         PatientRepository patientRepository = new PatientRepository(UserRepository.getInstance());
+        patientRepository.clear();
         
         patientRepository.save(new Patient("P1001", "Alice Brown", 44, "123", Gender.FEMALE, LocalDate.of(1980, 5, 14), "81888888", "alice.brown@example.com", BloodType.A_POSITIVE));
         patientRepository.save(new Patient("P1002", "John Smith", 32, "abc123", Gender.MALE, LocalDate.of(1992, 8, 10), "81812345", "john.smith@example.com", BloodType.O_NEGATIVE));
@@ -47,6 +48,7 @@ public class MockData {
 
     public static void mockAdminData() {
         AdminRepository adminRepository = new AdminRepository(UserRepository.getInstance());
+        adminRepository.clear();
         
         adminRepository.save(new Admin("A1001", "David Johnson", 45, "adminPass1", Gender.MALE, LocalDate.of(1978, 1, 15), "81234567", "david.johnson@example.com"));
         adminRepository.save(new Admin("A1002", "Sophia Martinez", 38, "adminPass2", Gender.FEMALE, LocalDate.of(1985, 3, 22), "82345678", "sophia.martinez@example.com"));
@@ -55,6 +57,7 @@ public class MockData {
 
     public static void mockInventoryData() {
         InventoryRepository inventoryRepository = new InventoryRepository();
+        inventoryRepository.clear();
         
         inventoryRepository.save(new InventoryItem("I1001", "Paracetamol", 200, 30, ReplenishmentStatus.NULL));
         inventoryRepository.save(new InventoryItem("I1002", "Ibuprofen", 200, 30, ReplenishmentStatus.NULL));
@@ -70,6 +73,7 @@ public class MockData {
 
     public static void mockDoctorData() {
         DoctorRepository doctorRepository = new DoctorRepository(UserRepository.getInstance());
+        doctorRepository.clear();
 
         doctorRepository.save(new Doctor("D1001", "John Doe", 45, "johnDoe123", Gender.MALE, LocalDate.of(1978, 1, 15), "81234567", "johndoe@email.com", Specialisation.CARDIOLOGIST));
         doctorRepository.save(new Doctor("D1002", "Jane Smith", 38, "janeSmith456", Gender.FEMALE, LocalDate.of(1985, 2, 20), "81234568", "janesmith@email.com", Specialisation.DERMATOLOGIST));
@@ -81,6 +85,7 @@ public class MockData {
 
     public static void mockAppointmentData() {
         AppointmentRepository appointmentRepository = new AppointmentRepository();
+        appointmentRepository.clear();
 
         LocalDate today = LocalDate.now();
 

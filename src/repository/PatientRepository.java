@@ -119,6 +119,10 @@ public class PatientRepository implements Repository<Patient> {
      */
     @Override
     public Patient save(Patient item) {
+        if (item.getId() == null || item.getId().isBlank()) {
+            item.setId(generateId());
+        }
+
         repository.save(item);
         return item;
     }

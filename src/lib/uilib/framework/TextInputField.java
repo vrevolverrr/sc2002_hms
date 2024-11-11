@@ -1,5 +1,8 @@
 package lib.uilib.framework;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class TextInputField {
     final private String label;
     private String value = null;
@@ -21,16 +24,29 @@ public class TextInputField {
     }
 
     /**
-     * Get the integer value of the input field. This method assumes that the input is a number.
-     * @return The integer value of the input field.
+     * Get the integer value of the input field. This method assumes that the input is a valid number.
+     * @return the integer value of the input field.
      */
     public int getInt() {
         return Integer.parseInt(this.value) - 1;
     }
 
+    /**
+     * Get the boolean value of the input field. This method assumes that the input is a y/n.
+     * @return the boolean value of the input field.
+     */
     public boolean getYesNo() {
         String value = this.value.charAt(0) + "";
         return value.equalsIgnoreCase("y");
+    }
+
+    /**
+     * Get the date value of the input field. This method assumes that the input is a valid date string.
+     * @param pattern the pattern of the date string
+     * @return the date value of the input field.
+     */
+    public LocalDate getDate(String pattern) {
+        return LocalDate.parse(this.value,  DateTimeFormatter.ofPattern(pattern));
     }
 
     @Override

@@ -1,4 +1,5 @@
 import services.Navigator;
+import utils.MockData;
 import view.LoginView;
 
 /**
@@ -8,7 +9,7 @@ import view.LoginView;
  */
 public class HMSApp {
     public static void main(String[] args) throws Exception {
+        MockData.mockAllData();
         Navigator.navigateTo(new LoginView());
-        // MockData.mockAllData();
     }
 }

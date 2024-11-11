@@ -20,11 +20,6 @@ import model.enums.UserRole;
  */
 public abstract class User extends BaseModel {
     /**
-     * The unique ID of the user. 
-     */
-    private final String userId;
-
-    /**
      * The {@link UserRole} of the user that decides the user's privilege. 
      */
     private final UserRole role;
@@ -78,9 +73,7 @@ public abstract class User extends BaseModel {
      */
     public User(String id, UserRole role, String password, String name, int age, Gender gender, LocalDate dob, String phoneNumber, String emailAddress) {
         super(id);
-        
-        this.userId = id;
-
+    
         this.role = role;
         this.password = password;
 
@@ -91,15 +84,6 @@ public abstract class User extends BaseModel {
         this.emailAddress = emailAddress;
         this.age = age;
     }
-
-    /**
-     * Gets the ID of the user.
-     * @return the ID of the user.
-     */
-    public String getUserId() {
-        return this.userId;
-    }
-
     /**
      * Gets the role of the user.
      * @return the role of the user.

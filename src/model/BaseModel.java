@@ -41,6 +41,14 @@ public abstract class BaseModel implements Serializable {
     }
 
     /**
+     * Sets the unique ID of the object.
+     * @param id the unique ID string
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
      * Creates and returns a copy of the {@link BaseModel} instance.
      * @return a copy of the instance
      */
