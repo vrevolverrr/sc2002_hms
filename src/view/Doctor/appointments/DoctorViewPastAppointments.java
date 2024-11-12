@@ -9,11 +9,10 @@ import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
 import model.users.Doctor;
-import model.users.User;
 import services.Navigator;
 import utils.InputValidators;
 import view.View;
-import view.Doctor.appointments.widgets.PastAppointmentsTable;
+import view.Doctor.widgets.DoctorAppointmentsTable;
 import view.widgets.Title;
 
 public class DoctorViewPastAppointments extends View {
@@ -24,10 +23,7 @@ public class DoctorViewPastAppointments extends View {
     private String keyword = "";
     private boolean showingResults = false;
 
-    private final Doctor doctor;
-
     public DoctorViewPastAppointments(Doctor doctor) {
-        this.doctor = doctor;
         pastAppointments = appointmentManager.getPastAppointments(doctor);
     }
 
@@ -42,7 +38,7 @@ public class DoctorViewPastAppointments extends View {
         new Title("View Past Appointments").paint(context);
 
         List<Appointment> filteredAppointments = filterAppointments(keyword);
-        new PastAppointmentsTable(pastAppointments).paint(context);
+        new DoctorAppointmentsTable("No past fulfilled or completed appointments", pastAppointments).paint(context);
 
         new VSpacer(1).paint(context);
 
@@ -51,7 +47,7 @@ public class DoctorViewPastAppointments extends View {
             new TextInput(selectField).read(context, "Select an appointment from the list above.",
                 (input) -> InputValidators.validateRange(input, filteredAppointments.size()));
 
-            final Appointment selectedAppointment = filteredAppointments.get(selectField.getInt());
+            final Appointment selectedAppointment = filteredAppointments.get(selectField.getOption());
             Navigator.navigateTo(new DoctorViewAppointmentDetailsView(selectedAppointment));
             return;
         }

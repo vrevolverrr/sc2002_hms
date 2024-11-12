@@ -28,6 +28,14 @@ public class TextInputField {
      * @return the integer value of the input field.
      */
     public int getInt() {
+        return Integer.parseInt(this.value);
+    }
+
+    /**
+     * Get the option value of the input field. This method assumes that the input is a valid number.
+     * @return the option value of the input field.
+     */
+    public int getOption() {
         return Integer.parseInt(this.value) - 1;
     }
 

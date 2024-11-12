@@ -61,7 +61,7 @@ public class AdminUpdateStaffDetailsView extends View {
         new TextInput(updateField).read(context, "Choose a valid field to update.", input -> 
             InputValidators.validateRange(input, detailRows.length));
 
-        updatableFields.get(updateField.getInt()).update();
+        updatableFields.get(updateField.getOption()).update();
 
         clear();
         render();

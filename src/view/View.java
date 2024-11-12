@@ -75,6 +75,15 @@ public abstract class View {
         clear();
         this.render();
     }
+
+    /**
+     * Clears the screen and paints the view again. This method is used solely for 
+     * contextual purposes and is identical to paint.
+     */
+    public void repaint() {
+        clear();
+        this.render();
+    }
     
     /**
      * Utility method to clear the screen.

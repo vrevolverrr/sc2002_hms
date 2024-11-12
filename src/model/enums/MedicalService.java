@@ -2,17 +2,14 @@ package model.enums;
 
 public enum MedicalService {
     CONSULTATION("Consultation"),
-    X_RAY("X-Ray"),
     BLOOD_TEST("Blood Test"),
+    X_RAY("X-Ray"),
     MRI("MRI"),
     ULTRASOUND("Ultrasound"),
-    ECG("ECG"),
     VACCINATION("Vaccination"),
     PHYSIOTHERAPY("Physiotherapy"),
     SURGERY("Surgery"),
-    DENTAL("Dental"),
-    PSYCHIATRY("Psychiatry"),
-    NUTRITION("Nutrition");
+    PSYCHIATRY("Psychiatry");
 
     private MedicalService(String value) {
         this.value = value;

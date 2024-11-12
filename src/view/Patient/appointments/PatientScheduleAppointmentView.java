@@ -75,7 +75,7 @@ public class PatientScheduleAppointmentView extends View {
         TextInputField slotField = new TextInputField("Choose an appointment slot");
         new TextInput(slotField).read(context, "Choose a slot from the list above.", (input) -> InputValidators.validateRange(input, appointmentSlots.size()));
 
-        final AppointmentSlot appointmentSlot = appointmentSlots.get(slotField.getInt());
+        final AppointmentSlot appointmentSlot = appointmentSlots.get(slotField.getOption());
         
         // Schedule the appointment
         appointmentManager.scheduleAppointment(appointmentSlot, patient);

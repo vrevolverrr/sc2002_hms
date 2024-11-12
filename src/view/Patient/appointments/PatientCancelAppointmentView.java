@@ -55,7 +55,7 @@ public class PatientCancelAppointmentView extends View {
         new TextInput(timeslotField).read(context, "Choose an appointment to cancel.", 
             (input) -> InputValidators.validateRange(input, appointments.size()));
 
-        final Appointment selectedAppointment = appointments.get(timeslotField.getInt());
+        final Appointment selectedAppointment = appointments.get(timeslotField.getOption());
 
         /// Cancel the appointment
         appointmentManager.cancelAppointment(selectedAppointment);

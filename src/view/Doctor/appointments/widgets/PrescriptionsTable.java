@@ -7,6 +7,7 @@ import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.Widget;
 import lib.uilib.widgets.base.EnumeratedTable;
+import lib.uilib.widgets.base.Table;
 import model.prescriptions.MedicineDosage;
 import model.prescriptions.Prescription;
 
@@ -21,6 +22,12 @@ public class PrescriptionsTable extends Widget {
     @Override
     public String build(BuildContext context) {
         TableRow header = new TableRow("Medicine", "Dosage", "Frequency");
+
+        if (prescriptions.isEmpty()) {
+            return new Table(new TableRow("No prescriptions found"))
+                .build(context);
+        }
+
         List<TableRow> rows = prescriptions.stream()
             .map(prescription -> new TableRow(
                 getDrugName(prescription.getDrugId()), 

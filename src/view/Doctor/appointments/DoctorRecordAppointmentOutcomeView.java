@@ -54,7 +54,7 @@ public class DoctorRecordAppointmentOutcomeView extends View {
         new TextInput(apptField).read(context, "Choose an appointment from the list above.",
             (input) -> InputValidators.validateRange(input, appointments.size()));
 
-        final Appointment selectedAppointment = appointments.get(apptField.getInt());
+        final Appointment selectedAppointment = appointments.get(apptField.getOption());
         Navigator.navigateTo(new DoctorUpdateOutcomeDetailsView(selectedAppointment));       
     }
     

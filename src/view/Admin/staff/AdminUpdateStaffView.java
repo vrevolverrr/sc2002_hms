@@ -47,7 +47,7 @@ public class AdminUpdateStaffView extends View {
         new TextInput(selectField).read(context, "Select from the list above.", 
             input -> InputValidators.validateRange(input, staffs.size()));
 
-        User staff = staffs.get(selectField.getInt());
+        User staff = staffs.get(selectField.getOption());
         Navigator.navigateTo(new AdminUpdateStaffDetailsView(staff));
     }
 }

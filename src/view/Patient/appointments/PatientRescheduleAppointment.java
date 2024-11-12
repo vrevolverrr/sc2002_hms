@@ -59,7 +59,7 @@ public class PatientRescheduleAppointment extends View {
         new TextInput(appointmentField).read(context, 
             (input) -> InputValidators.validateRange(input, appointments.size()));
 
-        final Appointment selectedAppointment = appointments.get(appointmentField.getInt());
+        final Appointment selectedAppointment = appointments.get(appointmentField.getOption());
 
         new VSpacer(1).paint(context);
 
@@ -97,7 +97,7 @@ public class PatientRescheduleAppointment extends View {
 
         new VSpacer(1).paint(context);
 
-        final AppointmentSlot appointmentSlot = appointmentSlots.get(slotField.getInt());
+        final AppointmentSlot appointmentSlot = appointmentSlots.get(slotField.getOption());
         
         // Reschedule the appointment
         appointmentManager.rescheduleAppointment(selectedAppointment, appointmentSlot);

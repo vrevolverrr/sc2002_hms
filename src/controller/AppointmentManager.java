@@ -1,9 +1,12 @@
 package controller;
 
 import model.appointments.Appointment;
+import model.appointments.AppointmentOutcomeRecord;
 import model.appointments.AppointmentSlot;
 import model.appointments.TimeSlot;
 import model.enums.AppointmentStatus;
+import model.enums.MedicalService;
+import model.prescriptions.Prescription;
 import model.users.Doctor;
 import model.users.Patient;
 import repository.AppointmentRepository;
@@ -60,10 +63,17 @@ public class AppointmentManager extends Manager<AppointmentManager> {
         appointmentRepository.save(appointment);
     }
 
-    public void updateAppointmentOutcome(Appointment appointment, String outcome) {
-        // appointment.getOutcomeRecord().setOutcome(outcome);
+    public void updateAppointmentOutcome(
+        Appointment appointment, String consultationNotes,
+        List<Prescription> prescriptions, List<MedicalService> services) {
         
+        AppointmentOutcomeRecord outcomeRecord = 
+            new AppointmentOutcomeRecord(LocalDate.now(), 
+                List.copyOf(prescriptions), List.copyOf(services), consultationNotes);
+
+        appointment.setOutcomeRecord(outcomeRecord);
         appointment.setStatus(AppointmentStatus.COMPLETED);
+        
         appointmentRepository.save(appointment);
     }
 
