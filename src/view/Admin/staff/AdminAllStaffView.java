@@ -16,7 +16,7 @@ public class AdminAllStaffView extends View {
     private final StaffManager staffManager = StaffManager.getInstance(StaffManager.class);
     
     private String searchKeywords = "";
-    private final BuildContext context = BuildContext.unboundedVertical(130);
+    private final BuildContext context = BuildContext.unboundedVertical(120);
 
     @Override
     public String getViewName() {

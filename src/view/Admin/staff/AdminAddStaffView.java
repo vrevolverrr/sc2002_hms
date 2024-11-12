@@ -51,7 +51,6 @@ public class AdminAddStaffView extends View {
             input -> InputValidators.validateDate(input, "yyyy-MM-dd"));
         new VSpacer(1).paint(context);
         
-        
         TextInputField phoneNumber = new TextInputField("Enter the staff's phone number");
         new TextInput(phoneNumber).read(context, "Invalid phone number.", input -> InputValidators.validatePhoneNumber(input));
         new VSpacer(1).paint(context);
@@ -91,46 +90,37 @@ public class AdminAddStaffView extends View {
     }
 
     private Gender promptGender() {
-        final Gender[] gender = {null};
+        final Gender[] gender = {Gender.MALE};
 
-        while (gender[0] == null) { 
-            new Text("Please enter the staff's gender:", TextStyle.BOLD).paint(context);
-
-            new Menu(
-                new MenuOption("Male", () -> gender[0] = Gender.MALE),
-                new MenuOption("Female", () -> gender[0] = Gender.FEMALE)
-            ).readOption(context);
-        }
+        new Text("Enter the staff's gender:", TextStyle.BOLD).paint(context);
+        new Menu(
+            new MenuOption("Male", () -> gender[0] = Gender.MALE),
+            new MenuOption("Female", () -> gender [0]= Gender.FEMALE)
+        ).readOption(context);
 
         return gender[0];
     }
 
     private UserRole promptRole() {
-        UserRole[] userRole = {null};
+        final UserRole[] userRole = {null};
+        new Text("Enter the staff's role:", TextStyle.BOLD).paint(context);
 
-        while (userRole[0] == null) { 
-            new Text("Enter the staff's role:", TextStyle.BOLD).paint(context);
-
-            new Menu(
-                Arrays.stream(UserRole.values()).filter(role -> role == UserRole.DOCTOR || role == UserRole.ADMIN || role == UserRole.PHARMACIST)
-                    .map(role -> new MenuOption(role.getValue(), () -> userRole[0] = role)).toArray(MenuOption[]::new)
-            ).readOption(context);
-        }
+        new Menu(
+            Arrays.stream(UserRole.values()).filter(role -> role != UserRole.PATIENT)
+                .map(role -> new MenuOption(role.getValue(), () -> userRole[0] = role)).toArray(MenuOption[]::new)
+        ).readOption(context);
 
         return userRole[0];
     }
     
     private Specialisation promptSpecialisation() {
         Specialisation[] specialisation = {null};
-
-        while (specialisation[0] == null) {
-            new Text("Enter the staff's specialisation:", TextStyle.BOLD).paint(context);
-
-            new Menu(
-                Arrays.stream(Specialisation.values()).map(spz -> new MenuOption(spz.getValue(), 
-                    () -> specialisation[0] = spz)).toArray(MenuOption[]::new)
-            ).readOption(context);
-        }
+        new Text("Enter the staff's specialisation:", TextStyle.BOLD).paint(context);
+        
+        new Menu(
+            Arrays.stream(Specialisation.values()).map(spz -> new MenuOption(spz.getValue(), 
+                () -> specialisation[0] = spz)).toArray(MenuOption[]::new)
+        ).readOption(context);
 
         return specialisation[0];
     }

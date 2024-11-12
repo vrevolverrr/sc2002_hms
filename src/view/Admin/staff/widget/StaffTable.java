@@ -19,6 +19,10 @@ public class StaffTable extends Widget {
     public String build(BuildContext context) {
         TableRow header = new TableRow("ID", "Name", "Age", "Gender", "Role", "DOB", "Email", "Contact");
 
+        if (staffs.isEmpty()) {
+            return EnumeratedTable.headerless(new TableRow("No staff found")).build(context);
+        }
+
         TableRow[] staffRows = staffs.stream().map((staff) -> 
             new TableRow(
                 staff.getId(),

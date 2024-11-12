@@ -67,6 +67,21 @@ public class InputValidators {
     }
 
     /**
+     * Validates a range input, from 0 to rangeLength inclusive.
+     * @param input the input to validate.
+     * @param rangeLength the maximum value of the range.
+     * @return whether the input is a valid range.
+     */
+    public static boolean validateRangeWithZero(String input, int rangeLength) {
+        try {
+            int value = Integer.parseInt(input);
+            return value >= 0 && value <= rangeLength;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
      * Validates a yes/no input.
      * @param input the input to validate.
      * @return whether the input is a valid yes/no input.

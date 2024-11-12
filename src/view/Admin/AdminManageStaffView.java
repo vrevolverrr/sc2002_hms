@@ -7,6 +7,7 @@ import services.Navigator;
 import view.View;
 import view.Admin.staff.AdminAddStaffView;
 import view.Admin.staff.AdminAllStaffView;
+import view.Admin.staff.AdminUpdateStaffView;
 import view.widgets.Title;
     
 public class AdminManageStaffView extends View{
@@ -24,7 +25,7 @@ public class AdminManageStaffView extends View{
         new Menu(
             new MenuOption("View All Staff", () -> Navigator.navigateTo(new AdminAllStaffView())),
             new MenuOption("Add New Staff", () -> Navigator.navigateTo(new AdminAddStaffView())),
-            // new MenuOption("Update Existing Staff", () -> this.promptUpdateStaff()),
+            new MenuOption("Update Existing Staff", () -> Navigator.navigateTo(new AdminUpdateStaffView())),
             // new MenuOption("Remove Staff", () -> this.promptRemoveStaff()),
             new MenuOption("Back", () -> Navigator.pop())
         ).readOption(context);

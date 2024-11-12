@@ -32,6 +32,14 @@ public class TextInputField {
     }
 
     /**
+     * Get the age value of the input field. This method assumes that the input is a valid number.
+     * @return the age value of the input field.
+     */
+    public int getAge() {
+        return Integer.parseInt(this.value);
+    }
+
+    /**
      * Get the boolean value of the input field. This method assumes that the input is a y/n.
      * @return the boolean value of the input field.
      */

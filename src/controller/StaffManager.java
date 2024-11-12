@@ -41,7 +41,9 @@ public class StaffManager extends Manager<StaffManager> {
             user.getId().toLowerCase(), user.getName(), user.getAge(), 
             user.getRole(), user.getDob(), user.getEmailAddress())
         .toLowerCase().contains(keywords) && isStaff(user)
-        );
+        )
+        .stream().sorted((a, b) -> a.getId().compareTo(b.getId()))
+        .toList();
     }
 
     public void addDoctor(String name, int age, String password, Gender gender, LocalDate dob,
@@ -67,6 +69,10 @@ public class StaffManager extends Manager<StaffManager> {
         final PharmacistRepository repository = new PharmacistRepository(UserRepository.getInstance());
         
         repository.save(user);
+    }
+
+    public void updateStaff(User user) {
+        userRepository.save(user);
     }
 
     public static boolean isStaff(User user) {
