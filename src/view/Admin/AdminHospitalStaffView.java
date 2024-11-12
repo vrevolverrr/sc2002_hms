@@ -17,7 +17,7 @@ import model.enums.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-    
+
 public class AdminHospitalStaffView extends View{
  
     UserManager userManager = UserManager.getInstance(UserManager.class);
@@ -85,6 +85,7 @@ public class AdminHospitalStaffView extends View{
         new Align(Alignment.CENTER, new Text(" [ Update Staff ] ", TextStyle.BOLD)).paint(context);
 
         TextInputField staffId = new TextInputField("Please enter the staff's ID: ");
+        new TextInput(staffId).read(context, (input) -> true);
         boolean validStaffId = false;
 
         
@@ -93,23 +94,24 @@ public class AdminHospitalStaffView extends View{
 
             if (AdminManager.searchStaffById(staffId.getValue()).isEmpty()) {
                 new Text("Error: Staff not found! Please enter a valid ID.", TextStyle.BOLD).paint(context);
-                View.gotoPrevNthLine(2);
+                View.gotoPrevNthLine(1);
                 View.clearLines(1);
             } else {
                 validStaffId = true;
             }
         }
 
-        //printUpdateStaffMenu() only returns valid choices
         int choice = this.printUpdateStaffMenu();
 
         switch (choice) {
             case 1:
-                TextInputField newName = new TextInputField("Please enter the staff's new name: ");
+                TextInputField newName = new TextInputField("Please enter the staff's new name");
+                new TextInput(newName).read(context, (input) -> true);
                 AdminManager.updateStaff(staffId, choice, newName);
                 break;
             case 2:
-                TextInputField newPassword = new TextInputField("Please enter the staff's new password: ");
+                TextInputField newPassword = new TextInputField("Please enter the staff's new password");
+                new TextInput(newPassword).read(context, (input) -> true);
                 AdminManager.updateStaff(staffId, choice, newPassword);
                 break;
             case 3:
@@ -117,15 +119,18 @@ public class AdminHospitalStaffView extends View{
                 AdminManager.updateStaff(staffId, choice, newBirthday);
                 break;
             case 4:
-                TextInputField newPhoneNumber = new TextInputField("Please enter the staff's new phone number: ");
+                TextInputField newPhoneNumber = new TextInputField("Please enter the staff's new phone number");
+                new TextInput(newPhoneNumber).read(context, (input) -> true);
                 AdminManager.updateStaff(staffId, choice, newPhoneNumber);
                 break;
             case 5:
-                TextInputField newEmail = new TextInputField("Please enter the staff's new email address: ");
+                TextInputField newEmail = new TextInputField("Please enter the staff's new email address");
+                new TextInput(newEmail).read(context, (input) -> true);
                 AdminManager.updateStaff(staffId, choice, newEmail);
                 break;
             case 6:
-                TextInputField newAge = new TextInputField("Please enter the staff's age: ");
+                TextInputField newAge = new TextInputField("Please enter the staff's age");
+                new TextInput(newAge).read(context, (input) -> true);
                 AdminManager.updateStaff(staffId, choice, newAge);
                 break;
             }
@@ -174,15 +179,24 @@ public class AdminHospitalStaffView extends View{
 
         new Align(Alignment.CENTER, new Text(" [ Add New Staff ] ", TextStyle.BOLD)).paint(context);
 
-        TextInputField staffId = new TextInputField("Please enter the staff's ID: ");
-        TextInputField name = new TextInputField("Please enter the staff's name: ");
+        TextInputField staffId = new TextInputField("Please enter the staff's ID");
+        new TextInput(staffId).read(context, (input) -> true);
+        TextInputField name = new TextInputField("Please enter the staff's name");
+        this.validateString(name, context);
         TextInputField password = new TextInputField("Plese enter the password");
+        new TextInput(password).read(context, (input) -> true);
         UserRole userRole = this.promptRole();
         Gender gender = this.promptGender();
         LocalDate dob = this.promptBirthday();
         TextInputField phoneNumber = new TextInputField("Please enter the phone number");
+        new TextInput(staffId).read(context, (input) -> true);
+        new TextInput(phoneNumber).read(context, (input) -> true);
         TextInputField emailAddress = new TextInputField("Please enter the email address");
+        new TextInput(emailAddress).read(context, (input) -> true);
+        this.validateEmail(emailAddress, context);
         TextInputField age = new TextInputField("Please enter the staff's age");
+        new TextInput(age).read(context, (input) -> true);
+        this.validateAge(age, context);
 
         AdminManager.addStaff(staffId.getValue(), name.getValue(), password.getValue(), userRole.getValue(), gender.getValue(), dob, phoneNumber.getValue(), emailAddress.getValue(), age.getValue());
 
@@ -193,7 +207,7 @@ public class AdminHospitalStaffView extends View{
         BuildContext context = new BuildContext(100, 10);
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        TextInputField birthdayInput = new TextInputField("Please enter the staff's birthday (YYYY-MM-DD):");
+        TextInputField birthdayInput = new TextInputField("Please enter the staff's birthday (YYYY-MM-DD)");
 
         while (true) {
             new TextInput(birthdayInput).read(context, input -> true);
@@ -204,10 +218,12 @@ public class AdminHospitalStaffView extends View{
                 return birthday;
             } catch (DateTimeParseException e) {
                 new Text("Invalid date format. Please use YYYY-MM-DD.", TextStyle.BOLD).paint(context);
-                View.gotoPrevNthLine(2);
+                View.gotoPrevNthLine(1);
                 View.clearLines(1);
             }
         }
+
+        
     }
 
     private UserRole promptRole(){
@@ -215,7 +231,7 @@ public class AdminHospitalStaffView extends View{
         BuildContext context = new BuildContext(100, 10);
 
         while (userRole[0] == null) { 
-            new Align(Alignment.CENTER, new Text("Please enter the staff's role (1-3) ", TextStyle.BOLD)).paint(context);
+            new Align(Alignment.START, new Text("Please enter the staff's role (1-3) ", TextStyle.BOLD)).paint(context);
 
             new Menu(
                 new MenuOption("Doctor", () -> userRole[0] = UserRole.DOCTOR),
@@ -234,7 +250,7 @@ public class AdminHospitalStaffView extends View{
         BuildContext context = new BuildContext(100, 10);
 
         while (gender[0] == null) { 
-            new Align(Alignment.CENTER, new Text("Please enter the staff's gender (1-2) ", TextStyle.BOLD)).paint(context);
+            new Align(Alignment.START, new Text("Please enter the staff's gender (1-2) ", TextStyle.BOLD)).paint(context);
 
             new Menu(
                 new MenuOption("Male", () -> gender[0] = Gender.MALE),
@@ -245,6 +261,98 @@ public class AdminHospitalStaffView extends View{
         return gender[0];
 
     }
+
+
+    private boolean validateString(TextInputField inputField, BuildContext context) {
+
+        final boolean[] validInput = {false}; 
+    
+        while (!validInput[0]) {
+            new TextInput(inputField).read(context, (input) -> {
+                if (input.matches("[a-zA-Z]+")) {
+                    validInput[0] = true;
+                    return true;
+                } else {
+                    new Text("Error: Please enter a valid input containing only letters.", TextStyle.BOLD).paint(context);
+                    View.gotoPrevNthLine(1);  // Move back up after printing the error message
+                    return false;  // Return false to trigger re-prompting for input
+                }
+            });
+        }
+    
+        return validInput[0];
+    }
+
+    /*private boolean validatePhoneNumber(TextInputField inputField, BuildContext context) {
+        final boolean[] validInput = {false}; 
+    
+        while (!validInput[0]) {
+            new TextInput(inputField).read(context, (input) -> {
+                if (input.matches("\\d+")) {  
+                    View.clearLine();  
+                    validInput[0] = true;
+                    return true;
+                } else {
+                    new Text("Error: Please enter a valid phone number containing only digits.", TextStyle.BOLD).paint(context);
+                    View.gotoPrevNthLine(2);  
+                    return false;
+                }
+            });
+        }
+    
+        return validInput[0];
+    }
+    */
+    
+
+    private boolean validateEmail(TextInputField inputField, BuildContext context) {
+        final boolean[] validInput = {false}; 
+    
+        while (!validInput[0]) {
+            new TextInput(inputField).read(context, (input) -> {
+                if (input.matches("^[\\w.-]+@[\\w.-]+\\.\\w+$")) {
+                    validInput[0] = true;
+                    return true;
+                } else {
+                    new Text("Error: Please enter a valid email address.", TextStyle.BOLD).paint(context);
+                    View.gotoPrevNthLine(2);  
+                    return false;
+                }
+            });
+        }
+    
+        return validInput[0];
+    }
+
+    private boolean validateAge(TextInputField inputField, BuildContext context) {
+        final boolean[] validInput = {false}; 
+    
+        while (!validInput[0]) {
+            new TextInput(inputField).read(context, (input) -> {
+                try {
+                    int age = Integer.parseInt(input);
+                    if (age >= 18 && age <= 100) {
+                        View.clearLine();  // Clear error message if valid
+                        validInput[0] = true;
+                        return true;
+                    } else {
+                        new Text("Error: Please enter a valid age between 18 and 100.", TextStyle.BOLD).paint(context);
+                        View.gotoPrevNthLine(2);
+                        return false;
+                    }
+                } catch (NumberFormatException e) {
+                    new Text("Error: Please enter a numeric age.", TextStyle.BOLD).paint(context);
+                    View.gotoPrevNthLine(2);
+                    return false;
+                }
+            });
+        }
+    
+        return validInput[0];
+    }
+    
+    
+    
 
 
 }

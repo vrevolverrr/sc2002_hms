@@ -3,7 +3,7 @@ package controller;
 import model.Appointment;
 import model.Patient;
 import model.Doctor;
-import model.Administrator;
+import model.Admin;
 
 /* Appointment Manager implements an access-control logic (using encapsulation)
 1. Which appointments do they have access to? 

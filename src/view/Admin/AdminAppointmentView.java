@@ -22,7 +22,7 @@ public class AdminAppointmentView extends View{
         new Align(Alignment.CENTER, new Text(" [ Scheduled Appointments ] ", TextStyle.BOLD)).paint(context);
         new Menu(
             new MenuOption("View All Appointments", () -> {
-                AppointmentManager.printAppointment();;
+                //AppointmentManager.printAppointment();;
             }),
             new MenuOption("Exit this view", ()-> {
                 this.exitView();;

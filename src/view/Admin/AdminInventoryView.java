@@ -8,6 +8,7 @@ import lib.uilib.framework.enums.Alignment;
 import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.Text;
+import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.layout.Align;
 import services.Navigator;
 import view.View;
@@ -55,8 +56,11 @@ public class AdminInventoryView extends View{
         BuildContext context = new BuildContext(100, 10);
         new Align(Alignment.CENTER, new Text(" [ Medication Inventory Stock ] ", TextStyle.BOLD)).paint(context);
         TextInputField medicName = new TextInputField("Please enter the name of the medication that you wish to update: ");
+        new TextInput(medicName).read(context, (input) -> true);
         TextInputField stock = new TextInputField("Please enter the inventory stock: ");
+        new TextInput(stock).read(context, (input) -> true);
         TextInputField stockAlertLevel = new TextInputField("Please enter the stock alert level: ");
+        new TextInput(stockAlertLevel).read(context, (input) -> true);
         InventoryManager.addNewInventory(medicName.getValue(), Integer.parseInt(stock.getValue()), Integer.parseInt(stockAlertLevel.getValue()));
 
     }
@@ -66,7 +70,9 @@ public class AdminInventoryView extends View{
         BuildContext context = new BuildContext(100, 10);
         new Align(Alignment.CENTER, new Text(" [ Update Medication Inventory ] ", TextStyle.BOLD)).paint(context);
         TextInputField medicName = new TextInputField("Please enter the name of the medication that you wish to update: ");
+        new TextInput(medicName).read(context, (input) -> true);
         TextInputField newStock = new TextInputField("Please enter the new inventory stock: ");
+        new TextInput(newStock).read(context, (input) -> true);
         if(!InventoryManager.updateInventory(medicName.getValue(), Integer.parseInt(newStock.getValue()))){
             new Text("Failed to update stock.");
         }

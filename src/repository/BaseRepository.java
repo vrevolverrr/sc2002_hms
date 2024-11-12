@@ -206,4 +206,15 @@ public class BaseRepository<T extends BaseModel> implements Repository<T> {
 
         return true;
     }
+
+    /**
+    * Returns a list of all items in the repository.
+    * @return a list of copies of all items.
+    */
+    @SuppressWarnings("unchecked")
+    public List<T> findAll() {
+        return items.values().stream()
+                    .map(item -> (T) item.copy()) // Create a copy of each item to avoid modifying originals
+                    .collect(Collectors.toList());
+    }
 }

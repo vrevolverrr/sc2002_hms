@@ -1,25 +1,57 @@
 package controller;
+import java.util.ArrayList;
+import java.util.List;
+import model.InventoryItem;
+import model.enums.ReplenishmentStatus;
+import repository.InventoryRepository;
 
 public class InventoryManager extends Manager<InventoryManager>{
 
-    public static void printInventory() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'printInventory'");
+    InventoryRepository inventoryRepository = new InventoryRepository();
+
+    public boolean findInventoryItem(String medicName){
+        if(inventoryRepository.itemExists(medicName)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
-    public static void addNewInventory(String value, int value2, int value3){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addNewInventory'");
+
+
+    public void addNewInventory(String medicID, String medicName, int stock, int stockLevelAlert, ReplenishmentStatus replenishmentStatus) {
+        InventoryItem newItem = new InventoryItem(medicID, medicName, stock, stockLevelAlert, replenishmentStatus);
+        inventoryRepository.save(newItem);
     }
 
-    public static boolean updateInventory(String value, int value2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateInventory'");
+
+    public void updateInventory(String medicName, int stock) {
+        inventoryRepository.updateStockByItemName(medicName, stock);
     }
 
-	public static void printReplenishmentRequest() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'printReplenishmentRequest'");
-	}
+    public List<InventoryItem> getInventory() {
+        return inventoryRepository.findAll(); 
+    }
+
+
+    public boolean requestInventory(String medicName){
+        if(!inventoryRepository.itemExists(medicName)){
+            inventoryRepository.setReplenishmentRequest(medicName);
+            return true;
+        }
+
+        else{
+            return false;
+        }
+    }
+
+    public void approveRequestByItemName(String medicName){
+        inventoryRepository.approveRequestByItemName(medicName);
+    }
+
+    public void rejectRequestByItemName(String medicName){
+        inventoryRepository.approveRequestByItemName(medicName);
+    }
     
 }
