@@ -2,7 +2,7 @@ package model;
 
 import model.enums.ReplenishmentStatus;
 
-public class InventoryItem extends BaseModel{
+public class InventoryItem extends BaseModel {
 
     private String itemId;
     private String itemName;

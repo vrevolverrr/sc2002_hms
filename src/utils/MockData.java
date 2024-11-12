@@ -1,15 +1,22 @@
 package utils;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import model.InventoryItem;
 import model.appointments.Appointment;
+import model.appointments.AppointmentOutcomeRecord;
 import model.appointments.TimeSlot;
 import model.enums.AppointmentStatus;
 import model.enums.BloodType;
+import model.enums.DosageUnit;
 import model.enums.Gender;
+import model.enums.MedicalService;
+import model.enums.MedicineFrequency;
 import model.enums.ReplenishmentStatus;
 import model.enums.Specialisation;
+import model.prescriptions.MedicineDosage;
+import model.prescriptions.Prescription;
 import model.users.Admin;
 import model.users.Doctor;
 import model.users.Patient;
@@ -105,8 +112,27 @@ public class MockData {
 
         // Unapproved appointments
         appointmentRepository.save(new Appointment("Y1009", AppointmentStatus.REQUESTED, new TimeSlot(today.plusDays(2).atTime(15, 30)), "D1002", "P1006"));
-        appointmentRepository.save(new Appointment("Y1011", AppointmentStatus.REQUESTED, new TimeSlot(today.plusDays(2).atTime(16, 30)), "D1002", "P1007"));
+        appointmentRepository.save(new Appointment("Y1010", AppointmentStatus.REQUESTED, new TimeSlot(today.plusDays(2).atTime(16, 30)), "D1002", "P1007"));
         appointmentRepository.save(new Appointment("Y1011", AppointmentStatus.REQUESTED, new TimeSlot(today.plusDays(2).atTime(10, 0)), "D1002", "P1008"));
 
+        // Fulfilled appointment
+        appointmentRepository.save(new Appointment("Y1012", AppointmentStatus.FULFILLED, new TimeSlot(today.minusDays(1).atTime(10, 0)), "D1001", "P1001"));
+
+        // Completed appointment
+        Appointment pA1 = new Appointment("Y1013", AppointmentStatus.COMPLETED, new TimeSlot(today.minusDays(2).atTime(10, 0)), "D1001", "P1001");
+        Prescription[] pA1Ps = {
+            new Prescription("I1001", new MedicineDosage(2, DosageUnit.TABLET), MedicineFrequency.AFTER_MEALS),
+            new Prescription("I1002", new MedicineDosage(1, DosageUnit.TABLET), MedicineFrequency.AS_NEEDED)
+        };
+        MedicalService[] pA1MSs = {MedicalService.CONSULTATION, MedicalService.BLOOD_TEST};
+        AppointmentOutcomeRecord pA1O = new AppointmentOutcomeRecord(
+            today, 
+            Arrays.asList(pA1Ps), 
+            Arrays.asList(pA1MSs), 
+            "Patient has mild fever. Advised to rest and drink plenty of fluids.");
+        pA1.setOutcomeRecord(pA1O);
+        appointmentRepository.save(pA1);
+
+        System.out.println(appointmentRepository.findById("Y1013").getOutcomeRecord().getConsultationNotes());
     }
 }

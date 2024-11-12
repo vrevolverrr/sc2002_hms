@@ -45,6 +45,17 @@ public abstract class BaseRepository<T extends BaseModel> implements Repository<
     }
 
     /**
+    * Returns a list of all items in the repository.
+    * @return a list of copies of all items.
+    */
+    @SuppressWarnings("unchecked")
+    public List<T> findAll() {
+        return items.values().stream()
+                    .map(item -> (T) item.copy())
+                    .collect(Collectors.toList());
+    }
+
+    /**
      * Finds the item that matches the given ID.
      * @param id the ID of the item.
      * @return a copy of the item matching the ID, or null if such item does not exist.

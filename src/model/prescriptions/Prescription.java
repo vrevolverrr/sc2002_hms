@@ -1,23 +1,33 @@
 package model.prescriptions;
 
-import model.InventoryItem;
+import java.io.Serializable;
 
-public class Prescription {
-    private final InventoryItem drug;
-    private final int quantity;
+import model.enums.MedicineFrequency;
+import model.enums.PrescriptionStatus;
+
+public class Prescription implements Serializable {
+    private final String drugId;
+    private final MedicineDosage dosage;
+    private final MedicineFrequency frequency;
     private PrescriptionStatus status;
 
-    public Prescription(InventoryItem drug, int quantity) {
-        this.drug = drug;
-        this.quantity = quantity;
+    public Prescription(String drugId, MedicineDosage dosage, MedicineFrequency frequency) {
+        this.drugId = drugId;
+        this.dosage = dosage;
+        this.frequency = frequency;
+        this.status = PrescriptionStatus.PENDING;
     }
 
-    public InventoryItem getDrug() {
-        return this.drug;
+    public String getDrugId() {
+        return this.drugId;
     }
     
-    public int getQuantity() {
-        return this.quantity;
+    public MedicineDosage getDosage() {
+        return this.dosage;
+    }
+
+    public MedicineFrequency getFrequency() {
+        return frequency;
     }
 
     public PrescriptionStatus getStatus() {

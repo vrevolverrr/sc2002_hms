@@ -16,24 +16,24 @@ import view.View;
 import view.Doctor.widgets.DoctorAppointmentsTable;
 import view.widgets.Title;
 
-public class DoctorUpdateAppointmentOutcomeView extends View {
+public class DoctorRecordAppointmentOutcomeView extends View {
     private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
     private final Doctor doctor;
 
-    public DoctorUpdateAppointmentOutcomeView(Doctor doctor) {
+    public DoctorRecordAppointmentOutcomeView(Doctor doctor) {
         this.doctor = doctor;
     }
 
     @Override
     public String getViewName() {
-        return "Update Appointment Outcome";
+        return "Record Appointment Outcome";
     }
 
     @Override
     public void render() {
         BuildContext context = new BuildContext(100, 1000);
 
-        new Title("Update Appointment Outcomes").paint(context);
+        new Title("Record Appointment Outcomes").paint(context);
         new VSpacer(1).paint(context);
         
         new Title("Fulfilled Appointments").paint(context);
@@ -55,8 +55,7 @@ public class DoctorUpdateAppointmentOutcomeView extends View {
             (input) -> InputValidators.validateRange(input, appointments.size()));
 
         final Appointment selectedAppointment = appointments.get(apptField.getInt());
-        
-        new VSpacer(1).paint(context);
+        Navigator.navigateTo(new DoctorUpdateOutcomeDetailsView(selectedAppointment));       
     }
     
 }

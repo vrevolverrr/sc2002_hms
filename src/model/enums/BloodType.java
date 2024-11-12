@@ -30,11 +30,8 @@ public enum BloodType {
         this.value = value;
     }
 
-    /**
-     * The getter for the {@code String} value of the enum.
-     * @return the {@code String} value.
-     */
-    public String getValue() {
+    @Override
+    public String toString() {
         return this.value;
     }
 }

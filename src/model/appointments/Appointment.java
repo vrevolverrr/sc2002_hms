@@ -170,12 +170,27 @@ public class Appointment extends BaseModel {
     }
 
     /**
+     * Sets the outcome record of the appointment.
+     * @param outcome the new outcome record.
+     */
+    public void setOutcomeRecord(AppointmentOutcomeRecord outcome) {
+        if (outcome != null) {
+            this.status = AppointmentStatus.COMPLETED;
+        }
+
+        this.outcome = outcome;
+    }
+
+    /**
      * Creates a copy of the current {@link Appointment} instance.
      * @return the exact copy (shallow) of the {@link Appointment}.
      */
     @Override
     public Appointment copy() {
-        return new Appointment(appointmentId, status, dateTime, doctorId, patientId);
+        final Appointment newAppt = new Appointment(getAppointmentId(), getStatus(), getDateTime(), getDoctorId(), getPatientId());
+        newAppt.setOutcomeRecord(getOutcomeRecord());
+        
+        return newAppt;
     }
 
 }

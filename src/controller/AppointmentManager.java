@@ -196,6 +196,24 @@ public class AppointmentManager extends Manager<AppointmentManager> {
         .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
     }
 
+    public List<Appointment> getCompletedAppointments(Doctor doctor) {
+        return appointmentRepository.findBy((appointment) -> 
+            appointment.getDoctorId().equals(doctor.getDoctorId()) &&
+            appointment.isCompleted()
+        )
+        .stream()
+        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+    }
+
+    public List<Appointment> getPastAppointments(Doctor doctor) {
+        return appointmentRepository.findBy((appointment) -> 
+            appointment.getDoctorId().equals(doctor.getDoctorId()) && 
+            appointment.isCompleted() || appointment.isFulfilled()
+        )
+        .stream()
+        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+    }
+
     /**
      * Checks whether a time slot is available for an appointment with a doctor.
      * @param slot the time slot to check.

@@ -39,7 +39,7 @@ public class PatientView extends View {
 
         new Table(
             new TableRow("Patient ID", "Name", "Date of Birth", "Gender", "Age", "Blood Type"),
-            new TableRow(patient.getPatientId(), patient.getName(), patient.getDobString(), patient.getGender().getValue(), String.valueOf(patient.getAge()), patient.getBloodType().getValue())
+            new TableRow(patient.getPatientId(), patient.getName(), patient.getDobString(), patient.getGender().toString(), String.valueOf(patient.getAge()), patient.getBloodType().toString())
         ).paint(context);
 
         new VSpacer(1).paint(context);

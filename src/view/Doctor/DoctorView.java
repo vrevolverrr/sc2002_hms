@@ -43,7 +43,7 @@ public class DoctorView extends View {
         
         new Table(
             new TableRow("Doctor ID", "Name", "Date of Birth", "Gender", "Age", "Specialisation"),
-            new TableRow(doctor.getDoctorId(), doctor.getName(), doctor.getDobString(), doctor.getGender().getValue(), String.valueOf(doctor.getAge()), doctor.getSpecialisation().toString())
+            new TableRow(doctor.getDoctorId(), doctor.getName(), doctor.getDobString(), doctor.getGender().toString(), String.valueOf(doctor.getAge()), doctor.getSpecialisation().toString())
         ).paint(context);
 
         new VSpacer(1).paint(context);

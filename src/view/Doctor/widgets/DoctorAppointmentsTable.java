@@ -45,7 +45,7 @@ public class DoctorAppointmentsTable extends Widget {
     }
 
     private String getPatientNameById(String patientId) {
-        return patientManager.getPatientById(patientId).getName();
+        return patientManager.getPatient(patientId).getName();
     }
 }   
 

@@ -24,9 +24,9 @@ public class AdminAppointmentView extends View {
         return("Admin Appointment View");
     }
 
-    @SuppressWarnings("unused")
     @Override
     public void render() {
+        // TODO add appointment outcome
         new Title("View All Appointments").paint(context);
 
         List<Appointment> filteredAppointments = filterByKeyword(keyword);

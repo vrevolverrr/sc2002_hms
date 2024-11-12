@@ -1,4 +1,4 @@
-package model.prescriptions;
+package model.enums;
 
 public enum PrescriptionStatus {
     PENDING,

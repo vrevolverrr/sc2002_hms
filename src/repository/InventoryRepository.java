@@ -1,6 +1,7 @@
 package repository;
 
 import model.InventoryItem;
+import model.enums.ReplenishmentStatus;
 
 public class InventoryRepository extends BaseRepository<InventoryItem> {
     private final static String FILENAME = "inventory.dat";
@@ -38,10 +39,29 @@ public class InventoryRepository extends BaseRepository<InventoryItem> {
 
     @Override
     public InventoryItem save(InventoryItem item) {
-        if (item.getId() == null || item.getId().isBlank()) { // If the doctor does not have an ID
-            item.setId(generateId()); // Generate a new ID for the doctor
+        if (item.getId() == null || item.getId().isBlank()) {
+            item.setId(generateId());
         }
 
         return super.save(item);
+    }
+    
+    public void approveRequestByItemName(String itemName){
+        InventoryItem inventoryItem = findByItemName(itemName);
+        inventoryItem.setReplenishmentStatus(ReplenishmentStatus.APPROVED);
+        inventoryItem.setStock(5*inventoryItem.getStock());
+        save(inventoryItem);
+    }
+
+    public void rejectRequestByItemName(String itemName){
+        InventoryItem inventoryItem = findByItemName(itemName);
+        inventoryItem.setReplenishmentStatus(ReplenishmentStatus.REJECT);
+        save(inventoryItem);
+    }
+
+    public void setReplenishmentRequest(String itemName){
+        InventoryItem inventoryItem = findByItemName(itemName);
+        inventoryItem.setReplenishmentStatus(ReplenishmentStatus.PENDING);
+        save(inventoryItem);
     }
 }
