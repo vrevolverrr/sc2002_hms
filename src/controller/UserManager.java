@@ -29,4 +29,8 @@ public class UserManager extends Manager<UserManager> {
 
         return null;
     }
+
+    public User getUser(String userId) {
+        return repository.findById(userId);
+    }
 }

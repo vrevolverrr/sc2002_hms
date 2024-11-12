@@ -1,13 +1,10 @@
-package view.Admin;
+package view.Admin.staff;
 
 import controller.UserManager;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.widgets.base.Menu;
 import services.Navigator;
 import view.View;
-import view.Admin.staff.AdminAddStaffView;
-import view.Admin.staff.AdminAllStaffView;
-import view.Admin.staff.AdminUpdateStaffView;
 import view.widgets.Title;
     
 public class AdminManageStaffView extends View{

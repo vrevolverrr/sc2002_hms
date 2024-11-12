@@ -86,6 +86,15 @@ public class AppointmentManager extends Manager<AppointmentManager> {
     }
 
     /**
+     * Gets all the appointments in the system, ordered by most recent first.
+     * @return the list of appointments.
+     */
+    public List<Appointment> getAllAppointments() {
+        return appointmentRepository.getItems().values()
+            .stream().sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+    }
+
+    /**
      * Gets the upcoming scheduled appointments of a doctor.
      * @param doctor the doctor to get the appointments for.
      * @return the list of appointments.

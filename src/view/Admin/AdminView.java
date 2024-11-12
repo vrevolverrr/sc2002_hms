@@ -6,6 +6,8 @@ import lib.uilib.widgets.base.Menu;
 import services.Navigator;
 import view.LoginView;
 import view.View;
+import view.Admin.appointments.AdminAppointmentView;
+import view.Admin.staff.AdminManageStaffView;
 
 
 public class AdminView extends View {
@@ -22,8 +24,8 @@ public class AdminView extends View {
             new MenuOption("View and Manage Hospital Staff", () -> 
                 Navigator.navigateTo(new AdminManageStaffView())),
 
-            // new MenuOption("View Appoinments Details", () -> 
-            //     this.viewAppointmentsDetails()),
+            new MenuOption("View Appoinments Details", () -> 
+                 Navigator.navigateTo(new AdminAppointmentView())),
 
             // new MenuOption("View and Manage Medication Inventory", () ->
             //     this.viewandManageInventory()),

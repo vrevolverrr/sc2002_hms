@@ -26,16 +26,10 @@ public class AdminAllStaffView extends View {
     @SuppressWarnings("unused")
     @Override
     public void render() {
-        List<User> staffs;
-
-        if (searchKeywords.isEmpty()) {
-            staffs = staffManager.getAllStaff();
-        } else {
-            staffs = staffManager.findStaffByKeywords(searchKeywords);
-        }
-
         new Title("Search Staff").paint(context);
-        new StaffTable(staffs).paint(context);
+
+        List<User> filteredStaffs = filterByKeyword(searchKeywords);
+        new StaffTable(filteredStaffs).paint(context);
 
         new VSpacer(1).paint(context);
 
@@ -45,5 +39,13 @@ public class AdminAllStaffView extends View {
         searchKeywords = searchField.getValue();
         clear();
         render();
+    }
+    
+    private List<User> filterByKeyword(String keyword) {
+        if (keyword.isBlank()) {
+            return staffManager.getAllStaff();
+        }
+
+        return staffManager.findStaffByKeywords(keyword);
     }
 }
