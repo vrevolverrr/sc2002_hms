@@ -2,7 +2,6 @@ package view.Admin.appointments.widgets;
 
 import java.util.List;
 
-import controller.AppointmentManager;
 import controller.UserManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
