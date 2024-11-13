@@ -134,8 +134,8 @@ public class MockData {
         // Completed appointment
         Appointment pA1 = new Appointment("Y1013", AppointmentStatus.COMPLETED, new TimeSlot(today.minusDays(2).atTime(10, 0)), "D1001", "P1001");
         Prescription[] pA1Ps = {
-            new Prescription("I1001", new MedicineDosage(2, DosageUnit.TABLET), MedicineFrequency.AFTER_MEALS),
-            new Prescription("I1002", new MedicineDosage(1, DosageUnit.TABLET), MedicineFrequency.AS_NEEDED)
+            new Prescription("I1001", 14, new MedicineDosage(2, DosageUnit.TABLET), MedicineFrequency.AFTER_MEALS),
+            new Prescription("I1002", 8, new MedicineDosage(1, DosageUnit.TABLET), MedicineFrequency.AS_NEEDED)
         };
         MedicalService[] pA1MSs = {MedicalService.CONSULTATION, MedicalService.BLOOD_TEST};
         AppointmentOutcomeRecord pA1O = new AppointmentOutcomeRecord(

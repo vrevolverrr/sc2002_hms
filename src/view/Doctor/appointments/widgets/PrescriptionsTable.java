@@ -21,7 +21,7 @@ public class PrescriptionsTable extends Widget {
 
     @Override
     public String build(BuildContext context) {
-        TableRow header = new TableRow("Medicine", "Dosage", "Frequency", "Status");
+        TableRow header = new TableRow("Medicine", "Dosage", "Frequency", "Quantity", "Status");
 
         if (prescriptions.isEmpty()) {
             return new Table(new TableRow("No prescriptions found"))
@@ -33,6 +33,7 @@ public class PrescriptionsTable extends Widget {
                 getDrugName(prescription.getDrugId()), 
                 parseDosage(prescription.getDosage()), 
                 prescription.getFrequency().toString(),
+                String.valueOf(prescription.getQuantity()),
                 prescription.getStatus().toString()
             ))
             .toList();

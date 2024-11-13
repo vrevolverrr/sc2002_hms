@@ -15,6 +15,10 @@ public class InventoryManager extends Manager<InventoryManager> {
         return inventoryRepository.findById(itemId);
     }
 
+    public InventoryItem getItem(String id) {
+        return inventoryRepository.findById(id);
+    }
+
     public List<InventoryItem> getAllItems() {
         return inventoryRepository.findAll().stream()
         .sorted((a, b) -> a.getId().compareTo(b.getId()))

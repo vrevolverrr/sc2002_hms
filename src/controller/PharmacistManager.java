@@ -21,8 +21,19 @@ public class PharmacistManager extends Manager<PharmacistManager> {
         appointmentManager.updateAppointment(appointment);
     }
 
+    public void dispensePrescription(Appointment appointment, Prescription prescription) {
+        dispense(prescription);
+
+        appointment.getOutcomeRecord().getPrescriptions().stream()
+            .filter(p -> p.equals(prescription))
+            .findFirst()
+            .ifPresent(p -> p.setStatus(PrescriptionStatus.DISPENSED));
+
+        appointmentManager.updateAppointment(appointment);
+    }
+
     public void dispense(Prescription prescription) {
-        inventoryManager.deductStock(prescription.getDrugId(),  prescription.getDosage().getQuantity());
+        inventoryManager.deductStock(prescription.getDrugId(),  prescription.getQuantity());
     }
     
 }

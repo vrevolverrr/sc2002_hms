@@ -15,7 +15,7 @@ import model.users.Doctor;
 import services.Navigator;
 import utils.InputValidators;
 import view.View;
-import view.Doctor.widgets.DoctorAppointmentsTable;
+import view.Doctor.appointments.widgets.DoctorAppointmentsTable;
 import view.widgets.Title;
 
 public class DoctorAppointmentRequestsView extends View {

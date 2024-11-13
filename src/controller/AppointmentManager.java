@@ -6,6 +6,7 @@ import model.appointments.AppointmentSlot;
 import model.appointments.TimeSlot;
 import model.enums.AppointmentStatus;
 import model.enums.MedicalService;
+import model.enums.PrescriptionStatus;
 import model.prescriptions.Prescription;
 import model.users.Doctor;
 import model.users.Patient;
@@ -223,6 +224,17 @@ public class AppointmentManager extends Manager<AppointmentManager> {
         return appointmentRepository.findBy((appointment) -> 
             appointment.getDoctorId().equals(doctor.getDoctorId()) && 
             appointment.isCompleted() || appointment.isFulfilled()
+        )
+        .stream()
+        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+    }
+
+    public List<Appointment> getUndispensedAppointments() {
+        return appointmentRepository.findBy((appointment) -> 
+            appointment.isCompleted() && 
+            appointment.getOutcomeRecord() != null && // this condition is kept for redudnancy checks
+            appointment.getOutcomeRecord().getPrescriptions().stream()
+            .anyMatch(prescription -> prescription.getStatus() == PrescriptionStatus.PENDING)
         )
         .stream()
         .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();

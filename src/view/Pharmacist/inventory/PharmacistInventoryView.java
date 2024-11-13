@@ -3,9 +3,7 @@ package view.Pharmacist.inventory;
 import java.util.List;
 
 import controller.InventoryManager;
-import controller.PharmacistManager;
 import lib.uilib.framework.TextInputField;
-import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.inventory.InventoryItem;
@@ -52,7 +50,8 @@ public class PharmacistInventoryView extends View {
 
         return medications.stream()
             .filter(medication -> 
-                String.format("%s %s",  medication.getItemName(), medication.getId())
+                String.format("%s %s %s",  medication.getItemName(), medication.getId(), 
+                InventoryTable.getStockLevel(medication))
                .toLowerCase().contains(keyword.toLowerCase()))
             .toList();
     }

@@ -36,6 +36,8 @@ public class AdminUpdateInventoryView extends View {
          new TextInput(selectField).read(context, "Choose either stock or stock level alert to update",
               (input) -> InputValidators.validateRange(input, 2));
 
+        new VSpacer(1).paint(context);
+
         if (selectField.getOption() == 0) {
             promptUpdateStock();
         } else {
@@ -45,7 +47,6 @@ public class AdminUpdateInventoryView extends View {
         clear();
         new Title("Update Inventory Item");
         new InventoryItemUpdateTable(item).paint(context);
-        new VSpacer(1).paint(context);
 
         new Pause("Inventory item has been updated. Press any key to continue.").pause(context);
         Navigator.pop();

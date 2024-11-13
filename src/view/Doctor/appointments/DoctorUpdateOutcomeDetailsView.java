@@ -156,7 +156,11 @@ public class DoctorUpdateOutcomeDetailsView extends View {
 
                     new Menu(
                         Stream.of(MedicineFrequency.values()).map(freq -> 
-                            new MenuOption(freq.toString(), () -> selectedFreq[0] = freq)
+                            new MenuOption(freq.toString(), () -> {
+                                selectedFreq[0] = freq;
+                                clearLines(MedicineFrequency.values().length + 5);
+                                new Text("Selected Frequency: "+ freq.toString(), TextStyle.BOLD).paint(context);
+                            })
 
                         ).toArray(MenuOption[]::new)
                     ).readOption(context); 
@@ -167,9 +171,14 @@ public class DoctorUpdateOutcomeDetailsView extends View {
         new Text("Select dosage unit:", TextStyle.BOLD).paint(context);
         new VSpacer(1).paint(context);
         new Menu(dosageOptions.toArray(MenuOption[]::new)).readOption(context);
+        
+        new VSpacer(1).paint(context);
+        TextInputField prescribedQtyField = new TextInputField("Enter quantity to prescribe");
+        new TextInput(prescribedQtyField).read(context, "Enter a valid item quantity.",
+            (input) -> InputValidators.validateQuantity(input));
 
         MedicineDosage dosage = new MedicineDosage(dosageField[0].getInt(), selectedUnit[0]);
-        return new Prescription(drug.getId(), dosage, selectedFreq[0]);
+        return new Prescription(drug.getId(), prescribedQtyField.getInt(), dosage, selectedFreq[0]);
     }
 
     private void promptServices() {

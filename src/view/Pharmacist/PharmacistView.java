@@ -1,25 +1,24 @@
 package view.Pharmacist;
 
-import java.util.jar.Attributes.Name;
-
 import controller.UserManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TableRow;
-import lib.uilib.framework.enums.Alignment;
-import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.Table;
-import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.VSpacer;
-import lib.uilib.widgets.layout.Align;
-import model.users.Pharmacist;
+import model.enums.Gender;
+import model.users.User;
 import services.Navigator;
-import view.LoginView;
 import view.View;
-import view.Pharmacist.inventory.PharmacistManageInventory;
+import view.Pharmacist.inventory.PharmacistInventoryView;
+import view.Pharmacist.inventory.PharmacistReplenishmentRequestView;
+import view.Pharmacist.prescription.PharmacistPrescriptionView;
+import view.widgets.Title;
 
 public class PharmacistView extends View {
+    private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    private final User activeUser = userManager.getActiveUser();
 
     @Override
     public String getViewName() {
@@ -28,21 +27,23 @@ public class PharmacistView extends View {
 
     @Override
     public void render() {
-        BuildContext context = new BuildContext(100, 10);
+        new Title("Welcome " + (activeUser.getGender() == Gender.MALE ? "Mr. " : "Mrs.") + activeUser.getName()).paint(context);
+        
+        new Table(
+            new TableRow("Pharmacist ID", "Name", "Date of Birth", "Gender", "Age"),
+            new TableRow(activeUser.getId(), activeUser.getName(), activeUser.getDobString(), 
+            activeUser.getGender().toString(), String.valueOf(activeUser.getAge()))
+        ).paint(context);
+
+        new VSpacer(1).paint(context);
 
         new Menu(
-            // new MenuOption("View Appointment Outcome Record", () -> 
-            //     this.viewAppOutcomeRec()),
-
-            // new MenuOption("Update Prescription Status", () -> 
-            //     this.updatePrescriptionStatus()),
-
+            new MenuOption("Update Prescription Status", () -> 
+                Navigator.navigateTo(new PharmacistPrescriptionView())),
             new MenuOption("View Medication Inventory", () ->
-                Navigator.navigateTo(new PharmacistManageInventory())),
-
-            // new MenuOption("Submit Replenishment Request", () -> 
-            //     this.submitReplenishRequest()),
-
+                Navigator.navigateTo(new PharmacistInventoryView())),
+            new MenuOption("Submit Replenishment Request", () -> 
+                Navigator.navigateTo(new PharmacistReplenishmentRequestView())),
             new MenuOption("Log Out", () -> Navigator.pop())
 
         ).readOption(context);

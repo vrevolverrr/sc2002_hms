@@ -1,4 +1,4 @@
-package view.Doctor.widgets;
+package view.Doctor.appointments.widgets;
 
 import java.util.List;
 import controller.PatientManager;

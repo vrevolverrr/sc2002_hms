@@ -3,17 +3,14 @@ package view.Pharmacist.inventory;
 import java.util.List;
 
 import controller.InventoryManager;
-import controller.PharmacistManager;
 import controller.UserManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Pause;
-import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.enums.ReplenishmentStatus;
 import model.inventory.InventoryItem;
 import model.users.Pharmacist;
-import model.users.User;
 import services.Navigator;
 import utils.InputValidators;
 import view.View;
@@ -23,7 +20,6 @@ import view.widgets.Title;
 public class PharmacistReplenishmentRequestView extends View {
     private final UserManager userManager = UserManager.getInstance(UserManager.class);
     private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
-    private final PharmacistManager phamarcistManager = PharmacistManager.getInstance(PharmacistManager.class);
 
     @Override
     public String getViewName() {
@@ -54,6 +50,7 @@ public class PharmacistReplenishmentRequestView extends View {
         new TextInput(quantityField).read(context, "Enter a valid item quantity.",
             (input) -> InputValidators.validateQuantity(input));
 
+        new VSpacer(1).paint(context);
         TextInputField confirmationField = new TextInputField(
             String.format("Confirm request of %dx %s (Y/N)", quantityField.getInt(), selectedMedication.getItemName()));
         new TextInput(confirmationField).read(context, "Y to Confirm. N to Cancel.",

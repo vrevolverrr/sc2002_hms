@@ -1,11 +1,11 @@
 package model.enums;
 
 public enum DosageUnit {
+    TABLET("tablet"),
+    MILLILITER("ml"),
     TABLESPOON("tblsp"),
     TEASPOON("tsp"),
-    MILLILITER("ml"),
     DROP("drop"),
-    TABLET("tablet"),
     SPRAY("spray");
 
     private final String value;

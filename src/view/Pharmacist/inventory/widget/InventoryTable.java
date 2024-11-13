@@ -3,6 +3,7 @@ package view.Pharmacist.inventory.widget;
 import java.util.List;
 
 import lib.uilib.widgets.base.EnumeratedTable;
+import lib.uilib.widgets.base.Table;
 import model.inventory.InventoryItem;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
@@ -20,7 +21,7 @@ public class InventoryTable extends Widget {
         TableRow header = new TableRow("Name", "Quantity", "Reorder Level", "Stock Level", "Replenishment Status");
 
         if (medications.isEmpty()) {
-            return EnumeratedTable.headerless(new TableRow("No medications found")).build(context);
+            return new Table(new TableRow("No medications found")).build(context);
         }
         
         TableRow[] rows = medications.stream()
@@ -36,7 +37,7 @@ public class InventoryTable extends Widget {
         return EnumeratedTable.withHeader(header, rows).build(context);
     }
     
-    private String getStockLevel(InventoryItem medication) {
+    public static String getStockLevel(InventoryItem medication) {
         int reorderLevel = medication.getStockLevelAlert();
         int stock = medication.getStock();
 
