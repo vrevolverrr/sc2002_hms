@@ -220,6 +220,15 @@ public class AppointmentManager extends Manager<AppointmentManager> {
         .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
     }
 
+    public List<Appointment> getPastAppointments(Patient patient) {
+        return appointmentRepository.findBy((appointment) -> 
+            appointment.getPatientId().equals(patient.getPatientId()) && 
+            appointment.isCompleted() || appointment.isFulfilled()
+        )
+        .stream()
+        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+    }
+
     public List<Appointment> getPastAppointments(Doctor doctor) {
         return appointmentRepository.findBy((appointment) -> 
             appointment.getDoctorId().equals(doctor.getDoctorId()) && 

@@ -38,6 +38,7 @@ public class PatientAppointmentView extends View {
             new MenuOption("Schedule an appointment", () -> Navigator.navigateTo(new PatientScheduleAppointmentView(patient))),
             new MenuOption("Reschedule an appointment", () -> Navigator.navigateTo(new PatientRescheduleAppointment(patient))),
             new MenuOption("Cancel an appointment", () -> Navigator.navigateTo(new PatientCancelAppointmentView(patient))),
+            new MenuOption("View Past Appointments", () -> Navigator.navigateTo(new PatientPastAppointmentsView(patient))),
             new MenuOption("Back", () -> Navigator.pop())
         ).readOption(context);
     }

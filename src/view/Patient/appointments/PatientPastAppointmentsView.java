@@ -1,4 +1,4 @@
-package view.Doctor.appointments;
+package view.Patient.appointments;
 
 import java.util.List;
 
@@ -8,23 +8,24 @@ import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
-import model.users.Doctor;
+import model.users.Patient;
+import services.InputValidators;
 import services.Navigator;
-import utils.InputValidators;
 import view.View;
-import view.Doctor.appointments.widgets.DoctorAppointmentsTable;
+import view.Doctor.appointments.DoctorViewAppointmentDetailsView;
+import view.Patient.appointments.widgets.AppointmentsTable;
 import view.widgets.Title;
 
-public class DoctorViewPastAppointments extends View {
-    private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
+public class PatientPastAppointmentsView extends View {
+    private final AppointmentManager appointmentsManager = AppointmentManager.getInstance(AppointmentManager.class);
     private final UserManager userManager = UserManager.getInstance(UserManager.class);
-
     private final List<Appointment> pastAppointments;
+
     private String keyword = "";
     private boolean showingResults = false;
 
-    public DoctorViewPastAppointments(Doctor doctor) {
-        pastAppointments = appointmentManager.getPastAppointments(doctor);
+    public PatientPastAppointmentsView(Patient patient) {
+        pastAppointments = appointmentsManager.getPastAppointments(patient);
     }
 
     @Override
@@ -35,11 +36,11 @@ public class DoctorViewPastAppointments extends View {
     @SuppressWarnings("unused")
     @Override
     public void render() {
-        new Title("View Past Appointments").paint(context);
+        new Title("Past Appointments").paint(context);
 
         List<Appointment> filteredAppointments = filterAppointments(keyword);
-        new DoctorAppointmentsTable("No past fulfilled or completed appointments", pastAppointments).paint(context);
-
+        new AppointmentsTable(pastAppointments).paint(context);
+        
         new VSpacer(1).paint(context);
 
         if (showingResults) {
@@ -78,5 +79,5 @@ public class DoctorViewPastAppointments extends View {
 
     private String getNameById(String id) {
         return userManager.getUser(id).getName();
-    }
+    }   
 }

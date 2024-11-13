@@ -44,7 +44,7 @@ public class DoctorManageAppointmentsView extends View {
         new Menu(
             new MenuOption("Manage Appointment Requests", () -> Navigator.navigateTo(new DoctorAppointmentRequestsView(doctor))),
             new MenuOption("Record Appointment Outcome", () -> Navigator.navigateTo(new DoctorRecordAppointmentOutcomeView(doctor))),
-            new MenuOption("View Past Appointments", () -> Navigator.navigateTo(new DoctorViewPastAppointments(doctor))),
+            new MenuOption("View Past Appointments", () -> Navigator.navigateTo(new DoctorViewPastAppointmentsView(doctor))),
             new MenuOption("Back", () -> Navigator.pop())
         ).readOption(context);
     }

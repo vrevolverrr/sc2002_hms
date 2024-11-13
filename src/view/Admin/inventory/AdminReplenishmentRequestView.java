@@ -8,7 +8,7 @@ import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.inventory.InventoryItem;
-import utils.InputValidators;
+import services.InputValidators;
 import view.View;
 import view.Admin.inventory.widget.ReplenishmentRequestsTable;
 import view.widgets.Title;

@@ -1,6 +1,7 @@
 package view;
 
 import services.Navigator;
+import view.Login.LoginView;
 import view.Patient.*;
 import lib.uilib.widgets.base.*;
 import lib.uilib.widgets.layout.*;

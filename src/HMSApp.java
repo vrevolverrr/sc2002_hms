@@ -1,6 +1,6 @@
 import services.Navigator;
 import utils.MockData;
-import view.LoginView;
+import view.Login.LoginView;
 
 /**
  * The starting point of the application.

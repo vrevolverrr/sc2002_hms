@@ -13,12 +13,14 @@ import lib.uilib.widgets.base.EnumeratedTable;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.TextInput;
+import lib.uilib.widgets.base.VSpacer;
 import model.enums.Gender;
 import model.enums.Specialisation;
 import model.enums.UserRole;
 import model.users.Doctor;
 import model.users.User;
-import utils.InputValidators;
+import services.InputValidators;
+import utils.UpdatableField;
 import view.View;
 import view.widgets.Title;
 
@@ -39,7 +41,7 @@ public class AdminUpdateStaffDetailsView extends View {
     public void render() {
         new Title(String.format("Update Staff Details of %s", staff.getId())).paint(context);
 
-        List<UpdatableField> updatableFields = new ArrayList<>();
+        List<UpdatableField> updatableFields = new ArrayList<UpdatableField>();
         updatableFields.add(new UpdatableField(new TableRow("Name", staff.getName()), this::updateName));
         updatableFields.add(new UpdatableField(new TableRow("Age", String.valueOf(staff.getAge())), this::updateAge));
         updatableFields.add(new UpdatableField(new TableRow("Password", staff.getPassword()), this::updatePassword));
@@ -54,17 +56,18 @@ public class AdminUpdateStaffDetailsView extends View {
 
         TableRow[] detailRows = updatableFields.stream().map(UpdatableField::getRecord).toArray(TableRow[]::new);
         EnumeratedTable.headerless(detailRows).paint(context);
+        new VSpacer(1).paint(context);
 
         TextInputField updateField = new TextInputField(
-            String.format("Choose field to update (1-%d)", detailRows.length));
+            String.format("Choose field to update (1-%d, 0 to go back)", detailRows.length));
 
         new TextInput(updateField).read(context, "Choose a valid field to update.", input -> 
             InputValidators.validateRange(input, detailRows.length));
 
+        new VSpacer(1).paint(context);
         updatableFields.get(updateField.getOption()).update();
 
-        clear();
-        render();
+        repaint();
     }
 
     private void updateName() {
@@ -143,23 +146,5 @@ public class AdminUpdateStaffDetailsView extends View {
 
         ((Doctor) staff).setSpecialisation(specialisation[0]);
         staffManager.updateStaff(staff);
-    }
-
-    private class UpdatableField {
-        private final TableRow record;
-        private final Runnable update;
-
-        public UpdatableField(TableRow record, Runnable update) {
-            this.record = record;
-            this.update = update;
-        }
-
-        public TableRow getRecord() {
-            return record;
-        }
-
-        public void update() {
-            update.run();
-        }
     }
 }

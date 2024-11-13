@@ -1,4 +1,5 @@
-package view.Admin.appointments;
+package view.Doctor.appointments;
+
 import java.util.List;
 
 import controller.AppointmentManager;
@@ -7,43 +8,47 @@ import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
+import model.users.Doctor;
 import services.InputValidators;
 import services.Navigator;
 import view.View;
-import view.Admin.appointments.widgets.AdminAppointmentTable;
-import view.Doctor.appointments.DoctorViewAppointmentDetailsView;
+import view.Doctor.appointments.widgets.DoctorAppointmentsTable;
 import view.widgets.Title;
 
-public class AdminAppointmentView extends View {
-    private final UserManager userManager = UserManager.getInstance(UserManager.class);
+public class DoctorViewPastAppointmentsView extends View {
     private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
-    private final List<Appointment> appointments = appointmentManager.getAllAppointments();
+    private final UserManager userManager = UserManager.getInstance(UserManager.class);
 
+    private final List<Appointment> pastAppointments;
     private String keyword = "";
     private boolean showingResults = false;
 
+    public DoctorViewPastAppointmentsView(Doctor doctor) {
+        pastAppointments = appointmentManager.getPastAppointments(doctor);
+    }
+
     @Override
     public String getViewName() {
-        return("Admin Appointment View");
+        return "Past Appointments";
     }
 
     @SuppressWarnings("unused")
     @Override
     public void render() {
-        new Title("View All Appointments").paint(context);
+        new Title("View Past Appointments").paint(context);
 
-        List<Appointment> filteredAppointments = filterByKeyword(keyword);
-        new AdminAppointmentTable(filteredAppointments).paint(context);
+        List<Appointment> filteredAppointments = filterAppointments(keyword);
+        new DoctorAppointmentsTable("No past fulfilled or completed appointments", pastAppointments).paint(context);
 
         new VSpacer(1).paint(context);
 
         if (showingResults) {
-            TextInputField selectField = new TextInputField("Select an appointment to view");
-            new TextInput(selectField).read(context, "Select an item from the list above.",
+            TextInputField selectField = new TextInputField("Select an appointment to view details");
+            new TextInput(selectField).read(context, "Select an appointment from the list above.",
                 (input) -> InputValidators.validateRange(input, filteredAppointments.size()));
 
-            final Appointment selectedItem = filteredAppointments.get(selectField.getOption());
-            Navigator.navigateTo(new DoctorViewAppointmentDetailsView(selectedItem));
+            final Appointment selectedAppointment = filteredAppointments.get(selectField.getOption());
+            Navigator.navigateTo(new DoctorViewAppointmentDetailsView(selectedAppointment));
             return;
         }
 
@@ -52,19 +57,20 @@ public class AdminAppointmentView extends View {
 
         keyword = searchField.getValue().toLowerCase();
         showingResults = !keyword.isBlank();
+
         repaint();
     }
 
-    public List<Appointment> filterByKeyword(String keyword) {
+    private List<Appointment> filterAppointments(String keyword) {
         if (keyword.isBlank()) {
-            return appointments;
+            return pastAppointments;
         }
 
-        return appointments.stream().filter(appointment -> 
+        return pastAppointments.stream().filter(appointment -> 
             String.format("%s %s %s %s %s",
                 appointment.getId(), 
+                appointment.getPatientId(),
                 getNameById(appointment.getPatientId()),
-                getNameById(appointment.getDoctorId()),
                 appointment.getDateTime().getFormattedDateTime(),
                 appointment.getStatus().toString()
             ).toLowerCase().contains(keyword)).toList();

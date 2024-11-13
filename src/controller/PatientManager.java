@@ -10,4 +10,8 @@ public class PatientManager extends Manager<PatientManager> {
     public Patient getPatient(String patientId) {
         return patientRepository.findById(patientId);
     }
+
+    public void updatePatient(Patient patient) {
+        patientRepository.save(patient);
+    }
 }
