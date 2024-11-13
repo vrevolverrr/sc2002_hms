@@ -31,7 +31,7 @@ public class DoctorViewAppointmentDetailsView extends View {
 
     @Override
     public void render() {
-        new Title("View Appointment Outcome").paint(context);
+        new Title("View Appointment Details").paint(context);
 
         new VSpacer(1).paint(context);
 

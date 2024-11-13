@@ -7,9 +7,14 @@ import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
+import model.inventory.InventoryItem;
 import model.users.User;
+import services.Navigator;
+import utils.InputValidators;
 import view.View;
 import view.Admin.appointments.widgets.AdminAppointmentTable;
+import view.Admin.inventory.AdminUpdateInventoryView;
+import view.Doctor.appointments.DoctorViewAppointmentDetailsView;
 import view.widgets.Title;
 
 public class AdminAppointmentView extends View {
@@ -18,15 +23,16 @@ public class AdminAppointmentView extends View {
     private final List<Appointment> appointments = appointmentManager.getAllAppointments();
 
     private String keyword = "";
+    private boolean showingResults = false;
 
     @Override
     public String getViewName() {
         return("Admin Appointment View");
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void render() {
-        // TODO add appointment outcome
         new Title("View All Appointments").paint(context);
 
         List<Appointment> filteredAppointments = filterByKeyword(keyword);
@@ -34,12 +40,22 @@ public class AdminAppointmentView extends View {
 
         new VSpacer(1).paint(context);
 
+        if (showingResults) {
+            TextInputField selectField = new TextInputField("Select an appointment to view");
+            new TextInput(selectField).read(context, "Select an item from the list above.",
+                (input) -> InputValidators.validateRange(input, filteredAppointments.size()));
+
+            final Appointment selectedItem = filteredAppointments.get(selectField.getOption());
+            Navigator.navigateTo(new DoctorViewAppointmentDetailsView(selectedItem));
+            return;
+        }
+
         TextInputField searchField = new TextInputField("Search for appointments");
         new TextInput(searchField).read(context, input -> true);
 
         keyword = searchField.getValue().toLowerCase();
-        clear();
-        render();
+        showingResults = !keyword.isBlank();
+        repaint();
     }
 
     public List<Appointment> filterByKeyword(String keyword) {
@@ -58,7 +74,6 @@ public class AdminAppointmentView extends View {
     }
 
     private String getNameById(String id) {
-        User user = userManager.getUser(id);
-        return user == null ? "Unknown" : user.getName();
+        return userManager.getUser(id).getName();
     }
 }
