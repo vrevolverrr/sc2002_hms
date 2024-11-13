@@ -17,7 +17,7 @@ import model.users.User;
 import services.Navigator;
 import utils.InputValidators;
 import view.View;
-import view.Pharmacist.inventory.widget.MedicationTable;
+import view.Pharmacist.inventory.widget.InventoryTable;
 import view.widgets.Title;
 
 public class PharmacistReplenishmentRequestView extends View {
@@ -40,7 +40,7 @@ public class PharmacistReplenishmentRequestView extends View {
             item.getReplenishmentStatus() == ReplenishmentStatus.REJECTED
             ).toList();
         
-        new MedicationTable(medications).paint(context);
+        new InventoryTable(medications).paint(context);
         new VSpacer(1).paint(context);
 
         TextInputField medicationField = new TextInputField("Choose a medication to request replenishment");

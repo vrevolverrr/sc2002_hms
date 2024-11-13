@@ -58,8 +58,7 @@ public class DoctorViewPastAppointments extends View {
         keyword = searchField.getValue().toLowerCase();
         showingResults = !keyword.isBlank();
 
-        clear();
-        render();
+        repaint();
     }
 
     private List<Appointment> filterAppointments(String keyword) {

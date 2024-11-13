@@ -1,11 +1,24 @@
 package view.Admin.inventory;
 
+import java.util.List;
+
 import controller.InventoryManager;
+import lib.uilib.framework.TextInputField;
+import lib.uilib.widgets.base.TextInput;
+import lib.uilib.widgets.base.VSpacer;
+import model.inventory.InventoryItem;
+import services.Navigator;
+import utils.InputValidators;
 import view.View;
+import view.Pharmacist.inventory.widget.InventoryTable;
 import view.widgets.Title;
 
 public class AdminInventoryView extends View {
     private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
+    private final List<InventoryItem> items = inventoryManager.getAllItems();
+
+    private String keyword = "";
+    private boolean showingResults = false;
 
     @Override
     public String getViewName() {
@@ -15,6 +28,42 @@ public class AdminInventoryView extends View {
     @Override
     public void render() {
         new Title("Manage Inventory").paint(context);
+
+        List<InventoryItem> filteredItems = filterItems(keyword);
+        new InventoryTable(filteredItems).paint(context);
+
+        new VSpacer(1).paint(context);
+
+        if (showingResults) {
+            TextInputField selectField = new TextInputField("Select an item to update");
+            new TextInput(selectField).read(context, "Select an item from the list above.",
+                (input) -> InputValidators.validateRange(input, filteredItems.size()));
+
+            final InventoryItem selectedItem = filteredItems.get(selectField.getOption());
+            Navigator.navigateTo(new AdminUpdateInventoryView(selectedItem));
+            return;
+        }
+
+        TextInputField searchField = new TextInputField("Search for items");
+        new TextInput(searchField).read(context, input -> true);
+
+        keyword = searchField.getValue().toLowerCase();
+        showingResults = !keyword.isBlank();
+
+        repaint();
+    }
+
+    private List<InventoryItem> filterItems(String keyword) {
+        if (keyword.isBlank()) {
+            return items;
+        }
+
+        return items.stream()
+            .filter(item -> 
+                String.format("%s %s %s", 
+                item.getItemName(), item.getId(), item.getReplenishmentStatus())
+                .toLowerCase().contains(keyword.toLowerCase()))
+            .toList();
     }
 }
 

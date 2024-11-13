@@ -21,6 +21,16 @@ public class InventoryManager extends Manager<InventoryManager> {
         .toList();
     }
 
+    public void updateStockLevelAlert(InventoryItem item, int level) {
+        item.setStockLevelAlert(level);
+        inventoryRepository.save(item);
+    }
+
+    public void updateStock(InventoryItem item, int quantity) {
+        item.setStock(quantity);
+        inventoryRepository.save(item);
+    }
+
     public void addStock(InventoryItem item, int quantity) {
         item.setStock(item.getStock() + quantity);
         inventoryRepository.save(item);

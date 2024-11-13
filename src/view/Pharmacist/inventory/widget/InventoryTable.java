@@ -8,10 +8,10 @@ import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.Widget;
 
-public class MedicationTable extends Widget {
+public class InventoryTable extends Widget {
     private List<InventoryItem> medications;
 
-    public MedicationTable(List<InventoryItem> medications) {
+    public InventoryTable(List<InventoryItem> medications) {
         this.medications = medications;
     }
 

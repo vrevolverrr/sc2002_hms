@@ -10,7 +10,7 @@ import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.inventory.InventoryItem;
 import view.View;
-import view.Pharmacist.inventory.widget.MedicationTable;
+import view.Pharmacist.inventory.widget.InventoryTable;
 import view.widgets.Title;
 
 public class PharmacistInventoryView extends View {
@@ -33,7 +33,7 @@ public class PharmacistInventoryView extends View {
         new Title("All Medications").paint(context);
 
         List<InventoryItem> filteredMedications = filterMedications(keyword);
-        new MedicationTable(filteredMedications).paint(context);
+        new InventoryTable(filteredMedications).paint(context);
 
         new VSpacer(1).paint(context);
 
