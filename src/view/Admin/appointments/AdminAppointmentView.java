@@ -7,13 +7,10 @@ import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
-import model.inventory.InventoryItem;
-import model.users.User;
 import services.Navigator;
 import utils.InputValidators;
 import view.View;
 import view.Admin.appointments.widgets.AdminAppointmentTable;
-import view.Admin.inventory.AdminUpdateInventoryView;
 import view.Doctor.appointments.DoctorViewAppointmentDetailsView;
 import view.widgets.Title;
 
