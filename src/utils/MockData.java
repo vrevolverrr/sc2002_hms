@@ -3,7 +3,6 @@ package utils;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-import model.InventoryItem;
 import model.appointments.Appointment;
 import model.appointments.AppointmentOutcomeRecord;
 import model.appointments.TimeSlot;
@@ -13,18 +12,20 @@ import model.enums.DosageUnit;
 import model.enums.Gender;
 import model.enums.MedicalService;
 import model.enums.MedicineFrequency;
-import model.enums.ReplenishmentStatus;
 import model.enums.Specialisation;
+import model.inventory.InventoryItem;
 import model.prescriptions.MedicineDosage;
 import model.prescriptions.Prescription;
 import model.users.Admin;
 import model.users.Doctor;
 import model.users.Patient;
+import model.users.Pharmacist;
 import repository.AdminRepository;
 import repository.AppointmentRepository;
 import repository.DoctorRepository;
 import repository.InventoryRepository;
 import repository.PatientRepository;
+import repository.PharmacistRepository;
 import repository.UserRepository;
 
 public class MockData {
@@ -32,6 +33,7 @@ public class MockData {
         mockPatientData();
         mockAdminData();
         mockInventoryData();
+        mockPharmacistData();
         mockDoctorData();
         mockAppointmentData();
     }
@@ -62,20 +64,31 @@ public class MockData {
         adminRepository.save(new Admin("A1003", "James Anderson", 50, "adminPass3", Gender.MALE, LocalDate.of(1973, 5, 30), "83456789", "james.anderson@example.com"));
     }
 
+    public static void mockPharmacistData() {
+        PharmacistRepository pharmacistRepository = new PharmacistRepository(UserRepository.getInstance());
+        pharmacistRepository.clear();
+
+        pharmacistRepository.save(new Pharmacist("F1001", "Bryan Lee", 35, "bryan123", Gender.MALE, LocalDate.of(1989, 6, 10), "81234567", "bryan.lee@gmail.com"));
+        pharmacistRepository.save(new Pharmacist("F1002", "Anna Kim", 28, "annaK!m", Gender.FEMALE, LocalDate.of(1995, 4, 22), "81234568", "anna.kim@example.com"));
+        pharmacistRepository.save(new Pharmacist("F1003", "David Wong", 40, "davidWong456", Gender.MALE, LocalDate.of(1983, 11, 5), "81234569", "david.wong@example.com"));
+        pharmacistRepository.save(new Pharmacist("F1004", "Sophia Tan", 32, "sophiaT@an", Gender.FEMALE, LocalDate.of(1991, 8, 15), "81234570", "sophia.tan@example.com"));
+        pharmacistRepository.save(new Pharmacist("F1005", "Michael Chan", 45, "michaelChan789", Gender.MALE, LocalDate.of(1978, 2, 10), "81234571", "michael.chan@example.com"));
+    }
+
     public static void mockInventoryData() {
         InventoryRepository inventoryRepository = new InventoryRepository();
         inventoryRepository.clear();
         
-        inventoryRepository.save(new InventoryItem("I1001", "Paracetamol", 200, 30, ReplenishmentStatus.NULL));
-        inventoryRepository.save(new InventoryItem("I1002", "Ibuprofen", 200, 30, ReplenishmentStatus.NULL));
-        inventoryRepository.save(new InventoryItem("I1003", "Amoxicillin", 150, 20, ReplenishmentStatus.NULL));
-        inventoryRepository.save(new InventoryItem("I1004", "Ciprofloxacin", 120, 40, ReplenishmentStatus.NULL));
-        inventoryRepository.save(new InventoryItem("I1005", "Metformin", 300, 25, ReplenishmentStatus.NULL));
-        inventoryRepository.save(new InventoryItem("I1006", "Amlodipine", 250, 35, ReplenishmentStatus.NULL));
-        inventoryRepository.save(new InventoryItem("I1007", "Omeprazole", 180, 45, ReplenishmentStatus.NULL));
-        inventoryRepository.save(new InventoryItem("I1008", "Simvastatin", 220, 60, ReplenishmentStatus.NULL));
-        inventoryRepository.save(new InventoryItem("I1009", "Lisinopril", 160, 55, ReplenishmentStatus.NULL));
-        inventoryRepository.save(new InventoryItem("I1010", "Levothyroxine", 140, 50, ReplenishmentStatus.NULL));
+        inventoryRepository.save(new InventoryItem("I1001", "Paracetamol", 200, 30));
+        inventoryRepository.save(new InventoryItem("I1002", "Ibuprofen", 200, 30));
+        inventoryRepository.save(new InventoryItem("I1003", "Amoxicillin", 150, 20));
+        inventoryRepository.save(new InventoryItem("I1004", "Ciprofloxacin", 30, 40));
+        inventoryRepository.save(new InventoryItem("I1005", "Metformin", 300, 25));
+        inventoryRepository.save(new InventoryItem("I1006", "Amlodipine", 80, 35));
+        inventoryRepository.save(new InventoryItem("I1007", "Omeprazole", 120, 45));
+        inventoryRepository.save(new InventoryItem("I1008", "Simvastatin", 220, 60));
+        inventoryRepository.save(new InventoryItem("I1009", "Lisinopril", 100, 55));
+        inventoryRepository.save(new InventoryItem("I1010", "Levothyroxine", 20, 50));
     }
 
     public static void mockDoctorData() {

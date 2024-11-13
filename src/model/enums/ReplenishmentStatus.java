@@ -1,10 +1,10 @@
 package model.enums;
 
 public enum ReplenishmentStatus {
-    NULL("Null"),
+    NULL("None"),
     PENDING("Pending"),
     APPROVED("Approved"),
-    REJECT("Reject");
+    REJECTED("Rejected");
 
 
     /**
@@ -25,6 +25,11 @@ public enum ReplenishmentStatus {
      * @return the {@code String} value.
      */
     public String getValue() {
+        return this.value;
+    }
+
+    @Override
+    public String toString() {
         return this.value;
     }
 }

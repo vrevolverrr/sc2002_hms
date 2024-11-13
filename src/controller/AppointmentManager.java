@@ -20,6 +20,10 @@ public class AppointmentManager extends Manager<AppointmentManager> {
 
     protected AppointmentManager() {}
 
+    public void updateAppointment(Appointment appointment) {
+        appointmentRepository.save(appointment);
+    }
+
     /**
      * Schedules an appointment for a patient. Marks the appointment as {@code REQUESTED} 
      * for doctor approval.

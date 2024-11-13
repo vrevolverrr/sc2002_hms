@@ -3,12 +3,12 @@ package controller;
 import java.time.LocalDate;
 import java.util.List;
 
-import model.Pharmacist;
 import model.enums.Gender;
 import model.enums.Specialisation;
 import model.enums.UserRole;
 import model.users.Admin;
 import model.users.Doctor;
+import model.users.Pharmacist;
 import model.users.User;
 import repository.DoctorRepository;
 import repository.PharmacistRepository;

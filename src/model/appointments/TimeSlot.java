@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 public class TimeSlot implements Serializable, Comparable<TimeSlot> {
     static final long serialVersionUID = 42L;
 
-    LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
 
     public TimeSlot(LocalDateTime dateTime) {
         this.dateTime = dateTime;

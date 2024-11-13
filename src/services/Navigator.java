@@ -44,7 +44,7 @@ public class Navigator {
      * is exited.
      */
     public static void pop() {
-        if (stack.size() == 0) {
+        if (stack.size() <= 1) {
             System.exit(0);
         }
 

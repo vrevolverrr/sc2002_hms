@@ -5,7 +5,7 @@ import java.util.stream.*;
 import java.util.function.Predicate;
 
 import model.enums.UserRole;
-import model.Pharmacist;
+import model.users.Pharmacist;
 import model.users.User;
 
 /**
@@ -156,8 +156,10 @@ public class PharmacistRepository implements Repository<Pharmacist> {
 
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clear'");
+        repository.findBy(
+            (User user) -> user.getRole() == UserRole.PHARMACIST).stream().forEach((User user) -> {
+                repository.deleteById(user.getId());
+            });
     }
 }
 

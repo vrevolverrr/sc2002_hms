@@ -49,7 +49,7 @@ public class DoctorViewAppointmentDetailsView extends View {
 
         if (appointment.getOutcomeRecord() == null) {
             new Table(new TableRow("No outcome recorded")).paint(context);
-            new Pause("Press Enter to go back.").pause(context);
+            new Pause("Press any key to go back.").pause(context);
             Navigator.pop();
             return;
         }
@@ -69,7 +69,7 @@ public class DoctorViewAppointmentDetailsView extends View {
 
         new VSpacer(1).paint(context);
 
-        new Pause("Press Enter to go back.").pause(context);
+        new Pause("Press any key to go back.").pause(context);
         Navigator.pop();
     }
 }

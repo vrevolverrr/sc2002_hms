@@ -1,6 +1,5 @@
 package view.Doctor.appointments;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,12 +16,11 @@ import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
-import model.InventoryItem;
 import model.appointments.Appointment;
-import model.appointments.AppointmentOutcomeRecord;
 import model.enums.DosageUnit;
 import model.enums.MedicalService;
 import model.enums.MedicineFrequency;
+import model.inventory.InventoryItem;
 import view.View;
 import view.Doctor.appointments.widgets.AppointmentDetailsTable;
 import view.Doctor.appointments.widgets.AppointmentUpdateOutcomeTable;
@@ -93,7 +91,7 @@ public class DoctorUpdateOutcomeDetailsView extends View {
         }        
 
         appointmentManager.updateAppointmentOutcome(appointment, consultationNotes, prescriptions, services);
-        new Pause("Completed. Press enter to go back.").pause(context);
+        new Pause("Completed. Press any key to go back.").pause(context);
         Navigator.pop();
     }
 

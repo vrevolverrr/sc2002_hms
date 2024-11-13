@@ -109,6 +109,15 @@ public class InputValidators {
         }
     }
 
+    public static boolean validateQuantity(String input) {
+        try {
+            int quantity = Integer.parseInt(input);
+            return quantity > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public static boolean validateEmail(String email) {
         return email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
     }

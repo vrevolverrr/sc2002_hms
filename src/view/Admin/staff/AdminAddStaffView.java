@@ -85,7 +85,7 @@ public class AdminAddStaffView extends View {
         }
 
         new Text("Staff added successfully.", TextStyle.BOLD).paint(context);
-        new Pause("Press Enter to go back.").pause(context);
+        new Pause("Press any key to go back.").pause(context);
         Navigator.pop();
     }
 

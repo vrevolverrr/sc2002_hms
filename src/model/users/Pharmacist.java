@@ -1,10 +1,9 @@
-package model;
+package model.users;
 
 import java.time.LocalDate;
 
 import model.enums.Gender;
 import model.enums.UserRole;
-import model.users.User;
 
 /**
  * The concrete implementation of a {@link User} corresponding to a pharmacist.

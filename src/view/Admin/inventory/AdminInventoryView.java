@@ -1,16 +1,23 @@
-// package view.Admin;
+package view.Admin.inventory;
 
-// import controller.InventoryManager;
-// import lib.uilib.framework.BuildContext;
-// import lib.uilib.framework.MenuOption;
-// import lib.uilib.framework.TextInputField;
-// import lib.uilib.framework.enums.Alignment;
-// import lib.uilib.framework.enums.TextStyle;
-// import lib.uilib.widgets.base.Menu;
-// import lib.uilib.widgets.base.Text;
-// import lib.uilib.widgets.layout.Align;
-// import services.Navigator;
-// import view.View;
+import controller.InventoryManager;
+import view.View;
+import view.widgets.Title;
+
+public class AdminInventoryView extends View {
+    private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
+
+    @Override
+    public String getViewName() {
+        return "Manage Inventory";
+    }
+
+    @Override
+    public void render() {
+        new Title("Manage Inventory").paint(context);
+    }
+}
+
     
 
 // public class AdminInventoryView extends View{

@@ -21,7 +21,7 @@ public class PrescriptionsTable extends Widget {
 
     @Override
     public String build(BuildContext context) {
-        TableRow header = new TableRow("Medicine", "Dosage", "Frequency");
+        TableRow header = new TableRow("Medicine", "Dosage", "Frequency", "Status");
 
         if (prescriptions.isEmpty()) {
             return new Table(new TableRow("No prescriptions found"))
@@ -32,7 +32,9 @@ public class PrescriptionsTable extends Widget {
             .map(prescription -> new TableRow(
                 getDrugName(prescription.getDrugId()), 
                 parseDosage(prescription.getDosage()), 
-                prescription.getFrequency().toString()))
+                prescription.getFrequency().toString(),
+                prescription.getStatus().toString()
+            ))
             .toList();
 
         return EnumeratedTable.withHeader(header, rows.toArray(TableRow[]::new)).build(context);

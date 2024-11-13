@@ -37,7 +37,7 @@ public class AdminUpdateStaffView extends View {
         new VSpacer(1).paint(context);
 
         if (staffs.isEmpty()) {
-            new Pause("Press enter to search again.").pause(context);
+            new Pause("Press any key to search again.").pause(context);
             clear();
             render();
             return;

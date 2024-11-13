@@ -1,5 +1,6 @@
-package model;
+package model.inventory;
 
+import model.BaseModel;
 import model.enums.ReplenishmentStatus;
 
 public class InventoryItem extends BaseModel {
@@ -9,15 +10,19 @@ public class InventoryItem extends BaseModel {
     private int stock;
     private int stockLevelAlert;
     ReplenishmentStatus replenishmentStatus;
+    ReplenishmentRequest replenishmentRequest;
+    
 
-    public InventoryItem(String itemId, String itemName, int stock, int stockLevelAlert, ReplenishmentStatus replenishmentStatus){
+    public InventoryItem(String itemId, String itemName, int stock, int stockLevelAlert){
         super(itemId);
 
         this.itemId = itemId;
         this.itemName = itemName;
         this.stock = stock;
         this.stockLevelAlert = stockLevelAlert;
-        this.replenishmentStatus = replenishmentStatus;
+        
+        this.replenishmentStatus = ReplenishmentStatus.NULL;
+        this.replenishmentRequest = null;
     }
 
     public String getItemId() {
@@ -52,8 +57,27 @@ public class InventoryItem extends BaseModel {
         this.replenishmentStatus = replenishmentStatus;
     }
 
+    public ReplenishmentRequest getReplenishmentRequest() {
+        return this.replenishmentRequest;
+    }
+
+    public void setReplenishmentRequest(ReplenishmentRequest replenishmentRequest) {
+        this.replenishmentRequest = replenishmentRequest;
+    }
+
+    /**
+     * Performs a deep copy of the {@link InventoryItem} object.
+     * @return a deep copy of the object.
+     */
     @Override
-    public InventoryItem copy(){
-        return new InventoryItem(getId(), getItemName(), getStock(), getStockLevelAlert(), getReplenishmentStatus());
+    public InventoryItem copy() {
+        InventoryItem item = new InventoryItem(getId(), getItemName(), getStock(), getStockLevelAlert());
+        item.setReplenishmentStatus(getReplenishmentStatus());
+
+        if (getReplenishmentRequest() != null) {
+            item.setReplenishmentRequest(getReplenishmentRequest().copy());
+        }
+
+        return item;
     }
 }

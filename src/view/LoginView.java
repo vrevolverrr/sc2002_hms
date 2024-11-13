@@ -19,6 +19,7 @@ import view.Admin.AdminView;
 import view.Doctor.DoctorView;
 import view.Patient.PatientView;
 // import view.Pharmacist.PharmacistView;
+import view.Pharmacist.PharmacistView;
 
 
 public class LoginView extends View {
@@ -90,9 +91,9 @@ public class LoginView extends View {
                 nextView = new AdminView();
                 break;
 
-            // case UserRole.PHARMACIST:
-            //     nextView = new PharmacistView();
-            //     break;
+            case UserRole.PHARMACIST:
+                nextView = new PharmacistView();
+                break;
 
             case UserRole.DOCTOR:
                 nextView = new DoctorView();

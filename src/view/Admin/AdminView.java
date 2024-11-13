@@ -7,6 +7,8 @@ import services.Navigator;
 import view.LoginView;
 import view.View;
 import view.Admin.appointments.AdminAppointmentView;
+import view.Admin.inventory.AdminInventoryView;
+import view.Admin.inventory.AdminReplenishmentRequestView;
 import view.Admin.staff.AdminManageStaffView;
 
 
@@ -27,11 +29,11 @@ public class AdminView extends View {
             new MenuOption("View Appoinments Details", () -> 
                  Navigator.navigateTo(new AdminAppointmentView())),
 
-            // new MenuOption("View and Manage Medication Inventory", () ->
-            //     this.viewandManageInventory()),
+            new MenuOption("View and Manage Medication Inventory", () ->
+                Navigator.navigateTo(new AdminInventoryView())),
 
-            // new MenuOption("Approve Replenishment Request", () -> 
-            //     this.approveReplenishRequest()),
+            new MenuOption("Approve Replenishment Request", () -> 
+                Navigator.navigateTo(new AdminReplenishmentRequestView())),
 
             new MenuOption("Log Out", () -> Navigator.navigateTo(new LoginView()))
 
