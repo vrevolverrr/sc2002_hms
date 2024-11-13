@@ -1,8 +1,6 @@
 package view.Pharmacist.prescription;
 
 import java.util.List;
-import java.util.stream.Stream;
-
 import controller.InventoryManager;
 import controller.PharmacistManager;
 import lib.uilib.framework.TextInputField;

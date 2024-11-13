@@ -25,6 +25,7 @@ public class AdminInventoryView extends View {
         return "Manage Inventory";
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void render() {
         new Title("Manage Inventory").paint(context);

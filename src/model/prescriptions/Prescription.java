@@ -6,6 +6,8 @@ import model.enums.MedicineFrequency;
 import model.enums.PrescriptionStatus;
 
 public class Prescription implements Serializable {
+    static final long serialVersionUID = 42L;
+
     private final String drugId;
     private final int quantity;
     private final MedicineDosage dosage;

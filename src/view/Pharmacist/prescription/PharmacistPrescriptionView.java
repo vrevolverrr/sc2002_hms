@@ -3,7 +3,6 @@ package view.Pharmacist.prescription;
 import java.util.List;
 
 import controller.AppointmentManager;
-import controller.PharmacistManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.TextInput;

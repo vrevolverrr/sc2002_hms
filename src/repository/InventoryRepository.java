@@ -1,6 +1,5 @@
 package repository;
 
-import model.enums.ReplenishmentStatus;
 import model.inventory.InventoryItem;
 
 public class InventoryRepository extends BaseRepository<InventoryItem> {
