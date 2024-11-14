@@ -1,0 +1,18 @@
+1. View and Update Patient Medical Record
+2. View Personal Schedule 
+    a. [Additional functionality during initialisation] Morning/ Afternn Shift: Set default availability of doctor as available from 9am to 6pm timeslots (30min timeslots)
+    b. Add availability: 
+        i. Get input on when available -> add to doctor availability repo
+        ii. Error handling: must key in time during 30min timeslots
+        iii. 
+    c. UX should be calender view
+        i. Default 
+    d. Remove availability:
+        i. Error handling: must key in a time that you have currently indicated availability in
+        ii. 
+
+
+3. Edit Personal Availability
+4. View Upcoming Appointments
+5. Update Appointment Outcome 
+6. Log Out (ok -> this returns to the login page)

@@ -7,17 +7,21 @@ import model.InventoryItem;
 import model.enums.BloodType;
 import model.enums.Gender;
 import model.enums.ReplenishmentStatus;
+import model.enums.Specialisation;
 import model.users.Admin;
 import model.users.Patient;
+import model.users.Doctor;
 import repository.AdminRepository;
 import repository.InventoryRepository;
 import repository.PatientRepository;
 import repository.UserRepository;
+import repository.DoctorRepository;
 
 public class MockData {
     public static void mockAllData() {
         mockPatientData();
         mockAdminData();
+        mockDoctorData();
     }
 
     public static void mockPatientData() {
@@ -50,6 +54,18 @@ public class MockData {
         mockData.add(new Admin("A1003", "James Anderson", 50, "adminPass3", Gender.MALE, LocalDate.of(1973, 5, 30), "83456789", "james.anderson@example.com"));
 
         adminRepository.save(mockData);
+    }
+
+    public static void mockDoctorData() {
+        UserRepository userRepository = new UserRepository();
+        DoctorRepository doctorRepository = new DoctorRepository(userRepository);
+        
+        List<Doctor> mockData = new ArrayList<Doctor>();
+        mockData.add(new Doctor("D1001", "Dr Anthony Santiago", 55, "doctorPass1", Gender.MALE, LocalDate.of(1968, 1, 25), "81218727", "david.johnson@example.com", Specialisation.CARDIOLOGIST));
+        mockData.add(new Doctor("D1002", "Dr Melanie Martinez", 28, "doctorPass2", Gender.FEMALE, LocalDate.of(1995, 4, 22), "82123278", "sophia.martinez@example.com", Specialisation.NEUROLOGIST));
+        mockData.add(new Doctor("D1003", "Dr Jamus Lim", 40, "doctorPass3", Gender.MALE, LocalDate.of(1983, 6, 30), "83456129", "james.anderson@example.com", Specialisation.GYNECOLOGIST));
+
+        doctorRepository.save(mockData);
     }
 
     public static void mockInventoryData() {

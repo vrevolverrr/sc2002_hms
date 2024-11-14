@@ -10,4 +10,9 @@ public class TableRow {
     public String[] getValues() {
         return this.values;
     }
+
+    public void addColumn(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addColumn'");
+    }
 }
