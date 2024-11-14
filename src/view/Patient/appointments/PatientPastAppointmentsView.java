@@ -6,6 +6,7 @@ import controller.AppointmentManager;
 import controller.UserManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
+import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
@@ -41,8 +42,18 @@ public class PatientPastAppointmentsView extends View {
         new Title("Past Appointments").paint(context);
 
         List<Appointment> filteredAppointments = filterAppointments(keyword);
-        new AppointmentsTable(pastAppointments).paint(context);
-        
+
+        System.out.println(filteredAppointments.size());
+        new AppointmentsTable(filteredAppointments).paint(context);
+
+        if (filteredAppointments.isEmpty()) {
+            new Pause("Press enter to try again.").pause(context);
+            // Reset and repaint
+            keyword = ""; showingResults = false;
+            repaint();
+            return;
+        }
+
         new VSpacer(1).paint(context);
 
         if (showingResults) {
@@ -51,6 +62,7 @@ public class PatientPastAppointmentsView extends View {
                 (input) -> InputValidators.validateRange(input, filteredAppointments.size()));
 
             final Appointment selectedAppointment = filteredAppointments.get(selectField.getOption());
+            /// Reuse the same view
             Navigator.navigateTo(new DoctorViewAppointmentDetailsView(selectedAppointment));
             return;
         }
@@ -73,7 +85,7 @@ public class PatientPastAppointmentsView extends View {
             String.format("%s %s %s %s %s",
                 appointment.getId(), 
                 appointment.getPatientId(),
-                getNameById(appointment.getPatientId()),
+                getNameById(appointment.getDoctorId()),
                 appointment.getTimeSlot().getFormattedDateTime(),
                 appointment.getStatus().toString()
             ).toLowerCase().contains(keyword)).toList();

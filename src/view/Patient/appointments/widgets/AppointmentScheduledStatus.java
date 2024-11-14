@@ -15,7 +15,7 @@ public class AppointmentScheduledStatus extends Widget {
 
     private AppointmentScheduledStatus(String message, AppointmentSlot appointmentSlot) {
         this.appointmentSlot = appointmentSlot;
-        this.message = "";
+        this.message = message;
     }
 
     public static AppointmentScheduledStatus scheduled(AppointmentSlot appointmentSlot) {

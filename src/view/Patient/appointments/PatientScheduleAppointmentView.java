@@ -59,11 +59,14 @@ public class PatientScheduleAppointmentView extends View {
 
         new VSpacer(1).paint(context);
 
-
         // Schedule the appointment
         appointmentManager.scheduleAppointment(appointmentSlot, patient);
 
         /// Print the details of the newly scheduled appointment
+        clear();
+        new Breadcrumbs().paint(context);
+        new Title("Schedule Appointment").paint(context);
+        new VSpacer(1).paint(context);
         AppointmentScheduledStatus.scheduled(appointmentSlot).paint(context);
 
         new Pause().pause(context);

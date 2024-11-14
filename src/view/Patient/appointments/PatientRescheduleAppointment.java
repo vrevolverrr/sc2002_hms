@@ -69,6 +69,12 @@ public class PatientRescheduleAppointment extends View {
 
         // Reschedule the appointment
         appointmentManager.rescheduleAppointment(selectedAppointment, appointmentSlot);
+
+        clear();
+        new Breadcrumbs().paint(context);
+        new Title("Reschedule Appointment").paint(context);
+        new VSpacer(1).paint(context);
+        
         AppointmentScheduledStatus.rescheduled(appointmentSlot).paint(context);
 
         new Pause().pause(context);
@@ -88,7 +94,8 @@ public class PatientRescheduleAppointment extends View {
 
         final Appointment selectedAppointment = appointments.get(appointmentField.getOption());
 
-        clearLines((appointments.size() + 1) * 2 + 1 + 2);
+        clearLines((appointments.size() + 1) * 2 + 1 + 3);
+        new Title("Appointment To Reschedule").paint(context);
         new PatientAppointmentDetailsTable(selectedAppointment).paint(context);
 
         return selectedAppointment;
