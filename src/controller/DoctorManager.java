@@ -3,8 +3,12 @@ package controller;
 import repository.DoctorRepository;
 import repository.UserRepository;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.List;
 
+import model.availability.Availability;
+import model.availability.TimePeriod;
 import model.users.Doctor;
 
 public class DoctorManager extends Manager<DoctorManager> {
@@ -18,35 +22,35 @@ public class DoctorManager extends Manager<DoctorManager> {
         return doctorRepository.findById(doctorId);
     }
 
-    // // Add availability for a specific date
-    // public void addAvailability(LocalDate date, LocalTime timeSlot) {
-    //     availability.putIfAbsent(date, new ArrayList<>());
-    //     if (!availability.get(date).contains(timeSlot)) {
-    //         availability.get(date).add(timeSlot);
-    //         System.out.println("Added availability on " + date + " at " + timeSlot);
-    //     } else {
-    //         System.out.println("Time slot already exists!");
-    //     }
-    // }
+    public void setDoctorAvailability(Doctor doctor, DayOfWeek day, TimePeriod availablePeriod) {
+        Availability availability = doctor.getAvailability();
+        availability.setAvailability(day, availablePeriod);
 
-    // // View availability
-    // public void viewAvailability() {
-    //     System.out.println("Current Availability:");
-    //     availability.forEach((date, timeSlots) -> {
-    //         System.out.println("Date: " + date);
-    //         timeSlots.forEach(time -> System.out.println("  Time: " + time));
-    //     });
-    // }
+        doctor.setAvailability(availability);
+        doctorRepository.save(doctor);
+    }
 
-    // // Remove availability
-    // public void removeAvailability(LocalDate date, LocalTime timeSlot) {
-    //     if (availability.containsKey(date) && availability.get(date).remove(timeSlot)) {
-    //         System.out.println("Removed availability on " + date + " at " + timeSlot);
-    //         if (availability.get(date).isEmpty()) {
-    //             availability.remove(date);
-    //         }
-    //     } else {
-    //         System.out.println("No such availability exists.");
-    //     }
-    // }
+    public void setDoctorAvailability(Doctor doctor, LocalDate date, TimePeriod availablePeriod) {
+        Availability availability = doctor.getAvailability();
+        availability.setAvailability(date, availablePeriod);
+
+        doctor.setAvailability(availability);
+        doctorRepository.save(doctor);
+    }
+
+    public void clearDoctorAvailability(Doctor doctor, DayOfWeek day) {
+        Availability availability = doctor.getAvailability();
+        availability.setAvailability(day, TimePeriod.defaultPeriod());
+
+        doctor.setAvailability(availability);
+        doctorRepository.save(doctor);
+    }
+
+    public void clearDoctorAvailability(Doctor doctor, LocalDate date) {
+        Availability availability = doctor.getAvailability();
+        availability.setAvailability(date, TimePeriod.defaultPeriod());
+
+        doctor.setAvailability(availability);
+        doctorRepository.save(doctor);
+    }
 }

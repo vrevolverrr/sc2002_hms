@@ -166,7 +166,7 @@ public class Appointment extends BaseModel {
      * @return the appointment outcome record.
      */
     public AppointmentOutcomeRecord getOutcomeRecord() {
-        return outcome;
+        return outcome != null ? outcome.copy() : null;
     }
 
     /**
@@ -183,7 +183,7 @@ public class Appointment extends BaseModel {
 
     /**
      * Creates a copy of the current {@link Appointment} instance.
-     * @return the exact copy (shallow) of the {@link Appointment}.
+     * @return the exact deepcopy of the {@link Appointment}.
      */
     @Override
     public Appointment copy() {

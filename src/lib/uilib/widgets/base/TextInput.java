@@ -70,6 +70,8 @@ public class TextInput extends Widget implements InputWidget {
             }
 
             if (predicate.test(line)) {
+                new VSpacer(2).paint(context);
+                View.clearLines(2);        
                 break;
             }
 

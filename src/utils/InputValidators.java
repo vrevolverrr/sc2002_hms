@@ -1,6 +1,8 @@
 package utils;
 
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -21,6 +23,16 @@ public class InputValidators {
                 return false;
             }
 
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean validateTime(String timeString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        try {
+            LocalTime.parse(timeString, formatter);
             return true;
         } catch (Exception e) {
             return false;

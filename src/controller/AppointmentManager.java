@@ -19,6 +19,12 @@ import java.util.List;
 public class AppointmentManager extends Manager<AppointmentManager> {
     private AppointmentRepository appointmentRepository = new AppointmentRepository();
 
+    /// Appointment slot generation constants, do not change.
+    /// Might break doctor availability logic.
+    final static int START_HOUR = 8;
+    final static int END_HOUR = 17;
+    final static int SLOT_DURATION = 30;
+
     protected AppointmentManager() {}
 
     public void updateAppointment(Appointment appointment) {
@@ -273,14 +279,11 @@ public class AppointmentManager extends Manager<AppointmentManager> {
      * @return the list of time slots.
      */
     public static List<TimeSlot> generateTimeSlots(LocalDate date) {
-        // The time slots start at 9am, and the last slot ends at 6pm.
-        final int startHour = 9;
-        final int endHour = 18;
-        final int slotDuration = 30;
-
+        // The time slots start at 8:00am, and the last slot start at 5:30pm.
+        // for a total of 20 time slots per day.
         List<TimeSlot> timeSlots = new ArrayList<TimeSlot>();
-        for (int hour = startHour; hour <= endHour; hour++) {
-            for (int minute = 0; minute < 60; minute += slotDuration) {
+        for (int hour = START_HOUR; hour < END_HOUR; hour++) {
+            for (int minute = 0; minute < 60; minute += SLOT_DURATION) {
                 timeSlots.add(new TimeSlot(date.atTime(hour, minute)));
             }
         }

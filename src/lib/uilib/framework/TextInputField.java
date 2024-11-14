@@ -1,6 +1,7 @@
 package lib.uilib.framework;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class TextInputField {
@@ -63,6 +64,18 @@ public class TextInputField {
      */
     public LocalDate getDate(String pattern) {
         return LocalDate.parse(this.value,  DateTimeFormatter.ofPattern(pattern));
+    }
+
+    public LocalDate getDate() {
+        return getDate("dd/MM/yy");
+    }
+
+    public LocalTime getTime(String pattern) {
+        return LocalTime.parse(this.value,  DateTimeFormatter.ofPattern(pattern));
+    }
+
+    public LocalTime getTime() {
+        return LocalTime.parse(this.value);
     }
 
     @Override

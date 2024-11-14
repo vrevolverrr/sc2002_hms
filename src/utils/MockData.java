@@ -1,11 +1,14 @@
 package utils;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 
 import model.appointments.Appointment;
 import model.appointments.AppointmentOutcomeRecord;
 import model.appointments.TimeSlot;
+import model.availability.Availability;
+import model.availability.TimePeriod;
 import model.enums.AppointmentStatus;
 import model.enums.BloodType;
 import model.enums.DosageUnit;
@@ -95,7 +98,13 @@ public class MockData {
         DoctorRepository doctorRepository = new DoctorRepository(UserRepository.getInstance());
         doctorRepository.clear();
 
-        doctorRepository.save(new Doctor("D1001", "John Doe", 45, "johnDoe123", Gender.MALE, LocalDate.of(1978, 1, 15), "81234567", "johndoe@email.com", Specialisation.CARDIOLOGIST));
+        Doctor d1 = new Doctor("D1001", "John Doe", 45, "johnDoe123", Gender.MALE, LocalDate.of(1978, 1, 15), "81234567", "johndoe@email.com", Specialisation.CARDIOLOGIST);
+        Availability d1A = new Availability();
+        d1A.setAvailability(LocalDate.now().plusDays(5), new TimePeriod(LocalTime.of(14, 0), LocalTime.of(18, 30)));
+        d1A.setAvailability(LocalDate.now().plusDays(4), new TimePeriod(LocalTime.of(8, 0), LocalTime.of(12, 0)));
+        d1.setAvailability(d1A);
+        doctorRepository.save(d1);
+        
         doctorRepository.save(new Doctor("D1002", "Jane Smith", 38, "janeSmith456", Gender.FEMALE, LocalDate.of(1985, 2, 20), "81234568", "janesmith@email.com", Specialisation.DERMATOLOGIST));
         doctorRepository.save(new Doctor("D1003", "Robert Brown", 50, "robertBrown789", Gender.MALE, LocalDate.of(1973, 3, 25), "81234569", "robertbrown@email.com", Specialisation.NEUROLOGIST));
         doctorRepository.save(new Doctor("D1004", "Emily White", 42, "emilyWhite101", Gender.FEMALE, LocalDate.of(1981, 4, 30), "81234570", "emilywhite@email.com", Specialisation.GYNECOLOGIST));
