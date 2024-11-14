@@ -9,6 +9,7 @@ import controller.DoctorManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.Alignment;
 import lib.uilib.framework.enums.TextStyle;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.TextInput;
@@ -44,6 +45,7 @@ public class PatientRescheduleAppointment extends View {
 
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("Reschedule Appointment").paint(context);
         new VSpacer(1).paint(context);
 

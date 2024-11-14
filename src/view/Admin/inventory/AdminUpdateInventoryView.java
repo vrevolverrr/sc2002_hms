@@ -2,6 +2,7 @@ package view.Admin.inventory;
 
 import controller.InventoryManager;
 import lib.uilib.framework.TextInputField;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
@@ -27,14 +28,15 @@ public class AdminUpdateInventoryView extends View {
 
     @Override
     public void render() {
-       new Title("Update Inventory Item").paint(context);
-       new InventoryItemUpdateTable(item).paint(context);
+        new Breadcrumbs().paint(context);
+        new Title("Update Inventory Item").paint(context);
+        new InventoryItemUpdateTable(item).paint(context);
 
-       new VSpacer(1).paint(context);
+        new VSpacer(1).paint(context);
 
-       TextInputField selectField = new TextInputField("Select field to update");
-         new TextInput(selectField).read(context, "Choose either stock or stock level alert to update",
-              (input) -> InputValidators.validateRange(input, 2));
+        TextInputField selectField = new TextInputField("Select field to update");
+        new TextInput(selectField).read(context, "Choose either stock or stock level alert to update",
+            (input) -> InputValidators.validateRange(input, 2));
 
         new VSpacer(1).paint(context);
 
@@ -45,6 +47,9 @@ public class AdminUpdateInventoryView extends View {
         }
 
         clear();
+        
+        // Repaint the view with the changes
+        new Breadcrumbs().paint(context);
         new Title("Update Inventory Item");
         new InventoryItemUpdateTable(item).paint(context);
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import controller.AppointmentManager;
 import lib.uilib.framework.TextInputField;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
@@ -24,6 +25,7 @@ public class PharmacistPrescriptionView extends View {
 
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("Update Prescription Status").paint(context);
 
         new VSpacer(1).paint(context);

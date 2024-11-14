@@ -4,6 +4,7 @@ import java.util.List;
 
 import controller.InventoryManager;
 import lib.uilib.framework.TextInputField;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.inventory.InventoryItem;
@@ -28,6 +29,7 @@ public class AdminInventoryView extends View {
     @SuppressWarnings("unused")
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("Manage Inventory").paint(context);
 
         List<InventoryItem> filteredItems = filterItems(keyword);

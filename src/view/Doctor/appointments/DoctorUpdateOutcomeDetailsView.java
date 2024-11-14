@@ -11,6 +11,7 @@ import controller.PatientManager;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.TextStyle;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.Text;
@@ -56,6 +57,7 @@ public class DoctorUpdateOutcomeDetailsView extends View {
 
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("Update Appointment Outcome").paint(context);
         
         new VSpacer(1).paint(context);

@@ -3,6 +3,7 @@ package view.Doctor.appointments;
 import controller.PatientManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.Table;
 import lib.uilib.widgets.base.VSpacer;
@@ -31,6 +32,7 @@ public class DoctorViewAppointmentDetailsView extends View {
 
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("View Appointment Details").paint(context);
 
         new VSpacer(1).paint(context);

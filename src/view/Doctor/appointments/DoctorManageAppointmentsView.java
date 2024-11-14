@@ -5,6 +5,7 @@ import java.util.List;
 import controller.AppointmentManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.MenuOption;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
@@ -29,8 +30,7 @@ public class DoctorManageAppointmentsView extends View {
 
     @Override
     public void render() {
-        BuildContext context = new BuildContext(100, 1000);
-
+        new Breadcrumbs().paint(context);
         new Title("Manage Appointments").paint(context);
         new VSpacer(1).paint(context);
         

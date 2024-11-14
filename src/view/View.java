@@ -82,8 +82,7 @@ public abstract class View {
      * contextual purposes and is identical to paint.
      */
     public void repaint() {
-        clear();
-        this.render();
+        paint();
     }
     
     /**

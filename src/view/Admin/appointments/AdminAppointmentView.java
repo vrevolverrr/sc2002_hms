@@ -4,6 +4,7 @@ import java.util.List;
 import controller.AppointmentManager;
 import controller.UserManager;
 import lib.uilib.framework.TextInputField;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
@@ -24,12 +25,13 @@ public class AdminAppointmentView extends View {
 
     @Override
     public String getViewName() {
-        return("Admin Appointment View");
+        return("View All Appointments");
     }
 
     @SuppressWarnings("unused")
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("View All Appointments").paint(context);
 
         List<Appointment> filteredAppointments = filterByKeyword(keyword);

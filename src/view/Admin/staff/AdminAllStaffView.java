@@ -6,6 +6,7 @@ import model.users.User;
 import controller.StaffManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import view.View;
@@ -26,6 +27,7 @@ public class AdminAllStaffView extends View {
     @SuppressWarnings("unused")
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("Search Staff").paint(context);
 
         List<User> filteredStaffs = filterByKeyword(searchKeywords);

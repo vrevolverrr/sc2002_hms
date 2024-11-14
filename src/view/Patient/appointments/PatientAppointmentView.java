@@ -2,6 +2,7 @@ package view.Patient.appointments;
 
 import controller.AppointmentManager;
 import lib.uilib.framework.MenuOption;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.VSpacer;
 import model.users.Patient;
@@ -25,9 +26,7 @@ public class PatientAppointmentView extends View {
 
     @Override
     public void render() {
-        new Title("Manage Appointments").paint(context);
-        new VSpacer(1).paint(context);
-        
+        new Breadcrumbs().paint(context);
         new Title("Scheduled Appointments").paint(context);
         new AppointmentsTable(appointmentManager.getScheduledAppointments(patient)).paint(context);
 

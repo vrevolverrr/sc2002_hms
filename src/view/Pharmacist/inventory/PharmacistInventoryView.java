@@ -4,6 +4,7 @@ import java.util.List;
 
 import controller.InventoryManager;
 import lib.uilib.framework.TextInputField;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.inventory.InventoryItem;
@@ -25,6 +26,7 @@ public class PharmacistInventoryView extends View {
     @SuppressWarnings("unused")
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("Medication Inventory").paint(context);
         new VSpacer(1).paint(context);
 

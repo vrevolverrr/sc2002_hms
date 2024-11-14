@@ -78,7 +78,7 @@ public class Container extends Widget{
             }
     
             if (this.height == null) {
-                if (this.shrink) {
+                if (this.shrink == null || this.shrink) {
                     this.height = child.getHeight(context);
                 } else {
                     this.height = context.getHeight();

@@ -4,6 +4,7 @@ import java.util.List;
 
 import controller.InventoryManager;
 import lib.uilib.framework.TextInputField;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
@@ -23,6 +24,7 @@ public class AdminReplenishmentRequestView extends View {
 
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("Inventory Replemenishment Request").paint(context);
 
         List<InventoryItem> requests = inventoryManager.getPendingReplenishmentRequestItems();

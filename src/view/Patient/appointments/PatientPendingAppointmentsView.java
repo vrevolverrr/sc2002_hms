@@ -1,6 +1,7 @@
 package view.Patient.appointments;
 
 import controller.AppointmentManager;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.VSpacer;
 import model.users.Patient;
@@ -24,9 +25,7 @@ public class PatientPendingAppointmentsView extends View {
 
     @Override
     public void render() {
-        new Title("Manage Appointments").paint(context);
-        new VSpacer(1).paint(context);
-        
+        new Breadcrumbs().paint(context);
         new Title("Pending Appointments").paint(context);
         new AppointmentsTable(appointmentManager.getPendingAppointments(patient)).paint(context);
 

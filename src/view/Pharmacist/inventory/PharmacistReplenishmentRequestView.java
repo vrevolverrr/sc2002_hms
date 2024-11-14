@@ -5,6 +5,7 @@ import java.util.List;
 import controller.InventoryManager;
 import controller.UserManager;
 import lib.uilib.framework.TextInputField;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
@@ -28,6 +29,7 @@ public class PharmacistReplenishmentRequestView extends View {
 
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("Low Stock Alerts").paint(context);
         
         final List<InventoryItem> medications = 

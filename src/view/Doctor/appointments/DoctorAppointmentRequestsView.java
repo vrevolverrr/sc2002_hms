@@ -6,6 +6,7 @@ import controller.AppointmentManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.TextStyle;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.TextInput;
@@ -33,8 +34,7 @@ public class DoctorAppointmentRequestsView extends View {
 
     @Override
     public void render() {
-        BuildContext context = new BuildContext(100, 1000);
-
+        new Breadcrumbs().paint(context);
         new Title("Manage Appointment Requests").paint(context);
         new VSpacer(1).paint(context);
         

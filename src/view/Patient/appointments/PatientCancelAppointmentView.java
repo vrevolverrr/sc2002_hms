@@ -5,6 +5,7 @@ import java.util.List;
 import controller.AppointmentManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.TextStyle;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.TextInput;
@@ -33,6 +34,7 @@ public class PatientCancelAppointmentView extends View {
 
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("Cancel Appointment").paint(context);
         new VSpacer(1).paint(context);
 

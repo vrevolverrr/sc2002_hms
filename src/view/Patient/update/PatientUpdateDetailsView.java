@@ -8,6 +8,7 @@ import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.TextStyle;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.EnumeratedTable;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.Text;
@@ -38,6 +39,7 @@ public final class PatientUpdateDetailsView extends View {
      */
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("Update Patient Details").paint(context);
 
         List<UpdatableField> updatableFields = new ArrayList<UpdatableField>();

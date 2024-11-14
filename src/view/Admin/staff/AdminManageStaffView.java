@@ -2,6 +2,7 @@ package view.Admin.staff;
 
 import controller.UserManager;
 import lib.uilib.framework.MenuOption;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Menu;
 import services.Navigator;
 import view.View;
@@ -17,6 +18,7 @@ public class AdminManageStaffView extends View{
 
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("Manage Hospital Staff").paint(context);
 
         new Menu(

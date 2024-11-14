@@ -5,6 +5,7 @@ import java.util.List;
 import controller.AppointmentManager;
 import controller.UserManager;
 import lib.uilib.framework.TextInputField;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
@@ -36,6 +37,7 @@ public class PatientPastAppointmentsView extends View {
     @SuppressWarnings("unused")
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("Past Appointments").paint(context);
 
         List<Appointment> filteredAppointments = filterAppointments(keyword);

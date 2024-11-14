@@ -3,6 +3,7 @@ package view.Patient;
 import controller.UserManager;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TableRow;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.Table;
 import lib.uilib.widgets.base.VSpacer;
@@ -21,12 +22,13 @@ public class PatientView extends View {
 
     @Override
     public String getViewName() {
-        return "Overview";
+        return "Patient Overview";
     }
 
     @Override
     public void render() {
-        new Title("Welcome " + (patient.getGender() == Gender.MALE ? "Mr. " : "Mrs.") + patient.getName()).paint(context);
+        new Breadcrumbs().paint(context);
+        new Title("Welcome " + (patient.getGender() == Gender.MALE ? "Mr. " : "Mrs. ") + patient.getName()).paint(context);
 
         new Table(
             new TableRow("Patient ID", "Name", "Date of Birth", "Gender", "Age", "Blood Type"),

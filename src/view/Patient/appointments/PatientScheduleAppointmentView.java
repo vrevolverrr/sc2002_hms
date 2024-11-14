@@ -9,6 +9,7 @@ import controller.DoctorManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.Alignment;
 import lib.uilib.framework.enums.TextStyle;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.TextInput;
@@ -23,6 +24,7 @@ import view.View;
 import view.Patient.appointments.widgets.AppointmentScheduledStatus;
 import view.Patient.appointments.widgets.AppointmentSlotSelectionTable;
 import view.Patient.appointments.widgets.DoctorsSelectionTable;
+import view.widgets.Title;
 
 public class PatientScheduleAppointmentView extends View {
     final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class); 
@@ -38,16 +40,18 @@ public class PatientScheduleAppointmentView extends View {
     public String getViewName() {
         return "Schedule Appointment";
     }
-
+    
     @Override
     public void render() {
-        new Align(Alignment.CENTER, new Text("[ Schedule Appointment ]", TextStyle.BOLD)).paint(context);
+        new Breadcrumbs().paint(context);
+        new Title("Schedule Appointment").paint(context);
         new VSpacer(1).paint(context);
 
         /// Print table of doctors to choose from
         new Align(Alignment.CENTER, new Text("[ Available Doctors ]", TextStyle.BOLD)).paint(context);
         List<Doctor> doctors = doctorManager.getAllDoctors();
         new DoctorsSelectionTable(doctors).paint(context);
+        new VSpacer(1).paint(context);
 
         /// Choose a doctor
         TextInputField doctorField = new TextInputField("Choose a doctor");

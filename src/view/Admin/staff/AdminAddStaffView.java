@@ -6,6 +6,7 @@ import controller.StaffManager;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.TextStyle;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.Text;
@@ -29,6 +30,7 @@ public class AdminAddStaffView extends View {
 
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("Add Staff").paint(context);
 
         TextInputField name = new TextInputField("Enter the staff's name");
@@ -44,7 +46,6 @@ public class AdminAddStaffView extends View {
 
         final Gender gender = this.promptGender();
         new VSpacer(1).paint(context);
-
 
         TextInputField birthday = new TextInputField("Enter the staff's birthday (YYYY-MM-DD)");
         new TextInput(birthday).read(context, "Invalid date format. Please use YYYY-MM-DD.", 

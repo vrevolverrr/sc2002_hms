@@ -3,6 +3,7 @@ package view.Pharmacist;
 import controller.UserManager;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TableRow;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.Table;
 import lib.uilib.widgets.base.VSpacer;
@@ -26,6 +27,7 @@ public class PharmacistView extends View {
 
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("Welcome " + (activeUser.getGender() == Gender.MALE ? "Mr. " : "Mrs.") + activeUser.getName()).paint(context);
         
         new Table(
