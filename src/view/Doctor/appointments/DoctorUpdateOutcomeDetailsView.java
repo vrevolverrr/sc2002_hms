@@ -28,8 +28,8 @@ import view.Doctor.appointments.widgets.PatientDetailsTable;
 import view.widgets.Title;
 import model.prescriptions.MedicineDosage;
 import model.prescriptions.Prescription;
-import services.InputValidators;
 import services.Navigator;
+import utils.InputValidators;
 
 public class DoctorUpdateOutcomeDetailsView extends View {
     private final PatientManager patientManager = PatientManager.getInstance(PatientManager.class);

@@ -10,8 +10,8 @@ import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
 import model.enums.PrescriptionStatus;
 import model.prescriptions.Prescription;
-import services.InputValidators;
 import services.Navigator;
+import utils.InputValidators;
 import view.View;
 import view.Doctor.appointments.widgets.AppointmentDetailsTable;
 import view.Doctor.appointments.widgets.PrescriptionsTable;
@@ -73,6 +73,8 @@ public class PharmacistPrescribeMedicineView extends View {
         );
 
         final Prescription selectedPrescription = undispensedPrescriptions.get(selectField.getOption());
+
+        new VSpacer(1).paint(context);
 
         TextInputField confirmField = new TextInputField(
             String.format("Confirm dispense of %dx %s (Y/N)", 

@@ -19,7 +19,7 @@ import model.enums.Specialisation;
 import model.enums.UserRole;
 import model.users.Doctor;
 import model.users.User;
-import services.InputValidators;
+import utils.InputValidators;
 import utils.UpdatableField;
 import view.View;
 import view.widgets.Title;

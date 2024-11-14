@@ -15,7 +15,7 @@ import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.enums.Gender;
 import model.users.Patient;
-import services.InputValidators;
+import utils.InputValidators;
 import utils.UpdatableField;
 import view.View;
 import view.widgets.Title;
@@ -33,6 +33,9 @@ public final class PatientUpdateDetailsView extends View {
         return "Update Patient Details";
     }
 
+    /**
+     * Renders the view to update patient details.
+     */
     @Override
     public void render() {
         new Title("Update Patient Details").paint(context);

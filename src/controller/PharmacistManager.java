@@ -10,6 +10,10 @@ public class PharmacistManager extends Manager<PharmacistManager> {
     private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
     private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
 
+    /**
+     * Dispense all prescriptions for an appointment.
+     * @param appointment The appointment to dispense prescriptions for.
+     */
     public void dispensePrescriptions(Appointment appointment) {
         List<Prescription> prescriptions = appointment.getOutcomeRecord().getPrescriptions();
 
@@ -21,6 +25,11 @@ public class PharmacistManager extends Manager<PharmacistManager> {
         appointmentManager.updateAppointment(appointment);
     }
 
+    /**
+     * Dispense a single prescription for an appointment.
+     * @param appointment The appointment to dispense the prescription for.
+     * @param prescription The prescription to dispense.
+     */
     public void dispensePrescription(Appointment appointment, Prescription prescription) {
         dispense(prescription);
 
