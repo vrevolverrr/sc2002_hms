@@ -42,8 +42,6 @@ public class PatientPastAppointmentsView extends View {
         new Title("Past Appointments").paint(context);
 
         List<Appointment> filteredAppointments = filterAppointments(keyword);
-
-        System.out.println(filteredAppointments.size());
         new AppointmentsTable(filteredAppointments).paint(context);
 
         if (filteredAppointments.isEmpty()) {

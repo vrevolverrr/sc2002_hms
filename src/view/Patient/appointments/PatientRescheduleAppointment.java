@@ -17,7 +17,6 @@ import model.users.Patient;
 import services.Navigator;
 import utils.InputValidators;
 import view.View;
-import view.Doctor.appointments.widgets.DoctorAppointmentDetailsTable;
 import view.Patient.appointments.widgets.AppointmentScheduledStatus;
 import view.Patient.appointments.widgets.AppointmentSlotSelectionTable;
 import view.Patient.appointments.widgets.AppointmentsTable;
@@ -74,7 +73,7 @@ public class PatientRescheduleAppointment extends View {
         new Breadcrumbs().paint(context);
         new Title("Reschedule Appointment").paint(context);
         new VSpacer(1).paint(context);
-        
+
         AppointmentScheduledStatus.rescheduled(appointmentSlot).paint(context);
 
         new Pause().pause(context);
