@@ -67,7 +67,7 @@ public class AdminAppointmentView extends View {
                 appointment.getId(), 
                 getNameById(appointment.getPatientId()),
                 getNameById(appointment.getDoctorId()),
-                appointment.getDateTime().getFormattedDateTime(),
+                appointment.getTimeSlot().getFormattedDateTime(),
                 appointment.getStatus().toString()
             ).toLowerCase().contains(keyword)).toList();
     }

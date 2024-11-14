@@ -29,8 +29,8 @@ public class AppointmentsTable extends Widget {
 
         TableRow[] appointmentRows = appointments.stream().map((Appointment appointment) -> 
         new TableRow(
-            appointment.getDateTime().getFormattedDate(),
-            appointment.getDateTime().getFormattedTime(), 
+            appointment.getTimeSlot().getFormattedDate(),
+            appointment.getTimeSlot().getFormattedTime(), 
             getDoctorNameById(appointment.getDoctorId()),
             appointment.getStatus().toString()))
         .toArray(TableRow[]::new);

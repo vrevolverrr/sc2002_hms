@@ -74,7 +74,7 @@ public class PatientPastAppointmentsView extends View {
                 appointment.getId(), 
                 appointment.getPatientId(),
                 getNameById(appointment.getPatientId()),
-                appointment.getDateTime().getFormattedDateTime(),
+                appointment.getTimeSlot().getFormattedDateTime(),
                 appointment.getStatus().toString()
             ).toLowerCase().contains(keyword)).toList();
     }

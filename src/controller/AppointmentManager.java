@@ -4,6 +4,8 @@ import model.appointments.Appointment;
 import model.appointments.AppointmentOutcomeRecord;
 import model.appointments.AppointmentSlot;
 import model.appointments.TimeSlot;
+import model.availability.Availability;
+import model.availability.TimePeriod;
 import model.enums.AppointmentStatus;
 import model.enums.MedicalService;
 import model.enums.PrescriptionStatus;
@@ -13,14 +15,14 @@ import model.users.Patient;
 import repository.AppointmentRepository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AppointmentManager extends Manager<AppointmentManager> {
     private AppointmentRepository appointmentRepository = new AppointmentRepository();
 
-    /// Appointment slot generation constants, do not change.
-    /// Might break doctor availability logic.
     final static int START_HOUR = 8;
     final static int END_HOUR = 17;
     final static int SLOT_DURATION = 30;
@@ -96,11 +98,24 @@ public class AppointmentManager extends Manager<AppointmentManager> {
      */
     public List<AppointmentSlot> getAvailableSlotsByDoctor(LocalDate date, Doctor doctor) {
         List<AppointmentSlot> availableSlots = new ArrayList<AppointmentSlot>();
-        
+
         for (TimeSlot slot : generateTimeSlots(date)) {
-            if (isAppointmentSlotAvailable(slot, doctor)) {
-                availableSlots.add(new AppointmentSlot(doctor, slot));
+            // Check if the time slot is in the past.
+            if (slot.getDateTime().isBefore(LocalDateTime.now())) {
+                continue;
             }
+
+            // Check if there is already an exisitng appointment at this time slot.
+            if (!isAppointmentSlotAvailable(slot, doctor)) {
+                continue;
+            }
+
+            // Check if the doctor is available at this time slot.
+            if (!isDoctorAvailable(slot, doctor)) {
+                continue;
+            }
+
+            availableSlots.add(new AppointmentSlot(doctor, slot));
         }
 
         return availableSlots;
@@ -112,7 +127,7 @@ public class AppointmentManager extends Manager<AppointmentManager> {
      */
     public List<Appointment> getAllAppointments() {
         return appointmentRepository.getItems().values()
-            .stream().sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+            .stream().sorted((a, b) -> a.getTimeSlot().compareTo(b.getTimeSlot())).toList();
     }
 
     /**
@@ -123,7 +138,7 @@ public class AppointmentManager extends Manager<AppointmentManager> {
     public List<Appointment> getScheduledAppointments(Doctor doctor) {
         return appointmentRepository.findBy((appointment) -> 
             appointment.getDoctorId().equals(doctor.getDoctorId()) && 
-            !appointment.getDateTime().getDate().isBefore(LocalDate.now()) &&
+            !appointment.getTimeSlot().getDate().isBefore(LocalDate.now()) &&
             appointment.isScheduled()
         );
     }
@@ -137,7 +152,7 @@ public class AppointmentManager extends Manager<AppointmentManager> {
     public List<Appointment> getScheduledAppointments(Doctor doctor, LocalDate date) {
         return appointmentRepository.findBy((appointment) -> 
             appointment.getDoctorId().equals(doctor.getDoctorId()) && 
-            appointment.getDateTime().getDate().equals(date) &&
+            appointment.getTimeSlot().getDate().equals(date) &&
             appointment.isScheduled()
         );
     }
@@ -150,11 +165,11 @@ public class AppointmentManager extends Manager<AppointmentManager> {
     public List<Appointment> getScheduledAppointments(Patient patient) {
         return appointmentRepository.findBy((appointment) -> 
             appointment.getPatientId().equals(patient.getPatientId()) && 
-            !appointment.getDateTime().getDate().isBefore(LocalDate.now()) &&
+            !appointment.getTimeSlot().getDate().isBefore(LocalDate.now()) &&
             appointment.isScheduled()
         )
         .stream()
-        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+        .sorted((a, b) -> a.getTimeSlot().compareTo(b.getTimeSlot())).toList();
     }
 
     /**
@@ -165,11 +180,11 @@ public class AppointmentManager extends Manager<AppointmentManager> {
     public List<Appointment> getPendingAppointments(Patient patient) {
         return appointmentRepository.findBy((appointment) -> 
             appointment.getPatientId().equals(patient.getPatientId()) && 
-            !appointment.getDateTime().getDate().isBefore(LocalDate.now()) &&
+            !appointment.getTimeSlot().getDate().isBefore(LocalDate.now()) &&
             appointment.isRequested()
         )
         .stream()
-        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+        .sorted((a, b) -> a.getTimeSlot().compareTo(b.getTimeSlot())).toList();
     }
 
     /**
@@ -181,11 +196,11 @@ public class AppointmentManager extends Manager<AppointmentManager> {
     public List<Appointment> getUpcomingAppointments(Patient patient) {
         return appointmentRepository.findBy((appointment) -> 
             appointment.getPatientId().equals(patient.getPatientId()) && 
-            !appointment.getDateTime().getDate().isBefore(LocalDate.now()) &&
+            !appointment.getTimeSlot().getDate().isBefore(LocalDate.now()) &&
             (appointment.isScheduled() || appointment.isRequested())
         )
         .stream()
-        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+        .sorted((a, b) -> a.getTimeSlot().compareTo(b.getTimeSlot())).toList();
     }
 
     /**
@@ -196,11 +211,11 @@ public class AppointmentManager extends Manager<AppointmentManager> {
     public List<Appointment> getPendingAppointments(Doctor doctor) {
         return appointmentRepository.findBy((appointment) -> 
             appointment.getDoctorId().equals(doctor.getDoctorId()) && 
-            !appointment.getDateTime().getDate().isBefore(LocalDate.now()) &&
+            !appointment.getTimeSlot().getDate().isBefore(LocalDate.now()) &&
             appointment.isRequested()
         )
         .stream()
-        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+        .sorted((a, b) -> a.getTimeSlot().compareTo(b.getTimeSlot())).toList();
     }
 
     /**
@@ -214,7 +229,7 @@ public class AppointmentManager extends Manager<AppointmentManager> {
             appointment.isFulfilled()
         )
         .stream()
-        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+        .sorted((a, b) -> a.getTimeSlot().compareTo(b.getTimeSlot())).toList();
     }
 
     public List<Appointment> getCompletedAppointments(Doctor doctor) {
@@ -223,7 +238,7 @@ public class AppointmentManager extends Manager<AppointmentManager> {
             appointment.isCompleted()
         )
         .stream()
-        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+        .sorted((a, b) -> a.getTimeSlot().compareTo(b.getTimeSlot())).toList();
     }
 
     public List<Appointment> getPastAppointments(Patient patient) {
@@ -232,7 +247,7 @@ public class AppointmentManager extends Manager<AppointmentManager> {
             appointment.isCompleted() || appointment.isFulfilled()
         )
         .stream()
-        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+        .sorted((a, b) -> a.getTimeSlot().compareTo(b.getTimeSlot())).toList();
     }
 
     public List<Appointment> getPastAppointments(Doctor doctor) {
@@ -241,7 +256,7 @@ public class AppointmentManager extends Manager<AppointmentManager> {
             appointment.isCompleted() || appointment.isFulfilled()
         )
         .stream()
-        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+        .sorted((a, b) -> a.getTimeSlot().compareTo(b.getTimeSlot())).toList();
     }
 
     public List<Appointment> getUndispensedAppointments() {
@@ -252,7 +267,7 @@ public class AppointmentManager extends Manager<AppointmentManager> {
             .anyMatch(prescription -> prescription.getStatus() == PrescriptionStatus.PENDING)
         )
         .stream()
-        .sorted((a, b) -> a.getDateTime().compareTo(b.getDateTime())).toList();
+        .sorted((a, b) -> a.getTimeSlot().compareTo(b.getTimeSlot())).toList();
     }
 
     /**
@@ -265,12 +280,24 @@ public class AppointmentManager extends Manager<AppointmentManager> {
         List<Appointment> scheduledAppointments = getScheduledAppointments(doctor, slot.getDateTime().toLocalDate());
 
         for (Appointment appointment : scheduledAppointments) {
-            if (appointment.getDateTime().equals(slot)) {
+            if (appointment.getTimeSlot().equals(slot)) {
                 return false;
             }
         }
 
         return true;
+    }
+
+    public boolean isDoctorAvailable(TimeSlot slot, Doctor doctor) {
+        Availability availability =  doctor.getAvailability();
+
+        // Only have to check against the date, since it falls back to checking the default
+        // availability of the day of week if the date is not found in the availability map.
+        if (availability.getAvailability(slot.getDate()).contains(slot.getTime())) {
+            return true;
+        }
+        
+        return false;
     }
 
     /**

@@ -29,8 +29,8 @@ public class PharmacistAppointmentsTable extends Widget {
         }
         
         TableRow[] rows = undispensedAppointments.stream().map(appointment -> new TableRow(
-            appointment.getDateTime().getFormattedDate(),
-            appointment.getDateTime().getFormattedTime(),
+            appointment.getTimeSlot().getFormattedDate(),
+            appointment.getTimeSlot().getFormattedTime(),
             getNameById(appointment.getPatientId()),
             getNameById(appointment.getDoctorId()),
             appointment.getStatus().toString(),

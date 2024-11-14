@@ -28,8 +28,8 @@ public class AdminAppointmentTable extends Widget {
         TableRow[] appointmentRows = appointments.stream().map((appointment) -> 
             new TableRow(
                 appointment.getId(),
-                appointment.getDateTime().getFormattedDate(),
-                appointment.getDateTime().getFormattedTime(),
+                appointment.getTimeSlot().getFormattedDate(),
+                appointment.getTimeSlot().getFormattedTime(),
                 getNameById(appointment.getDoctorId()),
                 getNameById(appointment.getPatientId()),
                 appointment.getStatus().toString()

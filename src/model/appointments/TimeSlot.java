@@ -3,6 +3,7 @@ package model.appointments;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class TimeSlot implements Serializable, Comparable<TimeSlot> {
@@ -20,6 +21,10 @@ public class TimeSlot implements Serializable, Comparable<TimeSlot> {
 
     public LocalDate getDate() {
         return this.dateTime.toLocalDate();
+    }
+
+    public LocalTime getTime() {
+        return this.dateTime.toLocalTime();
     }
 
     public String getFormattedDate() {

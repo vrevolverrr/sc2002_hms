@@ -20,7 +20,7 @@ public class Appointment extends BaseModel {
     /**
      * The date and time of the appointment.
      */
-    private TimeSlot dateTime;
+    private TimeSlot timeSlot;
 
     /**
      * The IDs of the doctor assigned to the appointment.
@@ -41,17 +41,17 @@ public class Appointment extends BaseModel {
      * The constructor of an {@link Appointment}. Calls the constructor of {@link BaseModel}.
      * @param appointmentId
      * @param status
-     * @param dateTime
+     * @param timeSlot
      * @param doctorId
      * @param patientId
      */
-    public Appointment(String appointmentId, AppointmentStatus status, TimeSlot dateTime, String doctorId, String patientId) {
+    public Appointment(String appointmentId, AppointmentStatus status, TimeSlot timeSlot, String doctorId, String patientId) {
         super(appointmentId);
 
         this.appointmentId = appointmentId;
         this.doctorId = doctorId;
         this.patientId = patientId;
-        this.dateTime = dateTime;
+        this.timeSlot = timeSlot;
         this.status = status;
 
         this.outcome = null;
@@ -117,16 +117,16 @@ public class Appointment extends BaseModel {
      * Gets the date and time of the appointment.
      * @return the date and time of the appointment.
      */
-    public TimeSlot getDateTime() { 
-        return dateTime; 
+    public TimeSlot getTimeSlot() { 
+        return timeSlot; 
     }
 
     /**
      * Sets the date and time of the appointment.
      * @param newDateTime the new date and time of the appointment.
      */
-    public void setDateTime(TimeSlot newDateTime) {
-        this.dateTime = newDateTime;
+    public void setDateTime(TimeSlot newTimeSlot) {
+        this.timeSlot = newTimeSlot;
     }
     
     /**
@@ -187,7 +187,7 @@ public class Appointment extends BaseModel {
      */
     @Override
     public Appointment copy() {
-        final Appointment newAppt = new Appointment(getAppointmentId(), getStatus(), getDateTime(), getDoctorId(), getPatientId());
+        final Appointment newAppt = new Appointment(getAppointmentId(), getStatus(), getTimeSlot(), getDoctorId(), getPatientId());
         newAppt.setOutcomeRecord(getOutcomeRecord());
         
         return newAppt;

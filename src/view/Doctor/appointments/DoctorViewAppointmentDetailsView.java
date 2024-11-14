@@ -10,7 +10,7 @@ import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
 import services.Navigator;
 import view.View;
-import view.Doctor.appointments.widgets.AppointmentDetailsTable;
+import view.Doctor.appointments.widgets.DoctorAppointmentDetailsTable;
 import view.Doctor.appointments.widgets.PatientDetailsTable;
 import view.Doctor.appointments.widgets.PrescriptionsTable;
 import view.widgets.Title;
@@ -43,7 +43,7 @@ public class DoctorViewAppointmentDetailsView extends View {
         new VSpacer(1).paint(context);
 
         new Title("Appointment Details").paint(context);
-        new AppointmentDetailsTable(appointment).paint(context);
+        new DoctorAppointmentDetailsTable(appointment).paint(context);
 
         new VSpacer(1).paint(context);
 

@@ -23,7 +23,7 @@ import model.enums.MedicalService;
 import model.enums.MedicineFrequency;
 import model.inventory.InventoryItem;
 import view.View;
-import view.Doctor.appointments.widgets.AppointmentDetailsTable;
+import view.Doctor.appointments.widgets.DoctorAppointmentDetailsTable;
 import view.Doctor.appointments.widgets.AppointmentUpdateOutcomeTable;
 import view.Doctor.appointments.widgets.PatientDetailsTable;
 import view.widgets.Title;
@@ -68,7 +68,7 @@ public class DoctorUpdateOutcomeDetailsView extends View {
         new VSpacer(1).paint(context);
 
         new Title("Appointment Details").paint(context);
-        new AppointmentDetailsTable(appointment).paint(context);
+        new DoctorAppointmentDetailsTable(appointment).paint(context);
 
         new VSpacer(1).paint(context);
 

@@ -14,7 +14,7 @@ import model.prescriptions.Prescription;
 import services.Navigator;
 import utils.InputValidators;
 import view.View;
-import view.Doctor.appointments.widgets.AppointmentDetailsTable;
+import view.Doctor.appointments.widgets.DoctorAppointmentDetailsTable;
 import view.Doctor.appointments.widgets.PrescriptionsTable;
 import view.widgets.Title;
 
@@ -39,7 +39,7 @@ public class PharmacistPrescribeMedicineView extends View {
         new VSpacer(1).paint(context);
         
         new Title("Appointment Details").paint(context);
-        new AppointmentDetailsTable(appointment).paint(context);
+        new DoctorAppointmentDetailsTable(appointment).paint(context);
         new VSpacer(1).paint(context);
 
         final List<Prescription> prescriptions = appointment.getOutcomeRecord().getPrescriptions();

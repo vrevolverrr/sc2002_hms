@@ -31,7 +31,11 @@ public class Availability implements Serializable {
     }
 
     public TimePeriod getAvailability(LocalDate date) {
-        return specific.getOrDefault(date, TimePeriod.defaultPeriod());
+        if (specific.containsKey(date)) {
+            return specific.get(date);
+        }
+
+        return general.get(date.getDayOfWeek());
     }
 
     public Map<DayOfWeek, TimePeriod> getGeneralAvailability() {

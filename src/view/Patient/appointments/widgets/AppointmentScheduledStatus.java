@@ -5,7 +5,9 @@ import lib.uilib.framework.Widget;
 import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.layout.Column;
+import model.appointments.Appointment;
 import model.appointments.AppointmentSlot;
+import model.enums.AppointmentStatus;
 
 public class AppointmentScheduledStatus extends Widget {
     private final AppointmentSlot appointmentSlot;
@@ -26,11 +28,15 @@ public class AppointmentScheduledStatus extends Widget {
 
     @Override
     public String build(BuildContext context) {
+        // Temp appointment object to display the table
+        final Appointment tempAppt = new Appointment(
+            "0", AppointmentStatus.REQUESTED, appointmentSlot.getTimeSlot(), 
+            appointmentSlot.getDoctor().getDoctorId(), "");
+
         return
         new Column(
             new Text(message, TextStyle.BOLD),
-            new Text("Date and Time: " + appointmentSlot.getTimeSlot().getFormattedDateTime()),
-            new Text("Doctor: Dr. " + appointmentSlot.getDoctor().getName())
+            new PatientAppointmentDetailsTable(tempAppt)
         ).build(context);
     }
     

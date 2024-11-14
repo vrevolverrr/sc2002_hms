@@ -39,7 +39,7 @@ public class PatientView extends View {
 
         new Menu(
             new MenuOption("View Medical Records", () -> Navigator.navigateTo(new PatientMedicalRecordView(patient))),
-            new MenuOption("Update patient details", () -> Navigator.navigateTo(new PatientUpdateDetailsView(patient))),
+            new MenuOption("Update Patient Details", () -> Navigator.navigateTo(new PatientUpdateDetailsView(patient))),
             new MenuOption("Manage Appointments", () -> Navigator.navigateTo(new PatientAppointmentView(patient))),
             new MenuOption("Log Out", () -> Navigator.pop())
         ).readOption(context);
