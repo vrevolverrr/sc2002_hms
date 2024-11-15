@@ -5,7 +5,6 @@ import model.appointments.AppointmentOutcomeRecord;
 import model.appointments.AppointmentSlot;
 import model.appointments.TimeSlot;
 import model.availability.Availability;
-import model.availability.TimePeriod;
 import model.enums.AppointmentStatus;
 import model.enums.MedicalService;
 import model.enums.PrescriptionStatus;
@@ -16,7 +15,6 @@ import repository.AppointmentRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +25,25 @@ public class AppointmentManager extends Manager<AppointmentManager> {
     final static int END_HOUR = 17;
     final static int SLOT_DURATION = 30;
 
-    protected AppointmentManager() {}
+    protected AppointmentManager() {
+        // Every time the AppointmentManager is instantiated, it will check for past appointments
+        // and mark them as fulfilled if it is overdue.
+        fulfillPastAppointments();
+    }
+
+    /**
+     * Marks all past appointments as fulfilled if they are overdue.
+     * This method is called every time the AppointmentManager is instantiated.
+     */
+    private void fulfillPastAppointments() {
+        appointmentRepository.findBy(appointment -> appointment.isScheduled())
+            .forEach(appointment -> {
+                if (appointment.getTimeSlot().getDateTime().isBefore(LocalDateTime.now())) {
+                    appointment.setStatus(AppointmentStatus.FULFILLED);
+                    appointmentRepository.save(appointment);
+                }
+            });
+    }
 
     public void updateAppointment(Appointment appointment) {
         appointmentRepository.save(appointment);
