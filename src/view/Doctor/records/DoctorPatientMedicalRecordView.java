@@ -5,6 +5,7 @@ import java.util.List;
 import controller.MedicalRecordManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
+import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.medrecord.MedicalRecordEntry;
@@ -33,6 +34,7 @@ public class DoctorPatientMedicalRecordView extends View {
 
     @Override
     public void render() {
+        new Breadcrumbs().paint(context);
         new Title("Patient Medical Record").paint(context);
         new VSpacer(1).paint(context);
 
