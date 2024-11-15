@@ -48,6 +48,10 @@ public class EnumeratedTable extends Table {
             
             // For each column in row, find the maximum length of the column
             for (int i = 0; i < values.length; i++) {
+                if (values[i] == null) {
+                    continue;
+                }
+
                 if (values[i].length() > columnWidths[i]) {
                     columnWidths[i] = values[i].length();
                 }

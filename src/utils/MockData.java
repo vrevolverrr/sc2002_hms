@@ -17,6 +17,7 @@ import model.enums.MedicalService;
 import model.enums.MedicineFrequency;
 import model.enums.Specialisation;
 import model.inventory.InventoryItem;
+import model.medrecord.MedicalRecordEntry;
 import model.prescriptions.MedicineDosage;
 import model.prescriptions.Prescription;
 import model.users.Admin;
@@ -27,6 +28,7 @@ import repository.AdminRepository;
 import repository.AppointmentRepository;
 import repository.DoctorRepository;
 import repository.InventoryRepository;
+import repository.MedicalRecordRepository;
 import repository.PatientRepository;
 import repository.PharmacistRepository;
 import repository.UserRepository;
@@ -39,23 +41,24 @@ public class MockData {
         mockPharmacistData();
         mockDoctorData();
         mockAppointmentData();
+        mockMedicalRecordData();
     }
 
     public static void mockPatientData() {
         PatientRepository patientRepository = new PatientRepository(UserRepository.getInstance());
         patientRepository.clear();
         
-        patientRepository.save(new Patient("P1001", "Alice Brown", 44, "123", Gender.FEMALE, LocalDate.of(1980, 5, 14), "81888888", "alice.brown@example.com", BloodType.A_POSITIVE));
-        patientRepository.save(new Patient("P1002", "John Smith", 32, "abc123", Gender.MALE, LocalDate.of(1992, 8, 10), "81812345", "john.smith@example.com", BloodType.O_NEGATIVE));
-        patientRepository.save(new Patient("P1003", "Emily Davis", 39, "secure!1", Gender.FEMALE, LocalDate.of(1985, 3, 22), "82765432", "emily.davis@example.com", BloodType.B_POSITIVE));
-        patientRepository.save(new Patient("P1004", "Michael Johnson", 46, "michaelPass", Gender.MALE, LocalDate.of(1978, 11, 5), "83654321", "michael.j@example.com", BloodType.A_NEGATIVE));
-        patientRepository.save(new Patient("P1005", "Sarah Lee", 24, "Lee$2020", Gender.FEMALE, LocalDate.of(2000, 6, 15), "81987654", "sarah.lee@example.com", BloodType.AB_POSITIVE));
-        patientRepository.save(new Patient("P1006", "James Brown", 29, "jBrown123", Gender.MALE, LocalDate.of(1995, 9, 18), "81098765", "james.brown@example.com", BloodType.B_NEGATIVE));
-        patientRepository.save(new Patient("P1007", "Laura Wilson", 35, "laura_W!lson", Gender.FEMALE, LocalDate.of(1989, 1, 27), "81345678", "laura.wilson@example.com", BloodType.O_POSITIVE));
-        patientRepository.save(new Patient("P1008", "Robert Miller", 52, "millerPass!", Gender.MALE, LocalDate.of(1972, 12, 2), "81823456", "robert.miller@example.com", BloodType.A_POSITIVE));
-        patientRepository.save(new Patient("P1009", "Jessica Taylor", 34, "Jessie321", Gender.FEMALE, LocalDate.of(1990, 7, 30), "81234567", "jessica.taylor@example.com", BloodType.AB_NEGATIVE));
-        patientRepository.save(new Patient("P1010", "Charles Moore", 41, "charlieM0re", Gender.MALE, LocalDate.of(1983, 4, 6), "81456789", "charles.moore@example.com", BloodType.B_POSITIVE));
-        patientRepository.save(new Patient("P1011", "Megan Clark", 49, "meganC!ark", Gender.FEMALE, LocalDate.of(1975, 10, 12), "81876543", "megan.clark@example.com", BloodType.O_NEGATIVE));
+        patientRepository.save(new Patient("P1001", "Alice Brown", 44, "123", Gender.FEMALE, LocalDate.of(1980, 5, 14), 45.7, 162.3, "81888888", "alice.brown@example.com", BloodType.A_POSITIVE));
+        patientRepository.save(new Patient("P1002", "John Smith", 32, "abc123", Gender.MALE, LocalDate.of(1992, 8, 10), 75.5, 178.2, "81812345", "john.smith@example.com", BloodType.O_NEGATIVE));
+        patientRepository.save(new Patient("P1003", "Emily Davis", 39, "secure!1", Gender.FEMALE, LocalDate.of(1985, 3, 22), 58.3, 165.7, "82765432", "emily.davis@example.com", BloodType.B_POSITIVE));
+        patientRepository.save(new Patient("P1004", "Michael Johnson", 46, "michaelPass", Gender.MALE, LocalDate.of(1978, 11, 5), 82.1, 180.5, "83654321", "michael.j@example.com", BloodType.A_NEGATIVE));
+        patientRepository.save(new Patient("P1005", "Sarah Lee", 24, "Lee$2020", Gender.FEMALE, LocalDate.of(2000, 6, 15), 52.8, 160.4, "81987654", "sarah.lee@example.com", BloodType.AB_POSITIVE));
+        patientRepository.save(new Patient("P1006", "James Brown", 29, "jBrown123", Gender.MALE, LocalDate.of(1995, 9, 18), 78.4, 175.8, "81098765", "james.brown@example.com", BloodType.B_NEGATIVE));
+        patientRepository.save(new Patient("P1007", "Laura Wilson", 35, "laura_W!lson", Gender.FEMALE, LocalDate.of(1989, 1, 27), 61.2, 168.9, "81345678", "laura.wilson@example.com", BloodType.O_POSITIVE));
+        patientRepository.save(new Patient("P1008", "Robert Miller", 52, "millerPass!", Gender.MALE, LocalDate.of(1972, 12, 2), 85.6, 182.3, "81823456", "robert.miller@example.com", BloodType.A_POSITIVE));
+        patientRepository.save(new Patient("P1009", "Jessica Taylor", 34, "Jessie321", Gender.FEMALE, LocalDate.of(1990, 7, 30), 55.9, 163.5, "81234567", "jessica.taylor@example.com", BloodType.AB_NEGATIVE));
+        patientRepository.save(new Patient("P1010", "Charles Moore", 41, "charlieM0re", Gender.MALE, LocalDate.of(1983, 4, 6), 79.8, 177.4, "81456789", "charles.moore@example.com", BloodType.B_POSITIVE));
+        patientRepository.save(new Patient("P1011", "Megan Clark", 49, "meganC!ark", Gender.FEMALE, LocalDate.of(1975, 10, 12), 63.4, 166.8, "81876543", "megan.clark@example.com", BloodType.O_NEGATIVE));
     }
 
     public static void mockAdminData() {
@@ -156,5 +159,21 @@ public class MockData {
         appointmentRepository.save(pA1);
 
         System.out.println(appointmentRepository.findById("Y1013").getOutcomeRecord().getConsultationNotes());
+    }
+
+    public static void mockMedicalRecordData() {
+        MedicalRecordRepository medicalRecordRepository = new MedicalRecordRepository();
+        medicalRecordRepository.clear();
+
+        LocalDate today = LocalDate.now();
+
+        Prescription[] pA1Ps = {
+            new Prescription("I1001", 14, new MedicineDosage(2, DosageUnit.TABLET), MedicineFrequency.AFTER_MEALS),
+            new Prescription("I1002", 8, new MedicineDosage(1, DosageUnit.TABLET), MedicineFrequency.AS_NEEDED)
+        };
+        MedicalService[] pA1MSs = {MedicalService.CONSULTATION, MedicalService.BLOOD_TEST};
+        medicalRecordRepository.save(new MedicalRecordEntry("M1001", today, "P1001", "D1001",
+            "Patient has mild fever. Advised to rest and drink plenty of fluids.", "Prescribed Paracetamol for the fever and Ibuprofen as needed to cope with headache.", 
+            Arrays.asList(pA1Ps), Arrays.asList(pA1MSs)));
     }
 }

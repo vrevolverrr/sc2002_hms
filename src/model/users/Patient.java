@@ -7,6 +7,7 @@
 package model.users;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import model.enums.BloodType;
 import model.enums.Gender;
@@ -21,6 +22,16 @@ public class Patient extends User {
      */
     private String patientId;
 
+    /*
+     * The weight of the patient in kg.
+     */
+    private double weight;
+
+    /**
+     * The height of the patient in cm.
+     */
+    private double height;
+
     /**
      * The blood type of the patient.
      */
@@ -34,14 +45,21 @@ public class Patient extends User {
      * @param password the password of the patient's user account.
      * @param gender the gender of the patient.
      * @param dob the date of birth of the patient.
+     * @param weight the weight of the patient in kg.
+     * @param height the height of the patient in cm.
      * @param phoneNumber the phone number of the patient.
      * @param emailAddress the email address of the patient.
      * @param bloodType the blood type of the patient.
      */
-    public Patient(String patientId, String name, int age, String password, Gender gender, LocalDate dob, 
-    String phoneNumber, String emailAddress, BloodType bloodType) {
+    public Patient(
+        String patientId, String name, int age, String password, 
+        Gender gender, LocalDate dob, double weight, double height,
+        String phoneNumber, String emailAddress, BloodType bloodType) {
+        
         super(patientId, UserRole.PATIENT, password, name, age, gender, dob, phoneNumber, emailAddress);
 
+        this.weight = weight;
+        this.height = height;
         this.patientId = patientId;
         this.bloodType = bloodType;
     }
@@ -64,6 +82,38 @@ public class Patient extends User {
     }
 
     /**
+     * Gets the weight (in kg) of the patient.
+     * @return the weight of the patient.
+     */
+    public double getWeight() {
+        return this.weight;
+    }
+
+    /**
+     * Sets the weight (in kg) of the patient.
+     * @param weight the new weight of the patient.
+     */
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    /**
+     * Gets the height (in cm) of the patient.
+     * @return the height of the patient.
+     */
+    public double getHeight() {
+        return this.height;
+    }
+
+    /**
+     * Sets the height of the patient.
+     * @param height the new height (in cm) of the patient.
+     */
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    /**
      * Gets the blood type of the patient.
      * @return the blood type of the patient.
      */
@@ -79,13 +129,37 @@ public class Patient extends User {
         this.bloodType = bloodType;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof Patient)) {
+            return false;
+        }
+
+        Patient patient = (Patient) obj;
+        // Compare the ID of the patient.
+        // from the repository's perspective, same ID means same object.
+        return patient.getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
+
     /**
      * Creates a copy of the current {@link Patient} instance.
-     * @return the exact copy (shallow) of the {@link Patient}.
+     * @return the exact deep copy of the {@link Patient}.
      */
     @Override
     public Patient copy() {
-        return new Patient(getId(), getName(), getAge(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress(), getBloodType());
+        return new Patient(
+            getId(), getName(), getAge(), getPassword(), getGender(), getDob(),
+            getWeight(), getHeight(),
+            getPhoneNumber(), getEmailAddress(), getBloodType());
     }
 
 }

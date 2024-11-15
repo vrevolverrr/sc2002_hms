@@ -6,6 +6,7 @@ import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.Widget;
 import lib.uilib.widgets.base.EnumeratedTable;
+import lib.uilib.widgets.base.Table;
 import model.users.User;
 
 public class StaffTable extends Widget {
@@ -20,7 +21,7 @@ public class StaffTable extends Widget {
         TableRow header = new TableRow("ID", "Name", "Age", "Gender", "Role", "DOB", "Email", "Contact");
 
         if (staffs.isEmpty()) {
-            return EnumeratedTable.headerless(new TableRow("No staff found")).build(context);
+            return new Table(new TableRow("No staff found")).build(context);
         }
 
         TableRow[] staffRows = staffs.stream().map((staff) -> 

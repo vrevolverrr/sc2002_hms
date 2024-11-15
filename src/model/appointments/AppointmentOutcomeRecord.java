@@ -1,17 +1,17 @@
 package model.appointments;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import model.SerializableCopyable;
 import model.enums.MedicalService;
 import model.prescriptions.Prescription;
 
 /**
  * An imutable class representing the outcome of a medical appointment.
  */
-public class AppointmentOutcomeRecord implements Serializable {
+public class AppointmentOutcomeRecord implements SerializableCopyable {
     static final long serialVersionUID = 42L;
 
     private final LocalDate recordedDate;
@@ -53,6 +53,7 @@ public class AppointmentOutcomeRecord implements Serializable {
      * Creates a deep copy of this instance of {@link AppointmentOutcomeRecord}.
      * @return the deep copy of the record.
      */
+    @Override
     public AppointmentOutcomeRecord copy() {
         return new AppointmentOutcomeRecord(getRecordedDate(), getPrescriptions(), getServices(), getConsultationNotes());
     }

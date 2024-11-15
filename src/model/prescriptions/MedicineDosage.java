@@ -1,10 +1,9 @@
 package model.prescriptions;
 
-import java.io.Serializable;
-
+import model.SerializableCopyable;
 import model.enums.DosageUnit;
 
-public class MedicineDosage implements Serializable {
+public class MedicineDosage implements SerializableCopyable {
     private final int quantity;
     private final DosageUnit unit;
 
@@ -19,5 +18,15 @@ public class MedicineDosage implements Serializable {
 
     public DosageUnit getUnit() {
         return unit;
+    }
+
+    @Override
+    public String toString() {
+        return quantity + " " + unit;
+    }
+
+    @Override
+    public MedicineDosage copy() {
+        return new MedicineDosage(getQuantity(), getUnit());
     }
 }

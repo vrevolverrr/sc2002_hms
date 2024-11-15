@@ -61,7 +61,7 @@ public class AdminUpdateStaffDetailsView extends View {
         new VSpacer(1).paint(context);
 
         TextInputField updateField = new TextInputField(
-            String.format("Choose field to update (1-%d, 0 to go back)", detailRows.length));
+            String.format("Choose field to update (1-%d)", detailRows.length));
 
         new TextInput(updateField).read(context, "Choose a valid field to update.", input -> 
             InputValidators.validateRange(input, detailRows.length));

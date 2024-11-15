@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AppointmentManager extends Manager<AppointmentManager> {
-    private AppointmentRepository appointmentRepository = new AppointmentRepository();
+    private final AppointmentRepository appointmentRepository = new AppointmentRepository();
 
     final static int START_HOUR = 8;
     final static int END_HOUR = 17;
@@ -92,7 +92,7 @@ public class AppointmentManager extends Manager<AppointmentManager> {
         appointmentRepository.save(appointment);
     }
 
-    public void updateAppointmentOutcome(
+    public AppointmentOutcomeRecord updateAppointmentOutcome(
         Appointment appointment, String consultationNotes,
         List<Prescription> prescriptions, List<MedicalService> services) {
         
@@ -104,6 +104,8 @@ public class AppointmentManager extends Manager<AppointmentManager> {
         appointment.setStatus(AppointmentStatus.COMPLETED);
         
         appointmentRepository.save(appointment);
+
+        return outcomeRecord;
     }
 
     /**

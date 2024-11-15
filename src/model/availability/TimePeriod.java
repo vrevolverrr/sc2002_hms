@@ -1,10 +1,11 @@
 package model.availability;
 
-import java.io.Serializable;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class TimePeriod implements Serializable {
+import model.SerializableCopyable;
+
+public class TimePeriod implements SerializableCopyable {
     static final long serialVersionUID = 42L;
 
     private final LocalTime start;
@@ -56,5 +57,10 @@ public class TimePeriod implements Serializable {
 
         TimePeriod other = (TimePeriod) obj;
         return start.equals(other.start) && end.equals(other.end);
+    }
+
+    @Override
+    public TimePeriod copy() {
+        return new TimePeriod(getStart(), getEnd());
     }
 }

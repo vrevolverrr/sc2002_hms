@@ -1,129 +1,103 @@
-package view.Doctor.appointments;
+package view.Doctor.records;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import controller.AppointmentManager;
 import controller.InventoryManager;
 import controller.MedicalRecordManager;
-import controller.UserManager;
+import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.MenuOption;
+import lib.uilib.framework.TableRow;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.TextStyle;
-import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Menu;
-import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
-import model.appointments.Appointment;
-import model.appointments.AppointmentOutcomeRecord;
 import model.enums.DosageUnit;
 import model.enums.MedicalService;
 import model.enums.MedicineFrequency;
+import model.enums.PrescriptionStatus;
 import model.inventory.InventoryItem;
-import view.View;
-import view.Doctor.appointments.widgets.DoctorAppointmentDetailsTable;
-import view.Doctor.appointments.widgets.AppointmentUpdateOutcomeTable;
-import view.Doctor.appointments.widgets.PatientDetailsTable;
-import view.widgets.Title;
+import model.medrecord.MedicalRecordEntry;
 import model.prescriptions.MedicineDosage;
 import model.prescriptions.Prescription;
-import model.users.Doctor;
-import model.users.Patient;
-import services.Navigator;
 import utils.InputValidators;
+import utils.UpdatableField;
+import view.View;
+import view.Patient.records.widgets.PatientDetailedMedicalRecordEntryTable;
+import view.widgets.Title;
 
-public class DoctorUpdateOutcomeDetailsView extends View {
-    private final UserManager userManager = UserManager.getInstance(UserManager.class);
-    private final MedicalRecordManager recordManager = MedicalRecordManager.getInstance(MedicalRecordManager.class);
+public class DoctorUpdateMedicalRecordDetailsView extends View {
     private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
-    private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
+    private final MedicalRecordManager recordManager = MedicalRecordManager.getInstance(MedicalRecordManager.class);
 
-    private final Appointment appointment;
-    private final Patient patient;
-    private final Doctor doctor;
+    private final MedicalRecordEntry entry;
 
-    private String consultationNotes = null;
-    private List<Prescription> prescriptions = new ArrayList<Prescription>();
-    private List<MedicalService> services = new ArrayList<MedicalService>();
+    private final BuildContext context = BuildContext.unboundedVertical(125);
 
-    private boolean donePrescriptions = false;
-    private boolean doneServices = false;
-
-    public DoctorUpdateOutcomeDetailsView(Appointment appointment) {
-        this.appointment = appointment;
-        this.patient = (Patient) userManager.getUser(appointment.getPatientId());
-        this.doctor = (Doctor) userManager.getUser(appointment.getDoctorId());
-    }
+    public DoctorUpdateMedicalRecordDetailsView(MedicalRecordEntry medicalRecordEntry) {
+        this.entry = medicalRecordEntry;
+    }   
 
     @Override
     public String getViewName() {
-        return "Update Appointment Outcome";
+        return "Update Medical Record Details";
     }
 
     @Override
     public void render() {
-        new Breadcrumbs().paint(context);
-        new Title("Update Appointment Outcome").paint(context);
-        
+        new Title("Update Medical Record Details").paint(context);
         new VSpacer(1).paint(context);
 
-        new Title("Patient Details").paint(context);
-        new PatientDetailsTable(patient).paint(context);
+        List<UpdatableField> updatableFields = new ArrayList<UpdatableField>();
+
+        updatableFields.add(new UpdatableField(new TableRow("Date Recorded", entry.getDateRecorded().toString()), this::updateDate));
+        updatableFields.add(new UpdatableField(new TableRow("Diagnosis", entry.getDiagnosis()), this::updateDiagnosis));
+        updatableFields.add(new UpdatableField(new TableRow("Treatment Plan", entry.getTreatmentPlan()), this::updateTreatmentPlan));
+        updatableFields.add(new UpdatableField(new TableRow("Prescription", buildPrescription(entry.getPrescription())), this::updatePrescription));
+        updatableFields.add(new UpdatableField(new TableRow("Medical Services", buildMedicalServices(entry.getMedicalServices())), this::updateMedicalServices));
+
+        new Title("Patient Medical Record").paint(context);
+        new PatientDetailedMedicalRecordEntryTable(entry).paint(context);
+        new VSpacer(1).paint(context);
+
+        TextInputField updateField = new TextInputField("Choose field to update (2-5)");
+        new TextInput(updateField).read(context, "Choose a valid field to update.", 
+            input -> InputValidators.validateRange(input, 2, 5));
 
         new VSpacer(1).paint(context);
 
-        new Title("Appointment Details").paint(context);
-        new DoctorAppointmentDetailsTable(appointment).paint(context);
-
-        new VSpacer(1).paint(context);
-
-        new Title("Appointment Outcome").paint(context);
-        new AppointmentUpdateOutcomeTable(consultationNotes, prescriptions, services).paint(context);
-
-        new VSpacer(1).paint(context);
-        
-        if (consultationNotes == null) {
-            promptConsultationNotes();
-            repaint();
-        }
-
-        if (!donePrescriptions) {
-            promptPrescriptions();
-            repaint();
-        }
-
-        if (!doneServices) {
-            promptServices();
-            repaint();
-        }        
-
-        AppointmentOutcomeRecord outcomeRecord =
-             appointmentManager.updateAppointmentOutcome(appointment, consultationNotes, prescriptions, services);
-        
-        recordManager.createMedicalRecordFromOutcome(patient, doctor, outcomeRecord);
-        
-        new Pause("Completed. Press any key to go back.").pause(context);
-        Navigator.pop();
+        updatableFields.get(updateField.getOption()).update();
+        repaint();
     }
 
-    private void promptConsultationNotes() {
-        TextInputField consultationNotesField = new TextInputField("Consultation Notes");
-        new TextInput(consultationNotesField).read(context, "Enter non-empty consultation notes.", input -> !input.isBlank());
+    private void updateDate() {}
 
-        this.consultationNotes = consultationNotesField.getValue();
+    private void updateDiagnosis() {
+        TextInputField diagnosisField = new TextInputField("Enter new diagnosis");
+        new TextInput(diagnosisField).read(context, "Enter a non-empty diagnosis.", input -> !input.trim().isEmpty());
+
+        entry.setDiagnosis(diagnosisField.getValue());
+        recordManager.updateRecord(entry);
     }
 
-    private void promptPrescriptions() {
+    private void updateTreatmentPlan() {
+        TextInputField treatmentPlanField = new TextInputField("Enter new treatment plan");
+        new TextInput(treatmentPlanField).read(context, "Enter a non-empty treatment plan.", input -> !input.trim().isEmpty());
+
+        entry.setTreatmentPlan(treatmentPlanField.getValue());
+        recordManager.updateRecord(entry);
+    }
+
+    private void updatePrescription() {
         final List<InventoryItem> drugList = inventoryManager.getAllItems();
 
         final Prescription[] prescription = {null};
 
-        new Text(String.format("Select medicine to prescribe (%d for Done):", (drugList.size() + 1)), 
-            TextStyle.BOLD).paint(context);
+        new Text("Select medicine to add:", TextStyle.BOLD).paint(context);
         new VSpacer(1).paint(context);
 
         final List<MenuOption> drugOptions = 
@@ -137,15 +111,24 @@ public class DoctorUpdateOutcomeDetailsView extends View {
                         ))
             .collect(Collectors.toCollection(ArrayList::new));
         
-        drugOptions.add(new MenuOption("Done", () -> donePrescriptions = true));
-        
         new Menu(
             drugOptions.toArray(MenuOption[]::new)
         ).readOption(context);
 
-        if (prescription[0] != null) {
-            this.prescriptions.add(prescription[0]);
+        if (prescription[0] == null) {
+            return;
         }
+
+        // Automatically set the prescription status to DISPENSED
+        prescription[0].setStatus(PrescriptionStatus.DISPENSED);
+
+        // Add the new prescription to the existing list of prescriptions
+        List<Prescription> prescriptions = entry.getPrescription();
+        prescriptions.add(prescription[0]);
+        entry.setPrescription(prescriptions);
+        
+        // Update the record
+        recordManager.updateRecord(entry);
     }
 
     private Prescription promptDosageDetails(InventoryItem drug) {
@@ -196,11 +179,10 @@ public class DoctorUpdateOutcomeDetailsView extends View {
         return new Prescription(drug.getId(), prescribedQtyField.getInt(), dosage, selectedFreq[0]);
     }
 
-    private void promptServices() {
+    private void updateMedicalServices() {
         final MedicalService[] serviceToAdd = {null};
 
-        new Text(String.format("Select the services provided (%d for Done):", MedicalService.values().length + 1), 
-            TextStyle.BOLD).paint(context);
+        new Text("Select the services provided:", TextStyle.BOLD).paint(context);
         new VSpacer(1).paint(context);
 
         final List<MenuOption> serviceOptions = 
@@ -208,15 +190,39 @@ public class DoctorUpdateOutcomeDetailsView extends View {
                         new MenuOption(service.toString(), () -> 
                         serviceToAdd[0] = service
                 )).collect(Collectors.toCollection(ArrayList::new));
-        
-        serviceOptions.add(new MenuOption("Done", () -> doneServices = true));
-        
+                
         new Menu(
             serviceOptions.toArray(MenuOption[]::new)
         ).readOption(context);
 
-        if (serviceToAdd[0] != null && !this.services.contains(serviceToAdd[0])) {
-            this.services.add(serviceToAdd[0]);
+        if (serviceToAdd[0] == null || entry.getMedicalServices().contains(serviceToAdd[0])) {
+            return;
         }
+
+        // Add the new service to the existing list of services
+        List<MedicalService> medicalServices = entry.getMedicalServices();
+        medicalServices.add(serviceToAdd[0]);
+        entry.setMedicalServices(medicalServices);
+
+        // Update the record
+        recordManager.updateRecord(entry);
+    }
+
+    private String getDrugNameById(String id) {
+        return inventoryManager.getInventoryItem(id).getItemName();
+    }
+    
+    private String buildPrescription(List<Prescription> prescriptions) {
+        return prescriptions.stream()
+            .map(prescription -> String.format("%s %s %s %s", 
+                getDrugNameById(prescription.getDrugId()),
+                prescription.getDosage().getQuantity(),
+                prescription.getDosage().getUnit().toString(),
+                prescription.getFrequency().toString()))
+            .collect(Collectors.joining(", "));
+    }
+
+    private String buildMedicalServices(List<MedicalService> medicalServices) {
+        return medicalServices.stream().map(service -> service.toString()).collect(Collectors.joining(", "));
     }
 }

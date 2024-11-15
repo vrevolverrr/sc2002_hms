@@ -52,6 +52,10 @@ public class Table extends Widget {
             String[] values = row.getValues();
             
             for (int i = 0; i < values.length; i++) {
+                if (values[i] == null) {
+                    continue;
+                }
+
                 if (values[i].length() > columnWidths[i]) {
                     columnWidths[i] = values[i].length();
                 }

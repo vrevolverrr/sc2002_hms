@@ -1,12 +1,13 @@
 package model.availability;
 
-import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Availability implements Serializable {
+import model.SerializableCopyable;
+
+public class Availability implements SerializableCopyable {
     static final long serialVersionUID = 42L;
 
     Map<DayOfWeek, TimePeriod> general = new HashMap<>();
@@ -46,6 +47,7 @@ public class Availability implements Serializable {
         return Map.copyOf(specific);
     }
 
+    @Override
     public Availability copy() {
         Availability availability = new Availability();
         availability.general = new HashMap<DayOfWeek, TimePeriod>();

@@ -1,11 +1,10 @@
 package model.prescriptions;
 
-import java.io.Serializable;
-
+import model.SerializableCopyable;
 import model.enums.MedicineFrequency;
 import model.enums.PrescriptionStatus;
 
-public class Prescription implements Serializable {
+public class Prescription implements SerializableCopyable {
     static final long serialVersionUID = 42L;
 
     private final String drugId;
@@ -31,7 +30,7 @@ public class Prescription implements Serializable {
     }
     
     public MedicineDosage getDosage() {
-        return this.dosage;
+        return this.dosage.copy();
     }
 
     public MedicineFrequency getFrequency() {
@@ -58,5 +57,10 @@ public class Prescription implements Serializable {
             pres.getDosage().equals(this.dosage) &&
             pres.getFrequency().equals(this.frequency) &&
             pres.getStatus().equals(this.status);
+    }
+
+    @Override
+    public Prescription copy() {
+        return new Prescription(getDrugId(), getQuantity(), getDosage(), getFrequency());
     }
 }

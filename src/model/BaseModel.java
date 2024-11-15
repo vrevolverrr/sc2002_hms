@@ -6,12 +6,10 @@
 
 package model;
 
-import java.io.Serializable;
-
  /**
   * The base class for all data models with support for serialisation.
 */
-public abstract class BaseModel implements Serializable {
+public abstract class BaseModel implements SerializableCopyable {
     /**
      * The serializable class version number to verify whether the serialized object have loaded classes 
      * for that object that are compatible with respect to serialization. 
@@ -52,5 +50,6 @@ public abstract class BaseModel implements Serializable {
      * Creates and returns a copy of the {@link BaseModel} instance.
      * @return a copy of the instance
      */
+    @Override
     public abstract BaseModel copy();
 }

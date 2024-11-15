@@ -1,6 +1,5 @@
 package utils;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -78,6 +77,15 @@ public class InputValidators {
         }
     }
 
+    public static boolean validateRange(String input, int start, int end) {
+        try {
+            int value = Integer.parseInt(input);
+            return value >= start && value <= end;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     /**
      * Validates a range input, from 0 to rangeLength inclusive.
      * @param input the input to validate.
@@ -85,12 +93,7 @@ public class InputValidators {
      * @return whether the input is a valid range.
      */
     public static boolean validateRangeWithZero(String input, int rangeLength) {
-        try {
-            int value = Integer.parseInt(input);
-            return value >= 0 && value <= rangeLength;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+        return validateRange(input, 0, rangeLength);
     }
 
     /**
