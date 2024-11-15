@@ -43,7 +43,7 @@ public class AdminAppointmentView extends View {
         new VSpacer(1).paint(context);
 
         if (showingResults) {
-            TextInputField selectField = new TextInputField("Select an appointment to view");
+            TextInputField selectField = new TextInputField(String.format("Select an appointment to view details (1-%d)", filteredAppointments.size()));
             new TextInput(selectField).read(context, "Select an item from the list above.",
                 (input) -> InputValidators.validateRange(input, filteredAppointments.size()));
 

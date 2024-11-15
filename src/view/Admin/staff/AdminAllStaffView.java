@@ -39,8 +39,7 @@ public class AdminAllStaffView extends View {
         new TextInput(searchField).read(context, input -> true);
         
         searchKeywords = searchField.getValue();
-        clear();
-        render();
+        repaint();
     }
     
     private List<User> filterByKeyword(String keyword) {

@@ -39,7 +39,7 @@ public class AdminReplenishmentRequestView extends View {
             return;
         }
 
-        TextInputField requestField = new TextInputField("Choose a request to approve or reject");
+        TextInputField requestField = new TextInputField(String.format("Choose a request to approve or reject (1-%d)", requests.size()));
         new TextInput(requestField).read(context, "Choose a request from the list above.",
             (input) -> InputValidators.validateRange(input, requests.size()));
 

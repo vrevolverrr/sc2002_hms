@@ -34,7 +34,7 @@ public class AdminUpdateInventoryView extends View {
 
         new VSpacer(1).paint(context);
 
-        TextInputField selectField = new TextInputField("Select field to update");
+        TextInputField selectField = new TextInputField("Select field to update (1-2)");
         new TextInput(selectField).read(context, "Choose either stock or stock level alert to update",
             (input) -> InputValidators.validateRange(input, 2));
 

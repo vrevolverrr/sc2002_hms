@@ -45,7 +45,7 @@ public class AdminUpdateStaffView extends View {
             return;
         }
 
-        TextInputField selectField = new TextInputField("Select staff to update (0 to cancel)");
+        TextInputField selectField = new TextInputField(String.format("Select a staff to update (1-%d)", staffs.size()));
         new TextInput(selectField).read(context, "Select from the list above.", 
             input -> InputValidators.validateRange(input, staffs.size()));
 

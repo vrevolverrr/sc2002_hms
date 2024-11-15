@@ -41,7 +41,7 @@ public class PharmacistPrescriptionView extends View {
             return;
         }
 
-        TextInputField selectField = new TextInputField("Select an appointment to prescribe medication");
+        TextInputField selectField = new TextInputField(String.format("Select an appointment to prescribe medicine (1-%d)", undispensedAppointments.size()));
         new TextInput(selectField).read(context, "Select an appointment from the list above.",
             (input) -> InputValidators.validateRange(input, undispensedAppointments.size()));
 

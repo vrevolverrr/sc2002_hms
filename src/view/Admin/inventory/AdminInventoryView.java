@@ -38,7 +38,7 @@ public class AdminInventoryView extends View {
         new VSpacer(1).paint(context);
 
         if (showingResults) {
-            TextInputField selectField = new TextInputField("Select an item to update");
+            TextInputField selectField = new TextInputField(String.format("Select an item to update (1-%d)", filteredItems.size()));
             new TextInput(selectField).read(context, "Select an item from the list above.",
                 (input) -> InputValidators.validateRange(input, filteredItems.size()));
 

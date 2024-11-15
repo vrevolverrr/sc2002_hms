@@ -41,7 +41,7 @@ public class PharmacistReplenishmentRequestView extends View {
         new InventoryTable(medications).paint(context);
         new VSpacer(1).paint(context);
 
-        TextInputField medicationField = new TextInputField("Choose a medication to request replenishment");
+        TextInputField medicationField = new TextInputField(String.format("Select a medication to request replenishment (1-%d)", medications.size()));
         new TextInput(medicationField).read(context, "Choose a medication from the list above.",
             (input) -> InputValidators.validateRange(input, medications.size()));
 
