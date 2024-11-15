@@ -45,7 +45,7 @@ public class DoctorAppointmentRequestsView extends View {
         new VSpacer(1).paint(context);
 
         if (appointments.isEmpty()) {
-            new Pause("Press any key to go back.").pause(context);
+            Pause.goBack().pause(context);
             Navigator.pop();
             return;
         }

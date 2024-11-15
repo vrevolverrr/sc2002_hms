@@ -51,7 +51,7 @@ public class DoctorViewAppointmentDetailsView extends View {
 
         if (appointment.getOutcomeRecord() == null) {
             new Table(new TableRow("No outcome recorded")).paint(context);
-            new Pause("Press any key to go back.").pause(context);
+            Pause.goBack().pause(context);
             Navigator.pop();
             return;
         }

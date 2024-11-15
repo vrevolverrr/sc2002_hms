@@ -6,7 +6,6 @@ import controller.MedicalRecordManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
-import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.medrecord.MedicalRecordEntry;

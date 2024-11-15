@@ -2,7 +2,6 @@ package view.Patient.records;
 
 import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
-import lib.uilib.widgets.base.VSpacer;
 import model.medrecord.MedicalRecordEntry;
 import services.Navigator;
 import view.View;
