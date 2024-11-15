@@ -20,6 +20,10 @@ public class Pause extends Widget implements InputWidget {
         this.pauseString = pauseString;
     }
 
+    public static Pause goBack() {
+        return new Pause("Press any key to go back.");
+    }
+
     @Override
     public String build(BuildContext context) {
        return new Column(
