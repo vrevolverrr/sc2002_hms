@@ -19,7 +19,7 @@ public class AdminAppointmentTable extends Widget {
 
     @Override
     public String build(BuildContext context) {
-        TableRow header = new TableRow("ID", "Date", "Time", "Doctor", "Patient", "Status");
+        TableRow header = new TableRow("Patient ID", "Doctor ID", "Date", "Time", "Doctor", "Patient", "Status");
 
         if (appointments.isEmpty()) {
             return EnumeratedTable.headerless(new TableRow("No appointments found")).build(context);
@@ -27,7 +27,8 @@ public class AdminAppointmentTable extends Widget {
 
         TableRow[] appointmentRows = appointments.stream().map((appointment) -> 
             new TableRow(
-                appointment.getId(),
+                appointment.getPatientId(),
+                appointment.getDoctorId(),
                 appointment.getTimeSlot().getFormattedDate(),
                 appointment.getTimeSlot().getFormattedTime(),
                 getNameById(appointment.getDoctorId()),

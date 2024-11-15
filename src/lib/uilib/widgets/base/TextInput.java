@@ -63,7 +63,7 @@ public class TextInput extends Widget implements InputWidget {
             this.paint(context);
             line = scanner.nextLine();
 
-            // TODO remove this
+            // Global "Back" command
             if (line.equals("0")) {
                 Navigator.pop();
                 return;

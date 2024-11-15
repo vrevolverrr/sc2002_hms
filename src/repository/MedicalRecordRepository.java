@@ -25,6 +25,7 @@ public class MedicalRecordRepository extends BaseRepository<MedicalRecordEntry> 
         .toList();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public String generateId() {
         return "M" + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(

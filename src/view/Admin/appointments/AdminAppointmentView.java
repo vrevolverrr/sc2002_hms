@@ -3,6 +3,7 @@ import java.util.List;
 
 import controller.AppointmentManager;
 import controller.UserManager;
+import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.TextInput;
@@ -19,6 +20,8 @@ public class AdminAppointmentView extends View {
     private final UserManager userManager = UserManager.getInstance(UserManager.class);
     private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
     private final List<Appointment> appointments = appointmentManager.getAllAppointments();
+
+    private final BuildContext context = BuildContext.unboundedVertical(110);
 
     private String keyword = "";
     private boolean showingResults = false;

@@ -23,9 +23,8 @@ public class ReplenishmentRequestsTable extends Widget {
         TableRow header = new TableRow("Name", "Quantity", "Reorder Level", "Requested Qty", "Requested By", "Status");
 
         if (requestedItems.isEmpty()) {
-            return new Table(new TableRow("No medications found")).build(context);
+            return new Table(new TableRow("No replenishment requests found")).build(context);
         }
-
 
         TableRow[] rows = requestedItems.stream()
             .map(item -> new TableRow(

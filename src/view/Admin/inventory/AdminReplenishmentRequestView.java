@@ -9,6 +9,7 @@ import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.inventory.InventoryItem;
+import services.Navigator;
 import utils.InputValidators;
 import view.View;
 import view.Admin.inventory.widget.ReplenishmentRequestsTable;
@@ -31,6 +32,12 @@ public class AdminReplenishmentRequestView extends View {
         new ReplenishmentRequestsTable(requests).paint(context);
 
         new VSpacer(1).paint(context);
+
+        if (requests.isEmpty()) {
+            new Pause("No pending requests. Press any key to continue.").pause(context);
+            Navigator.pop();
+            return;
+        }
 
         TextInputField requestField = new TextInputField("Choose a request to approve or reject");
         new TextInput(requestField).read(context, "Choose a request from the list above.",
