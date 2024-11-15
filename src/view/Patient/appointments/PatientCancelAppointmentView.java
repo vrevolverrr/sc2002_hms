@@ -53,7 +53,7 @@ public class PatientCancelAppointmentView extends View {
 
         /// Choose the appointment to cancel by index on the table, the input is automatically
         /// validated.
-        TextInputField timeslotField = new TextInputField("Choose an appointment to cancel");
+        TextInputField timeslotField = new TextInputField(String.format("Choose an appointment to cancel (1-%d)", appointments.size()));
         new TextInput(timeslotField).read(context, "Choose an appointment to cancel.", 
             (input) -> InputValidators.validateRange(input, appointments.size()));
 

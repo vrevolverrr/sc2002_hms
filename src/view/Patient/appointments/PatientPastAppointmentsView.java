@@ -55,7 +55,7 @@ public class PatientPastAppointmentsView extends View {
         new VSpacer(1).paint(context);
 
         if (showingResults) {
-            TextInputField selectField = new TextInputField("Select an appointment to view details");
+            TextInputField selectField = new TextInputField(String.format("Select an appointment to view details (1-%d)", filteredAppointments.size()));
             new TextInput(selectField).read(context, "Select an appointment from the list above.",
                 (input) -> InputValidators.validateRange(input, filteredAppointments.size()));
 

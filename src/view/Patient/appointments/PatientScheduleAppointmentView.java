@@ -80,7 +80,7 @@ public class PatientScheduleAppointmentView extends View {
         new VSpacer(1).paint(context);
 
         /// Choose a doctor
-        TextInputField doctorField = new TextInputField("Choose a doctor");
+        TextInputField doctorField = new TextInputField(String.format("Choose a doctor (1-%d)", doctors.size()));
         new TextInput(doctorField).read(context, "Choose a doctor from the list above.", (input) -> InputValidators.validateRange(input, doctors.size()));
 
         final Doctor selectedDoctor = doctors.get(doctorField.getOption());
@@ -114,7 +114,7 @@ public class PatientScheduleAppointmentView extends View {
 
         /// Choose an appointment slot
         new VSpacer(1).paint(context);
-        TextInputField slotField = new TextInputField("Choose an appointment slot");
+        TextInputField slotField = new TextInputField(String.format("Choose an appointment slot (1-%d)", appointmentSlots.size()));
         new TextInput(slotField).read(context, "Choose a slot from the list above.", (input) -> InputValidators.validateRange(input, appointmentSlots.size()));
 
         return appointmentSlots.get(slotField.getOption());

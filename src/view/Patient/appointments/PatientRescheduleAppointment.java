@@ -87,7 +87,7 @@ public class PatientRescheduleAppointment extends View {
 
         new VSpacer(1).paint(context);
         
-        TextInputField appointmentField = new TextInputField("Choose an appointment to reschedule");
+        TextInputField appointmentField = new TextInputField(String.format("Choose an appointment to reschedule (1-%d)", appointments.size()));
         new TextInput(appointmentField).read(context, 
             (input) -> InputValidators.validateRange(input, appointments.size()));
 
@@ -107,7 +107,7 @@ public class PatientRescheduleAppointment extends View {
         new VSpacer(1).paint(context);
 
         /// Choose a doctor
-        TextInputField doctorField = new TextInputField("Choose a doctor");
+        TextInputField doctorField = new TextInputField(String.format("Choose a doctor (1-%d)", doctors.size()));
         new TextInput(doctorField).read(context, "Choose a doctor from the list above.", (input) -> InputValidators.validateRange(input, doctors.size()));
 
         final Doctor selectedDoctor = doctors.get(doctorField.getOption());
@@ -141,7 +141,7 @@ public class PatientRescheduleAppointment extends View {
 
         /// Choose an appointment slot
         new VSpacer(1).paint(context);
-        TextInputField slotField = new TextInputField("Choose an appointment slot");
+        TextInputField slotField = new TextInputField(String.format("Choose an appointment slot (1-%d)", appointmentSlots.size()));
         new TextInput(slotField).read(context, "Choose a slot from the list above.", (input) -> InputValidators.validateRange(input, appointmentSlots.size()));
 
         return appointmentSlots.get(slotField.getOption());
