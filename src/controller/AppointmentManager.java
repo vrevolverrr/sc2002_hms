@@ -21,9 +21,9 @@ import java.util.List;
 public class AppointmentManager extends Manager<AppointmentManager> {
     private final AppointmentRepository appointmentRepository = new AppointmentRepository();
 
-    final static int START_HOUR = 8;
-    final static int END_HOUR = 17;
-    final static int SLOT_DURATION = 30;
+    public final static int START_HOUR = 8;
+    public final static int END_HOUR = 17;
+    public final static int SLOT_DURATION = 30;
 
     protected AppointmentManager() {
         // Every time the AppointmentManager is instantiated, it will check for past appointments
@@ -146,6 +146,19 @@ public class AppointmentManager extends Manager<AppointmentManager> {
     public List<Appointment> getAllAppointments() {
         return appointmentRepository.getItems().values()
             .stream().sorted((a, b) -> a.getTimeSlot().compareTo(b.getTimeSlot())).toList();
+    }
+
+    /**
+     * Gets all the appointments of a doctor, ordered by most recent first.
+     * @param doctor the doctor to get the appointments for.
+     * @return the list of appointments.
+     */
+    public List<Appointment> getAppointments(Doctor doctor) {
+        return appointmentRepository
+            .findBy((appointment) -> appointment.getDoctorId().equals(doctor.getDoctorId()))
+            .stream()
+            .sorted((a, b) -> a.getTimeSlot().compareTo(b.getTimeSlot()))
+            .toList();
     }
 
     /**

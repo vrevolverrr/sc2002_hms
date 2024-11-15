@@ -49,6 +49,10 @@ public class TimePeriod implements SerializableCopyable {
         return !time.isBefore(start) && !time.isAfter(end);
     }
 
+    public boolean contains(TimePeriod period) {
+        return contains(period.start) && contains(period.end);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof TimePeriod)) {

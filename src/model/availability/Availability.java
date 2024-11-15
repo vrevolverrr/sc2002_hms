@@ -15,6 +15,11 @@ public class Availability implements SerializableCopyable {
 
     public Availability() {
         for (DayOfWeek day : DayOfWeek.values()) {
+            if (day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY) {
+                general.put(day, TimePeriod.none());
+                continue;
+            }
+
             general.put(day, TimePeriod.defaultPeriod());
         }
     }
@@ -40,11 +45,11 @@ public class Availability implements SerializableCopyable {
     }
 
     public Map<DayOfWeek, TimePeriod> getGeneralAvailability() {
-        return Map.copyOf(general);
+        return new HashMap<DayOfWeek, TimePeriod>(general);
     }
 
     public Map<LocalDate, TimePeriod> getSpecificAvailability() {
-        return Map.copyOf(specific);
+        return new HashMap<LocalDate, TimePeriod>(specific);
     }
 
     @Override

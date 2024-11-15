@@ -12,6 +12,7 @@ import services.Navigator;
 import view.View;
 import view.Doctor.appointments.DoctorManageAppointmentsView;
 import view.Doctor.availability.DoctorAvailabilityView;
+import view.Doctor.availability.DoctorScheduleView;
 import view.Doctor.records.DoctorPatientsUnderCareView;
 import view.widgets.Title;
 
@@ -22,11 +23,6 @@ public class DoctorView extends View {
     @Override
     public String getViewName() {
         return("Doctor Overview");
-    }
-    
-
-    private void handleViewPersonalSchedule(){
-        // Navigator.navigateTo(new DoctorScheduleView());
     }
 
     @Override
@@ -41,6 +37,9 @@ public class DoctorView extends View {
 
         new VSpacer(1).paint(context);
         new Menu(
+            new MenuOption("View Personal Schedule", () -> 
+                Navigator.navigateTo(new DoctorScheduleView(doctor))),
+                
             new MenuOption("Edit Personal Availability", () -> 
                Navigator.navigateTo(new DoctorAvailabilityView(doctor))),
             
@@ -49,9 +48,6 @@ public class DoctorView extends View {
 
             new MenuOption("Manage Patient Medical Records", () ->
                 Navigator.navigateTo(new DoctorPatientsUnderCareView(doctor))),
-
-            new MenuOption("View Personal Schedule", () -> 
-                this.handleViewPersonalSchedule()),
             
             new MenuOption("Log Out", () -> Navigator.pop())
 

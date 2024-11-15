@@ -122,7 +122,7 @@ public class MockData {
         LocalDate today = LocalDate.now();
 
         // Same doctor same patient
-        appointmentRepository.save(new Appointment("Y1001", AppointmentStatus.SCHEDULED, new TimeSlot(today.atTime(10, 0)), "D1001", "P1001"));
+        appointmentRepository.save(new Appointment("Y1001", AppointmentStatus.SCHEDULED, new TimeSlot(today.atTime(8, 30)), "D1001", "P1001"));
         appointmentRepository.save(new Appointment("Y1002", AppointmentStatus.SCHEDULED, new TimeSlot(today.atTime(13, 30)), "D1001", "P1001"));
 
         // Same doctor different patient
@@ -141,10 +141,14 @@ public class MockData {
         appointmentRepository.save(new Appointment("Y1011", AppointmentStatus.REQUESTED, new TimeSlot(today.plusDays(2).atTime(10, 0)), "D1002", "P1008"));
 
         // Fulfilled appointment
-        appointmentRepository.save(new Appointment("Y1012", AppointmentStatus.FULFILLED, new TimeSlot(today.minusDays(1).atTime(10, 0)), "D1001", "P1001"));
+        appointmentRepository.save(new Appointment("Y1012", AppointmentStatus.FULFILLED, new TimeSlot(today.minusDays(1).atTime(13, 0)), "D1001", "P1001"));
+        
+        appointmentRepository.save(new Appointment("Y1014", AppointmentStatus.SCHEDULED, new TimeSlot(today.plusDays(3).atTime(9, 30)), "D1001", "P1001"));
+        appointmentRepository.save(new Appointment("Y1015", AppointmentStatus.SCHEDULED, new TimeSlot(today.plusDays(5).atTime(16, 30)), "D1001", "P1001"));
+        appointmentRepository.save(new Appointment("Y1016", AppointmentStatus.SCHEDULED, new TimeSlot(today.plusDays(6).atTime(13, 0)), "D1001", "P1001"));
 
         // Completed appointment
-        Appointment pA1 = new Appointment("Y1013", AppointmentStatus.COMPLETED, new TimeSlot(today.minusDays(2).atTime(10, 0)), "D1001", "P1001");
+        Appointment pA1 = new Appointment("Y1013", AppointmentStatus.COMPLETED, new TimeSlot(today.minusDays(2).atTime(11, 30)), "D1001", "P1001");
         Prescription[] pA1Ps = {
             new Prescription("I1001", 14, new MedicineDosage(2, DosageUnit.TABLET), MedicineFrequency.AFTER_MEALS),
             new Prescription("I1002", 8, new MedicineDosage(1, DosageUnit.TABLET), MedicineFrequency.AS_NEEDED)

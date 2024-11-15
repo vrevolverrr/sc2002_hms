@@ -140,4 +140,8 @@ public class InputValidators {
     public static boolean validatePhoneNumber(String phoneNumber) {
         return phoneNumber.matches("^\\d{8}$");
     }
+
+    public static boolean validatePrevNext(String input) {
+        return input.equals("1") || input.equals("2");
+    }
 }
