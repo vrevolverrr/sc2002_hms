@@ -9,7 +9,10 @@ import view.Login.LoginView;
  */
 public class HMSApp {
     public static void main(String[] args) throws Exception {
+        // Mocks sample data for the repositories.
         MockData.mockAllData();
+
+        // Navigates to the login view.
         Navigator.navigateTo(new LoginView());
     }
 }

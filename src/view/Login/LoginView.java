@@ -80,7 +80,15 @@ public class LoginView extends View {
 
         // Logic after the input is typically navigation logic, or actions that trigger
         // after the input is validated and complete, since each read() or readAll() call
-        // will block the UI.
+        // will block the UI
+
+        final User activeUser = userManager.getActiveUser(); 
+
+        if (activeUser.isDefaultPassword()) {
+            Navigator.navigateTo(new LoginUpdatePasswordView(activeUser));
+            return;
+        }
+
         View nextView;
 
         switch (userManager.getActiveUser().getRole()) {

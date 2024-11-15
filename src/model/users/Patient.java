@@ -156,10 +156,13 @@ public class Patient extends User {
      */
     @Override
     public Patient copy() {
-        return new Patient(
+        Patient patient = new Patient(
             getId(), getName(), getAge(), getPassword(), getGender(), getDob(),
             getWeight(), getHeight(),
             getPhoneNumber(), getEmailAddress(), getBloodType());
+
+        patient.setDefaultPassword(isDefaultPassword());
+        return patient;
     }
 
 }

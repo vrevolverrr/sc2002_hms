@@ -25,9 +25,14 @@ public abstract class User extends BaseModel {
     private final UserRole role;
 
     /**
-     * The hashed password of the user. 
+     * The password of the user. 
      */
     private String password;
+
+    /**
+     * A flag to indicate if the user is using the default password.
+     */
+    private boolean isDefaultPassword;
 
     /**
      * The name of the user.
@@ -76,6 +81,7 @@ public abstract class User extends BaseModel {
     
         this.role = role;
         this.password = password;
+        this.isDefaultPassword = true;
 
         this.name = name;
         this.gender = gender;
@@ -106,6 +112,22 @@ public abstract class User extends BaseModel {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * Checks if the user is using the default password.
+     * @return true if the user is using the default password, false otherwise.
+     */
+    public boolean isDefaultPassword() {
+        return isDefaultPassword;
+    }
+
+    /**
+     * Sets the flag to indicate if the user is using the default password.
+     * @param isDefaultPassword the new flag to indicate if the user is using the default password.
+     */
+    public void setDefaultPassword(boolean isDefaultPassword) {
+        this.isDefaultPassword = isDefaultPassword;
     }
 
     /**

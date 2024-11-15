@@ -13,6 +13,10 @@ public class UserManager extends Manager<UserManager> {
         return activeUser;
     }
 
+    public User getUser(String userId) {
+        return repository.findById(userId);
+    }
+
     public User authenticate(String userId, String password) {
         User user = repository.findById(userId);
 
@@ -30,7 +34,18 @@ public class UserManager extends Manager<UserManager> {
         return null;
     }
 
-    public User getUser(String userId) {
-        return repository.findById(userId);
+    /**
+     * Updates the password of the user.
+     * @param user the user to update the password for.
+     * @param password the new password.
+     */
+    public void updatePassword(User user, String password) {
+        user.setPassword(password);
+        user.setDefaultPassword(false);
+        
+        // Sets active user to null to force re-authentication.
+        activeUser = null;
+        
+        repository.save(user);
     }
 }

@@ -64,7 +64,10 @@ public class Admin extends User{
      */
     @Override
     public Admin copy() {
-        return new Admin(adminId, getName(), getAge(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress());
+        Admin admin = new Admin(adminId, getName(), getAge(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress());
+        admin.setDefaultPassword(isDefaultPassword());
+        
+        return admin;
     }
 
 }

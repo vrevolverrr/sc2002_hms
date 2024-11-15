@@ -44,7 +44,10 @@ public class Pharmacist extends User {
      */
     @Override
     public Pharmacist copy() {
-        return new Pharmacist(pharmacistId, getName(), getAge(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress());
+        Pharmacist pharmacist = new Pharmacist(getPharmacistId(), getName(), getAge(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress());
+        pharmacist.setDefaultPassword(isDefaultPassword());
+        
+        return pharmacist;
     }
 
 }

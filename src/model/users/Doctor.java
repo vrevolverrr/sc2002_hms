@@ -128,6 +128,7 @@ public class Doctor extends User {
     public Doctor copy() {
         Doctor newDoctor = new Doctor(getDoctorId(), getName(), getAge(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress(), getSpecialisation());
         newDoctor.setAvailability(getAvailability());
+        newDoctor.setDefaultPassword(isDefaultPassword());
 
         return newDoctor;
     }
