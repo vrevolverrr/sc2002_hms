@@ -74,6 +74,10 @@ public class StaffManager extends Manager<StaffManager> {
     public void updateStaff(User user) {
         userRepository.save(user);
     }
+    
+    public void deleteStaff(User user) {
+        userRepository.deleteById(user.getId());
+    }
 
     public static boolean isStaff(User user) {
         UserRole[] staffRoles = {UserRole.ADMIN, UserRole.DOCTOR, UserRole.PHARMACIST};

@@ -3,8 +3,10 @@ package view.Admin.staff;
 import java.util.List;
 
 import controller.StaffManager;
+import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
+import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
@@ -45,11 +47,22 @@ public class AdminUpdateStaffView extends View {
             return;
         }
 
-        TextInputField selectField = new TextInputField(String.format("Select a staff to update (1-%d)", staffs.size()));
+        TextInputField selectField = new TextInputField(String.format("Select a staff to modify (1-%d)", staffs.size()));
         new TextInput(selectField).read(context, "Select from the list above.", 
             input -> InputValidators.validateRange(input, staffs.size()));
 
         User staff = staffs.get(selectField.getOption());
-        Navigator.navigateTo(new AdminUpdateStaffDetailsView(staff));
+
+        new Menu(
+            new MenuOption("Update Staff Details", () -> Navigator.navigateTo(new AdminUpdateStaffDetailsView(staff))),    
+            new MenuOption("Delete Staff", () -> deleteStaff(staff))
+        ).readOption(context);
+    }
+
+    private void deleteStaff(User staff) {
+        staffManager.deleteStaff(staff);
+
+        new Pause("Staff has been deleted. Press any key to continue.").pause(context);
+        Navigator.pop();
     }
 }
