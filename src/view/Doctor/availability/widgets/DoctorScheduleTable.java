@@ -46,7 +46,6 @@ public class DoctorScheduleTable extends Widget {
         TableRow header = new TableRow(headerRow.toArray(String[]::new));
 
         int START_HOUR = AppointmentManager.START_HOUR;
-        int END_HOUR = AppointmentManager.END_HOUR;
         int INTERVAL = AppointmentManager.SLOT_DURATION;
 
         final DayOfWeek[] daysOfWeek = DayOfWeek.values();
