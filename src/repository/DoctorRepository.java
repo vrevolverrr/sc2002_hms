@@ -106,7 +106,7 @@ public class DoctorRepository implements Repository<Doctor> {
     @Override
     public Doctor save(Doctor item) {
         if (item.getId() == null || item.getId().isBlank()) {
-            item.setDoctorId(generateId());
+            item.setId(generateId());
         }
 
         repository.save(item);

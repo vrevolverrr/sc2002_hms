@@ -15,13 +15,7 @@ import model.enums.UserRole;
  /**
   * The concrete implementation of a {@link User} corresponding to an admin.
   */
-public class Admin extends User{
-
-    /**
-     * The unique ID of the patient.
-     */
-    private String adminId;
-
+public class Admin extends User {
     /**
      * The constructor of a {@link Admin}. Calls the constructor of {@link User}.
      * @param adminId the unique ID of the admin.
@@ -37,8 +31,6 @@ public class Admin extends User{
     public Admin(String adminId, String name, int age, String password, Gender gender, LocalDate dob, 
     String phoneNumber, String emailAddress) {
         super(adminId, UserRole.ADMIN, password, name, age, gender, dob, phoneNumber, emailAddress);
-        
-        this.adminId = adminId;
     }
 
     /**
@@ -46,7 +38,7 @@ public class Admin extends User{
      * @return the ID of the admin.
      */
     public String getAdminId() {
-        return adminId;
+        return super.getId();
     }
 
     /**
@@ -54,7 +46,6 @@ public class Admin extends User{
      * @param id the ID of the admin.
      */
     public void setAdminId(String id) {
-        this.adminId = id;
         super.setId(id);
     }
 
@@ -64,7 +55,7 @@ public class Admin extends User{
      */
     @Override
     public Admin copy() {
-        Admin admin = new Admin(adminId, getName(), getAge(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress());
+        Admin admin = new Admin(getAdminId(), getName(), getAge(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress());
         admin.setDefaultPassword(isDefaultPassword());
         
         return admin;

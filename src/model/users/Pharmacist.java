@@ -10,11 +10,6 @@ import model.enums.UserRole;
  */
 public class Pharmacist extends User {
     /**
-     * The unique ID of the pharmacist.
-     */
-    private final String pharmacistId;
-
-    /**
      * The constructor of a {@link Pharmacist}. Calls the constructor of {@link User}.
      * @param pharmacistId the unique ID of the pharmacist.
      * @param name the name of the pharmacist.
@@ -27,7 +22,6 @@ public class Pharmacist extends User {
     public Pharmacist(String pharmacistId, String name, int age, String password, Gender gender, LocalDate dob, 
                       String phoneNumber, String emailAddress) {
         super(pharmacistId, UserRole.PHARMACIST, password, name, age, gender, dob, phoneNumber, emailAddress);
-        this.pharmacistId = pharmacistId;
     }
 
     /**
@@ -35,7 +29,7 @@ public class Pharmacist extends User {
      * @return the ID of the pharmacist.
      */
     public String getPharmacistId() {
-        return pharmacistId;
+        return super.getId();
     }
 
     /**

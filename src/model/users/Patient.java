@@ -17,11 +17,6 @@ import model.enums.UserRole;
  * The concrete implementation of a {@link User} corresponding to a patient.
  */
 public class Patient extends User {
-    /**
-     * The unique ID of the patient.
-     */
-    private String patientId;
-
     /*
      * The weight of the patient in kg.
      */
@@ -60,7 +55,6 @@ public class Patient extends User {
 
         this.weight = weight;
         this.height = height;
-        this.patientId = patientId;
         this.bloodType = bloodType;
     }
 
@@ -69,7 +63,7 @@ public class Patient extends User {
      * @return the ID of the patient.
      */
     public String getPatientId() {
-        return patientId;
+        return super.getId();
     }
 
     /**
@@ -77,7 +71,6 @@ public class Patient extends User {
      * @param id the ID of the patient.
      */
     public void setPatientId(String id) {
-        this.patientId = id;
         super.setId(id);
     }
 

@@ -106,6 +106,10 @@ public class Table extends Widget {
                 if (i == 0) {
                     topBorder.append(Border.THIN.horizontal().repeat(columnWidths[j]) + ((j == columnValues.length - 1) ? Border.THIN.topRight() : "\u252C"));
                 }
+
+                if (columnValues[j] == null) {
+                    columnValues[j] = "";
+                }
                 
                 valueLine.append(new Align(Alignment.CENTER, new Text(columnValues[j], (i == 0) ? TextStyle.BOLD : TextStyle.NORMAL))
                     .build(columnContext) + Border.THIN.vertical());

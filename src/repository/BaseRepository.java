@@ -109,6 +109,10 @@ public abstract class BaseRepository<T extends BaseModel> implements Repository<
     // Type cast is always valid since implementations of copy() does a covariant return.
     public T save(T item) {
         if (item == null) return null;
+        
+        if (item.getId() == null || item.getId().isBlank()) {
+            item.setId(generateId());
+        }
 
         items.put(item.getId(), (T) item.copy());
         writeToSerialized();
@@ -122,13 +126,15 @@ public abstract class BaseRepository<T extends BaseModel> implements Repository<
      * @param collection the collection of items with changes to be saved.
      * @return the same reference to the collection.
      */
-    @SuppressWarnings("unchecked")
-    // Type cast is always valid since implementations of copy() does a covariant return.
     public List<T> save(List<T> collection) {
         if (collection.size() <= 0) return null;
 
         for (T item : collection) {
-            items.put(item.getId(), (T) item.copy());
+            if (item.getId() == null || item.getId().isBlank()) {
+                item.setId(generateId());
+            }
+            
+            save(item);
         }
 
         writeToSerialized();

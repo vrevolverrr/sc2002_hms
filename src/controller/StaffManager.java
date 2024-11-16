@@ -10,6 +10,7 @@ import model.users.Admin;
 import model.users.Doctor;
 import model.users.Pharmacist;
 import model.users.User;
+import repository.AdminRepository;
 import repository.DoctorRepository;
 import repository.PharmacistRepository;
 import repository.UserRepository;
@@ -59,7 +60,9 @@ public class StaffManager extends Manager<StaffManager> {
             String emailAddress, String phoneNumber) {
        
         final Admin user = new Admin(null, name, age, password, gender, dob, phoneNumber, emailAddress);
-        userRepository.save(user);
+        final AdminRepository repository = new AdminRepository(UserRepository.getInstance());
+
+        repository.save(user);
     }
 
     public void addPharmacist(String name, int age, String password, Gender gender, LocalDate dob, 

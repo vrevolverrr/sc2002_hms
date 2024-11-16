@@ -80,7 +80,9 @@ public final class MockData {
         AdminRepository adminRepository = new AdminRepository(UserRepository.getInstance());
         adminRepository.clear();
         
-        adminRepository.save(new Admin("A1001", "David Johnson", 45, "adminPass1", Gender.MALE, LocalDate.of(1978, 1, 15), "81234567", "david.johnson@example.com"));
+        Admin a1 = new Admin("A1001", "David Johnson", 45, "adminPass1", Gender.MALE, LocalDate.of(1978, 1, 15), "81234567", "david.johnson@example.com");
+        a1.setDefaultPassword(false);
+        adminRepository.save(a1);
         adminRepository.save(new Admin("A1002", "Sophia Martinez", 38, "adminPass2", Gender.FEMALE, LocalDate.of(1985, 3, 22), "82345678", "sophia.martinez@example.com"));
         adminRepository.save(new Admin("A1003", "James Anderson", 50, "adminPass3", Gender.MALE, LocalDate.of(1973, 5, 30), "83456789", "james.anderson@example.com"));
     }

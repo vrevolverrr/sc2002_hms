@@ -11,11 +11,6 @@ import model.enums.UserRole;
  */
 public class Doctor extends User {
     /**
-     * The unique ID of the doctor.
-     */
-    private String doctorId;
-
-    /**
      * The specialisation of the doctor.
      */
     private Specialisation specialisation;
@@ -41,9 +36,7 @@ public class Doctor extends User {
     String phoneNumber, String emailAddress, Specialisation specialisation) { 
         super(doctorId, UserRole.DOCTOR, password, name, age, gender, dob, phoneNumber, emailAddress);
                 
-        this.doctorId = doctorId;
         this.specialisation = specialisation;
-
         this.availability = new Availability();
     }
 
@@ -52,7 +45,7 @@ public class Doctor extends User {
      * @return the ID of the doctor.
      */
     public String getDoctorId() {
-        return doctorId;
+        return super.getId();
     }
 
     /**
@@ -60,7 +53,6 @@ public class Doctor extends User {
      * @param id the ID of the doctor.
      */
     public void setDoctorId(String id) {
-        this.doctorId = id;
         super.setId(id);
     }
 
@@ -87,43 +79,7 @@ public class Doctor extends User {
     public void setAvailability(Availability availability) {
         this.availability = availability;
     }
-
-    // // Set default availability from 9 AM to 6 PM on weekdays
-    // public void setDefaultAvailability(LocalDate startDate, LocalDate endDate) {
-    //     for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
-    //         if (isWeekday(date)) {
-    //             List<LocalTime> timeSlots = generateTimeSlots(LocalTime.of(9, 0), LocalTime.of(18, 0), 1);
-    //             availability.put(date, timeSlots);
-    //         }
-    //     }
-    //     System.out.println("Default availability set from " + startDate + " to " + endDate);
-    // }
-
-    // // Generate time slots with a specified interval (in hours)
-    // private List<LocalTime> generateTimeSlots(LocalTime startTime, LocalTime endTime, int intervalHours) {
-    //     List<LocalTime> timeSlots = new ArrayList<>();
-    //     while (!startTime.isAfter(endTime)) {
-    //         timeSlots.add(startTime);
-    //         startTime = startTime.plusHours(intervalHours);
-    //     }
-    //     return timeSlots;
-    // }
-
-    // // Check if a date is a weekday (Monday to Friday)
-    // private boolean isWeekday(LocalDate date) {
-    //     DayOfWeek day = date.getDayOfWeek();
-    //     return day != DayOfWeek.SATURDAY && day != DayOfWeek.SUNDAY;
-    // }
-
-    // // Check availability for testing purposes
-    // public void checkAvailability() {
-    //     System.out.println("Current Availability:");
-    //     availability.forEach((date, timeSlots) -> {
-    //         System.out.println("Date: " + date);
-    //         timeSlots.forEach(time -> System.out.println("  Time: " + time));
-    //     });
-    // }
-
+    
     @Override
     public Doctor copy() {
         Doctor newDoctor = new Doctor(getDoctorId(), getName(), getAge(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress(), getSpecialisation());

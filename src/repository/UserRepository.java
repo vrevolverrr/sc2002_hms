@@ -8,6 +8,7 @@ package repository;
 
 import java.util.*;
 
+import model.enums.UserRole;
 import model.users.User;
 
 /**
@@ -58,6 +59,20 @@ public class UserRepository extends BaseRepository<User> {
             last -> String.format("%04d", Integer.parseInt(last.substring(1)) + 1)).orElse("1001");
     }
 
+    public String generateUserId(User user) {
+        if (user.getRole() == UserRole.ADMIN) {
+            return "A" + generateId().substring(1);
+        } else if (user.getRole() == UserRole.DOCTOR) {
+            return "D" + generateId().substring(1);
+        } else if (user.getRole() == UserRole.PATIENT) {
+            return "P" + generateId().substring(1);
+        } else if (user.getRole() == UserRole.PHARMACIST) {
+            return "F" + generateId().substring(1);
+        }
+
+        return generateId();
+    }
+
     /**
      * Finds all the {@code Users} that matches the given name.
      * @param name the name to match against.
@@ -74,5 +89,24 @@ public class UserRepository extends BaseRepository<User> {
      */
     public boolean nameExists(String name) {
         return findByName(name).size() > 0;
+    }
+
+    @Override
+    public User save(User item) {
+        if (item.getId() == null || item.getId().isBlank()) {
+            item.setId(generateUserId(item));
+        }
+
+        return super.save(item);
+    }
+
+    public List<User> save(List<User> collection) {
+        collection.forEach(user -> {
+            if (user.getId() == null) {
+                user.setId(generateUserId(user));
+            }
+        });
+        
+        return super.save(collection);
     }
 }
