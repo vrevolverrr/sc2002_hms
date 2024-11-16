@@ -35,11 +35,5 @@ public class AdminManageDatabaseView extends View {
         new Title("Load from file").paint(context);
         new VSpacer(1).paint(context);
 
-        Database
-
-        new Title("Choose a file to load from").paint(context);
-        new Menu(
-            new MenuOption()
-        ).readOption(context);
     }
 }
