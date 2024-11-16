@@ -111,6 +111,7 @@ public abstract class User extends BaseModel {
      * @param password the new password of the user.
      */
     public void setPassword(String password) {
+        this.isDefaultPassword = false;
         this.password = password;
     }
 
@@ -232,5 +233,14 @@ public abstract class User extends BaseModel {
      */
     public void setAge(int age) {
         this.age = age;
+    }
+
+    /**
+     * Validates the password of the user.
+     * @param password the password to validate.
+     * @return true if the password is correct, false otherwise.
+     */
+    public boolean validatePassword(String password) {
+        return this.password.equals(password);
     }
 }

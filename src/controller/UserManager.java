@@ -26,7 +26,7 @@ public class UserManager extends Manager<UserManager> {
         }
 
         // Attempt to authenticate the user.
-        if (user.getPassword().equals(password)) {
+        if (user.validatePassword(password)) {
             activeUser = user;
             return activeUser;
         }
@@ -41,7 +41,6 @@ public class UserManager extends Manager<UserManager> {
      */
     public void updatePassword(User user, String password) {
         user.setPassword(password);
-        user.setDefaultPassword(false);
         
         // Sets active user to null to force re-authentication.
         activeUser = null;
