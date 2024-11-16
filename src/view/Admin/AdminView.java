@@ -19,15 +19,36 @@ import view.Login.LoginView;
 import view.widgets.Title;
 
 
+/**
+ * This is the main view for the Admin role.
+ * It displays the admin's details and provides options to manage hospital staff, view appointments, manage medication inventory, and approve replenishment requests.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
 public class AdminView extends View {
+    /**
+     * An instance of the {@link UserManager} class. Used to retrieve the active user.
+     */
     private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    
+    /**
+     * The active user of the application, in this case, the admin.
+     */
     private final User activeUser = userManager.getActiveUser();
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return the name of the view.
+     */
     @Override
     public String getViewName() {
-        return("Overview");
+        return "Overview";
     }
 
+    /**
+     * Renders the view, displaying the admin's details and providing options to manage hospital staff, view appointments, manage medication inventory, and approve replenishment requests.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);

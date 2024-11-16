@@ -13,18 +13,41 @@ import view.View;
 import view.Admin.staff.widget.StaffTable;
 import view.widgets.Title;
 
+/**
+ * This view allows the admin to search and view all staff members.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
 public class AdminAllStaffView extends View {
+    /**
+     * An instance of the {@link StaffManager} class. Used to manage staff operations.
+     */
     private final StaffManager staffManager = StaffManager.getInstance(StaffManager.class);
     
+    /**
+     * The search keywords entered by the admin.
+     */
     private String searchKeywords = "";
+
+    /**
+     * The build context for rendering the view.
+     */
     private final BuildContext context = BuildContext.unboundedVertical(120);
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return the name of the view.
+     */
     @Override
     public String getViewName() {
         return "Search Staff";
     }
 
     @SuppressWarnings("unused")
+    /**
+     * Renders the view, allowing the admin to search and view all staff members.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);
@@ -42,6 +65,11 @@ public class AdminAllStaffView extends View {
         repaint();
     }
     
+    /**
+     * Filters the staff members by the specified keyword.
+     * @param keyword the keyword to filter by.
+     * @return the list of filtered staff members.
+     */
     private List<User> filterByKeyword(String keyword) {
         if (keyword.isBlank()) {
             return staffManager.getAllStaff();
