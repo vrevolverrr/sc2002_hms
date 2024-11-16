@@ -18,20 +18,43 @@ import view.View;
 import view.Patient.appointments.widgets.AppointmentsTable;
 import view.widgets.Title;
 
+/**
+ * View for canceling a patient's appointment.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
 public class PatientCancelAppointmentView extends View {
+    /**
+     * Manager for handling appointment-related operations.
+     */
     private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
 
+    /**
+     * The patient canceling the appointment.
+     */
     private Patient patient;
-    
+
+    /**
+     * Constructs a new view for canceling a patient's appointment.
+     * @param patient The patient canceling the appointment.
+     */
     public PatientCancelAppointmentView(Patient patient) {
         this.patient = patient;
     }
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return The name of the view.
+     */
     @Override
     public String getViewName() {
        return "Cancel Appointment";
     }
 
+    /**
+     * Renders the view to cancel a patient's appointment.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);

@@ -25,21 +25,50 @@ import view.Patient.appointments.widgets.PatientAppointmentDetailsTable;
 import view.Patient.appointments.widgets.SelectedDoctorTable;
 import view.widgets.Title;
 
-public class PatientRescheduleAppointment extends View {
+/**
+ * View for rescheduling a patient's appointment.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
+public final class PatientRescheduleAppointment extends View {
+    /**
+     * Manager for handling appointment-related operations.
+     */
     private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
+    
+    /**
+     * Manager for handling doctor-related operations.
+     */
     private final DoctorManager doctorManager = DoctorManager.getInstance(DoctorManager.class);
     
+    /**
+     * The patient rescheduling the appointment.
+     */
     private Patient patient;
 
+    /**
+     * Constructs a new view for rescheduling an appointment for the patient.
+     * @param patient the patient rescheduling the appointment.
+     */
     public PatientRescheduleAppointment(Patient patient) {
         this.patient = patient;
     }
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return the name of the view.
+     */
     @Override
     public String getViewName() {
         return "Reschedule Appointment";
     }
 
+    /**
+     * Renders the view to reschedule a patient's appointment.
+     * The patient selects an appointment to reschedule, then selects a doctor, date, and 
+     * appointment slot to reschedule the appointment.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);
@@ -79,7 +108,11 @@ public class PatientRescheduleAppointment extends View {
         new Pause().pause(context);
         Navigator.pop();
     }
-
+    
+    /**
+     * Prompts the patient to choose an appointment to reschedule.
+     * @return the selected appointment to reschedule.
+     */
     private Appointment promptChooseAppointment() {
         new Title("Upcoming Appointments").paint(context);
         List<Appointment> appointments = appointmentManager.getScheduledAppointments(patient);
@@ -100,6 +133,10 @@ public class PatientRescheduleAppointment extends View {
         return selectedAppointment;
     }
 
+    /**
+     * Prompts the patient to choose a doctor for the appointment.
+     * @return the selected doctor.
+     */
     private Doctor promptChooseDoctor() {
         new Title("Available Doctors").paint(context);
         List<Doctor> doctors = doctorManager.getAllDoctors();
@@ -119,6 +156,10 @@ public class PatientRescheduleAppointment extends View {
         return selectedDoctor;
     }
 
+    /**
+     * Prompts the patient to choose a date for the appointment.
+     * @return the selected date.
+     */
     private LocalDate promptChooseDate() {
         new Title("Choose Appointment Date").paint(context);
         new VSpacer(1).paint(context);
@@ -130,6 +171,12 @@ public class PatientRescheduleAppointment extends View {
         return dateField.getDate();
     }
 
+    /**
+     * Prompts the patient to choose an appointment slot.
+     * @param selectedDate the selected date for the appointment.
+     * @param selectedDoctor the selected doctor for the appointment.
+     * @return the selected appointment slot.
+     */
     private AppointmentSlot promptChooseAppointmentSlot(LocalDate selectedDate, Doctor selectedDoctor) {
         new Title("Available Appointment Slots").paint(context);
         List<AppointmentSlot> appointmentSlots = appointmentManager.getAvailableSlotsByDoctor(selectedDate, selectedDoctor);

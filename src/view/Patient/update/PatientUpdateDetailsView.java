@@ -21,14 +21,33 @@ import utils.UpdatableField;
 import view.View;
 import view.widgets.Title;
 
+/**
+ * View for updating patient details.
+ */
 public final class PatientUpdateDetailsView extends View {
+    /**
+     * Manager for handling patient-related operations.
+     */
     private final PatientManager patientManager = PatientManager.getInstance(PatientManager.class);
+
+    /**
+     * The patient whose details are being updated.
+     * @param patient The patient whose details are being updated.
+     */
     private final Patient patient;
 
+    /**
+     * Constructs a new view for updating patient details.
+     * @param patient The patient whose details are being updated.
+     */
     public PatientUpdateDetailsView(Patient patient) {
         this.patient = patient;
     }
 
+    /**
+     * Returns the name of the view.
+     * @return The name of the view.
+     */
     @Override
     public String getViewName() {
         return "Update Patient Details";
@@ -36,6 +55,7 @@ public final class PatientUpdateDetailsView extends View {
 
     /**
      * Renders the view to update patient details.
+     * The view shows a table with the patient's details and prompts the user to choose a field to update.
      */
     @Override
     public void render() {
@@ -67,6 +87,9 @@ public final class PatientUpdateDetailsView extends View {
         repaint();
     }
 
+    /**
+     * Updates the patient's name.
+     */
     private void updateName() {
         TextInputField nameField = new TextInputField("Enter your new name");
         new TextInput(nameField).read(context, "Enter a non-empty name.", input -> !input.trim().isEmpty());
@@ -75,6 +98,9 @@ public final class PatientUpdateDetailsView extends View {
         patientManager.updatePatient(patient);
     }
 
+    /**
+     * Updates the patient's age.
+     */
     private void updateAge() {
         TextInputField ageField = new TextInputField("Enter the your new age");
         new TextInput(ageField).read(context, "Enter a valid age.", input -> InputValidators.validateAge(input));
@@ -83,6 +109,9 @@ public final class PatientUpdateDetailsView extends View {
         patientManager.updatePatient(patient);
     }
 
+    /**
+     * Updates the patient's password.
+     */
     private void updatePassword() {
         TextInputField passwordField = new TextInputField("Enter the your new password");
         new TextInput(passwordField).read(context, "Enter a valid password.", input -> !input.isEmpty());
@@ -91,6 +120,9 @@ public final class PatientUpdateDetailsView extends View {
         patientManager.updatePatient(patient);
     }
 
+    /**
+     * Updates the patient's gender.
+     */
     private void updateGender() {
         final Gender[] gender = {Gender.MALE};
 
@@ -104,6 +136,9 @@ public final class PatientUpdateDetailsView extends View {
         patientManager.updatePatient(patient);
     }
 
+    /**
+     * Updates the patient's birthday.
+     */
     private void updateBirthday() {
         TextInputField birthdayField = new TextInputField("Enter the your new birthday (yyyy-MM-dd)");
         new TextInput(birthdayField).read(context, "Enter a valid date.", input -> InputValidators.validateDate(input));
@@ -112,6 +147,9 @@ public final class PatientUpdateDetailsView extends View {
         patientManager.updatePatient(patient);
     }
 
+    /**
+     * Updates the patient's email address.
+     */
     private void updateEmail() {
         TextInputField emailField = new TextInputField("Enter the your new email address");
         new TextInput(emailField).read(context, "Enter a valid email address.", input -> InputValidators.validateEmail(input));
@@ -120,6 +158,9 @@ public final class PatientUpdateDetailsView extends View {
         patientManager.updatePatient(patient);
     }
 
+    /**
+     * Updates the patient's phone number.
+     */
     private void updatePhoneNumber() {
         TextInputField phoneNumberField = new TextInputField("Enter the your new phone number");
         new TextInput(phoneNumberField).read(context, "Enter a valid phone number.", input -> InputValidators.validatePhoneNumber(input));

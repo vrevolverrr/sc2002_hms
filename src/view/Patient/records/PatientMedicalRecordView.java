@@ -17,21 +17,50 @@ import view.Patient.records.widgets.PatientMedicalDetailsTable;
 import view.Patient.records.widgets.PatientMedicalRecordsTable;
 import view.widgets.Title;
 
+/**
+ * View for displaying a patient's medical records.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
 public class PatientMedicalRecordView extends View {
+    /**
+     * Manager for handling medical record-related operations.
+     */
     private final MedicalRecordManager recordManager = MedicalRecordManager.getInstance(MedicalRecordManager.class);
+
+    /**
+     * The patient whose medical records are being displayed.
+     */
     private final Patient patient;
 
+    /**
+     * Context for building the view.
+     */
     private final BuildContext context = BuildContext.unboundedVertical(110);
     
+    /**
+     * Constructs a new view for displaying a patient's medical records.
+     * @param patient The patient whose medical records are being displayed.
+     */
     public PatientMedicalRecordView(Patient patient) {
         this.patient = patient;
     }
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return the name of the view.
+     */
     @Override
     public String getViewName() {
         return "Medical Record";
     }
 
+    /**
+     * Renders the view to display the patient's medical records.
+     * The view shows a table with the patient's medical details and a table 
+     * with the patient's medical records.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);

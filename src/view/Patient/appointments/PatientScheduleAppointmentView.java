@@ -22,21 +22,49 @@ import view.Patient.appointments.widgets.DoctorsSelectionTable;
 import view.Patient.appointments.widgets.SelectedDoctorTable;
 import view.widgets.Title;
 
+/**
+ * View for scheduling a new appointment for the patient.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
 public class PatientScheduleAppointmentView extends View {
+    /**
+     * Manager for handling appointment-related operations.
+     */
     final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class); 
+
+    /**
+     * Manager for handling doctor-related operations.
+     */
     final DoctorManager doctorManager = DoctorManager.getInstance(DoctorManager.class);
-    
+
+    /**
+     * The patient scheduling the appointment.
+     */
     private final Patient patient;
 
+    /**
+     * Constructs a new view for scheduling an appointment for the patient.
+     * @param patient The patient scheduling the appointment.
+     */
     public PatientScheduleAppointmentView(Patient patient) {
         this.patient = patient;
     }
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return The name of the view.
+     */
     @Override
     public String getViewName() {
         return "Schedule Appointment";
     }
-    
+
+    /**
+     * Renders the view to schedule a new appointment.
+     * The user is prompted to choose a doctor, date, and appointment slot for the appointment.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);
@@ -73,6 +101,10 @@ public class PatientScheduleAppointmentView extends View {
         Navigator.pop();
     }
 
+    /**
+     * Prompts the user to choose a doctor for the appointment.
+     * @return The selected doctor.
+     */
     private Doctor promptChooseDoctor() {
         new Title("Available Doctors").paint(context);
         List<Doctor> doctors = doctorManager.getAllDoctors();
@@ -92,6 +124,10 @@ public class PatientScheduleAppointmentView extends View {
         return selectedDoctor;
     }
 
+    /**
+     * Prompts the user to choose a date for the appointment.
+     * @return The selected date.
+     */
     private LocalDate promptChooseDate() {
         new Title("Choose Appointment Date").paint(context);
         new VSpacer(1).paint(context);
@@ -103,6 +139,12 @@ public class PatientScheduleAppointmentView extends View {
         return dateField.getDate();
     }
 
+    /**
+     * Prompts the user to choose an appointment slot.
+     * @param selectedDate The selected date for the appointment.
+     * @param selectedDoctor The selected doctor for the appointment.
+     * @return The selected appointment slot.
+     */
     private AppointmentSlot promptChooseAppointmentSlot(LocalDate selectedDate, Doctor selectedDoctor) {
         new Title("Available Appointment Slots").paint(context);
         List<AppointmentSlot> appointmentSlots = appointmentManager.getAvailableSlotsByDoctor(selectedDate, selectedDoctor);
