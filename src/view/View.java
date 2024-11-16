@@ -10,6 +10,9 @@ import lib.uilib.framework.*;
 /**
  * This abstract class represents a view of the application. Each actual view must implement all the methods
  * of this class.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
  * @see LoginView
  * @see PatientView
  */

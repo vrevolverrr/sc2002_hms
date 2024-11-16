@@ -33,7 +33,16 @@ import repository.PatientRepository;
 import repository.PharmacistRepository;
 import repository.UserRepository;
 
-public class MockData {
+/**
+ * The utility class to mock data for the application.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-16
+ */
+public final class MockData {
+    /**
+     * Mocks all the data for the application.
+     */
     public static void mockAllData() {
         mockPatientData();
         mockAdminData();
@@ -44,6 +53,9 @@ public class MockData {
         mockMedicalRecordData();
     }
 
+    /**
+     * Mocks patient data for the application.
+     */
     public static void mockPatientData() {
         PatientRepository patientRepository = new PatientRepository(UserRepository.getInstance());
         patientRepository.clear();
@@ -61,6 +73,9 @@ public class MockData {
         patientRepository.save(new Patient("P1011", "Megan Clark", 49, "meganC!ark", Gender.FEMALE, LocalDate.of(1975, 10, 12), 63.4, 166.8, "81876543", "megan.clark@example.com", BloodType.O_NEGATIVE));
     }
 
+    /**
+     * Mocks admin data for the application.
+     */
     public static void mockAdminData() {
         AdminRepository adminRepository = new AdminRepository(UserRepository.getInstance());
         adminRepository.clear();
@@ -70,6 +85,9 @@ public class MockData {
         adminRepository.save(new Admin("A1003", "James Anderson", 50, "adminPass3", Gender.MALE, LocalDate.of(1973, 5, 30), "83456789", "james.anderson@example.com"));
     }
 
+    /**
+     * Mocks pharmacist data for the application.
+     */
     public static void mockPharmacistData() {
         PharmacistRepository pharmacistRepository = new PharmacistRepository(UserRepository.getInstance());
         pharmacistRepository.clear();
@@ -81,6 +99,9 @@ public class MockData {
         pharmacistRepository.save(new Pharmacist("F1005", "Michael Chan", 45, "michaelChan789", Gender.MALE, LocalDate.of(1978, 2, 10), "81234571", "michael.chan@example.com"));
     }
 
+    /**
+     * Mocks inventory data for the application.
+     */
     public static void mockInventoryData() {
         InventoryRepository inventoryRepository = new InventoryRepository();
         inventoryRepository.clear();
@@ -97,6 +118,9 @@ public class MockData {
         inventoryRepository.save(new InventoryItem("I1010", "Levothyroxine", 20, 50));
     }
 
+    /**
+     * Mocks doctor data for the application.
+     */
     public static void mockDoctorData() {
         DoctorRepository doctorRepository = new DoctorRepository(UserRepository.getInstance());
         doctorRepository.clear();
@@ -115,6 +139,9 @@ public class MockData {
         doctorRepository.save(new Doctor("D1006", "Laura Black", 35, "lauraBlack303", Gender.FEMALE, LocalDate.of(1988, 6, 10), "81234572", "laurablack@email.com", Specialisation.GYNECOLOGIST));
     }
 
+    /*
+     * Mocks appointment data for the application.
+     */
     public static void mockAppointmentData() {
         AppointmentRepository appointmentRepository = new AppointmentRepository();
         appointmentRepository.clear();
@@ -165,6 +192,9 @@ public class MockData {
         System.out.println(appointmentRepository.findById("Y1013").getOutcomeRecord().getConsultationNotes());
     }
 
+    /**
+     * Mocks medical record data for the application.
+     */
     public static void mockMedicalRecordData() {
         MedicalRecordRepository medicalRecordRepository = new MedicalRecordRepository();
         medicalRecordRepository.clear();

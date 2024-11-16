@@ -18,15 +18,36 @@ import view.View;
 import view.Pharmacist.inventory.widget.InventoryTable;
 import view.widgets.Title;
 
+/**
+ * This view allows the pharmacist to request replenishment for low stock medications.
+ * It displays a list of low stock medications and allows the pharmacist to request replenishment.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
 public class PharmacistReplenishmentRequestView extends View {
+    /**
+     * An instance of the {@link UserManager} class. Used to retrieve the active user.
+     */
     private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    
+    /**
+     * An instance of the {@link InventoryManager} class. Used to manage inventory items.
+     */
     private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return the name of the view.
+     */
     @Override
     public String getViewName() {
        return "Replenishment Request";
     }
 
+    /**
+     * Renders the view.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);

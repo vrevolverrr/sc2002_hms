@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Utility class for validating user input.
  */
-public class InputValidators {
+public final class InputValidators {
     /**
      * Validates a date string to a given pattern.
      * @param dateString the date string to validate.

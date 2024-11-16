@@ -16,15 +16,36 @@ import view.Pharmacist.inventory.PharmacistReplenishmentRequestView;
 import view.Pharmacist.prescription.PharmacistPrescriptionView;
 import view.widgets.Title;
 
-public class PharmacistView extends View {
+/**
+ * This is the main view for the Pharmacist role.
+ * It displays the pharmacist's details and provides options to update prescription status, view inventory, and submit replenishment requests.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
+public final class PharmacistView extends View {
+    /**
+     * An instance of the {@link UserManager} class. Used to retrieve the active user.
+     */
     private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    
+    /**
+     * The active user of the application, in this case, the pharmacist.
+     */
     private final User activeUser = userManager.getActiveUser();
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return the name of the view.
+     */
     @Override
     public String getViewName() {
-        return("Pharmacist");
+        return "Pharmacist";
     }
 
+    /**
+     * Renders the view.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);

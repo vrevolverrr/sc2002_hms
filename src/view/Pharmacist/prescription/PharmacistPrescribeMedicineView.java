@@ -18,20 +18,49 @@ import view.Doctor.appointments.widgets.DoctorAppointmentDetailsTable;
 import view.Doctor.appointments.widgets.PrescriptionsTable;
 import view.widgets.Title;
 
-public class PharmacistPrescribeMedicineView extends View {
+/**
+ * This view allows the pharmacist to prescribe medicine for a selected appointment.
+ * It displays the appointment details and the list of prescriptions.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
+public final class PharmacistPrescribeMedicineView extends View {
+    /**
+     * An instance of the {@link PharmacistManager} class. Used to manage prescriptions.
+     */
     private final PharmacistManager pharmacistManager = PharmacistManager.getInstance(PharmacistManager.class);
+    
+    /**
+     * An instance of the {@link InventoryManager} class. Used to retrieve inventory items.
+     */
     private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
+    
+    /**
+     * The appointment for which the medicine is being prescribed.
+     */
     private final Appointment appointment;
 
+    /**
+     * Constructor for the view.
+     * @param appointment the appointment for which the medicine is being prescribed.
+     */
     public PharmacistPrescribeMedicineView(Appointment appointment) {
         this.appointment = appointment;
     }
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return the name of the view.
+     */
     @Override
     public String getViewName() {
        return "Prescribe Medicine";
     }
 
+    /**
+     * Renders the view.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);
@@ -94,6 +123,11 @@ public class PharmacistPrescribeMedicineView extends View {
         repaint();
     }
 
+    /**
+     * Gets the name of the drug by its ID.
+     * @param id the ID of the drug.
+     * @return the name of the drug.
+     */
     public String getDrugNameById(String id) {
         return inventoryManager.getItem(id).getItemName();
     }

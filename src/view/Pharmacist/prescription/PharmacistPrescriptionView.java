@@ -15,14 +15,31 @@ import view.View;
 import view.Pharmacist.prescription.widgets.PharmacistAppointmentsTable;
 import view.widgets.Title;
 
-public class PharmacistPrescriptionView extends View {
+/**
+ * This view allows the pharmacist to update the prescription status.
+ * It displays a list of undispensed appointments and allows the pharmacist to select one to prescribe medicine.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
+public final class PharmacistPrescriptionView extends View {
+    /**
+     * An instance of the {@link AppointmentManager} class. Used to retrieve appointments.
+     */
     private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return the name of the view.
+     */
     @Override
     public String getViewName() {
         return "Update Prescription Status";
     }
 
+    /**
+     * Renders the view.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);
