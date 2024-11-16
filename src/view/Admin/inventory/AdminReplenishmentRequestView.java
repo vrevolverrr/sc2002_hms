@@ -15,14 +15,30 @@ import view.View;
 import view.Admin.inventory.widget.ReplenishmentRequestsTable;
 import view.widgets.Title;
 
+/**
+ * This view allows the admin to manage replenishment requests.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
 public class AdminReplenishmentRequestView extends View {
+    /**
+     * An instance of the {@link InventoryManager} class. Used to manage inventory operations.
+     */
     private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return the name of the view.
+     */
     @Override
     public String getViewName() {
        return "Manage Replenishment Request";
     }
 
+    /**
+     * Renders the view, allowing the admin to manage replenishment requests.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);

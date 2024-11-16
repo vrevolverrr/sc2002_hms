@@ -17,14 +17,30 @@ import view.View;
 import view.Admin.staff.widget.StaffTable;
 import view.widgets.Title;
 
+/**
+ * This view allows the admin to search for and update staff details.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
 public class AdminUpdateStaffView extends View {
+    /**
+     * An instance of the {@link StaffManager} class. Used to manage staff operations.
+     */
     private StaffManager staffManager = StaffManager.getInstance(StaffManager.class);
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return the name of the view.
+     */
     @Override
     public String getViewName() {
         return "Update Staff";
     }
 
+    /**
+     * Renders the view, allowing the admin to search for staff and update their details.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);
@@ -59,6 +75,10 @@ public class AdminUpdateStaffView extends View {
         ).readOption(context);
     }
 
+    /**
+     * Deletes the specified staff member.
+     * @param staff the staff member to delete.
+     */
     private void deleteStaff(User staff) {
         staffManager.deleteStaff(staff);
 

@@ -20,14 +20,30 @@ import utils.InputValidators;
 import view.View;
 import view.widgets.Title;
 
+/**
+ * This view allows the admin to add a new staff member.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
 public class AdminAddStaffView extends View {
+    /**
+     * An instance of the {@link StaffManager} class. Used to manage staff operations.
+     */
     private StaffManager staffManager = StaffManager.getInstance(StaffManager.class);
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return the name of the view.
+     */
     @Override
     public String getViewName() {
        return "Add Staff";
     }
 
+    /**
+     * Renders the view, allowing the admin to add a new staff member.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);
@@ -90,6 +106,10 @@ public class AdminAddStaffView extends View {
         Navigator.pop();
     }
 
+    /**
+     * Prompts the admin to select the gender of the new staff member.
+     * @return the selected gender.
+     */
     private Gender promptGender() {
         final Gender[] gender = {Gender.MALE};
 
@@ -102,6 +122,10 @@ public class AdminAddStaffView extends View {
         return gender[0];
     }
 
+    /**
+     * Prompts the admin to select the role of the new staff member.
+     * @return the selected role.
+     */
     private UserRole promptRole() {
         final UserRole[] userRole = {null};
         new Text("Enter the staff's role:", TextStyle.BOLD).paint(context);
@@ -114,6 +138,10 @@ public class AdminAddStaffView extends View {
         return userRole[0];
     }
     
+    /**
+     * Prompts the admin to select the specialisation of the new staff member if they are a doctor.
+     * @return the selected specialisation.
+     */
     private Specialisation promptSpecialisation() {
         Specialisation[] specialisation = {null};
         new Text("Enter the staff's specialisation:", TextStyle.BOLD).paint(context);

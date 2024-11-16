@@ -25,19 +25,43 @@ import utils.UpdatableField;
 import view.View;
 import view.widgets.Title;
 
+/**
+ * This view allows the admin to update the details of a specific staff member.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
 public class AdminUpdateStaffDetailsView extends View {
+    /**
+     * An instance of the {@link StaffManager} class. Used to manage staff operations.
+     */
     private StaffManager staffManager = StaffManager.getInstance(StaffManager.class);
+
+    /**
+     * The staff member to update.
+     */
     private User staff;
 
+    /**
+     * Constructs the view with the specified staff member.
+     * @param staff the staff member to update.
+     */
     public AdminUpdateStaffDetailsView(User staff) {
         this.staff = staff;
     }
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return the name of the view.
+     */
     @Override
     public String getViewName() {
         return "Update Staff";
     }
 
+    /**
+     * Renders the view, allowing the admin to update the details of the specified staff member.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);
@@ -72,6 +96,9 @@ public class AdminUpdateStaffDetailsView extends View {
         repaint();
     }
 
+    /**
+     * Updates the staff member's name.
+     */
     private void updateName() {
         TextInputField nameField = new TextInputField("Enter the staff's new name");
         new TextInput(nameField).read(context, "Enter a non-empty staff name.", input -> !input.trim().isEmpty());
@@ -80,6 +107,9 @@ public class AdminUpdateStaffDetailsView extends View {
         staffManager.updateStaff(staff);
     }
 
+    /**
+     * Updates the staff member's age.
+     */
     private void updateAge() {
         TextInputField ageField = new TextInputField("Enter the staff's new age");
         new TextInput(ageField).read(context, "Enter a valid age.", input -> InputValidators.validateAge(input));
@@ -88,6 +118,9 @@ public class AdminUpdateStaffDetailsView extends View {
         staffManager.updateStaff(staff);
     }
 
+    /**
+     * Updates the staff member's password.
+     */
     private void updatePassword() {
         TextInputField passwordField = new TextInputField("Enter the staff's new password");
         new TextInput(passwordField).read(context, "Enter a valid password.", input -> !input.isEmpty());
@@ -96,6 +129,9 @@ public class AdminUpdateStaffDetailsView extends View {
         staffManager.updateStaff(staff);
     }
 
+    /**
+     * Updates the staff member's gender.
+     */
     private void updateGender() {
         final Gender[] gender = {Gender.MALE};
 
@@ -109,6 +145,9 @@ public class AdminUpdateStaffDetailsView extends View {
         staffManager.updateStaff(staff);
     }
 
+    /**
+     * Updates the staff member's birthday.
+     */
     private void updateBirthday() {
         TextInputField birthdayField = new TextInputField("Enter the staff's new birthday (yyyy-MM-dd)");
         new TextInput(birthdayField).read(context, "Enter a valid date.", input -> InputValidators.validateDate(input));
@@ -117,6 +156,9 @@ public class AdminUpdateStaffDetailsView extends View {
         staffManager.updateStaff(staff);
     }
 
+    /**
+     * Updates the staff member's email address.
+     */
     private void updateEmail() {
         TextInputField emailField = new TextInputField("Enter the staff's new email address");
         new TextInput(emailField).read(context, "Enter a valid email address.", input -> InputValidators.validateEmail(input));
@@ -125,6 +167,9 @@ public class AdminUpdateStaffDetailsView extends View {
         staffManager.updateStaff(staff);
     }
 
+    /**
+     * Updates the staff member's phone number.
+     */
     private void updatePhoneNumber() {
         TextInputField phoneNumberField = new TextInputField("Enter the staff's new phone number");
         new TextInput(phoneNumberField).read(context, "Enter a valid phone number.", input -> InputValidators.validatePhoneNumber(input));
@@ -133,6 +178,9 @@ public class AdminUpdateStaffDetailsView extends View {
         staffManager.updateStaff(staff);
     }
 
+    /**
+     * Updates the staff member's specialisation if they are a doctor.
+     */
     private void updateSpecialisation() {
         if (staff.getRole() != UserRole.DOCTOR) {
             return;

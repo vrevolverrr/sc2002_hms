@@ -14,19 +14,46 @@ import view.View;
 import view.Pharmacist.inventory.widget.InventoryTable;
 import view.widgets.Title;
 
+/**
+ * This view allows the admin to manage the inventory.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
 public class AdminInventoryView extends View {
+    /**
+     * An instance of the {@link InventoryManager} class. Used to manage inventory operations.
+     */
     private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
+
+    /**
+     * The list of all inventory items.
+     */
     private final List<InventoryItem> items = inventoryManager.getAllItems();
 
+    /**
+     * The search keyword entered by the admin.
+     */
     private String keyword = "";
+
+    /**
+     * Indicates whether the view is showing search results.
+     */
     private boolean showingResults = false;
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return the name of the view.
+     */
     @Override
     public String getViewName() {
         return "Manage Inventory";
     }
 
     @SuppressWarnings("unused")
+    /**
+     * Renders the view, allowing the admin to manage the inventory.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);
@@ -56,6 +83,11 @@ public class AdminInventoryView extends View {
         repaint();
     }
 
+    /**
+     * Filters the inventory items by the specified keyword.
+     * @param keyword the keyword to filter by.
+     * @return the list of filtered inventory items.
+     */
     private List<InventoryItem> filterItems(String keyword) {
         if (keyword.isBlank()) {
             return items;

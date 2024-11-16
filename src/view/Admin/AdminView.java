@@ -12,6 +12,7 @@ import model.users.User;
 import services.Navigator;
 import view.View;
 import view.Admin.appointments.AdminAppointmentView;
+import view.Admin.database.AdminManageDatabaseView;
 import view.Admin.inventory.AdminInventoryView;
 import view.Admin.inventory.AdminReplenishmentRequestView;
 import view.Admin.staff.AdminManageStaffView;
@@ -74,6 +75,9 @@ public class AdminView extends View {
 
             new MenuOption("Approve Replenishment Request", () -> 
                 Navigator.navigateTo(new AdminReplenishmentRequestView())),
+                
+            new MenuOption("Manage Database", () -> 
+                Navigator.navigateTo(new AdminManageDatabaseView())),
 
             new MenuOption("Log Out", () -> Navigator.navigateTo(new LoginView()))
 

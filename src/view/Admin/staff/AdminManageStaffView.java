@@ -7,15 +7,31 @@ import lib.uilib.widgets.base.Menu;
 import services.Navigator;
 import view.View;
 import view.widgets.Title;
-    
-public class AdminManageStaffView extends View{
+
+/**
+ * This view allows the admin to manage hospital staff.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
+public class AdminManageStaffView extends View {
+    /**
+     * An instance of the {@link UserManager} class. Used to manage user operations.
+     */
     UserManager userManager = UserManager.getInstance(UserManager.class);
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return the name of the view.
+     */
     @Override
     public String getViewName() {
         return "Manage Hospital Staff";
     }
 
+    /**
+     * Renders the view, providing options to view, add, and update staff.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);

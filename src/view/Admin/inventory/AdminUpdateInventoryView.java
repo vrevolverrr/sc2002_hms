@@ -13,19 +13,43 @@ import view.View;
 import view.Admin.inventory.widget.InventoryItemUpdateTable;
 import view.widgets.Title;
 
+/**
+ * This view allows the admin to update inventory items.
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
 public class AdminUpdateInventoryView extends View {
+    /**
+     * An instance of the {@link InventoryManager} class. Used to manage inventory operations.
+     */
     private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
+
+    /**
+     * The inventory item to update.
+     */
     private final InventoryItem item;
 
+    /**
+     * Constructs the view with the specified inventory item.
+     * @param item the inventory item to update.
+     */
     public AdminUpdateInventoryView(InventoryItem item) {
         this.item = item;
     }
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * @return the name of the view.
+     */
     @Override
     public String getViewName() {
         return "Update Inventory";
     }
 
+    /**
+     * Renders the view, allowing the admin to update the specified inventory item.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);
@@ -57,6 +81,9 @@ public class AdminUpdateInventoryView extends View {
         Navigator.pop();
     }
 
+    /**
+     * Prompts the admin to update the stock quantity of the inventory item.
+     */
     private void promptUpdateStock() {
         TextInputField stockField = new TextInputField("Enter new stock quantity");
         new TextInput(stockField).read(context, "Enter a valid stock quantity.", 
@@ -65,6 +92,9 @@ public class AdminUpdateInventoryView extends View {
         inventoryManager.updateStock(item, stockField.getInt());
     }
 
+    /**
+     * Prompts the admin to update the stock level alert of the inventory item.
+     */
     private void promptUpdateStockLevelAlert() {
         TextInputField stockLevelAlertField = new TextInputField("Enter new stock level alert");
         new TextInput(stockLevelAlertField).read(context, "Enter a valid stock level alert.", 
