@@ -141,7 +141,7 @@ public final class PatientUpdateDetailsView extends View {
      */
     private void updateBirthday() {
         TextInputField birthdayField = new TextInputField("Enter the your new birthday (yyyy-MM-dd)");
-        new TextInput(birthdayField).read(context, "Enter a valid date.", input -> InputValidators.validateDate(input));
+        new TextInput(birthdayField).read(context, "Enter a valid date.", input -> InputValidators.validateDate(input, "yyyy-MM-dd"));
 
         patient.setDob(birthdayField.getDate("yyyy-MM-dd"));
         patientManager.updatePatient(patient);
