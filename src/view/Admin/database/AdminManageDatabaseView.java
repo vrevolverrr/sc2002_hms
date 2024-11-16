@@ -29,12 +29,8 @@ public class AdminManageDatabaseView extends View {
         new VSpacer(1).paint(context);
 
         new Menu(
-            new MenuOption("Clear Database", this::clearDatabase),
             new MenuOption("Load from file", this::loadFromFile)
         ).readOption(context);
-    }
-    
-    private void clearDatabase() {
     }
 
     private void loadFromFile() {
