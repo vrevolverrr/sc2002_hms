@@ -6,6 +6,7 @@ import controller.MedicalRecordManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
+import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.medrecord.MedicalRecordEntry;
@@ -73,6 +74,12 @@ public class PatientMedicalRecordView extends View {
 
         new Title("Medical History").paint(context);
         new PatientMedicalRecordsTable(medicalRecods).paint(context);
+
+        if (medicalRecods.isEmpty()) {
+            new Pause("No medical records found. Press any key to go back.").pause(context);
+            Navigator.pop();
+            return;
+        }
 
         TextInputField entryField = new TextInputField("Choose medical record to view details");
         new TextInput(entryField).read(context, "Choose a medical record entry from the list.",
