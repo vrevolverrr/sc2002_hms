@@ -58,7 +58,7 @@ public class DoctorRepository implements IDoctorRepository {
      * @return the new ID for a {@link Doctor}.
      */
     @SuppressWarnings("unused")
-    @Override
+	@Override
     public String generateId() {
         return "D" + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(
             last -> String.format("%04d", Integer.parseInt(last.substring(1)) + 1)).orElse("1001");

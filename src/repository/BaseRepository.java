@@ -74,14 +74,13 @@ public abstract class BaseRepository<T extends BaseModel> implements IRepository
     }
 
     /**
-     * Finds all the items that matches a given predicate (condition).
-     * <pre>
-     * List<User> maleUsers = userRepository.findBy((User user) -> user.getGender() == Gender.MALE);
-     * </pre>
-     * 
-     * @param predicate the condition to check whether an item should be included.
-     * @return a list of copies of the items satisfying the predicate.
-     */
+	 * Finds all the items that matches a given predicate (condition).
+	 * <pre>
+	 * List<User> maleUsers = userRepository.findBy((User user) -> user.getGender() == Gender.MALE);
+	 * </pre>
+	 * @param predicate the condition to check whether an item should be included.
+	 * @return a list of copies of the items satisfying the predicate.
+	 */
     @SuppressWarnings("unchecked") 
     // Type cast is always valid since implementations of copy() does a covariant return.
     final public List<T> findBy(Predicate<T> predicate) {

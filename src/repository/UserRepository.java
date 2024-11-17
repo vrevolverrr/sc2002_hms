@@ -38,7 +38,7 @@ public class UserRepository extends BaseRepository<User> implements IUserReposit
      * Generates a new ID for a {@link User}.
      */
     @SuppressWarnings("unused")
-    @Override
+	@Override
     public String generateId() {
         return "U" + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(
             last -> String.format("%04d", Integer.parseInt(last.substring(1)) + 1)).orElse("1001");

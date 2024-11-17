@@ -65,7 +65,7 @@ import repository.interfaces.IUserRepository;
       * Generates a new ID for a {@link Admin}.
       */
     @SuppressWarnings("unused")
-    @Override
+	@Override
     public String generateId() {
         return ID_PREFIX + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(
             last -> String.format("%04d", Integer.parseInt(last.substring(1)) + 1)).orElse("1001");

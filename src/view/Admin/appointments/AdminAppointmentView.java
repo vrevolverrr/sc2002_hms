@@ -29,12 +29,12 @@ public class AdminAppointmentView extends View {
     /**
      * An instance of the {@link UserManager} class. Used to manage user operations.
      */
-    private final IUserManager userManager = ServiceLocator.getService(UserManager.class);
+    private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
 
     /**
      * An instance of the {@link AppointmentManager} class. Used to manage appointment operations.
      */
-    private final IAppointmentManager appointmentManager = ServiceLocator.getService(AppointmentManager.class);
+    private final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
 
     /**
      * The list of all appointments.

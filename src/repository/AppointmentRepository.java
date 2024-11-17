@@ -33,7 +33,7 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
      * @return the generated ID for an {@link Appointment}.
      */
     @SuppressWarnings("unused")
-    @Override
+	@Override
     public String generateId() {
         return ID_PREFIX + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(
             last -> String.format("%04d", Integer.parseInt(last.substring(1)) + 1)).orElse("1001");

@@ -30,7 +30,7 @@ public class PatientPastAppointmentsView extends View {
     /**
      * Manager for handling appointment-related operations.
      */
-    private final IAppointmentManager appointmentsManager = ServiceLocator.getService(AppointmentManager.class);
+    private final IAppointmentManager appointmentsManager = ServiceLocator.getService(IAppointmentManager.class);
 
     /**
      * Manager for handling user-related operations.

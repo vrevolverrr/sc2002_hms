@@ -8,7 +8,7 @@ import model.enums.MedicalService;
 import model.prescriptions.Prescription;
 import model.users.Doctor;
 import model.users.Patient;
-import repository.AppointmentRepository;
+import repository.interfaces.IAppointmentRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,13 +18,13 @@ import java.util.List;
 import controller.interfaces.IAppointmentManager;
 
 public class AppointmentManager implements IAppointmentManager {
-    private final AppointmentRepository appointmentRepository;
+    private final IAppointmentRepository appointmentRepository;
 
     public final static int START_HOUR = 8;
     public final static int END_HOUR = 17;
     public final static int SLOT_DURATION = 30;
 
-    public AppointmentManager(AppointmentRepository appointmentRepository) {
+    public AppointmentManager(IAppointmentRepository appointmentRepository) {
         this.appointmentRepository = appointmentRepository;
         
         // Every time the AppointmentManager is instantiated, it will check for past appointments

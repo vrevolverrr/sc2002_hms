@@ -67,7 +67,7 @@ public class PatientRepository implements IPatientRepository {
     }
 
     @SuppressWarnings("unused")
-    @Override
+	@Override
     public String generateId() {
         return "P" + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(
             last -> String.format("%04d", Integer.parseInt(last.substring(1)) + 1)).orElse("1001");

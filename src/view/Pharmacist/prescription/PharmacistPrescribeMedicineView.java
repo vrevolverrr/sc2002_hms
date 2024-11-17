@@ -32,7 +32,7 @@ public final class PharmacistPrescribeMedicineView extends View {
     /**
      * An instance of the {@link PharmacistManager} class. Used to manage prescriptions.
      */
-    private final IPharmacistManager pharmacistManager = ServiceLocator.getService(PharmacistManager.class);
+    private final IPharmacistManager pharmacistManager = ServiceLocator.getService(IPharmacistManager.class);
     
     /**
      * An instance of the {@link InventoryManager} class. Used to retrieve inventory items.
