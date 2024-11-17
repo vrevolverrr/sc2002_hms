@@ -91,6 +91,12 @@ public class UserRepository extends BaseRepository<User> {
         return findByName(name).size() > 0;
     }
 
+    /**
+     * Saves a single {@link User} object. If the user does not have an ID, a new ID is generated 
+     * and assigned to the user before saving it.
+     * @param item the {@link User} object to be saved.
+     * @return the saved {@link User} object, potentially with an auto-generated ID if one was not provided.
+     */
     @Override
     public User save(User item) {
         if (item.getId() == null || item.getId().isBlank()) {
@@ -100,6 +106,13 @@ public class UserRepository extends BaseRepository<User> {
         return super.save(item);
     }
 
+    /**
+     * Saves a collection of {@link User} objects. For each user in the collection, if a user does 
+     * not have an ID, a new ID is generated and assigned before saving the entire collection.
+     * <p>
+     * @param collection the list of {@link User} objects to be saved.
+     * @return the list of saved {@link User} objects, with auto-generated IDs assigned to any new users.
+     */
     public List<User> save(List<User> collection) {
         collection.forEach(user -> {
             if (user.getId() == null) {

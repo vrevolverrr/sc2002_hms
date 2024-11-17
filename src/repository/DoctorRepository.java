@@ -5,10 +5,23 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import model.enums.UserRole;
+import model.inventory.InventoryItem;
 import model.users.Doctor;
 import model.users.User;
 
+/**
+ * An implementation of {@link Repository} that on {@link Doctor} data models. It extends
+ * the functionality of a {@link UserRepository} by dependency injection to work on 
+ * {@code Users} that are actually {@code Doctor}.
+ * @see https://www.geeksforgeeks.org/dependency-injection-di-design-pattern/
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
+ */
 public class DoctorRepository implements Repository<Doctor> {
+    /**
+     * The {@link UserRepository} dependency to extend.
+     */
     private final UserRepository repository;
     
     /**

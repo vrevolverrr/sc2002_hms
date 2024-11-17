@@ -14,6 +14,10 @@ import model.users.User;
   * the functionality of a {@link UserRepository} by dependency injection to work on 
   * {@code Users} that are actually {@code Admins}.
   * @see https://www.geeksforgeeks.org/dependency-injection-di-design-pattern/
+  *
+  * @author Bryan Soong, Joyce Lee
+  * @version 1.0
+  * @since 2024-11-17
   */
  public class AdminRepository implements Repository<Admin> {    
      /**

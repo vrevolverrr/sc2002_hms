@@ -9,9 +9,13 @@ import model.users.Pharmacist;
 import model.users.User;
 
 /**
- * An implementation of {@link Repository} that operates on {@link Pharmacist} data models. It extends
- * the functionality of a {@link UserRepository} by dependency injection to work on 
+ * An implementation of {@link Repository} that operates on {@link Pharmacist} data models. It
+ * extends the functionality of a {@link UserRepository} by dependency injection to work on
  * {@code Users} that are actually {@code Pharmacists}.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
  */
 public class PharmacistRepository implements Repository<Pharmacist> {    
     /**
