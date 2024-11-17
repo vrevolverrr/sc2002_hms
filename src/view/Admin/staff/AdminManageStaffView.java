@@ -1,10 +1,11 @@
 package view.Admin.staff;
 
-import controller.UserManager;
+import controller.interfaces.IUserManager;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Menu;
 import services.Navigator;
+import services.ServiceLocator;
 import view.View;
 import view.widgets.Title;
 
@@ -16,9 +17,9 @@ import view.widgets.Title;
  */
 public class AdminManageStaffView extends View {
     /**
-     * An instance of the {@link UserManager} class. Used to manage user operations.
+     * An instance of the {@link IUserManager} interface. Used to manage user operations.
      */
-    UserManager userManager = UserManager.getInstance(UserManager.class);
+    IUserManager userManager = ServiceLocator.getService(IUserManager.class);
 
     /**
      * Gets the name of the view for the breadcrumbs.

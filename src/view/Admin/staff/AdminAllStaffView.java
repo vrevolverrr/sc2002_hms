@@ -3,7 +3,8 @@ package view.Admin.staff;
 import java.util.List;
 
 import model.users.User;
-import controller.StaffManager;
+import controller.interfaces.IStaffManager;
+import services.ServiceLocator;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
@@ -21,9 +22,9 @@ import view.widgets.Title;
  */
 public class AdminAllStaffView extends View {
     /**
-     * An instance of the {@link StaffManager} class. Used to manage staff operations.
+     * An instance of the {@link IStaffManager} interface. Used to manage staff operations.
      */
-    private final StaffManager staffManager = StaffManager.getInstance(StaffManager.class);
+    private final IStaffManager staffManager = ServiceLocator.getService(IStaffManager.class);
     
     /**
      * The search keywords entered by the admin.

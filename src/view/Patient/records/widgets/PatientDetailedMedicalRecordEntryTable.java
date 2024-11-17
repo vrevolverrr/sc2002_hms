@@ -3,7 +3,7 @@ package view.Patient.records.widgets;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import controller.InventoryManager;
+import controller.interfaces.IInventoryManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.Widget;
@@ -11,9 +11,10 @@ import lib.uilib.widgets.base.EnumeratedTable;
 import model.enums.MedicalService;
 import model.medrecord.MedicalRecordEntry;
 import model.prescriptions.Prescription;
+import services.ServiceLocator;
 
 public class PatientDetailedMedicalRecordEntryTable extends Widget {
-    private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
+    private final IInventoryManager inventoryManager = ServiceLocator.getService(IInventoryManager.class);
     
     private final MedicalRecordEntry entry;
 

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.SerializableCopyable;
+import model.appointments.TimeSlot;
 
 public class Availability implements SerializableCopyable {
     static final long serialVersionUID = 42L;
@@ -50,6 +51,11 @@ public class Availability implements SerializableCopyable {
 
     public Map<LocalDate, TimePeriod> getSpecificAvailability() {
         return new HashMap<LocalDate, TimePeriod>(specific);
+    }
+
+    public boolean isAvailable(TimeSlot slot) {
+        TimePeriod period = getAvailability(slot.getDate());
+        return period.contains(new TimePeriod(slot.getTime(), slot.getTime().plusMinutes(30)));
     }
 
     @Override

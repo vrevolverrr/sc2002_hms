@@ -3,7 +3,8 @@ package view.Patient.appointments;
 import java.util.List;
 
 import controller.AppointmentManager;
-import controller.UserManager;
+import controller.interfaces.IAppointmentManager;
+import controller.interfaces.IUserManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
@@ -12,6 +13,7 @@ import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
 import model.users.Patient;
 import services.Navigator;
+import services.ServiceLocator;
 import utils.InputValidators;
 import view.View;
 import view.Doctor.appointments.DoctorViewAppointmentDetailsView;
@@ -28,12 +30,12 @@ public class PatientPastAppointmentsView extends View {
     /**
      * Manager for handling appointment-related operations.
      */
-    private final AppointmentManager appointmentsManager = AppointmentManager.getInstance(AppointmentManager.class);
+    private final IAppointmentManager appointmentsManager = ServiceLocator.getService(AppointmentManager.class);
 
     /**
      * Manager for handling user-related operations.
      */
-    private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
 
     /**
      * List of the patient's past appointments.

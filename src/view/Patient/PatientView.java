@@ -1,6 +1,6 @@
 package view.Patient;
 
-import controller.UserManager;
+import controller.interfaces.IUserManager;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TableRow;
 import lib.uilib.widgets.base.Breadcrumbs;
@@ -10,6 +10,7 @@ import lib.uilib.widgets.base.VSpacer;
 import model.enums.Gender;
 import model.users.Patient;
 import services.Navigator;
+import services.ServiceLocator;
 import view.View;
 import view.Patient.appointments.PatientAppointmentView;
 import view.Patient.records.PatientMedicalRecordView;
@@ -26,7 +27,7 @@ public class PatientView extends View {
     /**
      * Manager for handling user-related operations.
      */
-    private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
 
     /**
      * The currently active patient.

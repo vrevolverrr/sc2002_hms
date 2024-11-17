@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import controller.AppointmentManager;
+import controller.interfaces.IAppointmentManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
@@ -15,13 +15,14 @@ import lib.uilib.widgets.base.VSpacer;
 import model.appointments.TimeSlot;
 import model.availability.TimePeriod;
 import model.users.Doctor;
+import services.ServiceLocator;
 import utils.InputValidators;
 import view.View;
 import view.Doctor.availability.widgets.DoctorScheduleTable;
 import view.widgets.Title;
 
 public class DoctorScheduleView extends View {
-    private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
+    private final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
     
     private final Doctor doctor;
 

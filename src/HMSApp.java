@@ -1,4 +1,5 @@
 import services.Navigator;
+import services.ServiceLocator;
 import utils.MockData;
 import view.Login.LoginView;
 
@@ -12,6 +13,9 @@ public final class HMSApp {
     public static void main(String[] args) throws Exception {
         // Mocks sample data for the repositories.
         MockData.mockAllData();
+
+        // Registers services.
+        ServiceLocator.registerHMSServices();
 
         // Navigates to the login view.
         Navigator.navigateTo(new LoginView());

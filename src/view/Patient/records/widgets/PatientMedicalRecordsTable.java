@@ -5,16 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import controller.UserManager;
+import controller.interfaces.IUserManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.Widget;
 import lib.uilib.widgets.base.EnumeratedTable;
 import lib.uilib.widgets.base.Table;
 import model.medrecord.MedicalRecordEntry;
+import services.ServiceLocator;
 
 public class PatientMedicalRecordsTable extends Widget {
-    private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
     
     private List<MedicalRecordEntry> medicalRecord;
 
@@ -44,22 +45,4 @@ public class PatientMedicalRecordsTable extends Widget {
     private String getDoctorNameById(String id) {
         return userManager.getUser(id).getName();
     }
-
-    // private String getDrugNameById(String id) {
-    //     return inventoryManager.getInventoryItem(id).getItemName();
-    // }
-
-    // private String buildPrescription(List<Prescription> prescriptions) {
-    //     return prescriptions.stream()
-    //         .map(prescription -> String.format("%s %s %s %s", 
-    //             getDrugNameById(prescription.getDrugId()),
-    //             prescription.getDosage().getQuantity(),
-    //             prescription.getDosage().getUnit().toString(),
-    //             prescription.getFrequency().toString()))
-    //         .collect(Collectors.joining(", "));
-    // }
-
-    // private String buildMedicalServices(List<MedicalService> medicalServices) {
-    //     return medicalServices.stream().map(service -> service.toString()).collect(Collectors.joining(", "));
-    // }
 }

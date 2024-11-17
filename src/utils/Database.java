@@ -191,7 +191,7 @@ public class Database {
             inventoryRepository.save(models.stream().map(model -> (InventoryItem) model).toList());
         }
 
-        UserRepository userRepository = UserRepository.getInstance();
+        UserRepository userRepository = new UserRepository();
         userRepository.save(models.stream().map(model -> (User) model).toList());
     }
 

@@ -2,16 +2,17 @@ package view.Admin.appointments.widgets;
 
 import java.util.List;
 
-import controller.UserManager;
+import controller.interfaces.IUserManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.Widget;
 import lib.uilib.widgets.base.EnumeratedTable;
 import model.appointments.Appointment;
+import services.ServiceLocator;
 
 public class AdminAppointmentTable extends Widget {
     private final List<Appointment> appointments;
-    private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
 
     public AdminAppointmentTable(List<Appointment> appointments) {
         this.appointments = appointments;

@@ -5,16 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import controller.UserManager;
+import controller.interfaces.IUserManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.Widget;
 import lib.uilib.widgets.base.EnumeratedTable;
 import lib.uilib.widgets.base.Table;
 import model.medrecord.MedicalRecordEntry;
+import services.ServiceLocator;
 
 public class DoctorMedicalRecordsTable extends Widget {
-    private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
     
     private List<MedicalRecordEntry> medicalRecord;
 

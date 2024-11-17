@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import controller.InventoryManager;
-import controller.MedicalRecordManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TableRow;
@@ -30,10 +28,13 @@ import utils.UpdatableField;
 import view.View;
 import view.Patient.records.widgets.PatientDetailedMedicalRecordEntryTable;
 import view.widgets.Title;
+import services.ServiceLocator;
+import controller.interfaces.IInventoryManager;
+import controller.interfaces.IMedicalRecordManager;
 
 public class DoctorUpdateMedicalRecordDetailsView extends View {
-    private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
-    private final MedicalRecordManager recordManager = MedicalRecordManager.getInstance(MedicalRecordManager.class);
+    private final IInventoryManager inventoryManager = ServiceLocator.getService(IInventoryManager.class);
+    private final IMedicalRecordManager recordManager = ServiceLocator.getService(IMedicalRecordManager.class);
 
     private final MedicalRecordEntry entry;
 

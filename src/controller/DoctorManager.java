@@ -1,25 +1,29 @@
 package controller;
 
 import repository.DoctorRepository;
-import repository.UserRepository;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
+import controller.interfaces.IDoctorManager;
 import model.availability.Availability;
 import model.availability.TimePeriod;
 import model.users.Doctor;
 
-public class DoctorManager extends Manager<DoctorManager> {
-    private final DoctorRepository doctorRepository = new DoctorRepository(UserRepository.getInstance());
+public class DoctorManager implements IDoctorManager {
+    private final DoctorRepository doctorRepository;
+
+    public DoctorManager(DoctorRepository doctorRepository) {
+        this.doctorRepository = doctorRepository;
+    }
+
+    public Doctor getDoctor(String doctorId) {
+        return doctorRepository.findById(doctorId);
+    }
     
     public List<Doctor> getAllDoctors() {
         return doctorRepository.getItems().values().stream().distinct().toList();
-    }
-
-    public Doctor getDoctorById(String doctorId) {
-        return doctorRepository.findById(doctorId);
     }
 
     public void setDoctorAvailability(Doctor doctor, DayOfWeek day, TimePeriod availablePeriod) {

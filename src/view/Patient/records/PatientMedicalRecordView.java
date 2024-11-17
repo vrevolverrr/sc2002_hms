@@ -2,7 +2,7 @@ package view.Patient.records;
 
 import java.util.List;
 
-import controller.MedicalRecordManager;
+import controller.interfaces.IMedicalRecordManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
@@ -12,6 +12,7 @@ import lib.uilib.widgets.base.VSpacer;
 import model.medrecord.MedicalRecordEntry;
 import model.users.Patient;
 import services.Navigator;
+import services.ServiceLocator;
 import utils.InputValidators;
 import view.View;
 import view.Patient.records.widgets.PatientMedicalDetailsTable;
@@ -28,7 +29,7 @@ public class PatientMedicalRecordView extends View {
     /**
      * Manager for handling medical record-related operations.
      */
-    private final MedicalRecordManager recordManager = MedicalRecordManager.getInstance(MedicalRecordManager.class);
+    private final IMedicalRecordManager recordManager = ServiceLocator.getService(IMedicalRecordManager.class);
 
     /**
      * The patient whose medical records are being displayed.

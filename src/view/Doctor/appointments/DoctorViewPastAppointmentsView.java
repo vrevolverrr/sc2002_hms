@@ -2,8 +2,6 @@ package view.Doctor.appointments;
 
 import java.util.List;
 
-import controller.AppointmentManager;
-import controller.UserManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.TextInput;
@@ -15,10 +13,13 @@ import utils.InputValidators;
 import view.View;
 import view.Doctor.appointments.widgets.DoctorAppointmentsTable;
 import view.widgets.Title;
+import services.ServiceLocator;
+import controller.interfaces.IAppointmentManager;
+import controller.interfaces.IUserManager;
 
 public class DoctorViewPastAppointmentsView extends View {
-    private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
-    private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    private final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
+    private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
 
     private final List<Appointment> pastAppointments;
     private String keyword = "";

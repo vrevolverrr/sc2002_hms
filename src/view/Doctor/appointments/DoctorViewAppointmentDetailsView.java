@@ -1,6 +1,5 @@
 package view.Doctor.appointments;
 
-import controller.PatientManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
 import lib.uilib.widgets.base.Breadcrumbs;
@@ -14,10 +13,12 @@ import view.Doctor.appointments.widgets.DoctorAppointmentDetailsTable;
 import view.Doctor.appointments.widgets.PatientDetailsTable;
 import view.Doctor.appointments.widgets.PrescriptionsTable;
 import view.widgets.Title;
+import services.ServiceLocator;
+import controller.interfaces.IPatientManager;
 
 public class DoctorViewAppointmentDetailsView extends View {
     private final Appointment appointment;
-    private final PatientManager patientManager = PatientManager.getInstance(PatientManager.class);
+    private final IPatientManager patientManager = ServiceLocator.getService(IPatientManager.class);
 
     private final BuildContext context = BuildContext.unboundedVertical(110);
 

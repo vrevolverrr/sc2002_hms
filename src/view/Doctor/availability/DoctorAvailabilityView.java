@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Stream;
 
-import controller.DoctorManager;
+import controller.interfaces.IDoctorManager;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.TextInputField;
@@ -23,12 +23,13 @@ import lib.uilib.widgets.base.VSpacer;
 import model.availability.TimePeriod;
 import model.users.Doctor;
 import services.Navigator;
+import services.ServiceLocator;
 import utils.InputValidators;
 import view.View;
 import view.widgets.Title;
 
 public class DoctorAvailabilityView extends View {
-    private final DoctorManager doctorManager = DoctorManager.getInstance(DoctorManager.class);
+    private final IDoctorManager doctorManager = ServiceLocator.getService(IDoctorManager.class);
     private final Doctor doctor;
 
     public DoctorAvailabilityView(Doctor doctor) {

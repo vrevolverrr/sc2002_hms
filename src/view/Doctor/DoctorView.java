@@ -1,6 +1,6 @@
 package view.Doctor;
 
-import controller.UserManager;
+import controller.interfaces.IUserManager;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TableRow;
 import lib.uilib.widgets.base.Breadcrumbs;
@@ -9,6 +9,7 @@ import lib.uilib.widgets.base.Table;
 import lib.uilib.widgets.base.VSpacer;
 import model.users.Doctor;
 import services.Navigator;
+import services.ServiceLocator;
 import view.View;
 import view.Doctor.appointments.DoctorManageAppointmentsView;
 import view.Doctor.availability.DoctorAvailabilityView;
@@ -17,8 +18,7 @@ import view.Doctor.records.DoctorPatientsUnderCareView;
 import view.widgets.Title;
 
 public class DoctorView extends View {
-    private final UserManager userManager = UserManager.getInstance(UserManager.class);
-    private final Doctor doctor = (Doctor) userManager.getActiveUser();
+    private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
 
     @Override
     public String getViewName() {
@@ -27,6 +27,8 @@ public class DoctorView extends View {
 
     @Override
     public void render() {
+        final Doctor doctor = (Doctor) userManager.getActiveUser();
+
         new Breadcrumbs().paint(context);
         new Title("Welcome Dr. " + userManager.getActiveUser().getName()).paint(context);
         

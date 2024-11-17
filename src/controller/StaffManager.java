@@ -3,6 +3,7 @@ package controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import controller.interfaces.IStaffManager;
 import model.enums.Gender;
 import model.enums.Specialisation;
 import model.enums.UserRole;
@@ -15,10 +16,12 @@ import repository.DoctorRepository;
 import repository.PharmacistRepository;
 import repository.UserRepository;
 
-public class StaffManager extends Manager<StaffManager> {
-    private final UserRepository userRepository = UserRepository.getInstance();
+public class StaffManager implements IStaffManager {
+    private final UserRepository userRepository;
 
-    protected StaffManager() {}
+    public StaffManager(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public List<User> getAllStaff() {
         return userRepository.findBy((user) -> isStaff(user));
@@ -51,7 +54,7 @@ public class StaffManager extends Manager<StaffManager> {
             String emailAddress, String phoneNumber, Specialisation specialisation) {
         
         final Doctor user = new Doctor(null, name, age, password, gender, dob, phoneNumber, emailAddress, specialisation);
-        final DoctorRepository repository = new DoctorRepository(UserRepository.getInstance());
+        final DoctorRepository repository = new DoctorRepository(userRepository);
         
         repository.save(user);
     }
@@ -60,7 +63,7 @@ public class StaffManager extends Manager<StaffManager> {
             String emailAddress, String phoneNumber) {
        
         final Admin user = new Admin(null, name, age, password, gender, dob, phoneNumber, emailAddress);
-        final AdminRepository repository = new AdminRepository(UserRepository.getInstance());
+        final AdminRepository repository = new AdminRepository(userRepository);
 
         repository.save(user);
     }
@@ -69,7 +72,7 @@ public class StaffManager extends Manager<StaffManager> {
             String emailAddress, String phoneNumber) {
 
         final Pharmacist user = new Pharmacist(null, name, age, password, gender, dob, phoneNumber, emailAddress);   
-        final PharmacistRepository repository = new PharmacistRepository(UserRepository.getInstance());
+        final PharmacistRepository repository = new PharmacistRepository(userRepository);
         
         repository.save(user);
     }

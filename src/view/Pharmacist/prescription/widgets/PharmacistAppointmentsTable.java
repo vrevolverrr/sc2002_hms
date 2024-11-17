@@ -2,7 +2,7 @@ package view.Pharmacist.prescription.widgets;
 
 import java.util.List;
 
-import controller.UserManager;
+import controller.interfaces.IUserManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.Widget;
@@ -11,9 +11,10 @@ import lib.uilib.widgets.base.Table;
 import model.appointments.Appointment;
 import model.enums.PrescriptionStatus;
 import model.prescriptions.Prescription;
+import services.ServiceLocator;
 
 public class PharmacistAppointmentsTable extends Widget {
-    private UserManager userManager = UserManager.getInstance(UserManager.class);
+    private IUserManager userManager = ServiceLocator.getService(IUserManager.class);
     private final List<Appointment> undispensedAppointments;
 
     public PharmacistAppointmentsTable(List<Appointment> undispensedAppointments) {

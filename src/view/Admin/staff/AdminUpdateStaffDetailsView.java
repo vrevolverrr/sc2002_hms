@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import controller.StaffManager;
+import controller.interfaces.IStaffManager;
+import services.ServiceLocator;
+
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.TextInputField;
@@ -33,9 +35,9 @@ import view.widgets.Title;
  */
 public class AdminUpdateStaffDetailsView extends View {
     /**
-     * An instance of the {@link StaffManager} class. Used to manage staff operations.
+     * An instance of the {@link IStaffManager} interface. Used to manage staff operations.
      */
-    private StaffManager staffManager = StaffManager.getInstance(StaffManager.class);
+    private IStaffManager staffManager = ServiceLocator.getService(IStaffManager.class);
 
     /**
      * The staff member to update.

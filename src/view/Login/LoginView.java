@@ -1,6 +1,7 @@
 package view.Login;
 
 import controller.UserManager;
+import controller.interfaces.IUserManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.Alignment;
@@ -14,12 +15,11 @@ import lib.uilib.widgets.layout.Column;
 import model.enums.UserRole;
 import model.users.User;
 import services.Navigator;
+import services.ServiceLocator;
 import view.View;
 import view.Admin.AdminView;
-// import view.Admin.AdminView;
 import view.Doctor.DoctorView;
 import view.Patient.PatientView;
-// import view.Pharmacist.PharmacistView;
 import view.Pharmacist.PharmacistView;
 
 
@@ -28,7 +28,7 @@ public class LoginView extends View {
     /**
      * The singleton instance of {@link UserManager}.
      */
-    UserManager userManager = UserManager.getInstance(UserManager.class);
+    private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
 
     @Override
     public String getViewName() {

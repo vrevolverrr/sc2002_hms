@@ -3,6 +3,7 @@ package view.Pharmacist.prescription;
 import java.util.List;
 
 import controller.AppointmentManager;
+import controller.interfaces.IAppointmentManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
@@ -10,6 +11,7 @@ import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
 import services.Navigator;
+import services.ServiceLocator;
 import utils.InputValidators;
 import view.View;
 import view.Pharmacist.prescription.widgets.PharmacistAppointmentsTable;
@@ -26,7 +28,7 @@ public final class PharmacistPrescriptionView extends View {
     /**
      * An instance of the {@link AppointmentManager} class. Used to retrieve appointments.
      */
-    private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
+    private final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
 
     /**
      * Gets the name of the view for the breadcrumbs.

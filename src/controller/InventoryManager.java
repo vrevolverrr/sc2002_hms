@@ -2,14 +2,20 @@ package controller;
 
 import java.util.List;
 
+import controller.interfaces.IInventoryManager;
 import model.enums.ReplenishmentStatus;
 import model.inventory.InventoryItem;
 import model.inventory.ReplenishmentRequest;
 import model.users.Pharmacist;
 import repository.InventoryRepository;
 
-public class InventoryManager extends Manager<InventoryManager> {
-    private final InventoryRepository inventoryRepository = new InventoryRepository();
+public class InventoryManager implements IInventoryManager {
+    private final InventoryRepository inventoryRepository;
+
+    public InventoryManager(InventoryRepository inventoryRepository) {
+        this.inventoryRepository = inventoryRepository;
+
+    }
 
     public InventoryItem getInventoryItem(String itemId) {
         return inventoryRepository.findById(itemId);
@@ -20,9 +26,7 @@ public class InventoryManager extends Manager<InventoryManager> {
     }
 
     public List<InventoryItem> getAllItems() {
-        return inventoryRepository.findAll().stream()
-        .sorted((a, b) -> a.getId().compareTo(b.getId()))
-        .toList();
+        return inventoryRepository.getAllItems();
     }
 
     public void updateStockLevelAlert(InventoryItem item, int level) {
@@ -89,8 +93,6 @@ public class InventoryManager extends Manager<InventoryManager> {
 
     public void rejectReplenishmentRequest(InventoryItem inventoryItem) {
         inventoryItem.setReplenishmentStatus(ReplenishmentStatus.REJECTED);
-
-        // inventoryItem.setReplenishmentRequest(null);
      
         inventoryRepository.save(inventoryItem);
     }

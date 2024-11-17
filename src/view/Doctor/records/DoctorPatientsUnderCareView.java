@@ -2,7 +2,7 @@ package view.Doctor.records;
 
 import java.util.List;
 
-import controller.PatientManager;
+import controller.interfaces.IPatientManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.TextInput;
@@ -10,13 +10,14 @@ import lib.uilib.widgets.base.VSpacer;
 import model.users.Doctor;
 import model.users.Patient;
 import services.Navigator;
+import services.ServiceLocator;
 import utils.InputValidators;
 import view.View;
 import view.Doctor.records.widget.DoctorPatientCareTable;
 import view.widgets.Title;
 
 public class DoctorPatientsUnderCareView extends View {
-    private final PatientManager patientManager = PatientManager.getInstance(PatientManager.class);
+    private final IPatientManager patientManager = ServiceLocator.getService(IPatientManager.class);
 
     private final List<Patient> patientsUnderCare;
 

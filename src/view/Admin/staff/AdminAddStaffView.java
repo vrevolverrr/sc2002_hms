@@ -2,7 +2,7 @@ package view.Admin.staff;
 
 import java.util.Arrays;
 
-import controller.StaffManager;
+import controller.interfaces.IStaffManager;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.TextStyle;
@@ -16,6 +16,7 @@ import model.enums.Gender;
 import model.enums.Specialisation;
 import model.enums.UserRole;
 import services.Navigator;
+import services.ServiceLocator;
 import utils.InputValidators;
 import view.View;
 import view.widgets.Title;
@@ -28,9 +29,9 @@ import view.widgets.Title;
  */
 public class AdminAddStaffView extends View {
     /**
-     * An instance of the {@link StaffManager} class. Used to manage staff operations.
+     * An instance of the {@link IStaffManager} interface. Used to manage staff operations.
      */
-    private StaffManager staffManager = StaffManager.getInstance(StaffManager.class);
+    private IStaffManager staffManager = ServiceLocator.getService(IStaffManager.class);
 
     /**
      * Gets the name of the view for the breadcrumbs.

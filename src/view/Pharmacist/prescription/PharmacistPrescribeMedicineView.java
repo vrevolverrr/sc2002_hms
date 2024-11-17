@@ -3,6 +3,8 @@ package view.Pharmacist.prescription;
 import java.util.List;
 import controller.InventoryManager;
 import controller.PharmacistManager;
+import controller.interfaces.IInventoryManager;
+import controller.interfaces.IPharmacistManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
@@ -12,6 +14,7 @@ import model.appointments.Appointment;
 import model.enums.PrescriptionStatus;
 import model.prescriptions.Prescription;
 import services.Navigator;
+import services.ServiceLocator;
 import utils.InputValidators;
 import view.View;
 import view.Doctor.appointments.widgets.DoctorAppointmentDetailsTable;
@@ -29,12 +32,12 @@ public final class PharmacistPrescribeMedicineView extends View {
     /**
      * An instance of the {@link PharmacistManager} class. Used to manage prescriptions.
      */
-    private final PharmacistManager pharmacistManager = PharmacistManager.getInstance(PharmacistManager.class);
+    private final IPharmacistManager pharmacistManager = ServiceLocator.getService(PharmacistManager.class);
     
     /**
      * An instance of the {@link InventoryManager} class. Used to retrieve inventory items.
      */
-    private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
+    private final IInventoryManager inventoryManager = ServiceLocator.getService(InventoryManager.class);
     
     /**
      * The appointment for which the medicine is being prescribed.

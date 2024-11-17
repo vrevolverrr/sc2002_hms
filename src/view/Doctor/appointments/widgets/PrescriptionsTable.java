@@ -2,7 +2,7 @@ package view.Doctor.appointments.widgets;
 
 import java.util.List;
 
-import controller.InventoryManager;
+import controller.interfaces.IInventoryManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.Widget;
@@ -10,9 +10,10 @@ import lib.uilib.widgets.base.EnumeratedTable;
 import lib.uilib.widgets.base.Table;
 import model.prescriptions.MedicineDosage;
 import model.prescriptions.Prescription;
+import services.ServiceLocator;
 
 public class PrescriptionsTable extends Widget {
-    private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
+    private final IInventoryManager inventoryManager = ServiceLocator.getService(IInventoryManager.class);
     private final List<Prescription> prescriptions;
 
     public PrescriptionsTable(List<Prescription> prescriptions) {

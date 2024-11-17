@@ -4,6 +4,8 @@ import java.util.List;
 
 import controller.InventoryManager;
 import controller.UserManager;
+import controller.interfaces.IInventoryManager;
+import controller.interfaces.IUserManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
@@ -13,6 +15,7 @@ import model.enums.ReplenishmentStatus;
 import model.inventory.InventoryItem;
 import model.users.Pharmacist;
 import services.Navigator;
+import services.ServiceLocator;
 import utils.InputValidators;
 import view.View;
 import view.Pharmacist.inventory.widget.InventoryTable;
@@ -29,12 +32,12 @@ public class PharmacistReplenishmentRequestView extends View {
     /**
      * An instance of the {@link UserManager} class. Used to retrieve the active user.
      */
-    private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
     
     /**
      * An instance of the {@link InventoryManager} class. Used to manage inventory items.
      */
-    private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
+    private final IInventoryManager inventoryManager = ServiceLocator.getService(IInventoryManager.class);
 
     /**
      * Gets the name of the view for the breadcrumbs.

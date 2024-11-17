@@ -1,17 +1,18 @@
 package view.Doctor.appointments.widgets;
 
 import java.util.List;
-import controller.PatientManager;
+import controller.interfaces.IPatientManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.Widget;
 import lib.uilib.widgets.base.EnumeratedTable;
 import lib.uilib.widgets.base.Table;
 import model.appointments.Appointment;
+import services.ServiceLocator;
 
 public class DoctorAppointmentsTable extends Widget {
     private final List<Appointment> appointments;
-    private final PatientManager patientManager = PatientManager.getInstance(PatientManager.class);
+    private final IPatientManager patientManager = ServiceLocator.getService(IPatientManager.class);
 
     private final String emptyMessage;
 

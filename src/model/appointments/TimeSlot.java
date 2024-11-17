@@ -43,6 +43,22 @@ public class TimeSlot implements Serializable, Comparable<TimeSlot> {
         return this.dateTime.equals(slot.getDateTime());
     }
 
+    public boolean isBefore(TimeSlot slot) {
+        return this.dateTime.isBefore(slot.getDateTime());
+    }
+
+    public boolean isBefore(LocalDateTime dateTime) {
+        return this.dateTime.isBefore(dateTime);
+    }
+
+    public boolean isAfter(TimeSlot slot) {
+        return this.dateTime.isAfter(slot.getDateTime());
+    }
+
+    public boolean isAfter(LocalDateTime dateTime) {
+        return this.dateTime.isAfter(dateTime);
+    }
+
     @Override
     public int compareTo(TimeSlot o) {
         return this.dateTime.compareTo(o.getDateTime());

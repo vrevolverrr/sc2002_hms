@@ -3,8 +3,8 @@ package view.Patient.appointments;
 import java.time.LocalDate;
 import java.util.List;
 
-import controller.AppointmentManager;
-import controller.DoctorManager;
+import controller.interfaces.IAppointmentManager;
+import controller.interfaces.IDoctorManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
@@ -14,6 +14,7 @@ import model.appointments.AppointmentSlot;
 import model.users.Doctor;
 import model.users.Patient;
 import services.Navigator;
+import services.ServiceLocator;
 import utils.InputValidators;
 import view.View;
 import view.Patient.appointments.widgets.AppointmentScheduledStatus;
@@ -24,6 +25,7 @@ import view.widgets.Title;
 
 /**
  * View for scheduling a new appointment for the patient.
+ * 
  * @author Bryan Soong
  * @version 1.0
  * @since 2024-11-10
@@ -32,12 +34,12 @@ public class PatientScheduleAppointmentView extends View {
     /**
      * Manager for handling appointment-related operations.
      */
-    final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class); 
+    final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
 
     /**
      * Manager for handling doctor-related operations.
      */
-    final DoctorManager doctorManager = DoctorManager.getInstance(DoctorManager.class);
+    final IDoctorManager doctorManager = ServiceLocator.getService(IDoctorManager.class);
 
     /**
      * The patient scheduling the appointment.
@@ -46,6 +48,7 @@ public class PatientScheduleAppointmentView extends View {
 
     /**
      * Constructs a new view for scheduling an appointment for the patient.
+     * 
      * @param patient The patient scheduling the appointment.
      */
     public PatientScheduleAppointmentView(Patient patient) {
@@ -54,6 +57,7 @@ public class PatientScheduleAppointmentView extends View {
 
     /**
      * Gets the name of the view for the breadcrumbs.
+     * 
      * @return The name of the view.
      */
     @Override
@@ -62,8 +66,8 @@ public class PatientScheduleAppointmentView extends View {
     }
 
     /**
-     * Renders the view to schedule a new appointment.
-     * The user is prompted to choose a doctor, date, and appointment slot for the appointment.
+     * Renders the view to schedule a new appointment. The user is prompted to
+     * choose a doctor, date, and appointment slot for the appointment.
      */
     @Override
     public void render() {
@@ -103,6 +107,7 @@ public class PatientScheduleAppointmentView extends View {
 
     /**
      * Prompts the user to choose a doctor for the appointment.
+     * 
      * @return The selected doctor.
      */
     private Doctor promptChooseDoctor() {
@@ -113,7 +118,8 @@ public class PatientScheduleAppointmentView extends View {
 
         /// Choose a doctor
         TextInputField doctorField = new TextInputField(String.format("Choose a doctor (1-%d)", doctors.size()));
-        new TextInput(doctorField).read(context, "Choose a doctor from the list above.", (input) -> InputValidators.validateRange(input, doctors.size()));
+        new TextInput(doctorField).read(context, "Choose a doctor from the list above.",
+                (input) -> InputValidators.validateRange(input, doctors.size()));
 
         final Doctor selectedDoctor = doctors.get(doctorField.getOption());
 
@@ -126,6 +132,7 @@ public class PatientScheduleAppointmentView extends View {
 
     /**
      * Prompts the user to choose a date for the appointment.
+     * 
      * @return The selected date.
      */
     private LocalDate promptChooseDate() {
@@ -133,21 +140,23 @@ public class PatientScheduleAppointmentView extends View {
         new VSpacer(1).paint(context);
 
         TextInputField dateField = new TextInputField("Choose a date (dd/mm/yy)");
-        new TextInput(dateField).read(context, "Enter a valid date starting from today.", 
-            (input) -> InputValidators.validateDate(input));
+        new TextInput(dateField).read(context, "Enter a valid date starting from today.",
+                (input) -> InputValidators.validateDate(input));
 
         return dateField.getDate();
     }
 
     /**
      * Prompts the user to choose an appointment slot.
-     * @param selectedDate The selected date for the appointment.
+     * 
+     * @param selectedDate  The selected date for the appointment.
      * @param selectedDoctor The selected doctor for the appointment.
      * @return The selected appointment slot.
      */
     private AppointmentSlot promptChooseAppointmentSlot(LocalDate selectedDate, Doctor selectedDoctor) {
         new Title("Available Appointment Slots").paint(context);
-        List<AppointmentSlot> appointmentSlots = appointmentManager.getAvailableSlotsByDoctor(selectedDate, selectedDoctor);
+        List<AppointmentSlot> appointmentSlots = appointmentManager.getAvailableSlotsByDoctor(selectedDate,
+                selectedDoctor);
         new AppointmentSlotSelectionTable(appointmentSlots).paint(context);
 
         if (appointmentSlots.isEmpty()) {
@@ -156,8 +165,10 @@ public class PatientScheduleAppointmentView extends View {
 
         /// Choose an appointment slot
         new VSpacer(1).paint(context);
-        TextInputField slotField = new TextInputField(String.format("Choose an appointment slot (1-%d)", appointmentSlots.size()));
-        new TextInput(slotField).read(context, "Choose a slot from the list above.", (input) -> InputValidators.validateRange(input, appointmentSlots.size()));
+        TextInputField slotField = new TextInputField(
+                String.format("Choose an appointment slot (1-%d)", appointmentSlots.size()));
+        new TextInput(slotField).read(context, "Choose a slot from the list above.",
+                (input) -> InputValidators.validateRange(input, appointmentSlots.size()));
 
         return appointmentSlots.get(slotField.getOption());
     }

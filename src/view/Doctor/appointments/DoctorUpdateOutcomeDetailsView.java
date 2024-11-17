@@ -5,10 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import controller.AppointmentManager;
-import controller.InventoryManager;
-import controller.MedicalRecordManager;
-import controller.UserManager;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.TextStyle;
@@ -35,12 +31,17 @@ import model.users.Doctor;
 import model.users.Patient;
 import services.Navigator;
 import utils.InputValidators;
+import services.ServiceLocator;
+import controller.interfaces.IUserManager;
+import controller.interfaces.IMedicalRecordManager;
+import controller.interfaces.IInventoryManager;
+import controller.interfaces.IAppointmentManager;
 
 public class DoctorUpdateOutcomeDetailsView extends View {
-    private final UserManager userManager = UserManager.getInstance(UserManager.class);
-    private final MedicalRecordManager recordManager = MedicalRecordManager.getInstance(MedicalRecordManager.class);
-    private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
-    private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
+    private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
+    private final IMedicalRecordManager recordManager = ServiceLocator.getService(IMedicalRecordManager.class);
+    private final IInventoryManager inventoryManager = ServiceLocator.getService(IInventoryManager.class);
+    private final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
 
     private final Appointment appointment;
     private final Patient patient;

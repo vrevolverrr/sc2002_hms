@@ -1,13 +1,16 @@
 package controller;
+import controller.interfaces.IUserManager;
 import model.users.User;
 import repository.UserRepository;
 
-public class UserManager extends Manager<UserManager> {
-    private final UserRepository repository = UserRepository.getInstance();
+public class UserManager implements IUserManager {
+    private final UserRepository repository;
 
     private User activeUser;
 
-    protected UserManager() {}
+    public UserManager(UserRepository repository) {
+        this.repository = repository;
+    }
 
     public User getActiveUser() {
         return activeUser;

@@ -3,6 +3,8 @@ import java.util.List;
 
 import controller.AppointmentManager;
 import controller.UserManager;
+import controller.interfaces.IAppointmentManager;
+import controller.interfaces.IUserManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
@@ -10,6 +12,7 @@ import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
 import services.Navigator;
+import services.ServiceLocator;
 import utils.InputValidators;
 import view.View;
 import view.Admin.appointments.widgets.AdminAppointmentTable;
@@ -26,12 +29,12 @@ public class AdminAppointmentView extends View {
     /**
      * An instance of the {@link UserManager} class. Used to manage user operations.
      */
-    private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    private final IUserManager userManager = ServiceLocator.getService(UserManager.class);
 
     /**
      * An instance of the {@link AppointmentManager} class. Used to manage appointment operations.
      */
-    private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
+    private final IAppointmentManager appointmentManager = ServiceLocator.getService(AppointmentManager.class);
 
     /**
      * The list of all appointments.

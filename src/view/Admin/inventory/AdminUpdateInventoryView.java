@@ -1,6 +1,6 @@
 package view.Admin.inventory;
 
-import controller.InventoryManager;
+import controller.interfaces.IInventoryManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
@@ -8,6 +8,7 @@ import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.inventory.InventoryItem;
 import services.Navigator;
+import services.ServiceLocator;
 import utils.InputValidators;
 import view.View;
 import view.Admin.inventory.widget.InventoryItemUpdateTable;
@@ -23,7 +24,7 @@ public class AdminUpdateInventoryView extends View {
     /**
      * An instance of the {@link InventoryManager} class. Used to manage inventory operations.
      */
-    private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
+    private final IInventoryManager inventoryManager = ServiceLocator.getService(IInventoryManager.class);
 
     /**
      * The inventory item to update.

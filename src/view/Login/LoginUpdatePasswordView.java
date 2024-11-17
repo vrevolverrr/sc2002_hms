@@ -1,6 +1,6 @@
 package view.Login;
 
-import controller.UserManager;
+import controller.interfaces.IUserManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.Alignment;
@@ -14,10 +14,11 @@ import lib.uilib.widgets.base.VSpacer;
 import lib.uilib.widgets.layout.Column;
 import model.users.User;
 import services.Navigator;
+import services.ServiceLocator;
 import view.View;
 
 public class LoginUpdatePasswordView extends View {
-    private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
     
     private final User user;
 

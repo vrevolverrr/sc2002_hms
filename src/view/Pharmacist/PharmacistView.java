@@ -1,6 +1,7 @@
 package view.Pharmacist;
 
 import controller.UserManager;
+import controller.interfaces.IUserManager;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TableRow;
 import lib.uilib.widgets.base.Breadcrumbs;
@@ -10,6 +11,7 @@ import lib.uilib.widgets.base.VSpacer;
 import model.enums.Gender;
 import model.users.User;
 import services.Navigator;
+import services.ServiceLocator;
 import view.View;
 import view.Pharmacist.inventory.PharmacistInventoryView;
 import view.Pharmacist.inventory.PharmacistReplenishmentRequestView;
@@ -27,13 +29,8 @@ public final class PharmacistView extends View {
     /**
      * An instance of the {@link UserManager} class. Used to retrieve the active user.
      */
-    private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
     
-    /**
-     * The active user of the application, in this case, the pharmacist.
-     */
-    private final User activeUser = userManager.getActiveUser();
-
     /**
      * Gets the name of the view for the breadcrumbs.
      * @return the name of the view.
@@ -48,6 +45,8 @@ public final class PharmacistView extends View {
      */
     @Override
     public void render() {
+        final User activeUser = userManager.getActiveUser();
+
         new Breadcrumbs().paint(context);
         new Title("Welcome " + (activeUser.getGender() == Gender.MALE ? "Mr. " : "Mrs.") + activeUser.getName()).paint(context);
         

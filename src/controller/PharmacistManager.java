@@ -2,13 +2,21 @@ package controller;
 
 import java.util.List;
 
+import controller.interfaces.IAppointmentManager;
+import controller.interfaces.IInventoryManager;
+import controller.interfaces.IPharmacistManager;
 import model.appointments.Appointment;
 import model.enums.PrescriptionStatus;
 import model.prescriptions.Prescription;
 
-public class PharmacistManager extends Manager<PharmacistManager> {
-    private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
-    private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
+public class PharmacistManager implements IPharmacistManager {
+    private final IInventoryManager inventoryManager;
+    private final IAppointmentManager appointmentManager;
+
+    public PharmacistManager(IInventoryManager inventoryManager, IAppointmentManager appointmentManager) {
+        this.inventoryManager = inventoryManager;
+        this.appointmentManager = appointmentManager;
+    }
 
     /**
      * Dispense all prescriptions for an appointment.

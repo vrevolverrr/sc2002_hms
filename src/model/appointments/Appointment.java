@@ -1,7 +1,13 @@
 package model.appointments;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import model.BaseModel;
 import model.enums.AppointmentStatus;
+import model.enums.MedicalService;
+import model.prescriptions.Prescription;
 
 /**
  * The class representing a medical appointment.
@@ -55,6 +61,10 @@ public class Appointment extends BaseModel {
         this.status = status;
 
         this.outcome = null;
+    }
+
+    public static Appointment schedule(String appointmentId, TimeSlot timeSlot, String doctorId, String patientId) {
+        return new Appointment(appointmentId, AppointmentStatus.SCHEDULED, timeSlot, doctorId, patientId);
     }
 
     /**
@@ -179,6 +189,44 @@ public class Appointment extends BaseModel {
         }
 
         this.outcome = outcome;
+    }
+
+    /**
+     * Checks whether the appointment is overdue.
+     * @return true if the appointment is overdue, false otherwise.
+     */
+    public boolean isOverdue() {
+        return getTimeSlot().isBefore(LocalDateTime.now());
+    }
+
+    /**
+     * Marks the appointment as fulfilled.
+     */
+    public void markAsFulfilled() {
+        setStatus(AppointmentStatus.FULFILLED);
+    }
+
+    public void markAsCancelled() {
+        setStatus(AppointmentStatus.CANCELLED);
+    }
+
+    public void markAsScheduled() {
+        setStatus(AppointmentStatus.SCHEDULED);
+    }
+    
+    public void markAsCompleted() {
+        setStatus(AppointmentStatus.COMPLETED);
+    }
+
+    public AppointmentOutcomeRecord createOutcomeRecord(List<Prescription> prescriptions, List<MedicalService> services, String consultationNotes) {
+        AppointmentOutcomeRecord outcomeRecord = new AppointmentOutcomeRecord(
+            LocalDate.now(), List.copyOf(prescriptions),
+            List.copyOf(services), consultationNotes);
+
+        setOutcomeRecord(outcomeRecord);
+        markAsCompleted();
+
+        return outcomeRecord;
     }
 
     /**

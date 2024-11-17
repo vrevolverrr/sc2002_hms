@@ -1,11 +1,12 @@
 package view.Patient.appointments;
 
-import controller.AppointmentManager;
+import controller.interfaces.IAppointmentManager;
 import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Pause;
 import lib.uilib.widgets.base.VSpacer;
 import model.users.Patient;
 import services.Navigator;
+import services.ServiceLocator;
 import view.View;
 import view.Patient.appointments.widgets.AppointmentsTable;
 import view.widgets.Title;
@@ -20,7 +21,7 @@ public class PatientPendingAppointmentsView extends View {
     /**
      * Manager for handling appointment-related operations.
      */
-    private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
+    private final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
 
     /**
      * The patient whose pending appointments are being displayed.

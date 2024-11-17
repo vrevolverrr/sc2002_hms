@@ -25,28 +25,12 @@ public class UserRepository extends BaseRepository<User> {
      * user role has its own ID prefix.
      */
     final static String ID_PREFIX = "U";
-
-    /**
-     * The singleton instance of a {@link UserRepository}.
-     */
-    private static UserRepository instance;
-
+    
     /**
      * The constructor of a {@link UserRepository}.
      */
-    private UserRepository() {
+    public UserRepository() {
         super(FILENAME);
-    }
-
-    /**
-     * Gets the singleton instance of a {@link UserRepository}.
-     * @return the instance of a {@link UserRepository}.
-     */
-    public static UserRepository getInstance() {
-        if (instance == null) {
-            instance = new UserRepository();
-        }
-        return instance;
     }
 
     /**

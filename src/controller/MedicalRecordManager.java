@@ -3,18 +3,23 @@ package controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import controller.interfaces.IInventoryManager;
+import controller.interfaces.IMedicalRecordManager;
 import model.appointments.AppointmentOutcomeRecord;
 import model.medrecord.MedicalRecordEntry;
 import model.users.Doctor;
 import model.users.Patient;
 import repository.MedicalRecordRepository;
 
-public class MedicalRecordManager extends Manager<MedicalRecordManager> {
-    private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
+public class MedicalRecordManager implements IMedicalRecordManager {
+    private final IInventoryManager inventoryManager;
 
-    private final MedicalRecordRepository repository = new MedicalRecordRepository();
+    private final MedicalRecordRepository repository;
 
-    protected MedicalRecordManager() {}
+    public MedicalRecordManager(IInventoryManager inventoryManager, MedicalRecordRepository repository) {
+        this.repository = repository;
+        this.inventoryManager = inventoryManager;
+    }
 
     public List<MedicalRecordEntry> getRecords(Patient patient) {
         return repository.findByPatientId(patient.getId());
@@ -34,6 +39,7 @@ public class MedicalRecordManager extends Manager<MedicalRecordManager> {
 
         repository.save(record);
     }
+
     public void updateRecord(MedicalRecordEntry record) {
         repository.save(record);
     }

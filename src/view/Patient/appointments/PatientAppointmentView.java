@@ -1,12 +1,13 @@
 package view.Patient.appointments;
 
-import controller.AppointmentManager;
+import controller.interfaces.IAppointmentManager;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.Menu;
 import lib.uilib.widgets.base.VSpacer;
 import model.users.Patient;
 import services.Navigator;
+import services.ServiceLocator;
 import view.View;
 import view.Patient.appointments.widgets.AppointmentsTable;
 import view.widgets.Title;
@@ -21,7 +22,7 @@ public class PatientAppointmentView extends View {
     /**
      * Manager for handling appointment-related operations.
      */
-    private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
+    private final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
 
     /**
      * The patient managing their appointments.
@@ -59,7 +60,7 @@ public class PatientAppointmentView extends View {
         new Menu(
             new MenuOption("View appointment requests", () -> Navigator.navigateTo(new PatientPendingAppointmentsView(patient))),
             new MenuOption("Schedule an appointment", () -> Navigator.navigateTo(new PatientScheduleAppointmentView(patient))),
-            new MenuOption("Reschedule an appointment", () -> Navigator.navigateTo(new PatientRescheduleAppointment(patient))),
+            new MenuOption("Reschedule an appointment", () -> Navigator.navigateTo(new PatientRescheduleAppointmentView(patient))),
             new MenuOption("Cancel an appointment", () -> Navigator.navigateTo(new PatientCancelAppointmentView(patient))),
             new MenuOption("View Past Appointments", () -> Navigator.navigateTo(new PatientPastAppointmentsView(patient))),
             new MenuOption("Back", () -> Navigator.pop())

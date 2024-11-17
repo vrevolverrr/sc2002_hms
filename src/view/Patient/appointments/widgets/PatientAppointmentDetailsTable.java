@@ -1,15 +1,16 @@
 package view.Patient.appointments.widgets;
 
-import controller.UserManager;
+import controller.interfaces.IUserManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.Widget;
 import lib.uilib.widgets.base.Table;
 import model.appointments.Appointment;
+import services.ServiceLocator;
 
 public class PatientAppointmentDetailsTable extends Widget {
     private final Appointment appointment;
-    private final UserManager userManager = UserManager.getInstance(UserManager.class);
+    private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
 
     public PatientAppointmentDetailsTable(Appointment appointment) {
         this.appointment = appointment;

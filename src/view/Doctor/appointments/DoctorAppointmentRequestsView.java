@@ -2,7 +2,7 @@ package view.Doctor.appointments;
 
 import java.util.List;
 
-import controller.AppointmentManager;
+import controller.interfaces.IAppointmentManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.widgets.base.Breadcrumbs;
@@ -13,13 +13,14 @@ import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
 import model.users.Doctor;
 import services.Navigator;
+import services.ServiceLocator;
 import utils.InputValidators;
 import view.View;
 import view.Doctor.appointments.widgets.DoctorAppointmentsTable;
 import view.widgets.Title;
 
 public class DoctorAppointmentRequestsView extends View {
-    private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
+    private final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
     private final Doctor doctor;
 
     public DoctorAppointmentRequestsView(Doctor doctor) {

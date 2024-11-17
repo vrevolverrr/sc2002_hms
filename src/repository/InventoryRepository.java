@@ -1,5 +1,7 @@
 package repository;
 
+import java.util.List;
+
 import model.inventory.InventoryItem;
 
 public class InventoryRepository extends BaseRepository<InventoryItem> {
@@ -16,6 +18,12 @@ public class InventoryRepository extends BaseRepository<InventoryItem> {
     public String generateId() {
         return ID_PREFIX + getItems().keySet().stream().sorted().reduce((first, second) -> second).map(
             last -> String.format("%04d", Integer.parseInt(last.substring(1)) + 1)).orElse("1001");
+    }
+
+    public List<InventoryItem> getAllItems() {
+        return findAll().stream()
+        .sorted((a, b) -> a.getId().compareTo(b.getId()))
+        .toList();
     }
 
     public InventoryItem findByItemName(String itemName) {

@@ -1,6 +1,8 @@
 package model.users;
 
 import java.time.LocalDate;
+
+import model.appointments.TimeSlot;
 import model.availability.Availability;
 import model.enums.Gender;
 import model.enums.Specialisation;
@@ -80,6 +82,10 @@ public class Doctor extends User {
         this.availability = availability;
     }
     
+    public boolean isAvailable(TimeSlot slot) {
+        return availability.isAvailable(slot);
+    }
+
     @Override
     public Doctor copy() {
         Doctor newDoctor = new Doctor(getDoctorId(), getName(), getAge(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress(), getSpecialisation());

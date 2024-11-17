@@ -2,16 +2,22 @@ package controller;
 
 import java.util.List;
 
+import controller.interfaces.IAppointmentManager;
+import controller.interfaces.IPatientManager;
 import model.appointments.Appointment;
 import model.users.Doctor;
 import model.users.Patient;
 import repository.PatientRepository;
-import repository.UserRepository;
 
-public class PatientManager extends Manager<PatientManager> {
-    private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
+public class PatientManager implements IPatientManager {
+    private final IAppointmentManager appointmentManager;
     
-    private final PatientRepository patientRepository = new PatientRepository(UserRepository.getInstance());
+    private final PatientRepository patientRepository;
+
+    public PatientManager(IAppointmentManager appointmentManager, PatientRepository patientRepository) {
+        this.appointmentManager = appointmentManager;
+        this.patientRepository = patientRepository;
+    };
 
     public Patient getPatient(String patientId) {
         return patientRepository.findById(patientId);
@@ -33,7 +39,7 @@ public class PatientManager extends Manager<PatientManager> {
             .map(appointment -> getPatient(appointment.getPatientId()))
             .distinct()
             .toList();
-        System.out.println(patientsUnderCare.size());
+
         return patientsUnderCare;
     }
 }

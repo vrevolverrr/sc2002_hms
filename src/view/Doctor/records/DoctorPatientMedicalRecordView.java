@@ -2,7 +2,7 @@ package view.Doctor.records;
 
 import java.util.List;
 
-import controller.MedicalRecordManager;
+import controller.interfaces.IMedicalRecordManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
@@ -11,6 +11,7 @@ import lib.uilib.widgets.base.VSpacer;
 import model.medrecord.MedicalRecordEntry;
 import model.users.Patient;
 import services.Navigator;
+import services.ServiceLocator;
 import utils.InputValidators;
 import view.View;
 import view.Doctor.records.widget.DoctorMedicalRecordsTable;
@@ -18,7 +19,7 @@ import view.Patient.records.widgets.PatientMedicalDetailsTable;
 import view.widgets.Title;
 
 public class DoctorPatientMedicalRecordView extends View {
-    private final MedicalRecordManager medicalRecordManager = MedicalRecordManager.getInstance(MedicalRecordManager.class);
+    private final IMedicalRecordManager medicalRecordManager = ServiceLocator.getService(IMedicalRecordManager.class);
     private final Patient patient;
 
     private final BuildContext context = BuildContext.unboundedVertical(110);

@@ -2,16 +2,17 @@ package view.Admin.inventory.widget;
 
 import java.util.List;
 
-import controller.UserManager;
+import controller.interfaces.IUserManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.Widget;
 import lib.uilib.widgets.base.EnumeratedTable;
 import lib.uilib.widgets.base.Table;
 import model.inventory.InventoryItem;
+import services.ServiceLocator;
 
 public class ReplenishmentRequestsTable extends Widget {
-    final private UserManager userManager = UserManager.getInstance(UserManager.class);
+    final private IUserManager userManager = ServiceLocator.getService(IUserManager.class);
     private final List<InventoryItem> requestedItems;
 
     public ReplenishmentRequestsTable(List<InventoryItem> requestedItems) {

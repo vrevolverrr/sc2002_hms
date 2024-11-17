@@ -2,7 +2,7 @@ package view.Patient.appointments;
 
 import java.util.List;
 
-import controller.AppointmentManager;
+import controller.interfaces.IAppointmentManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.framework.enums.TextStyle;
 import lib.uilib.widgets.base.Breadcrumbs;
@@ -13,6 +13,7 @@ import lib.uilib.widgets.base.VSpacer;
 import model.appointments.Appointment;
 import model.users.Patient;
 import services.Navigator;
+import services.ServiceLocator;
 import utils.InputValidators;
 import view.View;
 import view.Patient.appointments.widgets.AppointmentsTable;
@@ -28,7 +29,7 @@ public class PatientCancelAppointmentView extends View {
     /**
      * Manager for handling appointment-related operations.
      */
-    private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
+    private final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
 
     /**
      * The patient canceling the appointment.

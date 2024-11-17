@@ -57,7 +57,9 @@ public final class MockData {
      * Mocks patient data for the application.
      */
     public static void mockPatientData() {
-        PatientRepository patientRepository = new PatientRepository(UserRepository.getInstance());
+        final UserRepository userRepository = new UserRepository();
+
+        PatientRepository patientRepository = new PatientRepository(userRepository);
         patientRepository.clear();
         
         patientRepository.save(new Patient("P1001", "Alice Brown", 44, "123", Gender.FEMALE, LocalDate.of(1980, 5, 14), 45.7, 162.3, "81888888", "alice.brown@example.com", BloodType.A_POSITIVE));
@@ -77,7 +79,9 @@ public final class MockData {
      * Mocks admin data for the application.
      */
     public static void mockAdminData() {
-        AdminRepository adminRepository = new AdminRepository(UserRepository.getInstance());
+        final UserRepository userRepository = new UserRepository();
+
+        AdminRepository adminRepository = new AdminRepository(userRepository);
         adminRepository.clear();
         
         Admin a1 = new Admin("A1001", "David Johnson", 45, "adminPass1", Gender.MALE, LocalDate.of(1978, 1, 15), "81234567", "david.johnson@example.com");
@@ -91,7 +95,9 @@ public final class MockData {
      * Mocks pharmacist data for the application.
      */
     public static void mockPharmacistData() {
-        PharmacistRepository pharmacistRepository = new PharmacistRepository(UserRepository.getInstance());
+        final UserRepository userRepository = new UserRepository();
+
+        PharmacistRepository pharmacistRepository = new PharmacistRepository(userRepository);
         pharmacistRepository.clear();
 
         pharmacistRepository.save(new Pharmacist("F1001", "Bryan Lee", 35, "bryan123", Gender.MALE, LocalDate.of(1989, 6, 10), "81234567", "bryan.lee@gmail.com"));
@@ -124,7 +130,9 @@ public final class MockData {
      * Mocks doctor data for the application.
      */
     public static void mockDoctorData() {
-        DoctorRepository doctorRepository = new DoctorRepository(UserRepository.getInstance());
+        final UserRepository userRepository = new UserRepository();
+
+        DoctorRepository doctorRepository = new DoctorRepository(userRepository);
         doctorRepository.clear();
 
         Doctor d1 = new Doctor("D1001", "John Doe", 45, "johnDoe123", Gender.MALE, LocalDate.of(1978, 1, 15), "81234567", "johndoe@email.com", Specialisation.CARDIOLOGIST);

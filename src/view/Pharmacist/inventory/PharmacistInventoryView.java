@@ -3,11 +3,13 @@ package view.Pharmacist.inventory;
 import java.util.List;
 
 import controller.InventoryManager;
+import controller.interfaces.IInventoryManager;
 import lib.uilib.framework.TextInputField;
 import lib.uilib.widgets.base.Breadcrumbs;
 import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.inventory.InventoryItem;
+import services.ServiceLocator;
 import view.View;
 import view.Pharmacist.inventory.widget.InventoryTable;
 import view.widgets.Title;
@@ -23,7 +25,7 @@ public class PharmacistInventoryView extends View {
     /**
      * An instance of the {@link InventoryManager} class. Used to manage inventory items.
      */
-    private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
+    private final IInventoryManager inventoryManager = ServiceLocator.getService(IInventoryManager.class);
     
     /**
      * A list of all medications in the inventory.

@@ -3,7 +3,7 @@ package view.Patient.update;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.PatientManager;
+import controller.interfaces.IPatientManager;
 import lib.uilib.framework.MenuOption;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.TextInputField;
@@ -16,6 +16,7 @@ import lib.uilib.widgets.base.TextInput;
 import lib.uilib.widgets.base.VSpacer;
 import model.enums.Gender;
 import model.users.Patient;
+import services.ServiceLocator;
 import utils.InputValidators;
 import utils.UpdatableField;
 import view.View;
@@ -28,7 +29,7 @@ public final class PatientUpdateDetailsView extends View {
     /**
      * Manager for handling patient-related operations.
      */
-    private final PatientManager patientManager = PatientManager.getInstance(PatientManager.class);
+    private final IPatientManager patientManager = ServiceLocator.getService(IPatientManager.class);
 
     /**
      * The patient whose details are being updated.
