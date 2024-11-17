@@ -5,15 +5,11 @@ import java.time.LocalDate;
 import model.enums.Gender;
 import model.enums.UserRole;
 
-/**
- * @author Joyce
- * @version 1.0
- * @since 2024-11-03
- */
-
-
  /**
   * The concrete implementation of a {@link User} corresponding to an admin.
+  * @author Joyce Lee
+  * @version 1.0
+  * @since 2024-11-03
   */
 public class Admin extends User {
     /**

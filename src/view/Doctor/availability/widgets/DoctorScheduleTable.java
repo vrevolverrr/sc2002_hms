@@ -17,17 +17,54 @@ import lib.uilib.widgets.base.Table;
 import model.appointments.TimeSlot;
 import model.availability.TimePeriod;
 
+/**
+ * The {@code DoctorScheduleTable} class is a {@link Widget} that generates a weekly schedule table 
+ * for a doctor. The table displays the availability and scheduled appointments for each day of the week.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
+ */
 public class DoctorScheduleTable extends Widget {
+
+    /**
+     * The date of the schedule table.
+     */
     private final LocalDate date;
+
+    /**
+     * A {@link Map} of {@link DayOfWeek} to {@link TimePeriod} representing the available times for each day of the week.
+     */
     private final Map<DayOfWeek, TimePeriod> availableTimes;
+
+    /**
+     * A {@link List} of {@link TimeSlot} representing the scheduled appointment slots.
+     */
     private final List<TimeSlot> scheduledAppointmentSlots;
 
+    /**
+     * Constructs a new {@code DoctorScheduleTable} with the given date, available times, and scheduled appointment slots.
+     * 
+     * @param date the date of the schedule table.
+     * @param availableTimes a {@link Map} of {@link DayOfWeek} to {@link TimePeriod} representing the available times for each day of the week.
+     * @param scheduledAppointmentSlots a {@link List} of {@link TimeSlot} representing the scheduled appointment slots.
+     */
     public DoctorScheduleTable(LocalDate date, Map<DayOfWeek, TimePeriod> availableTimes, List<TimeSlot> scheduledAppointmentSlots) {
         this.date = date;
         this.availableTimes = availableTimes;
         this.scheduledAppointmentSlots = scheduledAppointmentSlots;
     }
 
+    /**
+     * Builds the UI for displaying the doctor's weekly schedule in a table format. The table contains:
+     * <ul>
+     *   <li>Time slots</li>
+     *   <li>Availability status for each time slot on each day of the week</li>
+     * </ul>
+     * 
+     * @param context the {@link BuildContext} used for rendering the widget.
+     * @return a {@link String} representing the built table UI.
+     */
     @Override
     public String build(BuildContext context) {
         // TableRow header = new TableRow("Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
@@ -93,6 +130,12 @@ public class DoctorScheduleTable extends Widget {
         return new Table(tableRows).build(context);
     }
     
+    /**
+     * Maps a {@link DayOfWeek} to a {@link String} representation.
+     * 
+     * @param day the day of the week.
+     * @return a {@link String} representing the day of the week.
+     */
     private String mapDayToString(DayOfWeek day) {
         switch (day) {
             case DayOfWeek.MONDAY:

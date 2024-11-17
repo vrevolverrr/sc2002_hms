@@ -17,19 +17,60 @@ import view.View;
 import view.Doctor.appointments.widgets.DoctorAppointmentsTable;
 import view.widgets.Title;
 
+/**
+ * {@link DoctorRecordAppointmentOutcomeView} is a {@link View} that allows doctors to record
+ * the outcomes of fulfilled appointments. Doctors can view a list of fulfilled appointments
+ * and choose to update the outcomes of the appointments.
+ * 
+ * @author Bryan Soong & Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
+ */
 public class DoctorRecordAppointmentOutcomeView extends View {
+    /**
+     * An instance of {@link AppointmentManager} used to manage appointments.
+     */
     private final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
+
+    /**
+     * The {@link Doctor} for whom the view is managing appointments.
+     */
     private final Doctor doctor;
 
+    /**
+     * Constructs a new {@link DoctorRecordAppointmentOutcomeView} for a given doctor.
+     *
+     * @param doctor the {@link Doctor} whose appointments are being managed.
+     */
     public DoctorRecordAppointmentOutcomeView(Doctor doctor) {
         this.doctor = doctor;
     }
 
+    /**
+     * Returns the name of the view.
+     *
+     * @return a {@link String} representing the view name, "Record Appointment Outcome".
+     */
     @Override
     public String getViewName() {
         return "Record Appointment Outcome";
     }
 
+    /**
+     * Renders the "Record Appointment Outcome" view for the doctor.
+     * <p>
+     * The rendering process includes:
+     * <ol>
+     *   <li>A breadcrumb navigation</li>
+     *   <li>A title of "Record Appointment Outcomes"</li>
+     *   <li>A title of "Fulfilled Appointments"</li>
+     *   <li>A table displaying all fulfilled appointments</li>
+     *   <li>A prompt to select an appointment to update the outcome</li>
+     * </ol>
+     * </p>
+     * If there are no fulfilled appointments, the view will display a message informing the doctor and navigate back.
+     * If there are fulfilled appointments, the doctor can select one to update the outcome.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);

@@ -11,6 +11,10 @@ import model.prescriptions.Prescription;
 
 /**
  * The class representing a medical appointment.
+ * 
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-17
  */
 public class Appointment extends BaseModel {
     /**
@@ -115,10 +119,18 @@ public class Appointment extends BaseModel {
         return status == AppointmentStatus.CANCELLED;
     }
     
+    /**
+     * Gets whether the appointment is fulfilled.
+     * @return whether the appointment is fulfilled.
+     */
     public boolean isFulfilled() {
         return status == AppointmentStatus.FULFILLED;
     }
 
+    /**
+     * Gets whether the appointment is completed.
+     * @return whether the appointment is completed.
+     */
     public boolean isCompleted() {
         return status == AppointmentStatus.COMPLETED;
     }

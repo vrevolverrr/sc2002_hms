@@ -28,19 +28,55 @@ import utils.InputValidators;
 import view.View;
 import view.widgets.Title;
 
+/**
+ * {@link DoctorAvailabilityView} is a {@link View} that allows doctors to manage
+ * their availability. Doctors can view their general and specific availability,
+ * update their availability, or clear their availability for a specific day or date.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
+ */
 public class DoctorAvailabilityView extends View {
+    /**
+     * An instance of {@link DoctorManager} used to manage doctors.
+     */
     private final IDoctorManager doctorManager = ServiceLocator.getService(IDoctorManager.class);
+
+    /**
+     * The {@link Doctor} for whom the view is managing availability.
+     */
     private final Doctor doctor;
 
+    /**
+     * Constructs a new {@link DoctorAvailabilityView} for a given doctor.
+     *
+     * @param doctor the {@link Doctor} whose availability is being managed.
+     */
     public DoctorAvailabilityView(Doctor doctor) {
         this.doctor = doctor;
     }
 
+    /**
+     * Returns the name of the view.
+     *
+     * @return a {@link String} representing the view name, "Availability".
+     */
     @Override
     public String getViewName() {
         return "Availability";
     }
 
+    /**
+     * Renders the "Availability" view for the doctor.
+     * <p>
+     * The rendering process includes:
+     * <ol>
+     * <li>Displaying the general availability of the doctor.</li>
+     * <li>Displaying the specific availability of the doctor.</li>
+     * <li>Providing options to update general availability, update specific availability, clear availability, or go back.</li>
+     * </ol>
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);
@@ -64,6 +100,9 @@ public class DoctorAvailabilityView extends View {
         repaint();
     }
 
+    /**
+     * Prompts the doctor to update their general availability.
+     */
     private void promptUpdateGeneralAvailability() {
         clearLines(6);
         new Text("Update General Availability", TextStyle.BOLD).paint(context);
@@ -89,6 +128,9 @@ public class DoctorAvailabilityView extends View {
             DayOfWeek.of(dayField.getInt()), new TimePeriod(startField.getTime(), endField.getTime()));
     }
 
+    /**
+     * Prompts the doctor to update their specific availability.
+     */
     private void promptUpdateSpecificAvailability() {
         clearLines(6);
         new Text("Update Specific Availability", TextStyle.BOLD).paint(context);
@@ -116,6 +158,9 @@ public class DoctorAvailabilityView extends View {
         dateField.getDate(), new TimePeriod(startField.getTime(), endField.getTime()));
     }
 
+    /**
+     * Prompts the doctor to clear their availability.
+     */
     private void promptClearAvailability() {
         clearLines(6);
         new Text("Clear Availability", TextStyle.BOLD).paint(context);
@@ -136,6 +181,11 @@ public class DoctorAvailabilityView extends View {
         }        
     }
 
+    /**
+     * Builds a table displaying the general availability of the doctor.
+     *
+     * @return a {@link Widget} representing the general availability table.
+     */
     private Widget buildGeneralAvailabilityTable() {
         final Map<DayOfWeek, TimePeriod> availability = doctor.getAvailability().getGeneralAvailability();
 
@@ -147,6 +197,11 @@ public class DoctorAvailabilityView extends View {
         );
     }
 
+    /**
+     * Builds a table displaying the specific availability of the doctor.
+     *
+     * @return a {@link Widget} representing the specific availability table.
+     */
     private Widget buildSpecificAvailabilityTable() {
         final Map<LocalDate, TimePeriod> availability = 
             new TreeMap<>(doctor.getAvailability().getSpecificAvailability());

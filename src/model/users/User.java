@@ -17,6 +17,10 @@ import model.enums.UserRole;
  * The base abstract class of a user. Subclasses of {@link User} should 
  * correspond to the specific users of the application and implement the 
  * {@link BaseModel#copy()} method.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-10-27
  */
 public abstract class User extends BaseModel {
     /**

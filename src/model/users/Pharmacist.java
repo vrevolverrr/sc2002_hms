@@ -7,6 +7,10 @@ import model.enums.UserRole;
 
 /**
  * The concrete implementation of a {@link User} corresponding to a pharmacist.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
  */
 public class Pharmacist extends User {
     /**

@@ -38,33 +38,101 @@ import controller.interfaces.IInventoryManager;
 import controller.interfaces.IAppointmentManager;
 
 public class DoctorUpdateOutcomeDetailsView extends View {
+    /**
+     * An instance of {@link UserManager} used to manage users.
+     */
     private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
+
+    /**
+     * An instance of {@link MedicalRecordManager} used to manage medical records.
+     */
     private final IMedicalRecordManager recordManager = ServiceLocator.getService(IMedicalRecordManager.class);
+
+    /**
+     * An instance of {@link InventoryManager} used to manage inventory items.
+     */
     private final IInventoryManager inventoryManager = ServiceLocator.getService(IInventoryManager.class);
+
+    /**
+     * An instance of {@link AppointmentManager} used to manage appointments.
+     */
     private final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
 
+    /**
+     * The {@link Appointment} for which the outcome is being updated.
+     */
     private final Appointment appointment;
+
+    /**
+     * The {@link Patient} associated with the appointment.
+     */
     private final Patient patient;
+
+    /**
+     * The {@link Doctor} associated with the appointment.
+     */
     private final Doctor doctor;
 
+    /**
+     * The consultation notes recorded during the appointment.
+     */
     private String consultationNotes = null;
+
+    /**
+     * A list of {@link Prescription} objects representing the prescriptions issued during the appointment.
+     */
     private List<Prescription> prescriptions = new ArrayList<Prescription>();
+
+    /**
+     * A list of {@link MedicalService} objects representing the medical services provided during the appointment.
+     */
     private List<MedicalService> services = new ArrayList<MedicalService>();
 
+    /**
+     * A flag indicating whether the prescription have been recorded.
+     */
     private boolean donePrescriptions = false;
+
+    /**
+     * A flag indicating whether the services have been done.
+     */
     private boolean doneServices = false;
 
+    /**
+     * Constructs a new {@link DoctorUpdateOutcomeDetailsView} for a given appointment.
+     *
+     * @param appointment the {@link Appointment} for which the outcome is being updated.
+     */
     public DoctorUpdateOutcomeDetailsView(Appointment appointment) {
         this.appointment = appointment;
         this.patient = (Patient) userManager.getUser(appointment.getPatientId());
         this.doctor = (Doctor) userManager.getUser(appointment.getDoctorId());
     }
 
+    /**
+     * Returns the name of the view.
+     *
+     * @return a {@link String} representing the view name, "Update Appointment Outcome".
+     */
     @Override
     public String getViewName() {
         return "Update Appointment Outcome";
     }
 
+    /**
+     * Renders the "Update Appointment Outcome" view for the doctor.
+     * <p>
+     * The rendering process includes:
+     * <ol>
+     *   <li>Displaying breadcrumbs and a title for the view.</li>
+     *   <li>Displaying the patient details using {@link PatientDetailsTable}.</li>
+     *   <li>Displaying the appointment details using {@link DoctorAppointmentDetailsTable}.</li>
+     *   <li>Displaying the appointment outcome details using {@link AppointmentUpdateOutcomeTable}.</li>
+     *   <li>Prompting the doctor to enter consultation notes, prescriptions, and services provided.</li>
+     *   <li>Recording the appointment outcome using {@link AppointmentManager#updateAppointmentOutcome(Appointment, String, List, List)}.</li>
+     * </ol>
+     * </p>
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);
@@ -111,6 +179,9 @@ public class DoctorUpdateOutcomeDetailsView extends View {
         Navigator.pop();
     }
 
+    /**
+     * Prompts the doctor to enter consultation notes for the appointment.
+     */
     private void promptConsultationNotes() {
         TextInputField consultationNotesField = new TextInputField("Consultation Notes");
         new TextInput(consultationNotesField).read(context, "Enter non-empty consultation notes.", input -> !input.isBlank());
@@ -118,6 +189,9 @@ public class DoctorUpdateOutcomeDetailsView extends View {
         this.consultationNotes = consultationNotesField.getValue();
     }
 
+    /**
+     * Prompts the doctor to enter prescriptions for the appointment.
+     */
     private void promptPrescriptions() {
         final List<InventoryItem> drugList = inventoryManager.getAllItems();
 
@@ -149,6 +223,12 @@ public class DoctorUpdateOutcomeDetailsView extends View {
         }
     }
 
+    /**
+     * Prompts the doctor to enter dosage details for a given drug.
+     *
+     * @param drug the {@link InventoryItem} representing the drug to prescribe.
+     * @return a {@link Prescription} object representing the prescription.
+     */
     private Prescription promptDosageDetails(InventoryItem drug) {
         TextInputField[] dosageField = {null};
         final DosageUnit[] selectedUnit = {null};
@@ -197,6 +277,9 @@ public class DoctorUpdateOutcomeDetailsView extends View {
         return new Prescription(drug.getId(), prescribedQtyField.getInt(), dosage, selectedFreq[0]);
     }
 
+    /**
+     * Prompts the doctor to select the medical service provided during the appointment.
+     */
     private void promptServices() {
         final MedicalService[] serviceToAdd = {null};
 

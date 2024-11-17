@@ -15,19 +15,58 @@ import view.View;
 import view.Doctor.appointments.widgets.DoctorAppointmentsTable;
 import view.widgets.Title;
 
+/**
+ * {@link DoctorManageAppointmentsView} is a {@link View} that allows doctors to manage
+ * their scheduled appointments. Doctors can view a list of scheduled appointments
+ * and choose to view appointment requests, record appointment outcomes, or view past appointments.
+ * 
+ * @author Bryan Soong & Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
+ */
 public class DoctorManageAppointmentsView extends View {
+    /**
+     * An instance of {@link AppointmentManager} used to manage appointments.
+     */
     private final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
+
+    /**
+     * The {@link Doctor} for whom the view is managing appointments.
+     */
     private final Doctor doctor;
 
+    /**
+     * Constructs a new {@link DoctorManageAppointmentsView} for a given doctor.
+     *
+     * @param doctor the {@link Doctor} whose appointments are being managed.
+     */
     public DoctorManageAppointmentsView(Doctor doctor) {
         this.doctor = doctor;
     }
 
+    /**
+     * Returns the name of the view.
+     *
+     * @return a {@link String} representing the view name, "Manage Appointments".
+     */
     @Override
     public String getViewName() {
        return "Manage Appointments";
     }
 
+    /**
+     * Renders the "Manage Appointments" view for the doctor.
+     * <p>
+     * The rendering process includes:
+     * <ol>
+     *   <li>Displaying breadcrumbs and a title for the view.</li>
+     *   <li>Fetching and displaying the list of scheduled appointments for the doctor using 
+     *       {@link AppointmentManager#getScheduledAppointments(Doctor)} and {@link DoctorAppointmentsTable}.</li>
+     *   <li>Presenting a menu with options to manage appointment requests, record outcomes, 
+     *       view past appointments, or navigate back.</li>
+     * </ol>
+     * </p>
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);

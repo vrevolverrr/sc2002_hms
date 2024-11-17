@@ -22,7 +22,13 @@ import view.Doctor.DoctorView;
 import view.Patient.PatientView;
 import view.Pharmacist.PharmacistView;
 
-
+/**
+ * View for the login screen.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
+ */
 public class LoginView extends View {
 
     /**
@@ -52,6 +58,9 @@ public class LoginView extends View {
         return true;
     }
 
+    /**
+     * Renders the login screen.
+     */
     @Override
     public void render() {
         // Specify the size of the view (100 lines by 5 lines)
