@@ -11,15 +11,27 @@ import repository.interfaces.IInventoryRepository;
 
 /**
  * Manages operations related to pharmacists.
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-16
  */
 
 public class PharmacistManager implements IPharmacistManager {
+    /**
+     * Repository for accessing inventory data.
+     */
     private final IInventoryRepository inventoryRepository;
+
+    /**
+     * Repository for accessing appointment data.
+     */
     private final IAppointmentRepository appointmentRepository;
 
+    /**
+     * Creates a new {@link PharmacistManager}.
+     * @param inventoryRepository the repository for accessing inventory data.
+     * @param appointmentRepository the repository for accessing appointment data.
+     */
     public PharmacistManager(
         IInventoryRepository inventoryRepository, IAppointmentRepository appointmentRepository) {
         

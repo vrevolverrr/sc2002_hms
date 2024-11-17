@@ -18,7 +18,7 @@ import repository.interfaces.IUserRepository;
 
 /**
  * Manages operations related to staff members.
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-16
  */

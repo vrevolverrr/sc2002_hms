@@ -3,6 +3,13 @@ package controller.interfaces;
 import model.appointments.Appointment;
 import model.prescriptions.Prescription;
 
+/**
+ * This interface provides methods to manage prescriptions in the system.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-16
+ */
 public interface IPharmacistManager {
     /**
      * Dispense all prescriptions for an appointment.

@@ -18,9 +18,21 @@ import repository.interfaces.IMedicalRecordRepository;
  * @since 2024-11-16
  */
 public class MedicalRecordManager implements IMedicalRecordManager {
+    /**
+     * Repository for accessing inventory data.
+     */
     private final IInventoryRepository inventoryRepository;
+    
+    /**
+     * Repository for accessing medical record data.
+     */
     private final IMedicalRecordRepository repository;
 
+    /**
+     * Creates a new MedicalRecordManager.
+     * @param repository the repository for accessing medical record data.
+     * @param inventoryRepository the repository for accessing inventory data.
+     */
     public MedicalRecordManager(IMedicalRecordRepository repository, IInventoryRepository inventoryRepository) {
         this.repository = repository;
         this.inventoryRepository = inventoryRepository;

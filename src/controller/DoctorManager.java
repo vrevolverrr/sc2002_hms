@@ -13,7 +13,7 @@ import model.users.Doctor;
 
 /**
  * Manages oerations related to doctors.
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-16
 */
@@ -23,10 +23,20 @@ public class DoctorManager implements IDoctorManager {
      */
     private final IDoctorRepository doctorRepository;
 
+    /**
+     * Creates a new DoctorManager.
+     * @param doctorRepository the repository for accessing doctor data.
+     */
     public DoctorManager(IDoctorRepository doctorRepository) {
         this.doctorRepository = doctorRepository;
     }
 
+    /**
+     * Retrieves a doctor by their ID.
+     *
+     * @param doctorId the ID of the doctor.
+     * @return the {@link Doctor} with the specified ID.
+     */
     public Doctor getDoctor(String doctorId) {
         return doctorRepository.findById(doctorId);
     }
