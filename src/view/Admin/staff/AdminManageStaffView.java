@@ -9,20 +9,22 @@ import view.View;
 import view.widgets.Title;
 
 /**
- * This view allows the admin to manage hospital staff.
- * @author Bryan Soong
+ * The class provides an interface for managing hospital staff. 
+ * Administrators can view, add, update, or navigate back from the staff management options.
+ * @author Bryan Soong & Joyce Lee
  * @version 1.0
- * @since 2024-11-10
+ * @since 2024-11-16
  */
-public class AdminManageStaffView extends View {
+public class AdminManageStaffView extends View{
     /**
-     * An instance of the {@link UserManager} class. Used to manage user operations.
+     * The {@link UserManager} instance used for managing staff-related operations.
      */
     UserManager userManager = UserManager.getInstance(UserManager.class);
 
     /**
-     * Gets the name of the view for the breadcrumbs.
-     * @return the name of the view.
+     * Returns the name of this view.
+     * 
+     * @return the view name as "Manage Hospital Staff".
      */
     @Override
     public String getViewName() {
@@ -30,7 +32,11 @@ public class AdminManageStaffView extends View {
     }
 
     /**
-     * Renders the view, providing options to view, add, and update staff.
+     * Renders the user interface for managing hospital staff.
+     * <p>
+     * This method displays a menu with options to view all staff, add new staff, update existing staff,
+     * or go back to the previous menu. Each option navigates to its respective view using {@link Navigator}.
+     * </p>
      */
     @Override
     public void render() {
