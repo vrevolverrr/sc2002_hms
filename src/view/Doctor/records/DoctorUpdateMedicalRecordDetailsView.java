@@ -31,23 +31,58 @@ import view.View;
 import view.Patient.records.widgets.PatientDetailedMedicalRecordEntryTable;
 import view.widgets.Title;
 
+/**
+ * {@link DoctorUpdateMedicalRecordDetailsView} is a {@link View} that allows doctors to update the details of a medical record entry.
+ * Doctors can update the diagnosis, treatment plan, prescription, and medical services provided.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
+ */
 public class DoctorUpdateMedicalRecordDetailsView extends View {
+    /**
+     * An instance of {@link InventoryManager} used to manage inventory items.
+     */
     private final InventoryManager inventoryManager = InventoryManager.getInstance(InventoryManager.class);
+
+    /**
+     * An instance of {@link MedicalRecordManager} used to manage medical records.
+     */
     private final MedicalRecordManager recordManager = MedicalRecordManager.getInstance(MedicalRecordManager.class);
 
+    /**
+     * The {@link MedicalRecordEntry} to update.
+     */
     private final MedicalRecordEntry entry;
 
+    /**
+     * The {@link BuildContext} used to render the view.
+     */
     private final BuildContext context = BuildContext.unboundedVertical(125);
 
+    /**
+     * Constructs a new {@link DoctorUpdateMedicalRecordDetailsView} for the given medical record entry.
+     *
+     * @param medicalRecordEntry the {@link MedicalRecordEntry} to update.
+     */
     public DoctorUpdateMedicalRecordDetailsView(MedicalRecordEntry medicalRecordEntry) {
         this.entry = medicalRecordEntry;
     }   
 
+    /**
+     * Returns the name of the view.
+     *
+     * @return a {@link String} representing the view name, "Update Medical Record Details".
+     */
     @Override
     public String getViewName() {
         return "Update Medical Record Details";
     }
 
+    /**
+     * Renders the view for the doctor to update the details of a medical record entry.
+     * The view allows the doctor to update the diagnosis, treatment plan, prescription, and medical services provided.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);
@@ -76,8 +111,14 @@ public class DoctorUpdateMedicalRecordDetailsView extends View {
         repaint();
     }
 
+    /**
+     * Updates the date of the medical record entry.
+     */
     private void updateDate() {}
 
+    /**
+     * Updates the diagnosis of the medical record entry.
+     */
     private void updateDiagnosis() {
         TextInputField diagnosisField = new TextInputField("Enter new diagnosis");
         new TextInput(diagnosisField).read(context, "Enter a non-empty diagnosis.", input -> !input.trim().isEmpty());
@@ -86,6 +127,9 @@ public class DoctorUpdateMedicalRecordDetailsView extends View {
         recordManager.updateRecord(entry);
     }
 
+    /**
+     * Updates the treatment plan of the medical record entry.
+     */
     private void updateTreatmentPlan() {
         TextInputField treatmentPlanField = new TextInputField("Enter new treatment plan");
         new TextInput(treatmentPlanField).read(context, "Enter a non-empty treatment plan.", input -> !input.trim().isEmpty());
@@ -94,6 +138,9 @@ public class DoctorUpdateMedicalRecordDetailsView extends View {
         recordManager.updateRecord(entry);
     }
 
+    /**
+     * Updates the prescription of the medical record entry.
+     */
     private void updatePrescription() {
         final List<InventoryItem> drugList = inventoryManager.getAllItems();
 
@@ -133,6 +180,12 @@ public class DoctorUpdateMedicalRecordDetailsView extends View {
         recordManager.updateRecord(entry);
     }
 
+    /**
+     * Prompts the doctor to enter the dosage details for a prescription.
+     * 
+     * @param drug the {@link InventoryItem} representing the drug to prescribe.
+     * @return a {@link Prescription} representing the prescription details.
+     */
     private Prescription promptDosageDetails(InventoryItem drug) {
         TextInputField[] dosageField = {null};
         final DosageUnit[] selectedUnit = {null};
@@ -181,6 +234,9 @@ public class DoctorUpdateMedicalRecordDetailsView extends View {
         return new Prescription(drug.getId(), prescribedQtyField.getInt(), dosage, selectedFreq[0]);
     }
 
+    /**
+     * Updates the medical services provided in the medical record entry.
+     */
     private void updateMedicalServices() {
         final MedicalService[] serviceToAdd = {null};
 
@@ -210,10 +266,22 @@ public class DoctorUpdateMedicalRecordDetailsView extends View {
         recordManager.updateRecord(entry);
     }
 
+    /**
+     * Returns the name of a drug given its ID.
+     *
+     * @param id the ID of the drug.
+     * @return a {@link String} representing the name of the drug.
+     */
     private String getDrugNameById(String id) {
         return inventoryManager.getInventoryItem(id).getItemName();
     }
     
+    /**
+     * Builds a string representation of the prescriptions in the medical record entry.
+     *
+     * @param prescriptions a {@link List} of {@link Prescription} representing the prescriptions.
+     * @return a {@link String} representing the prescriptions.
+     */
     private String buildPrescription(List<Prescription> prescriptions) {
         return prescriptions.stream()
             .map(prescription -> String.format("%s %s %s %s", 
@@ -224,6 +292,12 @@ public class DoctorUpdateMedicalRecordDetailsView extends View {
             .collect(Collectors.joining(", "));
     }
 
+    /**
+     * Builds a string representation of the medical services in the medical record entry.
+     *
+     * @param medicalServices a {@link List} of {@link MedicalService} representing the medical services.
+     * @return a {@link String} representing the medical services.
+     */
     private String buildMedicalServices(List<MedicalService> medicalServices) {
         return medicalServices.stream().map(service -> service.toString()).collect(Collectors.joining(", "));
     }

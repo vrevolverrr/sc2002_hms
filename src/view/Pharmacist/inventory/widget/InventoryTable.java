@@ -9,13 +9,36 @@ import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
 import lib.uilib.framework.Widget;
 
+/**
+ * The {@code InventoryTable} widget displays a table of inventory items.
+ * It displays the name, quantity, reorder level, stock level, and replenishment status of each item.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
+ */
 public class InventoryTable extends Widget {
+
+    /**
+     * The {@link List} of {@link InventoryItem} to be displayed in the table.
+     */
     private List<InventoryItem> medications;
 
+    /**
+     * Constructs a new {@link InventoryTable} with a given {@link List} of {@link InventoryItem}.
+     * 
+     * @param medications the {@link List} of {@link InventoryItem}.
+     */
     public InventoryTable(List<InventoryItem> medications) {
         this.medications = medications;
     }
 
+    /**
+     * Builds the table of inventory items.
+     * 
+     * @param context the {@link BuildContext} used to build the widget.
+     * @return a {@link String} representing the table of {@link InventoryItem}.
+     */
     @Override
     public String build(BuildContext context) {
         TableRow header = new TableRow("Name", "Quantity", "Reorder Level", "Stock Level", "Replenishment Status");

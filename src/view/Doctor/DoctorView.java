@@ -16,15 +16,48 @@ import view.Doctor.availability.DoctorScheduleView;
 import view.Doctor.records.DoctorPatientsUnderCareView;
 import view.widgets.Title;
 
+/**
+ * {@link DoctorView} is a {@link View} that displays an overview of the doctor's information and options.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-10
+ */
 public class DoctorView extends View {
+    /**
+     * Instance of {@link UserManager} used to manage users.
+     */
     private final UserManager userManager = UserManager.getInstance(UserManager.class);
-    private final Doctor doctor = (Doctor) userManager.getActiveUser();
 
+    /**
+     * Instance of {@link Doctor} that is currentlty active.
+     */
+    private final Doctor doctor = (Doctor) userManager.getActiveUser();
+    
+
+    /**
+     * Returns the name of the view.
+     *
+     * @return a {@link String} representing the view name, "Doctor Overview".
+     */
     @Override
     public String getViewName() {
         return("Doctor Overview");
     }
 
+    /**
+     * Renders the doctor's main overview page, including:
+     * <ul>
+     *   <li>Breadcrumb navigation</li>
+     *   <li>Welcome message with the doctor's name</li>
+     *   <li>A table showing the doctor's personal details</li>
+     *   <li>A menu with options to navigate to different views, such as managing appointments, availability, or patient records.</li>
+     * </ul>
+     * <p>
+     * The options available in the menu allow the doctor to manage their appointments, view their schedule,
+     * set their availability, and manage patient medical records.
+     * </p>
+     */    
     @Override
     public void render() {
         new Breadcrumbs().paint(context);

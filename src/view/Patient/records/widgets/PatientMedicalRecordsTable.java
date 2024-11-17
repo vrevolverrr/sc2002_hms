@@ -13,15 +13,42 @@ import lib.uilib.widgets.base.EnumeratedTable;
 import lib.uilib.widgets.base.Table;
 import model.medrecord.MedicalRecordEntry;
 
+/**
+ * Widget for displaying a table of a patient's medical records.
+ * Each row in the table contains the date of the record, the doctor who recorded it, and the diagnosis.
+ * If there are no records, a message is displayed instead.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
+ */
 public class PatientMedicalRecordsTable extends Widget {
+
+    /**
+     * {@link UserManager} instance for retrieving doctor names.
+     */
     private final UserManager userManager = UserManager.getInstance(UserManager.class);
     
+    /**
+     * The {@link List} of {@link MedicalRecordEntry} to display.
+     */
     private List<MedicalRecordEntry> medicalRecord;
 
+    /**
+     * Constructs a new {@link PatientMedicalRecordsTable} widget.
+     * 
+     * @param medicalRecord The {@link List} of {@link MedicalRecordEntry} to display.
+     */
     public PatientMedicalRecordsTable(List<MedicalRecordEntry> medicalRecord) {
         this.medicalRecord = medicalRecord;
     }
 
+    /**
+     * Builds the widget to display the table of medical records.
+     * 
+     * @param context The {@link BuildContext} to build the widget in.
+     * @return The built widget.
+     */
     @Override
     public String build(BuildContext context) {
         TableRow header = new TableRow("Date", "Doctor", "Diagnosis");
@@ -41,6 +68,12 @@ public class PatientMedicalRecordsTable extends Widget {
         return EnumeratedTable.withHeader(header, medicalRecordRows.toArray(TableRow[]::new)).build(context);
     }
 
+    /**
+     * Retrieves the name of a doctor by their ID.
+     * 
+     * @param id The ID of the doctor.
+     * @return The name of the doctor.
+     */
     private String getDoctorNameById(String id) {
         return userManager.getUser(id).getName();
     }

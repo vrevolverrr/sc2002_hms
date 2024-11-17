@@ -15,21 +15,64 @@ import view.Doctor.appointments.widgets.PatientDetailsTable;
 import view.Doctor.appointments.widgets.PrescriptionsTable;
 import view.widgets.Title;
 
+/**
+ * The {@link DoctorViewAppointmentDetailsView} class is a view for doctors to view the details of an appointment,
+ * including the patient details, appointment details, and the recorded outcome (if any).
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
+ */
 public class DoctorViewAppointmentDetailsView extends View {
+    /**
+     * The {@link Appointment} object representing the appointment details to be viewed.
+     */
     private final Appointment appointment;
+
+    /**
+     * The {@link PatientManager} instance used to retrieve patient details.
+     */
     private final PatientManager patientManager = PatientManager.getInstance(PatientManager.class);
 
+    /**
+     * The {@link BuildContext} used for rendering the view.
+     */
     private final BuildContext context = BuildContext.unboundedVertical(110);
 
+    /**
+     * Constructs a new {@link DoctorViewAppointmentDetailsView} to view the details of the given appointment.
+     *
+     * @param appointment the {@link Appointment} object that contains the appointment details to be viewed.
+     */
     public DoctorViewAppointmentDetailsView(Appointment appointment) {
         this.appointment = appointment;
     }
 
+    /**
+     * Returns the name of the view.
+     *
+     * @return a {@link String} representing the view name, "View Appointment Outcome".
+     */
     @Override
     public String getViewName() {
         return "View Appointment Outcome";
     }
 
+    /**
+     * Renders the user interface for viewing appointment details.
+     * <p>
+     * This method displays:
+     * <ul>
+     *   <li>Breadcrumb navigation at the top of the view.</li>
+     *   <li>Patient details using the {@link PatientDetailsTable} widget.</li>
+     *   <li>Appointment details using the {@link DoctorAppointmentDetailsTable} widget.</li>
+     *   <li>Outcome details, including consultation notes and medical services, if available.</li>
+     *   <li>Prescription details using the {@link PrescriptionsTable} widget, if available.</li>
+     * </ul>
+     * If no outcome has been recorded for the appointment, an appropriate message is displayed.
+     * </p>
+     *
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);

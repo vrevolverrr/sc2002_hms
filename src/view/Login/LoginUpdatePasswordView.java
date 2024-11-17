@@ -16,20 +16,47 @@ import model.users.User;
 import services.Navigator;
 import view.View;
 
+/**
+ * View for updating the password of a user upon login.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
+ */
 public class LoginUpdatePasswordView extends View {
+
+    /**
+     * Instance of {@link UserManager} for handling user-related operations.
+     */
     private final UserManager userManager = UserManager.getInstance(UserManager.class);
     
+    /**
+     * Instance of {@link User} updating their password.
+     */
     private final User user;
 
+    /**
+     * Constructs a new view for updating the password of a user upon login.
+     * 
+     * @param user The {@link User} updating their password.
+     */
     public LoginUpdatePasswordView(User user) {
         this.user = user;
     }
 
+    /**
+     * Gets the name of the view for the breadcrumbs.
+     * 
+     * @return The name of the view.
+     */
     @Override
     public String getViewName() {
         return "Update Password";
     }
 
+    /**
+     * Renders the view to update the password of a user upon login.
+     */
     @Override
     public void render() {
         BuildContext context = new BuildContext(100, 5);

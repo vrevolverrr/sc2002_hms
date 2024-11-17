@@ -20,11 +20,28 @@ import view.View;
 import view.Doctor.availability.widgets.DoctorScheduleTable;
 import view.widgets.Title;
 
+/**
+ * {@link DoctorScheduleView} is a {@link View} that allows doctors to view their weekly schedule.
+ * Doctors can view their availability and scheduled appointments for each day of the week.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
+ */
 public class DoctorScheduleView extends View {
+    /**
+     * An instance of {@link AppointmentManager} used to manage appointments.
+     */
     private final AppointmentManager appointmentManager = AppointmentManager.getInstance(AppointmentManager.class);
     
+    /**
+     * The {@link Doctor} for whom the view is displaying the schedule.
+     */
     private final Doctor doctor;
 
+    /**
+     * The {@link BuildContext} used to render the view.
+     */
     private final BuildContext context = BuildContext.unboundedVertical(110);
 
     /**
@@ -32,16 +49,36 @@ public class DoctorScheduleView extends View {
      */
     private LocalDate date;
 
+    /**
+     * Constructs a new {@link DoctorScheduleView} for the given doctor.
+     *
+     * @param doctor the {@link Doctor} whose schedule is being viewed.
+     */
     public DoctorScheduleView(Doctor doctor) {
         this.doctor = doctor;
         date = LocalDate.now();
     }
 
+    /**
+     * Returns the name of the view.
+     *
+     * @return a {@link String} representing the view name, "Doctor Schedule".
+     */
     @Override
     public String getViewName() {
         return "Doctor Schedule";
     }
 
+    /**
+     * Renders the "Doctor Schedule" view for the doctor.
+     * <p>
+     * The rendering process includes:
+     * <ol>
+     * <li>Displaying the breadcrumbs and title of the view.</li>
+     * <li>Displaying the weekly schedule of the doctor.</li>
+     * <li>Providing options to navigate to the previous or next week.</li>
+     * </ol>
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);
@@ -79,6 +116,11 @@ public class DoctorScheduleView extends View {
         repaint();
     }
 
+    /**
+     * Returns a {@link List} of {@link LocalDate} representing the dates of the week.
+     *
+     * @return a {@link List} of {@link LocalDate} representing the dates of the week.
+     */
     private List<LocalDate> datesOfTheWeek() {
         List<LocalDate> weekDates = new ArrayList<LocalDate>();
         LocalDate startOfWeek = date.minusDays(date.getDayOfWeek().getValue());
