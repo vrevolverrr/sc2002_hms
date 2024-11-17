@@ -150,11 +150,19 @@ public class InventoryItem extends BaseModel {
         return this.replenishmentRequest.copy();
     }
 
+    /**
+     * Creates a replenishment request for the item.
+     * @param pharmacistId the ID of the {@link Pharmacist}.
+     * @param quantity the quantity to replenish.
+     */
     public void createReplenishmentRequest(String pharmacistId, int quantity) {
         this.replenishmentRequest = new ReplenishmentRequest(pharmacistId, quantity);
         this.replenishmentStatus = ReplenishmentStatus.PENDING;
     }
 
+    /**
+     * Approves the replenishment request for the item.
+     */
     public void approveReplenishmentRequest() {
         if (this.replenishmentRequest == null || this.replenishmentStatus != ReplenishmentStatus.PENDING) {
             return;
@@ -166,6 +174,9 @@ public class InventoryItem extends BaseModel {
         this.replenishmentRequest = null;
     }
 
+    /**
+     * Rejects the replenishment request for the item.
+     */
     public void rejectReplenishmentRequest() {
         if (this.replenishmentRequest == null || this.replenishmentStatus != ReplenishmentStatus.PENDING) {
             return;

@@ -67,6 +67,14 @@ public class Appointment extends BaseModel {
         this.outcome = null;
     }
 
+    /**
+     * Schedules an appointment.
+     * @param appointmentId the ID of the appointment.
+     * @param timeSlot the date and time of the appointment.
+     * @param doctorId the ID of the doctor assigned to the appointment.
+     * @param patientId the ID of the patient assigned to the appointment.
+     * @return the scheduled appointment.
+     */
     public static Appointment schedule(String appointmentId, TimeSlot timeSlot, String doctorId, String patientId) {
         return new Appointment(appointmentId, AppointmentStatus.REQUESTED, timeSlot, doctorId, patientId);
     }
@@ -218,18 +226,34 @@ public class Appointment extends BaseModel {
         setStatus(AppointmentStatus.FULFILLED);
     }
 
+    /**
+     * Marks the appointment as cancelled.
+     */
     public void markAsCancelled() {
         setStatus(AppointmentStatus.CANCELLED);
     }
 
+    /**
+     * Marks the appointment as scheduled.
+     */
     public void markAsScheduled() {
         setStatus(AppointmentStatus.SCHEDULED);
     }
     
+    /**
+     * Marks the appointment as completed.
+     */
     public void markAsCompleted() {
         setStatus(AppointmentStatus.COMPLETED);
     }
 
+    /**
+     * Creates an outcome record for the appointment.
+     * @param prescriptions the prescriptions given during the appointment.
+     * @param services the medical services provided during the appointment.
+     * @param consultationNotes the notes from the consultation.
+     * @return the outcome record.
+     */
     public AppointmentOutcomeRecord createOutcomeRecord(List<Prescription> prescriptions, List<MedicalService> services, String consultationNotes) {
         AppointmentOutcomeRecord outcomeRecord = new AppointmentOutcomeRecord(
             LocalDate.now(), List.copyOf(prescriptions),
