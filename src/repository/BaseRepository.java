@@ -15,7 +15,7 @@ import model.BaseModel;
 import repository.interfaces.IRepository;
 
 /**
- * The base implementation of a {@link IRepository} that provides most basic functionality.
+ * The base implementation of a {@link Repository} that provides most basic functionality.
  * This class can be extended to provide more specific functionality such as a {@link UserRepository}.
  */
 public abstract class BaseRepository<T extends BaseModel> implements IRepository<T> {

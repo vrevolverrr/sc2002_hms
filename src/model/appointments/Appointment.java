@@ -68,7 +68,7 @@ public class Appointment extends BaseModel {
     }
 
     public static Appointment schedule(String appointmentId, TimeSlot timeSlot, String doctorId, String patientId) {
-        return new Appointment(appointmentId, AppointmentStatus.SCHEDULED, timeSlot, doctorId, patientId);
+        return new Appointment(appointmentId, AppointmentStatus.REQUESTED, timeSlot, doctorId, patientId);
     }
 
     /**
