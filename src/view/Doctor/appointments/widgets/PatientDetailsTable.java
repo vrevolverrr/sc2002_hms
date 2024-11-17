@@ -5,7 +5,6 @@ import lib.uilib.framework.TableRow;
 import lib.uilib.framework.Widget;
 import lib.uilib.widgets.base.Table;
 import model.users.Patient;
-import view.Patient.PatientView;
 
 /**
  * A {@link Widget} that displays the details of a patient.

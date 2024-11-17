@@ -106,11 +106,11 @@ public class Availability implements SerializableCopyable {
         return new HashMap<LocalDate, TimePeriod>(specific);
     }
 
-    public boolean isAvailable(TimeSlot slot) {
-        TimePeriod period = getAvailability(slot.getDate());
-        return period.contains(new TimePeriod(slot.getTime(), slot.getTime().plusMinutes(30)));
-    }
-
+    /**
+     * Checks if the user is available at a given time slot.
+     * @param slot the time slot.
+     * @return true if the user is available at the given time slot, false otherwise.
+     */
     public boolean isAvailable(TimeSlot slot) {
         TimePeriod period = getAvailability(slot.getDate());
         return period.contains(new TimePeriod(slot.getTime(), slot.getTime().plusMinutes(30)));
