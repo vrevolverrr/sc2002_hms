@@ -16,8 +16,7 @@ import model.users.Doctor;
  * @author Bryan Soong & Joyce Lee
  * @version 1.0
  * @since 2024-11-16
-    */
-
+*/
 public class DoctorManager implements IDoctorManager {
     /**
      * Repository for accessing doctor data.

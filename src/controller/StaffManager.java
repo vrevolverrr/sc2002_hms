@@ -11,6 +11,7 @@ import model.users.Admin;
 import model.users.Doctor;
 import model.users.Pharmacist;
 import model.users.User;
+import repository.AdminRepository;
 import repository.DoctorRepository;
 import repository.PharmacistRepository;
 import repository.UserRepository;
@@ -141,7 +142,6 @@ public class StaffManager implements IStaffManager {
     
     /**
      * Deletes a staff member.
-     *
      * @param user the staff member.
      */
     public void deleteStaff(User user) {
