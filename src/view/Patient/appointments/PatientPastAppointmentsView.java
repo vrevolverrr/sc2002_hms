@@ -2,7 +2,6 @@ package view.Patient.appointments;
 
 import java.util.List;
 
-import controller.AppointmentManager;
 import controller.interfaces.IAppointmentManager;
 import controller.interfaces.IUserManager;
 import lib.uilib.framework.TextInputField;

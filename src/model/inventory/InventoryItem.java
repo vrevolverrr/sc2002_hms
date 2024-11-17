@@ -143,6 +143,10 @@ public class InventoryItem extends BaseModel {
      * @return the replenishment request of the item.
      */
     public ReplenishmentRequest getReplenishmentRequest() {
+        if (this.replenishmentRequest == null) {
+            return null;
+        }
+        
         return this.replenishmentRequest.copy();
     }
 
