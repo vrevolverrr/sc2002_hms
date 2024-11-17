@@ -7,9 +7,12 @@ import java.util.function.Predicate;
 import model.enums.UserRole;
 import model.users.Pharmacist;
 import model.users.User;
+import repository.interfaces.IPharmacistRepository;
+import repository.interfaces.IRepository;
+import repository.interfaces.IUserRepository;
 
 /**
- * An implementation of {@link Repository} that operates on {@link Pharmacist} data models. It
+ * An implementation of {@link IRepository} that operates on {@link Pharmacist} data models. It
  * extends the functionality of a {@link UserRepository} by dependency injection to work on
  * {@code Users} that are actually {@code Pharmacists}.
  * 
@@ -17,11 +20,11 @@ import model.users.User;
  * @version 1.0
  * @since 2024-11-17
  */
-public class PharmacistRepository implements Repository<Pharmacist> {    
+public class PharmacistRepository implements IPharmacistRepository {    
     /**
-     * The {@link UserRepository} dependency to extend.
+     * The {@link IUserRepository} dependency to extend.
      */
-    private final UserRepository repository;
+    private final IUserRepository repository;
 
     /**
      * The prefix for the ID of a {@link Pharmacist}.
@@ -30,9 +33,9 @@ public class PharmacistRepository implements Repository<Pharmacist> {
     
     /**
      * The constructor of {@link PharmacistRepository}.
-     * @param repository an instance of a {@link UserRepository}.
+     * @param repository an instance of an implementation of {@link IUserRepository}.
      */
-    public PharmacistRepository(UserRepository repository) {
+    public PharmacistRepository(IUserRepository repository) {
         this.repository = repository;
     }
 

@@ -4,7 +4,7 @@
  * @since 2024-10-29
  */
 
-package repository;
+package repository.interfaces;
 
 import java.util.*;
 import java.util.function.*;
@@ -15,16 +15,16 @@ import model.BaseModel;
  * The interface that defines the behavaiour of a data repository of a {@link BaseModel}.
  * Each implementation of repositories of models must implement this interface.
  */
-public interface Repository<T extends BaseModel> {
+public interface IRepository<T extends BaseModel> {
     /**
-     * Gets the items that are being stored by the {@link Repository} where each entry of items is
+     * Gets the items that are being stored by the {@link IRepository} where each entry of items is
      * key-value pair, in which the key corresponds to the ID of the item, see {@link BaseModel#getId()}.
      * @return The items being held by the repository.
      */
     public Map<String, T> getItems();
     
     /**
-     * Gets the total number of items stored by the {@link Repository}.
+     * Gets the total number of items stored by the {@link IRepository}.
      * @return The number of items held by the repository.
      */
     public int count();

@@ -8,8 +8,9 @@ import model.appointments.TimeSlot;
 import model.enums.PrescriptionStatus;
 import model.users.Doctor;
 import model.users.Patient;
+import repository.interfaces.IAppointmentRepository;
 
-public class AppointmentRepository extends BaseRepository<Appointment> {
+public class AppointmentRepository extends BaseRepository<Appointment> implements IAppointmentRepository {
     /**
      * The filename of the file to store the {@link Appointment} objects.
      */

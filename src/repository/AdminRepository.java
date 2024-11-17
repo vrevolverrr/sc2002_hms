@@ -8,9 +8,12 @@
 import model.enums.UserRole;
 import model.users.Admin;
 import model.users.User;
+import repository.interfaces.IAdminRepository;
+import repository.interfaces.IRepository;
+import repository.interfaces.IUserRepository;
  
  /**
-  * An implementation of {@link Repository} that on {@link Admin} data models. It extends
+  * An implementation of {@link IRepository} that on {@link Admin} data models. It extends
   * the functionality of a {@link UserRepository} by dependency injection to work on 
   * {@code Users} that are actually {@code Admins}.
   * @see https://www.geeksforgeeks.org/dependency-injection-di-design-pattern/
@@ -19,11 +22,11 @@ import model.users.User;
   * @version 1.0
   * @since 2024-11-17
   */
- public class AdminRepository implements Repository<Admin> {    
+ public class AdminRepository implements IAdminRepository {    
      /**
-      * The {@link UserRepository} dependency to extend.
+      * The {@link IUserRepository} dependency to extend.
       */
-     private final UserRepository repository;
+     private final IUserRepository repository;
 
      /**
       * The prefix for the ID of an {@link Admin}.
@@ -32,9 +35,9 @@ import model.users.User;
      
      /**
       * The constructor of {@link PatientRepository}. 
-      * @param repository an instance of a {@link UserRepository}.
+      * @param repository an instance of an implementation of {@link IUserRepository}.
       */
-     public AdminRepository(UserRepository repository) {
+     public AdminRepository(IUserRepository repository) {
          this.repository = repository;
      }
  

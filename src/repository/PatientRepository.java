@@ -13,24 +13,26 @@ import java.util.function.Predicate;
 import model.enums.UserRole;
 import model.users.Patient;
 import model.users.User;
+import repository.interfaces.IRepository;
+import repository.interfaces.IUserRepository;
 
 /**
- * An implementation of {@link Repository} that on {@link Patient} data models. It extends
+ * An implementation of {@link IRepository} that on {@link Patient} data models. It extends
  * the functionality of a {@link UserRepository} by dependency injection to work on 
  * {@code Users} that are actually {@code Patients}.
  * @see https://www.geeksforgeeks.org/dependency-injection-di-design-pattern/
  */
-public class PatientRepository implements Repository<Patient> {    
+public class PatientRepository implements IRepository<Patient> {    
     /**
      * The {@link UserRepository} dependency to extend.
      */
-    private final UserRepository repository;
+    private final IUserRepository repository;
     
     /**
      * The constructor of {@link PatientRepository}. 
-     * @param repository an instance of a {@link UserRepository}.
+     * @param repository an instance of an implementation of {@link IUserRepository}.
      */
-    public PatientRepository(UserRepository repository) {
+    public PatientRepository(IUserRepository repository) {
         this.repository = repository;
     }
 

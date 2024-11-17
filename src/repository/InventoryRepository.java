@@ -3,15 +3,17 @@ package repository;
 import java.util.List;
 
 import model.inventory.InventoryItem;
+import repository.interfaces.IInventoryRepository;
+import repository.interfaces.IRepository;
 
 /**
- * An implementation of {@link Repository} that on {@link InventoryItem} data models.
+ * An implementation of {@link IRepository} that on {@link InventoryItem} data models.
  * @see https://www.geeksforgeeks.org/dependency-injection-di-design-pattern/
  * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-17
  */
-public class InventoryRepository extends BaseRepository<InventoryItem> {
+public class InventoryRepository extends BaseRepository<InventoryItem> implements IInventoryRepository {
     /**
      * The filename of the file to store the inventory items.
      */

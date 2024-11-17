@@ -10,11 +10,13 @@ import java.util.*;
 
 import model.enums.UserRole;
 import model.users.User;
+import repository.interfaces.IRepository;
+import repository.interfaces.IUserRepository;
 
 /**
- * A {@link Repository} for {@link User} with specific functionality.
+ * A {@link IRepository} for {@link User} with specific functionality.
  */
-public class UserRepository extends BaseRepository<User> {
+public class UserRepository extends BaseRepository<User> implements IUserRepository {
     /**
      * The filename of the data file to load.
      */
@@ -97,6 +99,7 @@ public class UserRepository extends BaseRepository<User> {
      * @param collection the list of {@link User} objects to be saved.
      * @return the list of saved {@link User} objects, with auto-generated IDs assigned to any new users.
      */
+    @Override
     public List<User> save(List<User> collection) {
         collection.forEach(user -> {
             if (user.getId() == null) {
