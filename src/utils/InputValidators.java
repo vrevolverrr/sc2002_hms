@@ -6,6 +6,10 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Utility class for validating user input.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
  */
 public final class InputValidators {
     /**
@@ -124,6 +128,11 @@ public final class InputValidators {
         }
     }
 
+    /**
+     * Validates a quantity input.
+     * @param input the input to validate.
+     * @return whether the input is a valid quantity.
+     */
     public static boolean validateQuantity(String input) {
         try {
             int quantity = Integer.parseInt(input);
@@ -133,14 +142,29 @@ public final class InputValidators {
         }
     }
 
+    /**
+     * Validates a price input.
+     * @param input the input to validate.
+     * @return whether the input is a valid price.
+     */
     public static boolean validateEmail(String email) {
         return email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
     }
 
+    /**
+     * Validates a phone number input.
+     * @param phoneNumber the input to validate.
+     * @return whether the input is a valid phone number.
+     */
     public static boolean validatePhoneNumber(String phoneNumber) {
         return phoneNumber.matches("^\\d{8}$");
     }
 
+    /**
+     * Validates a password input.
+     * @param password the input to validate.
+     * @return whether the input is a valid password.
+     */
     public static boolean validatePrevNext(String input) {
         return input.equals("1") || input.equals("2");
     }

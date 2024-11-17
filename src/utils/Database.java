@@ -21,14 +21,33 @@ import repository.InventoryRepository;
 import repository.UserRepository;
 import utils.enums.LoadableType;
 
+/**
+ * The {@code Database} class provides utility methods for loading data from CSV files into the database.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
+ */
 public class Database {
+    /**
+     * The list of candidate file names that can be loaded into the database.
+     */
     public static final String[] candidateFileNames = {
         "admin.csv", "doctor.csv", "pharmacist.csv", "patient.csv", "inventory.csv"};
 
+    /**
+     * Clears all data in the database.
+     */
     public static void clear() {
 
     }
 
+    /**
+     * Loads data from the specified file into the database.
+     * 
+     * @param file the file to load data from.
+     * @return {@code true} if the data is successfully loaded; {@code false} otherwise.
+     */
     public static boolean load(LoadableFile file) {
         LoadableType loadableType = null;
         List<BaseModel> models = new ArrayList<BaseModel>();
@@ -93,6 +112,11 @@ public class Database {
         return candidates;  
     }
 
+    /**
+     * Get a list of files that can be loaded into the database in the specified directory.
+     * @param directory the directory to search for files.
+     * @return A list of files that can be loaded into the database.
+     */
     private static LoadableType checkHeader(String[] headers) {
         if (headers.length == 0) {
             System.out.println("[ERROR] The file does not have a header.");
@@ -116,6 +140,13 @@ public class Database {
         return LoadableType.INVALID;
     }
 
+    /**
+     * Processes an entry in the CSV file and converts it into a model.
+     * 
+     * @param loadableType the type of model to process.
+     * @param values the values of the entry.
+     * @return the model if the entry is successfully processed; {@code null} otherwise.
+     */
     private static BaseModel processEntry(LoadableType loadableType, String[] values) {
         if (values.length < loadableType.getHeaders().length) {
             System.out.println("[WARNING] The number of fields in the entry is less than the number of headers. Skipping entry.");
@@ -178,6 +209,11 @@ public class Database {
         }
     }
     
+    /**
+     * Persists the data to the database.
+     * 
+     * @param models the list of models to persist.
+     */
     private static void persistData(List<BaseModel> models) {
         if (models.size() == 0) {
             return;
@@ -195,6 +231,13 @@ public class Database {
         userRepository.save(models.stream().map(model -> (User) model).toList());
     }
 
+    /**
+     * Converts a string value to the specified field type.
+     * 
+     * @param fieldType the type of the field.
+     * @param value the value to convert.
+     * @return the converted value if successful; {@code null} otherwise.
+     */
     private static Object convertValue(Class<?> fieldType, String value) {
         if (fieldType == int.class || fieldType == Integer.class) {
             return Integer.parseInt(value);
@@ -249,6 +292,9 @@ public class Database {
         return null;
     }
 
+    /**
+     * A class representing a loadable file.
+     */
     public static class LoadableFile {
         private File file;
 
@@ -265,6 +311,13 @@ public class Database {
         }
     }
 
+    /**
+     * Compares two string arrays for equality.
+     * 
+     * @param a the first string array.
+     * @param b the second string array.
+     * @return {@code true} if the arrays are equal; {@code false} otherwise.
+     */
     private static boolean arrayEquals(String[] a, String[] b) {
         if (a.length != b.length) {
             return false;
