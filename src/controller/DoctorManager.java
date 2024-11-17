@@ -1,6 +1,6 @@
 package controller;
 
-import repository.DoctorRepository;
+import repository.interfaces.IDoctorRepository;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -21,9 +21,9 @@ public class DoctorManager implements IDoctorManager {
     /**
      * Repository for accessing doctor data.
      */
-    private final DoctorRepository doctorRepository;
+    private final IDoctorRepository doctorRepository;
 
-    public DoctorManager(DoctorRepository doctorRepository) {
+    public DoctorManager(IDoctorRepository doctorRepository) {
         this.doctorRepository = doctorRepository;
     }
 

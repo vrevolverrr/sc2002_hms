@@ -22,6 +22,12 @@ public interface IRepository<T extends BaseModel> {
      * @return The items being held by the repository.
      */
     public Map<String, T> getItems();
+
+    /**
+     * Gets all the items stored by the {@link IRepository}.
+     * @return a list of all the items.
+     */
+    public List<T> findAll();
     
     /**
      * Gets the total number of items stored by the {@link IRepository}.

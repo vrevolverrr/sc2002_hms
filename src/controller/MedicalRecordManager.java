@@ -3,13 +3,13 @@ package controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import controller.interfaces.IInventoryManager;
 import controller.interfaces.IMedicalRecordManager;
 import model.appointments.AppointmentOutcomeRecord;
 import model.medrecord.MedicalRecordEntry;
 import model.users.Doctor;
 import model.users.Patient;
-import repository.MedicalRecordRepository;
+import repository.interfaces.IInventoryRepository;
+import repository.interfaces.IMedicalRecordRepository;
 
 /**
  * Manages operations related to medical records.
@@ -18,16 +18,12 @@ import repository.MedicalRecordRepository;
  * @since 2024-11-16
  */
 public class MedicalRecordManager implements IMedicalRecordManager {
-    /**
-     * Manages operations related to inventory.
-     */
-    private final IInventoryManager inventoryManager;
+    private final IInventoryRepository inventoryRepository;
+    private final IMedicalRecordRepository repository;
 
-    private final MedicalRecordRepository repository;
-
-    public MedicalRecordManager(IInventoryManager inventoryManager, MedicalRecordRepository repository) {
+    public MedicalRecordManager(IMedicalRecordRepository repository, IInventoryRepository inventoryRepository) {
         this.repository = repository;
-        this.inventoryManager = inventoryManager;
+        this.inventoryRepository = inventoryRepository;
     }
 
     /**
@@ -49,7 +45,7 @@ public class MedicalRecordManager implements IMedicalRecordManager {
      */
     public void createMedicalRecordFromOutcome(Patient patient, Doctor doctor, AppointmentOutcomeRecord outcomeRecord) {
         final String treatmentPlan = "Prescribed " + outcomeRecord.getPrescriptions().stream()
-            .map(prescription -> inventoryManager.getItem(prescription.getDrugId()).getItemName())
+            .map(prescription -> inventoryRepository.findById(prescription.getDrugId()).getItemName())
             .collect(Collectors.joining(", "));
             
         final MedicalRecordEntry record = new MedicalRecordEntry(

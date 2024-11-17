@@ -18,7 +18,6 @@ import lib.uilib.widgets.base.VSpacer;
 import model.enums.DosageUnit;
 import model.enums.MedicalService;
 import model.enums.MedicineFrequency;
-import model.enums.PrescriptionStatus;
 import model.inventory.InventoryItem;
 import model.medrecord.MedicalRecordEntry;
 import model.prescriptions.MedicineDosage;
@@ -169,8 +168,8 @@ public class DoctorUpdateMedicalRecordDetailsView extends View {
             return;
         }
 
-        // Automatically set the prescription status to DISPENSED
-        prescription[0].setStatus(PrescriptionStatus.DISPENSED);
+        // Dispense the prescription
+        prescription[0].dispense();
 
         // Add the new prescription to the existing list of prescriptions
         List<Prescription> prescriptions = entry.getPrescription();
@@ -274,7 +273,7 @@ public class DoctorUpdateMedicalRecordDetailsView extends View {
      * @return a {@link String} representing the name of the drug.
      */
     private String getDrugNameById(String id) {
-        return inventoryManager.getInventoryItem(id).getItemName();
+        return inventoryManager.getItem(id).getItemName();
     }
     
     /**

@@ -45,6 +45,15 @@ public class DoctorRepository implements IDoctorRepository {
     }
 
     /**
+     * Gets all the {@link Doctor} stored in the repository.
+     * @return the list of all the {@link Doctor} stored.
+     */
+    @Override
+    public List<Doctor> findAll() {
+        return this.getItems().values().stream().collect(Collectors.toList());
+    }
+
+    /**
      * Generates a new ID for a {@link Doctor}.
      * @return the new ID for a {@link Doctor}.
      */

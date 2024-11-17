@@ -64,7 +64,7 @@ public class PatientDetailedMedicalRecordEntryTable extends Widget {
      * @return The name of the drug.
      */
     private String getDrugNameById(String id) {
-        return inventoryManager.getInventoryItem(id).getItemName();
+        return inventoryManager.getItem(id).getItemName();
     }
 
     /**

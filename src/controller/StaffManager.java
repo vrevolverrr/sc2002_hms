@@ -14,7 +14,7 @@ import model.users.User;
 import repository.AdminRepository;
 import repository.DoctorRepository;
 import repository.PharmacistRepository;
-import repository.UserRepository;
+import repository.interfaces.IUserRepository;
 
 /**
  * Manages operations related to staff members.
@@ -26,12 +26,12 @@ public class StaffManager implements IStaffManager {
     /**
      * Repository for accessing user data.
      */
-    private final UserRepository userRepository;
+    private final IUserRepository userRepository;
  
     /**
      * Constructs a new instance of {@link StaffManager}.
      */
-    public StaffManager(UserRepository userRepository) {
+    public StaffManager(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -72,13 +72,13 @@ public class StaffManager implements IStaffManager {
         }
 
         return userRepository.findBy((user) -> 
-        String.format("%s %s %s %s %s %s", 
-            user.getId().toLowerCase(), user.getName(), user.getAge(), 
-            user.getRole(), user.getDob(), user.getEmailAddress())
-        .toLowerCase().contains(keywords) && isStaff(user)
-        )
-        .stream().sorted((a, b) -> a.getId().compareTo(b.getId()))
-        .toList();
+            String.format("%s %s %s %s %s %s", 
+                user.getId().toLowerCase(), user.getName(), user.getAge(), 
+                user.getRole(), user.getDob(), user.getEmailAddress())
+            .toLowerCase().contains(keywords) && isStaff(user)
+            )
+            .stream().sorted((a, b) -> a.getId().compareTo(b.getId()))
+            .toList();
     }
 
     /**

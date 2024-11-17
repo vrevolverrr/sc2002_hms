@@ -94,6 +94,6 @@ public class PrescriptionsTable extends Widget {
      * @return the name of the drug as a {@link String}.
      */
     private String getDrugName(String drugId) {
-        return inventoryManager.getInventoryItem(drugId).getItemName();
+        return inventoryManager.getItem(drugId).getItemName();
     }
 }

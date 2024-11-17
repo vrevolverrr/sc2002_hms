@@ -97,16 +97,31 @@ public class Prescription implements SerializableCopyable {
     }
 
     /**
-     * Sets the status of the prescription.
-     * @param status the status of the prescription.
+     * Checks if the prescription is dispensed.
+     * @return true if the prescription is dispensed, false otherwise.
      */
-    public void setStatus(PrescriptionStatus status) {
-        this.status = status;
+    public boolean isDispensed() {
+        return this.status == PrescriptionStatus.DISPENSED;
     }
 
     /**
-     * Returns a string representation of the {@link Prescription}.
-     * @return a string representation of the {@link Prescription}.
+     * Checks if the prescription is pending.
+     * @return true if the prescription is pending, false otherwise.
+     */
+    public boolean isPending() {
+        return this.status == PrescriptionStatus.PENDING;
+    }
+
+    /**
+     * Dispenses the prescription by marking the status as {@code DISPENSED}.
+     */
+    public void dispense() {
+        this.status = PrescriptionStatus.DISPENSED;
+    }
+
+    /**
+     * Checks if the prescription is equal to another object.
+     * @return true if the prescription is equal to the other object, false otherwise.
      */
     @Override
     public boolean equals(Object obj) {

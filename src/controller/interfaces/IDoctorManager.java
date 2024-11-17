@@ -8,8 +8,14 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface IDoctorManager {
+    /**
+     * Retrieves all doctors.
+     *
+     * @return a list {@link Doctor} of all doctors.
+     */
     List<Doctor> getAllDoctors();
 
+    
     Doctor getDoctor(String doctorId);
 
     void setDoctorAvailability(Doctor doctor, DayOfWeek day, TimePeriod availablePeriod);

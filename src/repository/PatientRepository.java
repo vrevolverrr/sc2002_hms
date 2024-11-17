@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 import model.enums.UserRole;
 import model.users.Patient;
 import model.users.User;
+import repository.interfaces.IPatientRepository;
 import repository.interfaces.IRepository;
 import repository.interfaces.IUserRepository;
 
@@ -22,7 +23,7 @@ import repository.interfaces.IUserRepository;
  * {@code Users} that are actually {@code Patients}.
  * @see https://www.geeksforgeeks.org/dependency-injection-di-design-pattern/
  */
-public class PatientRepository implements IRepository<Patient> {    
+public class PatientRepository implements IPatientRepository {    
     /**
      * The {@link UserRepository} dependency to extend.
      */
@@ -45,6 +46,15 @@ public class PatientRepository implements IRepository<Patient> {
         return this.repository.getItems().entrySet().stream().filter(
             entry -> entry.getValue().getRole() == UserRole.PATIENT).collect(
                 Collectors.toMap(e -> (String) e.getKey(), e -> (Patient) e.getValue()));
+    }
+
+    /**
+     * Gets all the {@link Patient} stored in the repository.
+     * @return the list of all the {@link Patient} stored.
+     */
+    @Override
+    public List<Patient> findAll() {
+        return this.getItems().values().stream().collect(Collectors.toList());
     }
 
     /**

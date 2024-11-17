@@ -51,6 +51,15 @@ public class PharmacistRepository implements IPharmacistRepository {
     }
 
     /**
+     * Gets all the {@link Pharmacist} stored in the repository.
+     * @return the list of all the {@link Pharmacist} stored.
+     */
+    @Override
+    public List<Pharmacist> findAll() {
+        return this.getItems().values().stream().collect(Collectors.toList());
+    }
+
+    /**
      * Gets the total number of {@code Pharmacist} stored in the repository.
      * @return the number of entries of {@link Pharmacist} stored.
      */

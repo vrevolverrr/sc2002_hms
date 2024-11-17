@@ -5,8 +5,6 @@ import model.inventory.InventoryItem;
 import model.users.Pharmacist;
 
 public interface IInventoryManager {
-    public InventoryItem getInventoryItem(String itemId);
-
     public InventoryItem getItem(String id);
 
     public List<InventoryItem> getAllItems();

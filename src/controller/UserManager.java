@@ -1,14 +1,15 @@
 package controller;
+
 import controller.interfaces.IUserManager;
 import model.users.User;
-import repository.UserRepository;
+import repository.interfaces.IUserRepository;
 
 public class UserManager implements IUserManager {
-    private final UserRepository repository;
+    private final IUserRepository repository;
 
     private User activeUser;
 
-    public UserManager(UserRepository repository) {
+    public UserManager(IUserRepository repository) {
         this.repository = repository;
     }
 

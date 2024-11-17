@@ -2,6 +2,7 @@ package repository;
 
 import java.util.List;
 
+import model.enums.ReplenishmentStatus;
 import model.inventory.InventoryItem;
 import repository.interfaces.IInventoryRepository;
 import repository.interfaces.IRepository;
@@ -42,7 +43,12 @@ public class InventoryRepository extends BaseRepository<InventoryItem> implement
             last -> String.format("%04d", Integer.parseInt(last.substring(1)) + 1)).orElse("1001");
     }
 
-    public List<InventoryItem> getAllItems() {
+    /**
+     * Gets all the items in the inventory, sorted by ID.
+     * @return a list of all the items in the inventory.
+     */
+    @Override
+    public List<InventoryItem> findAll() {
         return findAll().stream()
         .sorted((a, b) -> a.getId().compareTo(b.getId()))
         .toList();
@@ -58,10 +64,36 @@ public class InventoryRepository extends BaseRepository<InventoryItem> implement
     }
 
     /**
+     * Retrieves inventory items with pending replenishment requests.
+     *
+     * @return a list of {@link InventoryItem} with pending replenishment requests.
+     */
+    @Override
+    public List<InventoryItem> getPendingReplenishmentRequestItems() {
+        return findBy(
+            item -> item.getReplenishmentStatus() == ReplenishmentStatus.PENDING)
+            .stream()
+            .sorted((a, b) -> a.getId().compareTo(b.getId()))
+            .toList();
+    }
+
+        /**
+     * Retrieves inventory items with low stock.
+     *
+     * @return a list of {@link InventoryItem} with low stock.
+     */
+    @Override
+    public List<InventoryItem> getLowStockInventoryItems() {
+        return findBy(
+            item -> item.getStock() <= item.getStockLevelAlert());
+    }
+
+    /**
      * Checks if an item exists in the inventory.
      * @param itemName the name of the item.
      * @return true if the item exists, false otherwise.
      */
+    @Override
     public boolean itemExists(String itemName) {
         return findByItemName(itemName) != null;
     }

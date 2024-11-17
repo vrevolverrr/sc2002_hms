@@ -2,12 +2,12 @@ package controller;
 
 import java.util.List;
 
-import controller.interfaces.IAppointmentManager;
-import controller.interfaces.IInventoryManager;
 import controller.interfaces.IPharmacistManager;
 import model.appointments.Appointment;
-import model.enums.PrescriptionStatus;
+import model.inventory.InventoryItem;
 import model.prescriptions.Prescription;
+import repository.interfaces.IAppointmentRepository;
+import repository.interfaces.IInventoryRepository;
 
 /**
  * Manages operations related to pharmacists.
@@ -17,13 +17,14 @@ import model.prescriptions.Prescription;
  */
 
 public class PharmacistManager implements IPharmacistManager {
-    
-    private final IInventoryManager inventoryManager;
-    private final IAppointmentManager appointmentManager;
+    private final IInventoryRepository inventoryRepository;
+    private final IAppointmentRepository appointmentRepository;
 
-    public PharmacistManager(IInventoryManager inventoryManager, IAppointmentManager appointmentManager) {
-        this.inventoryManager = inventoryManager;
-        this.appointmentManager = appointmentManager;
+    public PharmacistManager(
+        IInventoryRepository inventoryRepository, IAppointmentRepository appointmentRepository) {
+        
+        this.inventoryRepository = inventoryRepository;
+        this.appointmentRepository = appointmentRepository;
     }
 
     /**
@@ -35,10 +36,10 @@ public class PharmacistManager implements IPharmacistManager {
 
         for (Prescription prescription : prescriptions) {
             dispense(prescription);
-            prescription.setStatus(PrescriptionStatus.DISPENSED);
+            prescription.dispense();
         }
 
-        appointmentManager.updateAppointment(appointment);
+        appointmentRepository.save(appointment);
     }
 
     /**
@@ -50,11 +51,11 @@ public class PharmacistManager implements IPharmacistManager {
         dispense(prescription);
 
         appointment.getOutcomeRecord().getPrescriptions().stream()
-            .filter(p -> p.equals(prescription))
+            .filter(p -> p.equals(prescription) && p.isPending())
             .findFirst()
-            .ifPresent(p -> p.setStatus(PrescriptionStatus.DISPENSED));
+            .ifPresent(p -> p.dispense());
 
-        appointmentManager.updateAppointment(appointment);
+        appointmentRepository.save(appointment);
     }
 
     /**
@@ -62,7 +63,10 @@ public class PharmacistManager implements IPharmacistManager {
      * @param prescription The {@link Prescription} to dispense.
      */
     public void dispense(Prescription prescription) {
-        inventoryManager.deductStock(prescription.getDrugId(),  prescription.getQuantity());
+        InventoryItem item = inventoryRepository.findById(prescription.getDrugId());
+        item.deductStock(prescription.getQuantity());
+        
+        inventoryRepository.save(item);
     }
     
 }

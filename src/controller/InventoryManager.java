@@ -3,11 +3,9 @@ package controller;
 import java.util.List;
 
 import controller.interfaces.IInventoryManager;
-import model.enums.ReplenishmentStatus;
 import model.inventory.InventoryItem;
-import model.inventory.ReplenishmentRequest;
 import model.users.Pharmacist;
-import repository.InventoryRepository;
+import repository.interfaces.IInventoryRepository;
 
 /**
  * Manages operations related to inventory.
@@ -19,21 +17,10 @@ public class InventoryManager implements IInventoryManager {
     /**
      * Repository for accessing inventory data.
      */
-    private final InventoryRepository inventoryRepository;
+    private final IInventoryRepository inventoryRepository;
 
-    public InventoryManager(InventoryRepository inventoryRepository) {
+    public InventoryManager(IInventoryRepository inventoryRepository) {
         this.inventoryRepository = inventoryRepository;
-
-    }
-
-    /**
-     * Retrieves an inventory item by its ID.
-     *
-     * @param itemId the ID of the inventory item.
-     * @return the inventory item with the specified ID.
-     */
-    public InventoryItem getInventoryItem(String itemId) {
-        return inventoryRepository.findById(itemId);
     }
 
     /**
@@ -42,6 +29,7 @@ public class InventoryManager implements IInventoryManager {
      * @param id the ID of the inventory item.
      * @return the inventory item with the specified ID.
      */
+    @Override
     public InventoryItem getItem(String id) {
         return inventoryRepository.findById(id);
     }
@@ -52,9 +40,7 @@ public class InventoryManager implements IInventoryManager {
      * @return a list of all inventory items.
      */
     public List<InventoryItem> getAllItems() {
-        return inventoryRepository.findAll().stream()
-        .sorted((a, b) -> a.getId().compareTo(b.getId()))
-        .toList();
+        return inventoryRepository.findAll();
     }
 
     /**
@@ -87,7 +73,7 @@ public class InventoryManager implements IInventoryManager {
      * @param quantity the quantity to add.
      */
     public void addStock(InventoryItem item, int quantity) {
-        item.setStock(item.getStock() + quantity);
+        item.addStock(quantity);
         inventoryRepository.save(item);
     }
 
@@ -109,7 +95,7 @@ public class InventoryManager implements IInventoryManager {
      * @param quantity the quantity to deduct.
      */
     public void deductStock(InventoryItem item, int quantity) {
-        item.setStock(item.getStock() - quantity);
+        item.deductStock(quantity);
         inventoryRepository.save(item);
     }
 
@@ -130,8 +116,7 @@ public class InventoryManager implements IInventoryManager {
      * @return a list of {@link InventoryItem} with low stock.
      */
     public List<InventoryItem> getLowStockInventoryItems() {
-        return inventoryRepository.findBy(
-            item -> item.getStock() <= item.getStockLevelAlert());
+        return inventoryRepository.getLowStockInventoryItems();
     }
 
     /**
@@ -140,11 +125,7 @@ public class InventoryManager implements IInventoryManager {
      * @return a list of {@link InventoryItem} with pending replenishment requests.
      */
     public List<InventoryItem> getPendingReplenishmentRequestItems() {
-        return inventoryRepository.findBy(
-            item -> item.getReplenishmentStatus() == ReplenishmentStatus.PENDING)
-            .stream()
-            .sorted((a, b) -> a.getId().compareTo(b.getId()))
-            .toList();
+        return inventoryRepository.getPendingReplenishmentRequestItems();
     }
 
     /**
@@ -155,11 +136,7 @@ public class InventoryManager implements IInventoryManager {
      * @param quantity the quantity to replenish.
      */
     public void requestReplenishment(Pharmacist pharmacist, InventoryItem inventoryItem, int quantity) {
-        inventoryItem.setReplenishmentStatus(ReplenishmentStatus.PENDING);
-
-        ReplenishmentRequest request = new ReplenishmentRequest(pharmacist.getPharmacistId(), quantity);
-        inventoryItem.setReplenishmentRequest(request);
-
+        inventoryItem.createReplenishmentRequest(pharmacist.getPharmacistId(), quantity);
         inventoryRepository.save(inventoryItem);
     }
 
@@ -169,12 +146,7 @@ public class InventoryManager implements IInventoryManager {
      * @param inventoryItem the inventory item.
      */
     public void approveReplenishmentRequest(InventoryItem inventoryItem) {
-        inventoryItem.setReplenishmentStatus(ReplenishmentStatus.APPROVED);
-
-        inventoryItem.setStock(inventoryItem.getStock() + inventoryItem.getReplenishmentRequest().getQuantity());
-        
-        // inventoryItem.setReplenishmentRequest(null);
-
+        inventoryItem.approveReplenishmentRequest();
         inventoryRepository.save(inventoryItem);
     }
 
@@ -184,8 +156,7 @@ public class InventoryManager implements IInventoryManager {
      * @param inventoryItem the inventory item.
      */
     public void rejectReplenishmentRequest(InventoryItem inventoryItem) {
-        inventoryItem.setReplenishmentStatus(ReplenishmentStatus.REJECTED);
-     
+        inventoryItem.rejectReplenishmentRequest();
         inventoryRepository.save(inventoryItem);
     }
 }

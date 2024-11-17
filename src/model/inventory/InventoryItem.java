@@ -95,6 +95,26 @@ public class InventoryItem extends BaseModel {
     }
 
     /**
+     * Deducts the stock of the item.
+     * @param quantity the quantity to deduct.
+     */
+    public void deductStock(int quantity) {
+        if (this.stock - quantity < 0) {
+            return;
+        }
+
+        this.stock -= quantity;
+    }
+
+    /**
+     * Adds stock to the item.
+     * @param quantity the quantity to add.
+     */
+    public void addStock(int quantity) {
+        this.stock += quantity;
+    }
+
+    /**
      * Gets the stock level alert of the item.
      * @return the stock level alert of the item.
      */
@@ -119,27 +139,36 @@ public class InventoryItem extends BaseModel {
     }
 
     /**
-     * Sets the replenishment status of the item.
-     * @param replenishmentStatus the replenishment status of the item.
-     */
-    public void setReplenishmentStatus(ReplenishmentStatus replenishmentStatus) {
-        this.replenishmentStatus = replenishmentStatus;
-    }
-
-    /**
      * Gets the replenishment request of the item.
      * @return the replenishment request of the item.
      */
     public ReplenishmentRequest getReplenishmentRequest() {
-        return this.replenishmentRequest;
+        return this.replenishmentRequest.copy();
     }
 
-    /**
-     * Sets the replenishment request of the item.
-     * @param replenishmentRequest the replenishment request of the item.
-     */
-    public void setReplenishmentRequest(ReplenishmentRequest replenishmentRequest) {
-        this.replenishmentRequest = replenishmentRequest;
+    public void createReplenishmentRequest(String pharmacistId, int quantity) {
+        this.replenishmentRequest = new ReplenishmentRequest(pharmacistId, quantity);
+        this.replenishmentStatus = ReplenishmentStatus.PENDING;
+    }
+
+    public void approveReplenishmentRequest() {
+        if (this.replenishmentRequest == null || this.replenishmentStatus != ReplenishmentStatus.PENDING) {
+            return;
+        }
+
+        this.replenishmentStatus = ReplenishmentStatus.APPROVED;
+        this.stock += this.replenishmentRequest.getQuantity();
+
+        this.replenishmentRequest = null;
+    }
+
+    public void rejectReplenishmentRequest() {
+        if (this.replenishmentRequest == null || this.replenishmentStatus != ReplenishmentStatus.PENDING) {
+            return;
+        }
+
+        this.replenishmentStatus = ReplenishmentStatus.REJECTED;
+        this.replenishmentRequest = null;
     }
 
     /**
@@ -149,10 +178,10 @@ public class InventoryItem extends BaseModel {
     @Override
     public InventoryItem copy() {
         InventoryItem item = new InventoryItem(getId(), getItemName(), getStock(), getStockLevelAlert());
-        item.setReplenishmentStatus(getReplenishmentStatus());
+        item.replenishmentStatus = getReplenishmentStatus();
 
         if (getReplenishmentRequest() != null) {
-            item.setReplenishmentRequest(getReplenishmentRequest().copy());
+            item.replenishmentRequest = getReplenishmentRequest();
         }
 
         return item;

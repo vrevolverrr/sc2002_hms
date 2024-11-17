@@ -87,11 +87,11 @@ public class ServiceLocator {
         DoctorRepository doctorRepository = new DoctorRepository(userRepository);
         PatientRepository patientRepository = new PatientRepository(userRepository);
 
-        IAppointmentManager appointmentManager = ServiceLocator.registerService(
+        ServiceLocator.registerService(
             IAppointmentManager.class, 
             new AppointmentManager(appointmentRepository));
 
-        IInventoryManager inventoryManger = ServiceLocator.registerService(
+        ServiceLocator.registerService(
                 IInventoryManager.class, new InventoryManager(inventoryRepository));
 
         ServiceLocator.registerService(
@@ -103,14 +103,15 @@ public class ServiceLocator {
         
         ServiceLocator.registerService(
             IMedicalRecordManager.class, 
-            new MedicalRecordManager(inventoryManger, medicalRecordRepository));
+            new MedicalRecordManager(medicalRecordRepository, inventoryRepository));
         
         ServiceLocator.registerService(
-            IPatientManager.class, new PatientManager(appointmentManager, patientRepository));
+            IPatientManager.class, 
+            new PatientManager(patientRepository, appointmentRepository));
         
         ServiceLocator.registerService(
             IPharmacistManager.class, 
-            new PharmacistManager(inventoryManger, appointmentManager));
+            new PharmacistManager(inventoryRepository, appointmentRepository));
         
         ServiceLocator.registerService(
             IStaffManager.class, new StaffManager(userRepository));
