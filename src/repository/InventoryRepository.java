@@ -49,7 +49,7 @@ public class InventoryRepository extends BaseRepository<InventoryItem> implement
      */
     @Override
     public List<InventoryItem> findAll() {
-        return findAll().stream()
+        return getItems().values().stream()
         .sorted((a, b) -> a.getId().compareTo(b.getId()))
         .toList();
     }

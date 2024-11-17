@@ -37,7 +37,7 @@ public final class PharmacistPrescribeMedicineView extends View {
     /**
      * An instance of the {@link InventoryManager} class. Used to retrieve inventory items.
      */
-    private final IInventoryManager inventoryManager = ServiceLocator.getService(InventoryManager.class);
+    private final IInventoryManager inventoryManager = ServiceLocator.getService(IInventoryManager.class);
     
     /**
      * The appointment for which the medicine is being prescribed.
