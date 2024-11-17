@@ -5,6 +5,10 @@ import model.enums.AppointmentStatus;
 
 /**
  * The class representing a medical appointment.
+ * 
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-17
  */
 public class Appointment extends BaseModel {
     /**

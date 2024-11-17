@@ -15,6 +15,10 @@ import model.enums.UserRole;
 
 /**
  * The concrete implementation of a {@link User} corresponding to a patient.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-10-28
  */
 public class Patient extends User {
     /*
@@ -138,6 +142,10 @@ public class Patient extends User {
         return patient.getId().equals(getId());
     }
 
+    /**
+     * Generates a hash code for the {@link Patient} object.
+     * @return the hash code generated based on the ID of the patient.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(getId());

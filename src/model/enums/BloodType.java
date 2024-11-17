@@ -12,6 +12,9 @@ import model.users.Patient;
  * The enum corresponding to the bloodtype of a {@link Patient}
  */
 public enum BloodType {
+    /**
+     * The possible blood types.
+     */
     A_POSITIVE("A+"), A_NEGATIVE("A-"),
     B_POSITIVE("B+"), B_NEGATIVE("B-"),
     O_POSITIVE("O+"), O_NEGATIVE("O-"), 

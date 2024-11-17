@@ -26,6 +26,10 @@ public enum Gender {
         this.value = value;
     }
 
+    /**
+     * Returns the {@code String} value of the enum.
+     * @return the {@code String} value of the enum.
+     */
     @Override
     public String toString() {
         return this.value;

@@ -11,7 +11,7 @@ import model.prescriptions.Prescription;
 /**
  * Represents the immutable outcome of a medical appointment.
  * 
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-16
  */

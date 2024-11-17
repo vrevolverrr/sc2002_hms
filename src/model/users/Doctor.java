@@ -8,6 +8,10 @@ import model.enums.UserRole;
 
 /**
  * The concrete implementation of a {@link User} corresponding to a doctor.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
  */
 public class Doctor extends User {
     /**
@@ -72,14 +76,26 @@ public class Doctor extends User {
         this.specialisation = specialisation;
     }
 
+    /**
+     * Get the availability of the doctor.
+     * @return the availability of the doctor.
+     */
     public Availability getAvailability() {
         return availability.copy();
     }
 
+    /**
+     * Set the availability of the doctor.
+     * @param availability
+     */
     public void setAvailability(Availability availability) {
         this.availability = availability;
     }
     
+    /**
+     * Creates a copy of the current {@link Doctor} instance.
+     * @return the exact copy (shallow) of the {@link Doctor}.
+     */
     @Override
     public Doctor copy() {
         Doctor newDoctor = new Doctor(getDoctorId(), getName(), getAge(), getPassword(), getGender(), getDob(), getPhoneNumber(), getEmailAddress(), getSpecialisation());

@@ -8,6 +8,9 @@ package model;
 
  /**
   * The base class for all data models with support for serialisation.
+  * @author Bryan Soong, Joyce Lee
+  * @version 1.0
+  * @since 2024-10-26
 */
 public abstract class BaseModel implements SerializableCopyable {
     /**

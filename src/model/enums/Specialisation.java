@@ -2,6 +2,10 @@ package model.enums;
 
 /**
  * The enum corresponding to the different specialisations of a {@link Doctor}.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
  */
 public enum Specialisation {
     CARDIOLOGIST("Cardiologist"),
@@ -33,6 +37,10 @@ public enum Specialisation {
         return this.value;
     }
 
+    /**
+     * Returns the {@code String} value of the enum.
+     * @return the {@code String} value of the enum.
+     */
     @Override
     public String toString() {
         return this.value;
