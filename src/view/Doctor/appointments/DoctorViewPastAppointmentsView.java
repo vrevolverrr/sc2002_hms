@@ -91,7 +91,7 @@ public class DoctorViewPastAppointmentsView extends View {
         new Title("View Past Appointments").paint(context);
 
         List<Appointment> filteredAppointments = filterAppointments(keyword);
-        new DoctorAppointmentsTable("No past fulfilled or completed appointments", pastAppointments).paint(context);
+        new DoctorAppointmentsTable("No past fulfilled or completed appointments", filteredAppointments).paint(context);
 
         new VSpacer(1).paint(context);
 
