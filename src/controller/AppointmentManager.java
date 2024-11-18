@@ -17,7 +17,13 @@ import java.util.List;
 
 import controller.interfaces.IAppointmentManager;
 
-
+/**
+ * Manages operations related to appointments.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-16
+ */
 public class AppointmentManager implements IAppointmentManager {
     /**
      * Repository for accessing appointment data.

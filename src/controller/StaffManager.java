@@ -30,6 +30,8 @@ public class StaffManager implements IStaffManager {
  
     /**
      * Constructs a new instance of {@link StaffManager}.
+     * 
+     * @param userRepository the repository for accessing user data.
      */
     public StaffManager(IUserRepository userRepository) {
         this.userRepository = userRepository;
