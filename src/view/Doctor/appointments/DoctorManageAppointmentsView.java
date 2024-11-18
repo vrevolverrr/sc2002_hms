@@ -17,10 +17,9 @@ import view.widgets.Title;
 
 /**
  * {@link DoctorManageAppointmentsView} is a {@link View} that allows doctors to manage
- * their scheduled appointments. Doctors can view a list of scheduled appointments
- * and choose to view appointment requests, record appointment outcomes, or view past appointments.
+ * their scheduled appointments. 
  * 
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-17
  */

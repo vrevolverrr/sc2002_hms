@@ -10,7 +10,7 @@ import lib.uilib.framework.TableRow;
 import lib.uilib.framework.Widget;
 
 /**
- * The {@code InventoryTable} widget displays a table of inventory items.
+ * The {@link InventoryTable} widget displays a table of inventory items.
  * It displays the name, quantity, reorder level, stock level, and replenishment status of each item.
  * 
  * @author Bryan Soong, Joyce Lee
@@ -60,6 +60,12 @@ public class InventoryTable extends Widget {
         return EnumeratedTable.withHeader(header, rows).build(context);
     }
     
+    /**
+     * Returns the stock level of a given {@link InventoryItem}.
+     * 
+     * @param medication the {@link InventoryItem} to get the stock level of.
+     * @return a {@link String} representing the stock level of the {@link InventoryItem}.
+     */
     public static String getStockLevel(InventoryItem medication) {
         int reorderLevel = medication.getStockLevelAlert();
         int stock = medication.getStock();

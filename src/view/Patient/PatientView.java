@@ -19,6 +19,7 @@ import view.widgets.Title;
 
 /**
  * View for displaying an overview of the patient's information and options.
+ * 
  * @author Bryan Soong
  * @version 1.0
  * @since 2024-11-10

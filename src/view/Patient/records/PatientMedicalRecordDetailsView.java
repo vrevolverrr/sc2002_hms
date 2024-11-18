@@ -10,6 +10,7 @@ import view.widgets.Title;
 
 /**
  * View for displaying details of a specific medical record entry.
+ * 
  * @author Bryan Soong
  * @version 1.0
  * @since 2024-11-10

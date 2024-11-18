@@ -21,6 +21,7 @@ import view.widgets.Title;
 
 /**
  * View for displaying a patient's medical records.
+ * 
  * @author Bryan Soong
  * @version 1.0
  * @since 2024-11-10

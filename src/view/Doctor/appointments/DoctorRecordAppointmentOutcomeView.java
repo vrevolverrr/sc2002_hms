@@ -19,10 +19,9 @@ import view.widgets.Title;
 
 /**
  * {@link DoctorRecordAppointmentOutcomeView} is a {@link View} that allows doctors to record
- * the outcomes of fulfilled appointments. Doctors can view a list of fulfilled appointments
- * and choose to update the outcomes of the appointments.
+ * the outcomes of fulfilled appointments.
  * 
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-17
  */
@@ -90,7 +89,6 @@ public class DoctorRecordAppointmentOutcomeView extends View {
             return;
         }
 
-        /// Choose an appointment to update
         TextInputField apptField = new TextInputField("Choose an appointment to update outcome");
         new TextInput(apptField).read(context, "Choose an appointment from the list above.",
             (input) -> InputValidators.validateRange(input, appointments.size()));

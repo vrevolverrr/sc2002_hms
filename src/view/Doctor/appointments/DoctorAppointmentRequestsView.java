@@ -21,22 +21,9 @@ import view.widgets.Title;
 
 /**
  * {@link DoctorAppointmentRequestsView} is a {@link View} that allows doctors to manage 
- * pending appointment requests. Doctors can view a list of pending appointments 
- * and choose to approve or decline them.
- * <p>
- * The view interacts with {@link AppointmentManager} to retrieve and update appointment statuses.
- * It displays the information using various widgets such as {@link Breadcrumbs}, 
- * {@link DoctorAppointmentsTable}, and {@link Text}.
- * </p>
+ * pending appointment requests. 
  * 
- * <h3>Features:</h3>
- * <ul>
- *   <li>Displays pending appointment requests for a specific doctor.</li>
- *   <li>Enables approval or decline of selected appointments.</li>
- *   <li>Updates the appointment status in the system.</li>
- * </ul>
- * 
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-17
  * 

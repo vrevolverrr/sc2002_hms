@@ -7,7 +7,7 @@ import lib.uilib.widgets.base.Table;
 import model.users.Doctor;
 
 /**
- * Widget to display a table of selected doctor for appointment.
+ * The {@link SelectedDoctorTable} is a {@link Widget} to display a table of selected doctor for appointment.
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0

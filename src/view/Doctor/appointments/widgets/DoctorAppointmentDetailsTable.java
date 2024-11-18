@@ -12,12 +12,7 @@ import services.ServiceLocator;
  * A {@link Widget} that displays the details of a doctor's appointment.
  * This widget is designed to provide doctors with a clear view of the details of a specific appointment.
  * 
- * @see DoctorAppointmentDetailsTable
- * @see DoctorAppointmentTable
- * @see DoctorAppointmentUpdateTable
- * @see DoctorAppointmentsView
- * 
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-16
  */

@@ -21,6 +21,7 @@ import view.widgets.Title;
 
 /**
  * View for canceling a patient's appointment.
+ * 
  * @author Bryan Soong
  * @version 1.0
  * @since 2024-11-10
@@ -38,6 +39,7 @@ public class PatientCancelAppointmentView extends View {
 
     /**
      * Constructs a new view for canceling a patient's appointment.
+     * 
      * @param patient The patient canceling the appointment.
      */
     public PatientCancelAppointmentView(Patient patient) {
@@ -46,6 +48,7 @@ public class PatientCancelAppointmentView extends View {
 
     /**
      * Gets the name of the view for the breadcrumbs.
+     * 
      * @return The name of the view.
      */
     @Override

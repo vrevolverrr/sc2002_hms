@@ -10,13 +10,13 @@ import model.users.Patient;
  * A {@link Widget} that displays the details of a patient.
  * This widget is designed to provide doctors with a clear view of the details of a specific patient.
  * 
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-16
  */
 public class PatientDetailsTable extends Widget {
 
-     /**
+    /**
      * The {@link Patient} object whose details will be displayed in the table.
      */
     private final Patient patient;

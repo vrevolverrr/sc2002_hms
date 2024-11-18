@@ -1,9 +1,3 @@
-/**
- * @author Bryan Soong
- * @version 1.0
- * @since 2024-10-28
- */
-
 package services;
 
 import java.util.*;
@@ -16,6 +10,10 @@ import view.View;
  * <PRE>
  * Navigator.navigateTo(new LoginView());
  * </PRE>
+ * 
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-10-28
  */
 public class Navigator {
     /**

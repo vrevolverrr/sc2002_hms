@@ -5,6 +5,7 @@ import view.Login.LoginView;
 
 /**
  * The starting point of the application.
+ * 
  * @author Bryan Soong
  * @version 1.0
  * @since 2024-10-18

@@ -14,7 +14,7 @@ import services.ServiceLocator;
  * A {@link Widget} that displays a table of appointments.
  * This widget is designed to provide administrators with a clear view of all appointments in the system.
  * 
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-10
  */
@@ -68,6 +68,12 @@ public class AdminAppointmentTable extends Widget {
         return EnumeratedTable.withHeader(header, appointmentRows).build(context);
     }
     
+    /**
+     * Retrieves the name of a user by their ID.
+     *
+     * @param id the ID of the user.
+     * @return the name of the user with the specified ID.
+     */
     private String getNameById(String id) {
         return userManager.getUser(id).getName();
     }

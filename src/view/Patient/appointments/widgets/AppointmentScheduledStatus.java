@@ -10,7 +10,7 @@ import model.appointments.AppointmentSlot;
 import model.enums.AppointmentStatus;
 
 /**
- * Widget to display the status of an appointment that has been scheduled.
+ * The {@link AppointmentScheduledStatus} is a {@link Widget} to display the status of an appointment that has been scheduled.
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0

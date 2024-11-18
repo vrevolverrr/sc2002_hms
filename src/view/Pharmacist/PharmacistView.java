@@ -21,6 +21,7 @@ import view.widgets.Title;
 /**
  * This is the main view for the Pharmacist role.
  * It displays the pharmacist's details and provides options to update prescription status, view inventory, and submit replenishment requests.
+ * 
  * @author Bryan Soong
  * @version 1.0
  * @since 2024-11-10

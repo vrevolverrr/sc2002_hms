@@ -37,6 +37,14 @@ import controller.interfaces.IMedicalRecordManager;
 import controller.interfaces.IInventoryManager;
 import controller.interfaces.IAppointmentManager;
 
+/**
+ * {@link DoctorUpdateOutcomeDetailsView} is a {@link View} that allows doctors to update
+ * the outcomes of fulfilled appointments.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
+ */
 public class DoctorUpdateOutcomeDetailsView extends View {
     /**
      * An instance of {@link UserManager} used to manage users.

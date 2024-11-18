@@ -17,6 +17,7 @@ import view.widgets.Title;
 /**
  * This view allows the pharmacist to view the medication inventory.
  * It displays a list of all medications and allows the pharmacist to search for specific medications.
+ * 
  * @author Bryan Soong
  * @version 1.0
  * @since 2024-11-10
