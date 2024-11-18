@@ -13,7 +13,7 @@ import lib.uilib.widgets.base.Table;
 /**
  * The {@link AppointmentSlotSelectionTable} is a {@link Widget} to display a table of available appointment slots for selection.
  * 
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-17
  */

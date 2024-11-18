@@ -57,16 +57,6 @@ public class DoctorRecordAppointmentOutcomeView extends View {
 
     /**
      * Renders the "Record Appointment Outcome" view for the doctor.
-     * <p>
-     * The rendering process includes:
-     * <ol>
-     *   <li>A breadcrumb navigation</li>
-     *   <li>A title of "Record Appointment Outcomes"</li>
-     *   <li>A title of "Fulfilled Appointments"</li>
-     *   <li>A table displaying all fulfilled appointments</li>
-     *   <li>A prompt to select an appointment to update the outcome</li>
-     * </ol>
-     * </p>
      * If there are no fulfilled appointments, the view will display a message informing the doctor and navigate back.
      * If there are fulfilled appointments, the doctor can select one to update the outcome.
      */

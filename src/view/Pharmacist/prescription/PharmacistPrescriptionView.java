@@ -25,6 +25,12 @@ import view.widgets.Title;
  * @since 2024-11-10
  */
 public final class PharmacistPrescriptionView extends View {
+
+    /**
+     * Default constructor for the {@link PharmacistPrescriptionView} class.
+     */
+    public PharmacistPrescriptionView() {}
+    
     /**
      * An instance of the {@link AppointmentManager} class. Used to retrieve appointments.
      */

@@ -129,17 +129,6 @@ public class DoctorUpdateOutcomeDetailsView extends View {
 
     /**
      * Renders the "Update Appointment Outcome" view for the doctor.
-     * <p>
-     * The rendering process includes:
-     * <ol>
-     *   <li>Displaying breadcrumbs and a title for the view.</li>
-     *   <li>Displaying the patient details using {@link PatientDetailsTable}.</li>
-     *   <li>Displaying the appointment details using {@link DoctorAppointmentDetailsTable}.</li>
-     *   <li>Displaying the appointment outcome details using {@link AppointmentUpdateOutcomeTable}.</li>
-     *   <li>Prompting the doctor to enter consultation notes, prescriptions, and services provided.</li>
-     *   <li>Recording the appointment outcome using {@link AppointmentManager#updateAppointmentOutcome(Appointment, String, List, List)}.</li>
-     * </ol>
-     * </p>
      */
     @Override
     public void render() {

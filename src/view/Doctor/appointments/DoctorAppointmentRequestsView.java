@@ -62,16 +62,6 @@ import view.widgets.Title;
     /**
      * Renders the view by displaying pending appointment requests and providing 
      * options to approve or decline them.
-     * <p>
-     * The rendering process includes:
-     * <ol>
-     *   <li>Displaying breadcrumbs and a title.</li>
-     *   <li>Fetching pending appointments for the doctor using {@link AppointmentManager#getPendingAppointments(Doctor)}.</li>
-     *   <li>Displaying the appointments using {@link DoctorAppointmentsTable}.</li>
-     *   <li>Prompting the doctor to select and update the status of an appointment.</li>
-     * </ol>
-     * </p>
-     * 
      */
     @Override
     public void render() {

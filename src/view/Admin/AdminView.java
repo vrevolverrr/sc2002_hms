@@ -30,6 +30,12 @@ import view.widgets.Title;
  * @since 2024-11-10
  */
 public class AdminView extends View {
+
+    /**
+     * Constructs a new {@link AdminView}.
+     */
+    public AdminView() {}
+
     /**
      * An instance of the {@link IUserManager} interface. Used to retrieve the active user.
      */

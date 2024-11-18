@@ -22,6 +22,12 @@ import view.widgets.Title;
  * @since 2024-11-10
  */
 public class AdminInventoryView extends View {
+
+    /**
+     * Default constructor for the {@link AdminInventoryView} class.
+     */
+    public AdminInventoryView() {};
+    
     /**
      * An instance of the {@link InventoryManager} class. Used to manage inventory operations.
      */

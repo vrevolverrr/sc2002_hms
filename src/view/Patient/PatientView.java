@@ -25,6 +25,12 @@ import view.widgets.Title;
  * @since 2024-11-10
  */
 public class PatientView extends View {
+
+    /**
+     * Default constructor for the {@link PatientView} class.
+     */
+    public PatientView() {}
+    
     /**
      * Manager for handling user-related operations.
      */

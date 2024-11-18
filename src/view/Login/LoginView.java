@@ -32,6 +32,11 @@ import view.Pharmacist.PharmacistView;
 public class LoginView extends View {
 
     /**
+     * Default constructor for the {@link LoginView} class.
+     */
+    public LoginView() {}
+    
+    /**
      * The singleton instance of {@link UserManager}.
      */
     private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);

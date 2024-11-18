@@ -21,6 +21,12 @@ import view.widgets.Title;
  * @since 2024-11-10
  */
 public class AdminAllStaffView extends View {
+
+    /**
+     * Default constructor for the {@link AdminAllStaffView} class.
+     */
+    public AdminAllStaffView() {}
+    
     /**
      * An instance of the {@link IStaffManager} interface. Used to manage staff operations.
      */

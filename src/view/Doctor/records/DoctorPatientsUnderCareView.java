@@ -56,17 +56,6 @@ public class DoctorPatientsUnderCareView extends View {
 
     /**
      * Renders the doctor view for managing patient medical records.
-     * <p>
-     * This method sets up the following components in the user interface:
-     * <ul>
-     *   <li>Breadcrumb navigation to indicate the current view context.</li>
-     *   <li>A title widget displaying "Patient Medical Records".</li>
-     *   <li>A title widget displaying "Patients Under Care".</li>
-     *   <li>A table showing a list of patients under the doctor's care, created by {@link DoctorPatientCareTable}.</li>
-     *   <li>A text input field allowing the doctor to choose a patient from the list to manage medical records. This uses {@link TextInputField} and validates the selected patient index.</li>
-     *   <li>Upon selecting a patient, it navigates to the {@link DoctorPatientMedicalRecordView} to manage the selected patient's medical records.</li>
-     * </ul>
-     * </p>
      */
     @Override
     public void render() {

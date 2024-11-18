@@ -30,6 +30,11 @@ import view.widgets.Title;
 public class AdminManageDatabaseView extends View {
 
     /**
+     * Constructs a new {@link AdminManageDatabaseView}.
+     */
+    public AdminManageDatabaseView() {}
+    
+    /**
      * Returns the name of the view, which is "Manage Database".
      * 
      * @return The name of the view.

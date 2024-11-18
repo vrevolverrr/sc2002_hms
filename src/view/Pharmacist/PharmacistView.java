@@ -27,6 +27,12 @@ import view.widgets.Title;
  * @since 2024-11-10
  */
 public final class PharmacistView extends View {
+
+    /**
+     * Constructs a new {@link PharmacistView}.
+     */
+    public PharmacistView() {}
+    
     /**
      * An instance of the {@link UserManager} class. Used to retrieve the active user.
      */

@@ -26,6 +26,12 @@ import view.widgets.Title;
  * @since 2024-11-10
  */
 public class AdminAppointmentView extends View {
+
+    /**
+     * Default constructor for the {@link AdminAppointmentView} class.
+     */
+    public AdminAppointmentView() {};
+
     /**
      * An instance of the {@link UserManager} class. Used to manage user operations.
      */

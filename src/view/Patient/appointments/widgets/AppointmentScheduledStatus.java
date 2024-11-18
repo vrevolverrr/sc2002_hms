@@ -61,7 +61,7 @@ public class AppointmentScheduledStatus extends Widget {
     /**
      * Factory method to create a new {@link AppointmentScheduledStatus} widget.
      * 
-     * @param appointmentSlot The {@link AppointmentSlot} that was canceled.
+     * @param context The build context.
      * @return The new {@link AppointmentScheduledStatus} widget.
      */
     @Override

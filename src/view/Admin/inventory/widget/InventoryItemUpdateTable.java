@@ -14,17 +14,6 @@ import lib.uilib.widgets.base.EnumeratedTable;
  * A widget that displays detailed information about a specific inventory item
  * in a tabular format. This widget is used in the context of updating an inventory item,
  * showing its basic details, replenishment status, and stock details.
- * <p>
- * The table includes the following information:
- * <ul>
- *     <li>Item name</li>
- *     <li>Replenishment status</li>
- *     <li>Stock quantity</li>
- *     <li>Stock level alert</li>
- * </ul>
- * This widget is designed to provide administrators with a clear view of the inventory
- * item's current state before making updates.
- * </p>
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0
@@ -47,15 +36,6 @@ public class InventoryItemUpdateTable extends Widget {
 
     /**
      * Builds the UI representation of the inventory item's details.
-     * <p>
-     * The widget layout consists of:
-     * <ul>
-     *     <li>A table displaying the item name and replenishment status</li>
-     *     <li>A spacer to separate sections visually</li>
-     *     <li>A title labeled "Stock Details"</li>
-     *     <li>An enumerated table displaying stock quantity and stock level alert</li>
-     * </ul>
-     * </p>
      * 
      * @param context the build context in which the UI elements are rendered
      * @return the built UI structure as a string

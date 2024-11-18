@@ -23,6 +23,12 @@ import view.widgets.Title;
  * @since 2024-11-10
  */
 public class PharmacistInventoryView extends View {
+
+    /**
+     * Default constructor for the {@link PharmacistInventoryView} class.
+     */
+    public PharmacistInventoryView() {}
+    
     /**
      * An instance of the {@link InventoryManager} class. Used to manage inventory items.
      */

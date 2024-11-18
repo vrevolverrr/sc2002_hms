@@ -16,7 +16,7 @@ import services.ServiceLocator;
  * A {@link Widget} that displays a table of prescriptions.
  * This widget is designed to provide doctors with a clear view of all prescriptions for a specific appointment.
  * 
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-16
  */

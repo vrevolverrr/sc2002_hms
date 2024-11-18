@@ -18,6 +18,12 @@ import lib.uilib.framework.*;
  * @see PatientView
  */
 public abstract class View {
+
+    /**
+     * Default constructor for the {@link View} class.
+     */
+    public View() {}
+    
     /**
      * The default {@link BuildContext} implemented by a view. Can be overriden to use
      * a new build context.

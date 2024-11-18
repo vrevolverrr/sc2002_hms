@@ -72,17 +72,6 @@ public class DoctorViewPastAppointmentsView extends View {
 
     /**
      * Renders the user interface for viewing and searching past appointments.
-     * <p>
-     * This method displays:
-     * <ul>
-     *   <li>Breadcrumb navigation and a title at the top of the view.</li>
-     *   <li>A table listing past appointments for the logged-in doctor.</li>
-     *   <li>A search bar for filtering appointments by keyword.</li>
-     *   <li>An option to select and navigate to a specific appointment's details.</li>
-     * </ul>
-     * If no keyword is entered, all past appointments are displayed.
-     * If a keyword is entered, only appointments matching the search term are listed.
-     * </p>
      */
     @SuppressWarnings("unused")
     @Override

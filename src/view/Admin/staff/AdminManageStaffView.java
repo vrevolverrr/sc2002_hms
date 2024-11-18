@@ -12,11 +12,17 @@ import view.widgets.Title;
 /**
  * The class provides an interface for managing hospital staff. 
  * Administrators can view, add, update, or navigate back from the staff management options.
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-16
  */
 public class AdminManageStaffView extends View{
+
+    /**
+     * Constructs a new {@link AdminManageStaffView}.
+     */
+    public AdminManageStaffView() {}
+    
     /**
      * An instance of the {@link IUserManager} interface. Used to manage user operations.
      */

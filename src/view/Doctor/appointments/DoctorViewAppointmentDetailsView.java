@@ -61,18 +61,6 @@ public class DoctorViewAppointmentDetailsView extends View {
 
     /**
      * Renders the user interface for viewing appointment details.
-     * <p>
-     * This method displays:
-     * <ul>
-     *   <li>Breadcrumb navigation at the top of the view.</li>
-     *   <li>Patient details using the {@link PatientDetailsTable} widget.</li>
-     *   <li>Appointment details using the {@link DoctorAppointmentDetailsTable} widget.</li>
-     *   <li>Outcome details, including consultation notes and medical services, if available.</li>
-     *   <li>Prescription details using the {@link PrescriptionsTable} widget, if available.</li>
-     * </ul>
-     * If no outcome has been recorded for the appointment, an appropriate message is displayed.
-     * </p>
-     *
      */
     @Override
     public void render() {

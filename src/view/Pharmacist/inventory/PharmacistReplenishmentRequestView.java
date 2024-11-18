@@ -30,6 +30,12 @@ import view.widgets.Title;
  * @since 2024-11-10
  */
 public class PharmacistReplenishmentRequestView extends View {
+
+    /**
+     * Default constructor for the {@link PharmacistReplenishmentRequestView} class.
+     */
+    public PharmacistReplenishmentRequestView() {}
+    
     /**
      * An instance of the {@link UserManager} class. Used to retrieve the active user.
      */

@@ -25,6 +25,12 @@ import view.widgets.Title;
  * @since 2024-11-10
  */
 public class DoctorView extends View {
+
+    /**
+     * Default constructor for the {@link DoctorView} class.
+     */
+    public DoctorView() {}
+    
     /**
      * Instance of {@link UserManager} used to manage users.
      */

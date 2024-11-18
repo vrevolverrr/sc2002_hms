@@ -55,16 +55,6 @@ public class DoctorManageAppointmentsView extends View {
 
     /**
      * Renders the "Manage Appointments" view for the doctor.
-     * <p>
-     * The rendering process includes:
-     * <ol>
-     *   <li>Displaying breadcrumbs and a title for the view.</li>
-     *   <li>Fetching and displaying the list of scheduled appointments for the doctor using 
-     *       {@link AppointmentManager#getScheduledAppointments(Doctor)} and {@link DoctorAppointmentsTable}.</li>
-     *   <li>Presenting a menu with options to manage appointment requests, record outcomes, 
-     *       view past appointments, or navigate back.</li>
-     * </ol>
-     * </p>
      */
     @Override
     public void render() {

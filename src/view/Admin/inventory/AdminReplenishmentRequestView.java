@@ -24,6 +24,12 @@ import view.widgets.Title;
  * @since 2024-11-10
  */
 public class AdminReplenishmentRequestView extends View {
+
+    /**
+     * Default constructor for the {@link AdminReplenishmentRequestView} class.
+     */
+    public AdminReplenishmentRequestView() {}
+    
     /**
      * An instance of the {@link IInventoryManager} class. Used to manage inventory
      * operations.

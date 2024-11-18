@@ -16,17 +16,6 @@ import services.ServiceLocator;
  * This widget is used to provide administrators with a clear view of all pending
  * replenishment requests, including details about the item, requested quantity, 
  * and the pharmacist who initiated the request.
- * <p>
- * The table includes the following columns:
- * <ul>
- *     <li>Item Name</li>
- *     <li>Stock Quantity</li>
- *     <li>Reorder Level</li>
- *     <li>Requested Quantity</li>
- *     <li>Requested By</li>
- *     <li>Status</li>
- * </ul>
- * </p>
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0

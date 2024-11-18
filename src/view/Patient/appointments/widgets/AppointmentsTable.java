@@ -44,7 +44,7 @@ public class AppointmentsTable extends Widget {
      * </p>
      * 
      * @param context The build context in which the UI elements are rendered.
-     * @return The UI representation of the {@link AppointmentTable}.
+     * @return The UI representation of the appointments table.
      */
     @Override
     public String build(BuildContext context) {
