@@ -40,9 +40,11 @@ public class PatientMedicalDetailsTable extends Widget {
     public String build(BuildContext context) {
         return new Table(
             new TableRow("Name", patient.getName()),
+            new TableRow("Patient ID", patient.getId()),
             new TableRow("Age", String.valueOf(patient.getAge())),
             new TableRow("Gender", patient.getGender().toString()),
             new TableRow("Date of Birth", patient.getDobString()),
+            new TableRow("Contact", patient.getPhoneNumber()),
             new TableRow("Weight (kg)", String.valueOf(patient.getWeight())),
             new TableRow("Height (cm)", String.valueOf(patient.getHeight())),
             new TableRow("Blood Type", patient.getBloodType().toString())
