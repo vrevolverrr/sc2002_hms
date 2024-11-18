@@ -8,7 +8,6 @@ import model.enums.UserRole;
 import model.users.Patient;
 import model.users.User;
 import repository.interfaces.IPatientRepository;
-import repository.interfaces.IRepository;
 import repository.interfaces.IUserRepository;
 
 /**
