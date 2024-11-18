@@ -8,14 +8,55 @@ import lib.uilib.framework.enums.Alignment;
 import lib.uilib.framework.enums.Border;
 import lib.uilib.widgets.layout.Align;
 
+
+/**
+ * A widget that contains another widget and aligns it within the container.
+ * 
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
 public class Container extends Widget{
+    /**
+     * The width of the container.
+     */
     private Integer width;
+
+    /**
+     * The height of the container.
+     */
     private Integer height;
+
+    /**
+     * The horizontal alignment of the child widget.
+     */
     private Alignment hAlignment;
+
+    /**
+     * The vertical alignment of the child widget.
+     */
     private Alignment vAlignment;
+
+    /**
+     * The border of the container.
+     */
     private Border border;
+
+    /**
+     * The child widget.
+     */
     private Widget child;
 
+    /**
+     * Constructs a new container widget. 
+     * 
+     * @param child The child widget.
+     * @param width The width of the container.
+     * @param height The height of the container.
+     * @param hAlignment The horizontal alignment of the child widget.
+     * @param vAlignment The vertical alignment of the child widget.
+     * @param border The border of the container.
+     */
     public Container(Widget child, int width, int height, Alignment hAlignment, Alignment vAlignment, Border border) {
         this.child = child;
         this.width = width;
@@ -25,6 +66,9 @@ public class Container extends Widget{
         this.border = border;
     }
 
+    /**
+     * A builder class for the container widget.
+     */
     public static class Builder {
         private Widget child;
         private Integer width;
@@ -92,6 +136,9 @@ public class Container extends Widget{
         }
     }
 
+    /**
+     * Builds the container widget.
+     */
     @Override
     public String build(BuildContext context) {
         BuildContext containerContext = new BuildContext(this.width, this.height);
