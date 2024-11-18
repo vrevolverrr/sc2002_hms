@@ -49,11 +49,11 @@ public class Appointment extends BaseModel {
 
     /**
      * The constructor of an {@link Appointment}. Calls the constructor of {@link BaseModel}.
-     * @param appointmentId
-     * @param status
-     * @param timeSlot
-     * @param doctorId
-     * @param patientId
+     * @param appointmentId the ID of the appointment.
+     * @param status the status of the appointment.
+     * @param timeSlot the date and time of the appointment.
+     * @param doctorId the ID of the doctor assigned to the appointment.
+     * @param patientId the ID of the patient assigned to the appointment.
      */
     public Appointment(String appointmentId, AppointmentStatus status, TimeSlot timeSlot, String doctorId, String patientId) {
         super(appointmentId);
@@ -153,7 +153,7 @@ public class Appointment extends BaseModel {
 
     /**
      * Sets the date and time of the appointment.
-     * @param newDateTime the new date and time of the appointment.
+     * @param newTimeSlot the new date and time of the appointment.
      */
     public void setDateTime(TimeSlot newTimeSlot) {
         this.timeSlot = newTimeSlot;
@@ -185,7 +185,7 @@ public class Appointment extends BaseModel {
 
     /**
      * Sets the ID of the patient assigned to the appointment.
-     * @param newPatientId
+     * @param newPatientId the ID of the patient.
      */
     public void setPatientId(String newPatientId) {
         this.patientId = newPatientId;

@@ -89,7 +89,6 @@ public class Availability implements SerializableCopyable {
     /**
      * Retrieves the general availability for a given day of the week.
      * 
-     * @param day the {@link DayOfWeek} for which the general availability is being fetched.
      * @return the {@link TimePeriod} representing the availability for the given day.
      */
     public Map<DayOfWeek, TimePeriod> getGeneralAvailability() {
@@ -99,7 +98,6 @@ public class Availability implements SerializableCopyable {
     /**
      * Retrieves the specific availability for a given date.
      * 
-     * @param date the {@link LocalDate} for which the specific availability is being fetched.
      * @return the {@link TimePeriod} representing the availability for the given date.
      */
     public Map<LocalDate, TimePeriod> getSpecificAvailability() {

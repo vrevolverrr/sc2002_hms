@@ -1,7 +1,7 @@
 package model.enums;
 
 /**
- * The enum corresponding to the status of a {@link ReplenishmentRequest}
+ * The enum corresponding to the status of a Replenishment Request.
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0
@@ -9,11 +9,23 @@ package model.enums;
  */
 public enum ReplenishmentStatus {
     /**
-     * The possible replenishment statuses.
+     * The status of the replenishment request is none.
      */
     NULL("None"),
+
+    /**
+     * The status of the replenishment request is pending.
+     */
     PENDING("Pending"),
+
+    /**
+     * The status of the replenishment request is approved.
+     */
     APPROVED("Approved"),
+
+    /**
+     * The status of the replenishment request is rejected.
+     */
     REJECTED("Rejected");
 
 

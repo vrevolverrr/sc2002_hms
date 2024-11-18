@@ -8,17 +8,50 @@ package model.enums;
  * @since 2024-11-17
  */
 public enum MedicalService {
+    
     /**
-     * The possible medical services.
+     * Consultation service.
      */
     CONSULTATION("Consultation"),
+
+    /**
+     * Blood test service.
+     */
     BLOOD_TEST("Blood Test"),
+
+    /**
+     * X-ray service.
+     */
     X_RAY("X-Ray"),
+
+    /**
+     * MRI service.
+     */
     MRI("MRI"),
+
+    /**
+     * Ultrasound service.
+     */
     ULTRASOUND("Ultrasound"),
+
+    /**
+     * Vaccination service.
+     */
     VACCINATION("Vaccination"),
+
+    /**
+     * Physiotherapy service.
+     */
     PHYSIOTHERAPY("Physiotherapy"),
+    
+    /**
+     * Surgery service.
+     */
     SURGERY("Surgery"),
+
+    /**
+     * Psychiatry service.
+     */
     PSYCHIATRY("Psychiatry");
 
     /**

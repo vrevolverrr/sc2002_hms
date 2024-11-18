@@ -2,31 +2,66 @@ package model.enums;
 
 
 /**
- * The enum corresponding to the frequency of a {@link MedicineDosage}
- * 
+ * The enum corresponding to the frequency of a medicine.
  * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-17
  */
 public enum MedicineFrequency {
     /**
-     * The possible frequencies.
+     * Consumed as needed.
      */
     AS_NEEDED("As Needed"),
 
+    /**
+     * Consumed after meals.
+     */
     AFTER_MEALS("After Meals"),
+
+    /**
+     * Consumed before meals.
+     */
     BEFORE_MEALS("Before Meals"),
 
+    /**
+     * Consumed daily.
+     */
     DAILY("Daily"),
+
+    /**
+     * Consumed twice daily.
+     */
     TWICE_DAILY("Twice Daily"),
+
+    /**
+     * Consumed thrice daily.
+     */
     THRICE_DAILY("Thrice Daily"),
+
+    /**
+     * Consumed every other day.
+     */
     EVERY_OTHER_DAY("Every Other Day"),
 
+
+    /**
+     * Consumed every 4 hours.
+     */
     EVERY_4_HOURS("Every 4 Hours"),
+
+    /**
+     * Consumed every 6 hours.
+     */
     EVERY_6_HOURS("Every 6 Hours"),
+
+    /**
+     * Consumed every 8 hours.
+     */
     EVERY_8_HOURS("Every 8 Hours");
 
-    
+    /**
+     * The value of the enum.
+     */
     private String value;
 
     /**

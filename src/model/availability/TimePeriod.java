@@ -104,7 +104,7 @@ public class TimePeriod implements SerializableCopyable {
 
     /**
      * Checks if the time period overlaps with another time period.
-     * @param period the time period to check.
+     * @param obj the time period to check.
      * @return {@code true} if the time period overlaps with the given time period, {@code false} otherwise.
      */
     @Override

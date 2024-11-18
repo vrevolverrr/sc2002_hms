@@ -79,8 +79,8 @@ public class InventoryItem extends BaseModel {
     }
 
     /**
-     * Sets the name of the item.
-     * @param itemName the name of the item.
+     * Get the stock of the item.
+     * @return the stock of the item.
      */
     public int getStock() {
         return this.stock;
@@ -152,7 +152,7 @@ public class InventoryItem extends BaseModel {
 
     /**
      * Creates a replenishment request for the item.
-     * @param pharmacistId the ID of the {@link Pharmacist}.
+     * @param pharmacistId the ID of the pharmacist.
      * @param quantity the quantity to replenish.
      */
     public void createReplenishmentRequest(String pharmacistId, int quantity) {

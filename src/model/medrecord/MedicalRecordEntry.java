@@ -19,6 +19,9 @@ import model.prescriptions.Prescription;
  * @since 2024-10-27
  */
 public class MedicalRecordEntry extends BaseModel {
+    /**
+     * The unique ID of the medical record entry.
+     */
     private final String entryId;
     
     /**
@@ -26,7 +29,7 @@ public class MedicalRecordEntry extends BaseModel {
      */
     private LocalDate dateRecorded;
     
-    /*
+    /**
      * The ID of the patient to whom the record belongs.
      */
     private String patientId;

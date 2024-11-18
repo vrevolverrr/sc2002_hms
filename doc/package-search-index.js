@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"controller"},{"l":"controller.interfaces"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"model"},{"l":"model.appointments"},{"l":"model.availability"},{"l":"model.enums"},{"l":"model.inventory"},{"l":"model.medrecord"},{"l":"model.prescriptions"},{"l":"model.users"}];updateSearchResults();

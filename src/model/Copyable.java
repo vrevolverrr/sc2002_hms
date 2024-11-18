@@ -8,5 +8,11 @@ package model;
  * @since 2024-10-26
  */
 public interface Copyable {
+
+    /**
+     * Creates a copy of the object.
+     * 
+     * @return a copy of the object.
+     */
     public Copyable copy();
 }

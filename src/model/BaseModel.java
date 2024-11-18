@@ -27,7 +27,7 @@ public abstract class BaseModel implements SerializableCopyable {
 
     /**
      * The constructor of Model.
-     * @param id
+     * @param id the unique ID of the object.
      */
     public BaseModel(String id) {
         this.id = id;

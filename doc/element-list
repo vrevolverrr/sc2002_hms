@@ -1,2 +1,8 @@
-controller
-controller.interfaces
+model
+model.appointments
+model.availability
+model.enums
+model.inventory
+model.medrecord
+model.prescriptions
+model.users

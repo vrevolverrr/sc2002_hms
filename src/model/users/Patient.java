@@ -21,7 +21,7 @@ import model.enums.UserRole;
  * @since 2024-10-28
  */
 public class Patient extends User {
-    /*
+    /**
      * The weight of the patient in kg.
      */
     private double weight;

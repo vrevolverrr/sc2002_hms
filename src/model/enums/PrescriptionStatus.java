@@ -1,7 +1,7 @@
 package model.enums;
 
 /**
- * The enum corresponding to the status of a {@link Prescription}
+ * The enum corresponding to the status of a Prescription.
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0
@@ -9,9 +9,13 @@ package model.enums;
  */
 public enum PrescriptionStatus {
     /**
-     * The possible prescription statuses.
+     * The status of the prescription is pending.
      */
     PENDING("Pending"),
+
+    /**
+     * The status of the prescription is dispensed.
+     */
     DISPENSED("Dispensed");
 
     private final String value;

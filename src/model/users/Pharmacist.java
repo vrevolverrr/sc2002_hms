@@ -17,6 +17,7 @@ public class Pharmacist extends User {
      * The constructor of a {@link Pharmacist}. Calls the constructor of {@link User}.
      * @param pharmacistId the unique ID of the pharmacist.
      * @param name the name of the pharmacist.
+     * @param age the age of the pharmacist.
      * @param password the password of the pharmacist's user account.
      * @param gender the gender of the pharmacist.
      * @param dob the date of birth of the pharmacist.

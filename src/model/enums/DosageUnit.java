@@ -1,7 +1,7 @@
 package model.enums;
 
 /**
- * The enum corresponding to the dosage unit of a {@link MedicineDosage}
+ * The enum corresponding to the dosage unit of a medication.
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0
@@ -9,14 +9,35 @@ package model.enums;
  */
 
 public enum DosageUnit {
+    
     /**
-     * The possible dosage units.
+     * The dosage unit of a medication in tablets.
      */
     TABLET("tablet"),
+
+    /**
+     * The dosage unit of a medication in milliliters.
+     */
     MILLILITER("ml"),
+
+    /**
+     * The dosage unit of a medication in tablespoonful.
+     */
     TABLESPOON("tblsp"),
+
+    /**
+     * The dosage unit of a medication in teaspoonful.
+     */
     TEASPOON("tsp"),
+
+    /**
+     * The dosage unit of a medication in drops.
+     */
     DROP("drop"),
+
+    /**
+     * The dosage unit of a medication in spray.
+     */
     SPRAY("spray");
 
     private final String value;

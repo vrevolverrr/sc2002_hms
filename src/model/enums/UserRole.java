@@ -12,9 +12,24 @@ import model.users.User;
  * The enum corresponding to the role of a {@link User}
  */
 public enum UserRole {
+    /**
+     * Patient role.
+     */
     PATIENT("Patient"), 
+
+    /**
+     * Doctor role.
+     */
     DOCTOR("Doctor"), 
+
+    /**
+     * Pharmacist role.
+     */
     PHARMACIST("Pharmacist"), 
+
+    /**
+     * Admin role.
+     */
     ADMIN("Admin");
 
     /**

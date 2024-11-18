@@ -7,10 +7,17 @@
 package model.enums;
 
 /**
- * The enum corresponding to the different genders of a {@link User}.
+ * The enum corresponding to the different genders of a user.
  */
 public enum Gender {
+    /**
+     * Male gender.
+     */
     MALE("Male"),
+
+    /**
+     * Female gender.
+     */
     FEMALE("Female");
 
     /**
