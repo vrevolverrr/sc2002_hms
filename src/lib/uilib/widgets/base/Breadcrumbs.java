@@ -19,6 +19,11 @@ import services.Navigator;
 public class Breadcrumbs extends Widget{
 
     /**
+     * Default constructor for the Breadcrumbs class.
+     */
+    public Breadcrumbs() {}
+
+    /**
      * Builds the breadcrumbs widget.
      * 
      * @param context The build context.

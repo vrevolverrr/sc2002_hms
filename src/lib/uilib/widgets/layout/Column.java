@@ -12,20 +12,6 @@ import lib.uilib.framework.enums.MainAxisAlignment;
  * vertically in a column. It also allows for alignment of its children along
  * the main axis, based on the specified {@link MainAxisAlignment}.
  * 
- * <p>The column widget can be used to arrange widgets in a vertical stack, with
- * control over how the child widgets are aligned along the main axis (vertically).</p>
- * 
- * <p>The main axis alignment determines how the children are positioned vertically:
- * <ul>
- *   <li>{@link MainAxisAlignment#START} - Align children at the top (default).</li>
- *   <li>{@link MainAxisAlignment#CENTER} - Align children in the center vertically.</li>
- *   <li>{@link MainAxisAlignment#END} - Align children at the bottom.</li>
- *   <li>{@link MainAxisAlignment#SPACE_BETWEEN} - Distribute children evenly with space between them.</li>
- *   <li>{@link MainAxisAlignment#SPACE_AROUND} - Distribute children with space before the first and after the last element.</li>
- *   <li>{@link MainAxisAlignment#SPACE_EVENLY} - Distribute children with equal space between them.</li>
- * </ul>
- * </p>
- * 
  * @see MainAxisAlignment
  * @author Bryan Soong
  * @version 1.0

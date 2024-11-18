@@ -75,6 +75,11 @@ public class Pause extends Widget implements InputWidget {
         new TextInput(tempField).read(context, predicate);
     }
     
+    /**
+     * Pauses the widget.
+     * 
+     * @param context The build context.
+     */
     @SuppressWarnings("unused")
     public void pause(BuildContext context) {
        this.read(context, (input) -> true);

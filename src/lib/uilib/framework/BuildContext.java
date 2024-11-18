@@ -23,8 +23,8 @@ public class BuildContext {
 
     /**
      * The constructor of {@link BuildContext}.
-     * @param width
-     * @param height
+     * @param width the width of the context in characters.
+     * @param height the height of the context in lines.
      */
     public BuildContext(int width, int height) {
         this.width = width;

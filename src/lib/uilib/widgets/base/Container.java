@@ -78,40 +78,87 @@ public class Container extends Widget{
         private Border border;
         private Boolean shrink;
 
+        /**
+         * Constructs a new builder for the container widget.
+         * 
+         * @param child The child widget.
+         */
         public Builder(Widget child) {
             this.child = child;
         }
 
+        /**
+         * Sets the width of the container.
+         * 
+         * @param width The width of the container.
+         * @return The builder instance.
+         */
         public Builder setWidth(int width) {
             this.width = width;
             return this;
         }
 
+        /**
+         * Sets the height of the container.
+         * 
+         * @param height The height of the container.
+         * @return The builder instance.
+         */
         public Builder setHeight(int height) {
             this.height = height;
             return this;
         }
 
+        /**
+         * Sets the border of the container.
+         * 
+         * @param border The border of the container.
+         * @return The builder instance.
+         */
         public Builder setBorder(Border border) {
             this.border = border;
             return this;
         }
 
+        /**
+         * Sets whether the container should shrink to fit the child widget.
+         * 
+         * @param shouldShrink Whether the container should shrink.
+         * @return The builder instance.
+         */
         public Builder setShrink(boolean shouldShrink) {
             this.shrink = shouldShrink;
             return this;
         }
 
+        /**
+         * Sets the horizontal alignment of the child widget.
+         * 
+         * @param alignment The horizontal alignment of the child widget.
+         * @return The builder instance.
+         */
         public Builder setHorizontalAlignment(Alignment alignment) {
             this.hAlignment = alignment;
             return this;
         }
 
+        /**
+         * Sets the vertical alignment of the child widget.
+         * 
+         * @param alignment The vertical alignment of the child widget.
+         * @return The builder instance.
+         */
         public Builder setVerticalAlignment(Alignment alignment) {
             this.vAlignment = alignment;
             return this;
         }
 
+        /**
+         * Builds the container widget.
+         * 
+         * @param context The build context.
+         * @return The container widget.
+         */
         public Container buildContainer(BuildContext context) {
             if (this.width == null) {
                 if (this.shrink) {

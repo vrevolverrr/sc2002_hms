@@ -1,8 +1,6 @@
-model
-model.appointments
-model.availability
-model.enums
-model.inventory
-model.medrecord
-model.prescriptions
-model.users
+lib.uilib.framework
+lib.uilib.framework.enums
+lib.uilib.framework.exceptions
+lib.uilib.framework.interfaces
+lib.uilib.widgets.base
+lib.uilib.widgets.layout

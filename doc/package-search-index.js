@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"model"},{"l":"model.appointments"},{"l":"model.availability"},{"l":"model.enums"},{"l":"model.inventory"},{"l":"model.medrecord"},{"l":"model.prescriptions"},{"l":"model.users"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"lib.uilib.framework"},{"l":"lib.uilib.framework.enums"},{"l":"lib.uilib.framework.exceptions"},{"l":"lib.uilib.framework.interfaces"},{"l":"lib.uilib.widgets.base"},{"l":"lib.uilib.widgets.layout"}];updateSearchResults();

@@ -11,6 +11,16 @@ import lib.uilib.framework.enums.TextStyle;
  * @since 2024-11-10
  */
 public abstract class Widget {
+
+    /**
+     * Default constructor for the Widget class.
+     * 
+     * This constructor initializes a new instance of the Widget class with default values.
+     * Additional initialization logic can be added here if needed.
+     */
+    public Widget() {
+    }
+
     /**
      * The calculated width of the widget.
      */
@@ -40,7 +50,6 @@ public abstract class Widget {
 
     /**
      * Paints (prints) the widget's description of the user interface onto the console.
-     * Basically, prints the built string obtained by calling {@link Widget#build()}.
      * @param context the context to build the widget with respect to.
      */
     public void paint(BuildContext context) {
