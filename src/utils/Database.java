@@ -298,14 +298,29 @@ public class Database {
     public static class LoadableFile {
         private File file;
 
+        /**
+         * Constructs a new {@link LoadableFile} with the specified file.
+         * 
+         * @param file the file to load.
+         */
         private LoadableFile(File file) {
             this.file = file;
         }
 
+        /**
+         * Gets the file.
+         * 
+         * @return the file.
+         */
         public File getFile() {
             return file;
         }
 
+        /**
+         * Gets the name of the file.
+         * 
+         * @return the name of the file.
+         */
         public String getFileName() {
             return file.getName();
         }

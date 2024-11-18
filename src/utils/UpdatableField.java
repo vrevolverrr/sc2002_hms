@@ -31,6 +31,7 @@ public final class UpdatableField {
 
     /**
      * Gets the record row in the table for this field.
+     * 
      * @return the record row in the table for this field.
      */
     public TableRow getRecord() {
@@ -39,8 +40,6 @@ public final class UpdatableField {
 
     /**
      * Updates the field.
-     * @return the update action to be performed when the field is updated.
-     * @see Runnable
      */
     public void update() {
         update.run();

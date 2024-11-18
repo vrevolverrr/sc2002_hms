@@ -30,7 +30,7 @@ public class Navigator {
     /**
      * Navigates to the instance of {@link View} provided by painting its contents and
      * adding it to the view stack.
-     * @param view
+     * @param view the {@link View} to navigate to.
      */
     public static void navigateTo(View view) {
         stack.addLast(view);

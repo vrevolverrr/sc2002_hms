@@ -11,7 +11,6 @@ import model.users.Patient;
 /**
  * The interface that defines the contract for an appointment repository.
  * 
- * @see AppointmentRepository
  * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-16

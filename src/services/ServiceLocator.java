@@ -52,6 +52,7 @@ public class ServiceLocator {
      * @param <T> The type of the service.
      * @param serviceClass The class of the service.
      * @param serviceInstance The instance of the service.
+     * @return The instance of the service.
      */
     public static <T> T registerService(Class<T> serviceClass, T serviceInstance) {
         if (serviceClass == null || serviceInstance == null) {

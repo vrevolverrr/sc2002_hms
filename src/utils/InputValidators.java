@@ -32,6 +32,11 @@ public final class InputValidators {
         }
     }
 
+    /**
+     * Validates a time string in the format HH:mm.
+     * @param timeString the time string to validate.
+     * @return whether the time is valid.
+     */
     public static boolean validateTime(String timeString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         try {
@@ -51,6 +56,12 @@ public final class InputValidators {
         return validateDate(dateString, "dd/MM/yy");
     }
 
+    /**
+     * Validates a date string to a given pattern.
+     * @param dateString the date string to validate.
+     * @param pattern the pattern to validate against.
+     * @return whether the date is valid.
+     */
     public static boolean validateDate(String dateString, String pattern) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         try {
@@ -62,6 +73,11 @@ public final class InputValidators {
         }
     }
 
+    /**
+     * Validates a date string in the format dd/MM/yy.
+     * @param dateString the date string to validate.
+     * @return whether the date is valid.
+     */
     public static boolean validateDate(String dateString) {
         return validateDate(dateString, "dd/MM/yy");
     }
@@ -81,6 +97,13 @@ public final class InputValidators {
         }
     }
 
+    /**
+     * Validates a range input, from start to end inclusive.
+     * @param input the input to validate.
+     * @param start the start of the range.
+     * @param end the end of the range.
+     * @return whether the input is a valid range.
+     */
     public static boolean validateRange(String input, int start, int end) {
         try {
             int value = Integer.parseInt(input);
@@ -143,9 +166,9 @@ public final class InputValidators {
     }
 
     /**
-     * Validates a price input.
-     * @param input the input to validate.
-     * @return whether the input is a valid price.
+     * Validates a email input.
+     * @param email the input to validate.
+     * @return whether the input is a valid email.
      */
     public static boolean validateEmail(String email) {
         return email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
@@ -161,9 +184,9 @@ public final class InputValidators {
     }
 
     /**
-     * Validates a password input.
-     * @param password the input to validate.
-     * @return whether the input is a valid password.
+     * Validates if the input is equal to 1 or 2.
+     * @param input the input to validate.
+     * @return {@code true} if the input is "1" or "2", {@code false} otherwise.
      */
     public static boolean validatePrevNext(String input) {
         return input.equals("1") || input.equals("2");

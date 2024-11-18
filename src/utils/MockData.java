@@ -149,7 +149,7 @@ public final class MockData {
         doctorRepository.save(new Doctor("D1006", "Laura Black", 35, "lauraBlack303", Gender.FEMALE, LocalDate.of(1988, 6, 10), "81234572", "laurablack@email.com", Specialisation.GYNECOLOGIST));
     }
 
-    /*
+    /**
      * Mocks appointment data for the application.
      */
     public static void mockAppointmentData() {

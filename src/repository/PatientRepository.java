@@ -123,10 +123,10 @@ public class PatientRepository implements IPatientRepository {
     }
 
     /**
-     * Checks if a {@link Patient} with the given ID exists.
+     * Checks if a {@link Patient} with the given predicate exists.
      *
-     * @param patientId the ID of the patient.
-     * @return {@code true} if a patient with the ID exists, {@code false} otherwise.
+     * @param predicate the condition to filter patients.
+     * @return {@code true} if a patient exists, {@code false} otherwise.
      */
     @Override
     public boolean exists(Predicate<Patient> predicate) {

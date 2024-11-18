@@ -14,6 +14,7 @@ import model.BaseModel;
 /**
  * The interface that defines the behavaiour of a data repository of a {@link BaseModel}.
  * Each implementation of repositories of models must implement this interface.
+ * @param <T> the type of the model that the repository is storing.
  */
 public interface IRepository<T extends BaseModel> {
     /**
@@ -72,7 +73,7 @@ public interface IRepository<T extends BaseModel> {
 
     /**
      * Saves a collection of items to the repository.
-     * @param collection
+     * @param collection the collection of items to be saved.
      * @return the same reference to the items.
      */
     public List<T> save(List<T> collection);

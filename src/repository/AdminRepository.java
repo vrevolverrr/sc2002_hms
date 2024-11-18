@@ -16,7 +16,6 @@ import repository.interfaces.IUserRepository;
   * An implementation of {@link IRepository} that on {@link Admin} data models. It extends
   * the functionality of a {@link UserRepository} by dependency injection to work on 
   * {@link User} that are actually {@link Admin}.
-  * @see https://www.geeksforgeeks.org/dependency-injection-di-design-pattern/
   *
   * @author Bryan Soong, Joyce Lee
   * @version 1.0
