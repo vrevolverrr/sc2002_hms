@@ -14,7 +14,7 @@ import repository.interfaces.IUserRepository;
 /**
  * An implementation of {@link IRepository} that operates on {@link Pharmacist} data models. It
  * extends the functionality of a {@link UserRepository} by dependency injection to work on
- * {@code Users} that are actually {@code Pharmacists}.
+ * {@link User}s that are actually {@code Pharmacist}s.
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0
@@ -33,6 +33,7 @@ public class PharmacistRepository implements IPharmacistRepository {
     
     /**
      * The constructor of {@link PharmacistRepository}.
+     * 
      * @param repository an instance of an implementation of {@link IUserRepository}.
      */
     public PharmacistRepository(IUserRepository repository) {
@@ -41,6 +42,7 @@ public class PharmacistRepository implements IPharmacistRepository {
 
     /**
      * Gets all the {@code Pharmacists} stored in the repository.
+     * 
      * @return the entries of {@link Pharmacist} stored.
      */
     @Override
@@ -52,6 +54,7 @@ public class PharmacistRepository implements IPharmacistRepository {
 
     /**
      * Gets all the {@link Pharmacist} stored in the repository.
+     * 
      * @return the list of all the {@link Pharmacist} stored.
      */
     @Override
@@ -61,6 +64,7 @@ public class PharmacistRepository implements IPharmacistRepository {
 
     /**
      * Gets the total number of {@code Pharmacist} stored in the repository.
+     * 
      * @return the number of entries of {@link Pharmacist} stored.
      */
     @Override
@@ -70,6 +74,8 @@ public class PharmacistRepository implements IPharmacistRepository {
 
     /**
      * Generates a new ID for a {@link Pharmacist}. 
+     * 
+     * @return the generated ID for the {@link Pharmacist}.
      */
     @SuppressWarnings("unused")
 	@Override
@@ -81,6 +87,7 @@ public class PharmacistRepository implements IPharmacistRepository {
 
     /**
      * Finds the {@link Pharmacist} matching the pharmacist ID.
+     * 
      * @param pharmacistId the ID of the pharmacist.
      * @return the {@link Pharmacist} matching the ID, or null if no such pharmacist exists.
      */
@@ -97,6 +104,7 @@ public class PharmacistRepository implements IPharmacistRepository {
 
     /**
      * Finds all the {@link Pharmacist} that satisfy the given predicate (condition).
+     * 
      * @param predicate the predicate to match against.
      * @return the list of {@link Pharmacist} matching the predicate.
      */
@@ -111,6 +119,7 @@ public class PharmacistRepository implements IPharmacistRepository {
 
     /**
      * Checks whether a {@link Pharmacist} with the given {@code pharmacistId} exists.
+     * 
      * @param pharmacistId the ID of the pharmacist.
      * @return whether the {@link Pharmacist} matching the ID exists.
      */
@@ -121,6 +130,7 @@ public class PharmacistRepository implements IPharmacistRepository {
 
     /**
      * Checks whether a {@link Pharmacist} satisfying a given {@code predicate} exists.
+     *      
      * @param predicate the predicate (condition) to match against.
      * @return whether such {@link Pharmacist} exists.
      */
@@ -130,8 +140,10 @@ public class PharmacistRepository implements IPharmacistRepository {
     }
 
     /**
-     * Saves a {@link Pharmacist} to the underlying repository.
-     * @param item the {@link Pharmacist} to be saved.
+     * Saves a {@link Pharmacist} to the underlying repository.  
+     * If the {@link Pharmacist} does not have an ID, a new ID is generated for it.
+     * 
+     * @param item the {@link Pharmacist} to be saved.       
      * @return the same reference to the {@link Pharmacist}.
      */
     @Override
@@ -146,6 +158,7 @@ public class PharmacistRepository implements IPharmacistRepository {
 
     /**
      * Saves all the {@link Pharmacist} to the underlying repository.
+     * 
      * @param collection the list of {@link Pharmacist} to be saved.
      * @return the same reference to the collection of {@link Pharmacist}.
      */
@@ -158,6 +171,7 @@ public class PharmacistRepository implements IPharmacistRepository {
 
     /**
      * Deletes the {@link Pharmacist} matching the given ID.
+     * 
      * @param pharmacistId the ID of the pharmacist.
      * @return the {@link Pharmacist} that was deleted, or null if no such pharmacist exists.
      */
@@ -170,6 +184,9 @@ public class PharmacistRepository implements IPharmacistRepository {
         return null;
     }
 
+    /**
+     * Deletes all the {@link Pharmacist} stored in the repository.
+     */
     @Override
     public void clear() {
         repository.findBy(

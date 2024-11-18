@@ -1,9 +1,3 @@
-/**
- * @author Bryan Soong
- * @version 1.0
- * @since 2024-10-29
- */
-
 package repository;
 
 import java.util.*;
@@ -18,28 +12,34 @@ import repository.interfaces.IRepository;
 import repository.interfaces.IUserRepository;
 
 /**
- * An implementation of {@link IRepository} that on {@link Patient} data models. It extends
- * the functionality of a {@link UserRepository} by dependency injection to work on 
- * {@code Users} that are actually {@code Patients}.
- * @see https://www.geeksforgeeks.org/dependency-injection-di-design-pattern/
+ * An implementation of {@link IPatientRepository} that operates on {@link Patient} data models.
+ * It extends the functionality of a {@link UserRepository} through dependency injection to focus on
+ * {@link User}s that are specifically {@link Patient}s.
+ * 
+ * @see <a href="https://www.geeksforgeeks.org/dependency-injection-di-design-pattern/">Dependency Injection</a>
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-10-29
  */
 public class PatientRepository implements IPatientRepository {    
     /**
-     * The {@link UserRepository} dependency to extend.
+     * The {@link UserRepository} dependency for managing user data.
      */
     private final IUserRepository repository;
     
     /**
-     * The constructor of {@link PatientRepository}. 
-     * @param repository an instance of an implementation of {@link IUserRepository}.
+     * Constructs a new {@link PatientRepository} instance.
+     *
+     * @param repository an implementation of {@link IUserRepository} to delegate underlying operations.
      */
     public PatientRepository(IUserRepository repository) {
         this.repository = repository;
     }
 
     /**
-     * Gets all the {@code Patients} stored in the repository.
-     * @return the the entries of {@link Patient} stored.
+     * Retrieves all {@link Patient} entries from the repository.
+     *
+     * @return a map of patient IDs to {@link Patient} objects.
      */
     @Override
     public Map<String, Patient> getItems() {
@@ -49,8 +49,9 @@ public class PatientRepository implements IPatientRepository {
     }
 
     /**
-     * Gets all the {@link Patient} stored in the repository.
-     * @return the list of all the {@link Patient} stored.
+     * Retrieves all {@link Patient} entries as a list.
+     *
+     * @return a list of all {@link Patient} objects in the repository.
      */
     @Override
     public List<Patient> findAll() {
@@ -58,14 +59,20 @@ public class PatientRepository implements IPatientRepository {
     }
 
     /**
-     * Gets the total number of {@code Patients} stored in the repository.
-     * @return the number of entries of {@link Patient} stored.
+     * Counts the total number of {@link Patient} entries in the repository.
+     *
+     * @return the total number of patients.
      */
     @Override
     public int count() {
         return this.getItems().size();
     }
 
+    /**
+     * Generates a unique ID for a new {@link Patient}.
+     *
+     * @return the generated patient ID.
+     */
     @SuppressWarnings("unused")
 	@Override
     public String generateId() {
@@ -74,9 +81,10 @@ public class PatientRepository implements IPatientRepository {
     }
 
     /**
-     * Finds the {@link Patient} matching the patient ID.
+     * Finds a {@link Patient} by their unique ID.
+     *
      * @param patientId the ID of the patient.
-     * @return the {@link Patient} matching the ID, or null if no such patient exists.
+     * @return the {@link Patient} object matching the ID, or {@code null} if not found.
      */
     @Override
     public Patient findById(String patientId) {
@@ -90,9 +98,10 @@ public class PatientRepository implements IPatientRepository {
     }
 
     /**
-     * Finds all the {@link Patient} that satisfy the given predicate (condition).
-     * @param predicate the predicate to match against
-     * @return the list of {@link Patient} matching the predicate
+     * Finds all {@link Patient} entries that match a given predicate.
+     *
+     * @param predicate the condition to filter patients.
+     * @return a list of patients matching the predicate.
      */
     @Override
     public List<Patient> findBy(Predicate<Patient> predicate) {
@@ -104,9 +113,10 @@ public class PatientRepository implements IPatientRepository {
     }
 
     /**
-     * Checks whether a {@link Patient} with the given {@code patiendId} exists.
+     * Checks if a {@link Patient} with the given ID exists.
+     *
      * @param patientId the ID of the patient.
-     * @return whether the {@link Patient} matching the ID exists.
+     * @return {@code true} if a patient with the ID exists, {@code false} otherwise.
      */
     @Override
     public boolean exists(String patientId) {
@@ -114,19 +124,21 @@ public class PatientRepository implements IPatientRepository {
     }
 
     /**
-     * Checks whether a {@link Patient} satisfying a given {@code predicate} exists.
-     * @param predicate the predicate (condition) to match against.
-     * @return whether such {@link Patient} exists.
+     * Checks if a {@link Patient} with the given ID exists.
+     *
+     * @param patientId the ID of the patient.
+     * @return {@code true} if a patient with the ID exists, {@code false} otherwise.
      */
     @Override
     public boolean exists(Predicate<Patient> predicate) {
         return this.findBy(predicate).size() > 0;
     }
 
-    /**
-     * Saves a {@link Patient} to the underlying repository.
-     * @param item the {@link Patient} to be saved.
-     * @return the same reference to the {@link Patient}.
+   /**
+     * Saves a {@link Patient} to the repository.
+     *
+     * @param item the {@link Patient} to save.
+     * @return the saved {@link Patient}.
      */
     @Override
     public Patient save(Patient item) {
@@ -139,9 +151,10 @@ public class PatientRepository implements IPatientRepository {
     }
 
     /**
-     * Saves all the {@link Patients} to the underlying repository.
-     * @param collection the list of {@link Patient} to be saved.
-     * @return the same reference to the collection of {@link Patient}.
+     * Saves a collection of {@link Patient} objects to the repository.
+     *
+     * @param collection the list of patients to save.
+     * @return the same list of saved patients.
      */
     @Override
     public List<Patient> save(List<Patient> collection) {
@@ -151,9 +164,10 @@ public class PatientRepository implements IPatientRepository {
     }
 
     /**
-     * Deletes the {@link Patient} matching the given ID.
-     * @param patientId the ID of the patient.
-     * @return the {@link Patient} that was deleted, or null if no such patient exists.
+     * Deletes a {@link Patient} by their unique ID.
+     *
+     * @param patientId the ID of the patient to delete.
+     * @return the deleted {@link Patient}, or {@code null} if not found.
      */
     @Override
     public Patient deleteById(String patientId) {
@@ -165,7 +179,7 @@ public class PatientRepository implements IPatientRepository {
     }
 
     /**
-     * Clears all the {@link Patient} stored in the repository.
+     * Removes all {@link Patient} entries from the repository.
      */
     @Override
     public void clear() {

@@ -10,6 +10,17 @@ import model.users.Doctor;
 import model.users.Patient;
 import repository.interfaces.IAppointmentRepository;
 
+/**
+ * Repository class to handle operations related to {@link Appointment} objects.
+ * Provides methods to manage, retrieve, and manipulate appointments based on
+ * various criteria such as doctor, patient, time slots, and appointment statuses.
+ * This class extends the {@link BaseRepository} and implements {@link IAppointmentRepository}.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-16
+ */
+
 public class AppointmentRepository extends BaseRepository<Appointment> implements IAppointmentRepository {
     /**
      * The filename of the file to store the {@link Appointment} objects.
@@ -64,7 +75,7 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
 
     /**
      * Gets all the appointments of a doctor, ordered by most recent first.
-     * @param doctor the doctor to get the appointments for.
+     * @param doctor the {@link Doctor} to get the appointments for.
      * @return the list of appointments.
      */
     public List<Appointment> getAppointments(Doctor doctor) {
@@ -76,7 +87,7 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
 
     /**
      * Gets the upcoming pending appointments of a patient, that is pending doctor approval.
-     * @param patient the patient to get the appointments for.
+     * @param patient the {@link Patient} to get the appointments for.
      * @return the list of pending appointments, ordered by most recent first.
      */
     public List<Appointment> getPendingAppointments(Patient patient) {
@@ -91,7 +102,7 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
 
     /**
      * Gets the upcoming pending appointments assigned to a doctor.
-     * @param doctor the doctor to get the appointments for.
+     * @param doctor the {@link Doctor} to get the appointments for.
      * @return the list of pending appointments, ordered by most recent first.
      */
     public List<Appointment> getPendingAppointments(Doctor doctor) {
@@ -106,7 +117,7 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
 
     /**
      * Gets the upcoming scheduled appointments of a doctor.
-     * @param doctor the doctor to get the appointments for.
+     * @param doctor the {@link Doctor} to get the appointments for.
      * @return the list of appointments.
      */
     public List<Appointment> getScheduledAppointments(Doctor doctor) {
@@ -119,9 +130,9 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
 
     /**
      * Gets the upcoming scheduled appointments of a doctor scheduled on a given date.
-     * @param doctor the doctor to get the appointments for.
+     * @param doctor the {@link Doctor} to get the appointments for.
      * @param date the date to get the appointments for.
-     * @return the list of appointments.
+     * @return the list of {@link Appointment}.
      */
     public List<Appointment> getScheduledAppointments(Doctor doctor, LocalDate date) {
         return findBy((appointment) -> 
@@ -133,8 +144,8 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
 
     /**
      * Gets the upcoming scheduled appointments of the patient, ordered by most recent first.
-     * @param patient the patient to get the appointments for.
-     * @return the list of appointments, ordered by most recent first.
+     * @param patient the {@link Patient} to get the appointments for.
+     * @return the list of {@link Appointment}, ordered by most recent first.
      */
     public List<Appointment> getScheduledAppointments(Patient patient) {
         return findBy((appointment) -> 
@@ -149,8 +160,8 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
     /**
      * Gets both upcoming {@code SCHEDULED} and {@code REQUESTED} appointments of a patient, 
      * ordered by most recent first.
-     * @param patient the patient to get the appointments for.
-     * @return the list of appointments, ordered by most recent first.
+     * @param patient the {@link Patient} to get the appointments for.
+     * @return the list of {@link Appointment}, ordered by most recent first.
      */
     public List<Appointment> getUpcomingAppointments(Patient patient) {
         return findBy((appointment) -> 
@@ -164,7 +175,7 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
 
     /**
      * Gets the scheduled appointments that are overdue.
-     * @return the list of appointments that are overdue.
+     * @return the list of {@link Appointment} that are overdue.
      */
     public List<Appointment> getOverdueAppointments() {
         return findBy((appointment) -> 
@@ -188,8 +199,8 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
 
     /**
      * Gets the completed appointments of a doctor, that is with outcome recorded.
-     * @param doctor the doctor to get the appointments for.
-     * @return the list of completed appointments, ordered by most recent first.
+     * @param doctor the {@link Doctor} to get the appointments for.
+     * @return the list of completed {@link Appointment}, ordered by most recent first.
      */
     public List<Appointment> getCompletedAppointments(Doctor doctor) {
         return findBy((appointment) -> 
@@ -202,8 +213,8 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
 
     /**
      * Gets the past appointments of a patient, that is either completed or fulfilled.
-     * @param patient the patient to get the appointments for.
-     * @return the list of past appointments, ordered by most recent first.
+     * @param patient the {@link Patient} to get the appointments for.
+     * @return the list of past {@link Appointment}, ordered by most recent first.
      */
     public List<Appointment> getPastAppointments(Patient patient) {
         return findBy((appointment) -> 
@@ -216,8 +227,8 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
 
     /**
      * Gets the past appointments of a doctor, that is either completed or fulfilled.
-     * @param doctor the doctor to get the appointments for.
-     * @return the list of past appointments, ordered by most recent first.
+     * @param doctor the {@link Doctor} to get the appointments for.
+     * @return the list of past {@link Appointment}, ordered by most recent first.
      */
     public List<Appointment> getPastAppointments(Doctor doctor) {
         return findBy((appointment) -> 
@@ -230,7 +241,7 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
 
     /**
      * Gets the undispensed appointments, that is completed appointments with pending prescriptions.
-     * @return the list of undispensed appointments, ordered by most recent first.
+     * @return the list of undispensed {@link Appointment}, ordered by most recent first.
      */
     public List<Appointment> getUndispensedAppointments() {
         return findBy((appointment) -> 
@@ -246,7 +257,7 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
     /**
      * Checks whether a time slot is available for an appointment with a doctor.
      * @param slot the time slot to check.
-     * @param doctor the doctor to check the availability for.
+     * @param doctor the {@link Doctor} to check the availability for.
      * @return whether the slot is available.
      */
     public boolean isSlotAvailable(Doctor doctor, TimeSlot slot) {
