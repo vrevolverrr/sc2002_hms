@@ -25,6 +25,12 @@ import repository.InventoryRepository;
 import repository.MedicalRecordRepository;
 import repository.PatientRepository;
 import repository.UserRepository;
+import repository.interfaces.IAppointmentRepository;
+import repository.interfaces.IDoctorRepository;
+import repository.interfaces.IInventoryRepository;
+import repository.interfaces.IMedicalRecordRepository;
+import repository.interfaces.IPatientRepository;
+import repository.interfaces.IUserRepository;
 
 /**
  * A service locator that allows for the registration and retrieval of services, that is instances of manager classes.
@@ -79,14 +85,17 @@ public class ServiceLocator {
      * Register all the services for the HMS application while managing their dependencies.
      */
     public static void registerHMSServices() {
-        AppointmentRepository appointmentRepository = new AppointmentRepository();
-        InventoryRepository inventoryRepository = new InventoryRepository();
-        UserRepository userRepository = new UserRepository();
-        MedicalRecordRepository medicalRecordRepository = new MedicalRecordRepository();
+        /// These are base repositories
+        IAppointmentRepository appointmentRepository = new AppointmentRepository();
+        IInventoryRepository inventoryRepository = new InventoryRepository();
+        IUserRepository userRepository = new UserRepository();
+        IMedicalRecordRepository medicalRecordRepository = new MedicalRecordRepository();
 
-        DoctorRepository doctorRepository = new DoctorRepository(userRepository);
-        PatientRepository patientRepository = new PatientRepository(userRepository);
+        /// These repositories depend on the user repository
+        IDoctorRepository doctorRepository = new DoctorRepository(userRepository);
+        IPatientRepository patientRepository = new PatientRepository(userRepository);
 
+        /// Register the services
         ServiceLocator.registerService(
             IAppointmentManager.class, 
             new AppointmentManager(appointmentRepository));

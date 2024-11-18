@@ -16,6 +16,7 @@ import view.View;
  * <PRE>
  * Navigator.navigateTo(new LoginView());
  * </PRE>
+ * @see View
  */
 public class Navigator {
     /**

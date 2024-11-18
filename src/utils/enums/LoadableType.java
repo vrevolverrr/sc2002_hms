@@ -9,6 +9,7 @@ import model.users.Pharmacist;
 
 /**
  * An enum that represents the types of data that can be loaded from a file.
+ * The CSV file must have the same headers specified in the enum for it to be loaded.
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0
@@ -20,23 +21,23 @@ public enum LoadableType {
      */
     INVALID(null, null),
     /**
-     * Represents a patient.
+     * Represents a loadable file for patients.
      */
     PATIENT(Patient.class, new String[] {"name", "age", "password", "gender", "dob", "weight", "height", "phoneNumber", "emailAddress", "bloodType"}),
     /**
-     * Represents a doctor.
+     * Represents a loadable file for doctors.
      */
     DOCTOR(Doctor.class, new String[] {"name", "age", "password", "gender", "dob", "phoneNumber", "emailAddress", "specialisation"}),
     /**
-     * Represents an admin.
+     * Represents a loadable file for admins.
      */
     ADMIN(Admin.class, new String[] {"name", "age", "password", "gender", "dob", "phoneNumber", "emailAddress"}),
     /**
-     * Represents a pharmacist.
+     * Represents a loadable file for pharmacists.
      */
     PHARMACIST(Pharmacist.class, new String[] {"name", "age", "password", "gender", "dob", "phoneNumber", "emailAddress"}),
     /**
-     * Represents an inventory item.
+     * Represents a loadable file inventory items.
      */
     INVENTORY(InventoryItem.class, new String[] {"itemName", "stock", "stockLevelAlert"});
 
