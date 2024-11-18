@@ -34,40 +34,40 @@ public interface IStaffManager {
         /**
          * Adds a doctor to the system.
          * 
-         * @param name the name of the {@link Doctor}.
-         * @param age the age of the {@link Doctor}.
-         * @param password the password of the {@link Doctor}.
-         * @param gender the gender of the {@link Doctor}.
-         * @param dob the date of birth of the {@link Doctor}.
-         * @param emailAddress the email address of the {@link Doctor}.
-         * @param phoneNumber the phone number of the {@link Doctor}.
-         * @param specialisation the specialisation of the {@link Doctor}.
+         * @param name the name of the doctor.
+         * @param age the age of the doctor.
+         * @param password the password of the doctor.
+         * @param gender the gender of the doctor.
+         * @param dob the date of birth of the doctor.
+         * @param emailAddress the email address of the doctor.
+         * @param phoneNumber the phone number of the doctor.
+         * @param specialisation the specialisation of the doctor.
          */
         public void addDoctor(String name, int age, String password, Gender gender, LocalDate dob,
                 String emailAddress, String phoneNumber, Specialisation specialisation);
 
         /**
          * Add a admin to the system
-         * @param name the name of the {@link Admin}.
-         * @param age the age of the {@link Admin}.
-         * @param password the password of the {@link Admin}.
-         * @param gender the gender of the {@link Admin}.
-         * @param dob the date of birth of the {@link Admin}.
-         * @param emailAddress the email address of the {@link Admin}.
-         * @param phoneNumber the phone number of the {@link Admin}.
+         * @param name the name of the admin.
+         * @param age the age of the admin.
+         * @param password the password of the admin.
+         * @param gender the gender of the admin.
+         * @param dob the date of birth of the admin.
+         * @param emailAddress the email address of the admin.
+         * @param phoneNumber the phone number of the admin.
          */
         public void addAdmin(String name, int age, String password, Gender gender, LocalDate dob, 
                 String emailAddress, String phoneNumber);
 
         /**
          * Add a pharmacist to the system
-         * @param name the name of the {@link Pharmacist}.
-         * @param age the age of the {@link Pharmacist}.
-         * @param password the password of the {@link Pharmacist}.
-         * @param gender the gender of the {@link Pharmacist}.
-         * @param dob the date of birth of the {@link Pharmacist}.
-         * @param emailAddress the email address of the {@link Pharmacist}.
-         * @param phoneNumber the phone number of the {@link Pharmacist}.
+         * @param name the name of the pharmacist.
+         * @param age the age of the pharmacist.
+         * @param password the password of the pharmacist.
+         * @param gender the gender of the pharmacist.
+         * @param dob the date of birth of the pharmacist.
+         * @param emailAddress the email address of the pharmacist.
+         * @param phoneNumber the phone number of the pharmacist.
          */
         public void addPharmacist(String name, int age, String password, Gender gender, LocalDate dob, 
                 String emailAddress, String phoneNumber);

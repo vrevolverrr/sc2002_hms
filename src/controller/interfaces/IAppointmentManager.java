@@ -58,8 +58,12 @@ public interface IAppointmentManager {
     void declineAppointment(Appointment appointment);
 
     /**
-     * Marks an appointment as fulfilled.
-     * @param appointment the appointment to mark as fulfilled.
+     * Update the outcome of an appointment.
+     * @param appointment the appointment to update the outcome for.
+     * @param consultationNotes the consultation notes.
+     * @param prescriptions the prescriptions.
+     * @param services the medical services.
+     * @return the outcome record of the appointment.
      */
     AppointmentOutcomeRecord updateAppointmentOutcome(Appointment appointment, String consultationNotes,
                                                       List<Prescription> prescriptions, List<MedicalService> services);

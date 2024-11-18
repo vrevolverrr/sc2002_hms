@@ -17,6 +17,7 @@ public interface IPatientManager {
      * Retrieves patient by their ID.
      *
      * @param patientId the ID of the {@link Patient}.
+     * @return the {@link Patient} with the specified ID.
      */
     public Patient getPatient(String patientId);
 

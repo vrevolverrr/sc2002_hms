@@ -19,12 +19,30 @@ import controller.interfaces.IAppointmentManager;
 
 
 public class AppointmentManager implements IAppointmentManager {
+    /**
+     * Repository for accessing appointment data.
+     */
     private final IAppointmentRepository appointmentRepository;
 
+    /**
+     * The start hour of the day for appointments.
+     */
     public final static int START_HOUR = 8;
+
+    /**
+     * The end hour of the day for appointments.
+     */
     public final static int END_HOUR = 17;
+
+    /**
+     * The duration of each appointment slot in minutes.
+     */
     public final static int SLOT_DURATION = 30;
 
+    /**
+     * Creates a new AppointmentManager.
+     * @param appointmentRepository the repository for accessing appointment data.
+     */
     public AppointmentManager(IAppointmentRepository appointmentRepository) {
         this.appointmentRepository = appointmentRepository;
         
@@ -91,7 +109,7 @@ public class AppointmentManager implements IAppointmentManager {
 
     /**
      * Accepts a requested appointment, marking it as scheduled.
-     * @param appointment
+     * @param appointment the appointment to accept.
      */
     public void acceptAppointment(Appointment appointment) {
         appointment.markAsScheduled();
@@ -100,7 +118,7 @@ public class AppointmentManager implements IAppointmentManager {
 
     /**
      * Declines a requested appointment, marking it as cancelled.
-     * @param appointment
+     * @param appointment the appointment to decline.
      */
     public void declineAppointment(Appointment appointment) {
         appointment.markAsCancelled();

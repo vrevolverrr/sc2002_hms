@@ -95,7 +95,7 @@ public class InventoryManager implements IInventoryManager {
     /**
      * Deducts stock from an inventory item by its ID.
      *
-     * @param itemId the ID of the inventory item.
+     * @param item the inventory item.
      * @param quantity the quantity to deduct.
      */
     public void deductStock(InventoryItem item, int quantity) {

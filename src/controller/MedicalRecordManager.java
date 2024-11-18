@@ -13,7 +13,7 @@ import repository.interfaces.IMedicalRecordRepository;
 
 /**
  * Manages operations related to medical records.
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-16
  */

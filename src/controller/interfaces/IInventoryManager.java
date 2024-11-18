@@ -54,7 +54,7 @@ public interface IInventoryManager {
     /**
      * Deducts stock from an inventory item.
      * 
-     * @param item the {@link InventoryItem}.
+     * @param itemId the ID of the {@link InventoryItem}.
      * @param quantity the quantity to deduct.
      */
     public void addStock(String itemId, int quantity);
@@ -62,7 +62,7 @@ public interface IInventoryManager {
     /**
      * Deducts stock from an inventory item.
      * 
-     * @param item the {@link InventoryItem}.
+     * @param itemId the ID of the {@link InventoryItem}.
      * @param quantity the quantity to deduct.
      */
     public void deductStock(String itemId, int quantity);
