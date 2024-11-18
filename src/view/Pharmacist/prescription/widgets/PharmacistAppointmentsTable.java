@@ -14,7 +14,7 @@ import model.prescriptions.Prescription;
 import services.ServiceLocator;
 
 /**
- * The {@code PharmacistAppointmentsTable} widget displays a table of appointments that have undispensed prescriptions.
+ * The {@link PharmacistAppointmentsTable} widget displays a table of appointments that have undispensed prescriptions.
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0

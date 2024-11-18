@@ -21,6 +21,7 @@ import view.widgets.Title;
 
 /**
  * View for displaying the patient's past appointments.
+ * 
  * @author Bryan Soong
  * @version 1.0
  * @since 2024-11-10
@@ -56,6 +57,7 @@ public class PatientPastAppointmentsView extends View {
 
     /**
      * Constructs a new view for displaying the patient's past appointments.
+     * 
      * @param patient The patient whose past appointments are being displayed.
      */
     public PatientPastAppointmentsView(Patient patient) {
@@ -64,6 +66,7 @@ public class PatientPastAppointmentsView extends View {
 
     /**
      * Gets the name of the view for the breadcrumbs.
+     * 
      * @return The name of the view.
      */
     @Override
@@ -117,6 +120,7 @@ public class PatientPastAppointmentsView extends View {
 
     /**
      * Filters the list of appointments based on the given keyword.
+     * 
      * @param keyword The keyword to filter appointments.
      * @return The filtered list of appointments.
      */
@@ -137,6 +141,7 @@ public class PatientPastAppointmentsView extends View {
 
     /**
      * Retrieves the name of a user by their ID.
+     * 
      * @param id The ID of the user.
      * @return The name of the user.
      */

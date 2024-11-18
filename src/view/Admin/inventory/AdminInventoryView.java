@@ -17,7 +17,7 @@ import view.widgets.Title;
 
 /**
  * This view allows the admin to manage the inventory.
- * @author Bryan Soong
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-10
  */

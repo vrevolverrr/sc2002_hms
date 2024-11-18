@@ -24,21 +24,27 @@ import view.widgets.Title;
 
 /**
  * View for updating patient details.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-17
  */
 public final class PatientUpdateDetailsView extends View {
     /**
-     * Manager for handling patient-related operations.
+     * Instance of the {@link IPatientManager} interface. Used to manage patient operations.
      */
     private final IPatientManager patientManager = ServiceLocator.getService(IPatientManager.class);
 
     /**
      * The patient whose details are being updated.
+     * 
      * @param patient The patient whose details are being updated.
      */
     private final Patient patient;
 
     /**
      * Constructs a new view for updating patient details.
+     * 
      * @param patient The patient whose details are being updated.
      */
     public PatientUpdateDetailsView(Patient patient) {
@@ -47,6 +53,7 @@ public final class PatientUpdateDetailsView extends View {
 
     /**
      * Returns the name of the view.
+     * 
      * @return The name of the view.
      */
     @Override

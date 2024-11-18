@@ -11,22 +11,24 @@ import repository.interfaces.IDoctorRepository;
 import repository.interfaces.IUserRepository;
 
 /**
- * An implementation of {@link IDoctorRepository} that on {@link Doctor} data models. It extends
- * the functionality of a {@link UserRepository} by dependency injection to work on 
- * {@code Users} that are actually {@code Doctor}.
- * @see https://www.geeksforgeeks.org/dependency-injection-di-design-pattern/
+ * An implementation of {@link IDoctorRepository} that operates on {@link Doctor} data models.
+ * It extends the functionality of a {@link UserRepository} through dependency injection to focus on
+ * {@link User}s that are specifically {@link Doctor}s.
+ * 
+ * @see <a href="https://www.geeksforgeeks.org/dependency-injection-di-design-pattern/">Dependency Injection</a>
  * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-17
  */
 public class DoctorRepository implements IDoctorRepository {
     /**
-     * The {@link IUserRepository} dependency to extend.
+     * The {@link IUserRepository} dependency used to manage user data.
      */
     private final IUserRepository repository;
     
     /**
-     * The constructor of {@link DoctorRepository}. 
+     * Constructs a {@link DoctorRepository} with the specified {@link IUserRepository} instance.
+     * 
      * @param repository the instance of an implementation of {@link IUserRepository}.
      */
     public DoctorRepository(IUserRepository repository) {
@@ -34,8 +36,9 @@ public class DoctorRepository implements IDoctorRepository {
     }
     
     /**
-     * Gets all the {@code Doctors} stored in the repository.
-     * @return the the entries of {@link Doctor} stored.
+     * Retrieves all the {@link Doctor}s stored in the repository.
+     * 
+     * @return a {@link Map} of all {@link Doctor}s, with their IDs as keys.
      */
     @Override
     public Map<String, Doctor> getItems() {
@@ -45,8 +48,9 @@ public class DoctorRepository implements IDoctorRepository {
     }
 
     /**
-     * Gets all the {@link Doctor} stored in the repository.
-     * @return the list of all the {@link Doctor} stored.
+     * Retrieves a list of all {@link Doctor}s stored in the repository.
+     * 
+     * @return a {@link List} of all {@link Doctor}s.
      */
     @Override
     public List<Doctor> findAll() {
@@ -54,8 +58,9 @@ public class DoctorRepository implements IDoctorRepository {
     }
 
     /**
-     * Generates a new ID for a {@link Doctor}.
-     * @return the new ID for a {@link Doctor}.
+     * Generates a new unique ID for a {@link Doctor}.
+     * 
+     * @return the generated ID.
      */
     @SuppressWarnings("unused")
 	@Override
@@ -66,8 +71,9 @@ public class DoctorRepository implements IDoctorRepository {
 
 
     /**
-     * Gets the total number of {@link Doctor} stored in the repository.
-     * @return the number of entries of {@link Doctor} stored.
+     * Counts the total number of {@link Doctor}s stored in the repository.
+     * 
+     * @return the number of {@link Doctor}s.
      */
     @Override
     public int count() {
@@ -75,9 +81,10 @@ public class DoctorRepository implements IDoctorRepository {
     }
 
     /**
-     * Finds the {@link Doctor} matching the doctor ID.
-     * @param doctorId the ID of the doctor.
-     * @return the {@link Doctor} matching the ID, or null if no such doctor exists.
+     * Finds a {@link Doctor} by their unique ID.
+     * 
+     * @param doctorId the ID of the {@link Doctor}.
+     * @return the {@link Doctor} matching the ID, or {@code null} if not found.
      */
     @Override
     public Doctor findById(String doctorId) {
@@ -89,9 +96,10 @@ public class DoctorRepository implements IDoctorRepository {
     }
 
     /**
-     * Finds all the {@link Doctor} that satisfy the given predicate (condition).
-     * @param predicate the predicate to match against
-     * @return the list of {@link Doctor} matching the predicate
+     * Finds all {@link Doctor}s that satisfy the specified predicate.
+     * 
+     * @param predicate the condition to filter {@link Doctor}s.
+     * @return a {@link List} of {@link Doctor}s that match the predicate.
      */
     @Override
     public List<Doctor> findBy(Predicate<Doctor> predicate) {
@@ -102,9 +110,10 @@ public class DoctorRepository implements IDoctorRepository {
     }
 
     /**
-     * Checks whether a {@link Doctor} that matches a given ID exists.
-     * @param doctorId the ID to match against.
-     * @return whether the doctor exists.
+     * Checks if a {@link Doctor} with the specified ID exists.
+     * 
+     * @param doctorId the ID to check.
+     * @return {@code true} if a matching {@link Doctor} exists, {@code false} otherwise.
      */
     @Override
     public boolean exists(String doctorId) {
@@ -112,9 +121,10 @@ public class DoctorRepository implements IDoctorRepository {
     }
 
     /**
-     * Checks whether a {@link Doctor} that matches a given predicate exists.
-     * @param predicate the predicate to match against.
-     * @return whether the doctor exists.
+     * Checks if any {@link Doctor} matches the specified predicate.
+     * 
+     * @param predicate the condition to check.
+     * @return {@code true} if a matching {@link Doctor} exists, {@code false} otherwise.
      */
     @Override
     public boolean exists(Predicate<Doctor> predicate) {
@@ -123,8 +133,9 @@ public class DoctorRepository implements IDoctorRepository {
 
     /**
      * Saves a {@link Doctor} to the repository.
-     * @param item the doctor to save.
-     * @return the saved doctor.
+     * 
+     * @param item the {@link Doctor} to save.
+     * @return the saved {@link Doctor}.
      */
     @Override
     public Doctor save(Doctor item) {
@@ -137,9 +148,10 @@ public class DoctorRepository implements IDoctorRepository {
     }
 
     /**
-     * Saves a collection of {@link Doctor} to the repository.
-     * @param collection the list of doctors to save.
-     * @return the saved collection of doctors.
+     * Saves a collection of {@link Doctor}s to the repository.
+     * 
+     * @param collection the {@link List} of {@link Doctor}s to save.
+     * @return the saved {@link List} of {@link Doctor}s.
      */
     @Override
     public List<Doctor> save(List<Doctor> collection) {
@@ -148,9 +160,10 @@ public class DoctorRepository implements IDoctorRepository {
     }
 
     /**
-     * Removes a {@link Doctor} from the repository.
-     * @param doctorId the ID of the doctor to remove.
-     * @return the removed doctor, or null if no such doctor exists.
+     * Deletes a {@link Doctor} by their unique ID.
+     * 
+     * @param doctorId the ID of the {@link Doctor} to delete.
+     * @return the deleted {@link Doctor}, or {@code null} if no such doctor exists.
      */
     @Override
     public Doctor deleteById(String doctorId) {
@@ -161,7 +174,7 @@ public class DoctorRepository implements IDoctorRepository {
     }
 
     /**
-     * Removes all the {@link Doctor} from the repository.
+     * Deletes all {@link Doctor}s from the repository.
      */
     @Override
     public void clear() {

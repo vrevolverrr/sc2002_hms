@@ -15,7 +15,7 @@ import repository.interfaces.IUserRepository;
  /**
   * An implementation of {@link IRepository} that on {@link Admin} data models. It extends
   * the functionality of a {@link UserRepository} by dependency injection to work on 
-  * {@code Users} that are actually {@code Admins}.
+  * {@link User} that are actually {@link Admin}.
   * @see https://www.geeksforgeeks.org/dependency-injection-di-design-pattern/
   *
   * @author Bryan Soong, Joyce Lee
@@ -42,7 +42,7 @@ import repository.interfaces.IUserRepository;
     }
  
     /**
-     * Gets all the {@code Admins} stored in the repository.
+     * Gets all the {@link Admin} stored in the repository.
     * @return the the entries of {@link Admin} stored.
     */
     @Override
@@ -54,7 +54,7 @@ import repository.interfaces.IUserRepository;
 
     /**
     * Gets all the {@link Admin} stored in the repository.
-    * @return the list of all the {@link Admin} stored.
+    * @return the {@link List} of all the {@link Admin} stored.
     */
     @Override
     public List<Admin> findAll() {
@@ -62,8 +62,10 @@ import repository.interfaces.IUserRepository;
     }
  
      /**
-      * Generates a new ID for a {@link Admin}.
-      */
+     * Generates a new unique ID for an {@link Admin}.
+     * 
+     * @return a {@link String} representing the new unique ID.
+     */
     @SuppressWarnings("unused")
 	@Override
     public String generateId() {
@@ -72,19 +74,21 @@ import repository.interfaces.IUserRepository;
     }
 
     /**
-     * Gets the total number of {@code Admin} stored in the repository.
-    * @return the number of entries of {@link Admin} stored.
-    */
+     * Counts the total number of {@link Admin} in the repository.
+     * 
+     * @return the total count of {@link Admin}.
+     */
     @Override
     public int count() {
         return this.getItems().size();
     }
 
     /**
-     * Finds the {@link Admin} matching the admin ID.
-    * @param adminId the ID of the admin.
-    * @return the {@link Admin} matching the ID, or null if no such admin exists.
-    */
+     * Finds an {@link Admin} by its unique ID.
+     * 
+     * @param adminId the ID of the {@link Admin}.
+     * @return the {@link Admin} matching the ID, or {@code null} if no such {@link Admin} exists.
+     */
     @Override
     public Admin findById(String adminId) {
         User user =  repository.findById(adminId);
@@ -99,7 +103,7 @@ import repository.interfaces.IUserRepository;
     /**
      * Finds all the {@link Admin} that satisfy the given predicate (condition).
     * @param predicate the predicate to match against
-    * @return the list of {@link Admin} matching the predicate
+    * @return the {@link List} of {@link Admin} matching the predicate
     */
     @Override
     public List<Admin> findBy(Predicate<Admin> predicate) {
@@ -111,30 +115,33 @@ import repository.interfaces.IUserRepository;
     }
 
     /**
-     * Checks whether a {@link Admin} with the given {@code adminId} exists.
-    * @param adminId the ID of the admin.
-    * @return whether the {@link Admin} matching the ID exists.
-    */
+     * Checks if an {@link Admin} with the specified ID exists.
+     * 
+     * @param adminId the ID of the {@link Admin}.
+     * @return {@code true} if the {@link Admin} exists; otherwise, {@code false}.
+     */
     @Override
     public boolean exists(String adminId) {
         return this.findById(adminId) != null;
     }
 
     /**
-     * Checks whether a {@link Admin} satisfying a given {@code predicate} exists.
-    * @param predicate the predicate (condition) to match against.
-    * @return whether such {@link Admin} exists.
-    */
+     * Checks if any {@link Admin} satisfies the given predicate.
+     * 
+     * @param predicate the condition to match against.
+     * @return {@code true} if at least one {@link Admin} satisfies the predicate; otherwise, {@code false}.
+     */
     @Override
     public boolean exists(Predicate<Admin> predicate) {
         return this.findBy(predicate).size() > 0;
     }
 
     /**
-     * Saves a {@link Admin} to the underlying repository.
-    * @param item the {@link Admin} to be saved.
-    * @return the same reference to the {@link Admin}.
-    */
+     * Saves an {@link Admin} to the repository.
+     * 
+     * @param item the {@link Admin} to save.
+     * @return the saved {@link Admin}.
+     */
     @Override
     public Admin save(Admin item) {
     if (item.getId() == null || item.getId().isBlank()) { // If the doctor does not have an ID
@@ -146,10 +153,11 @@ import repository.interfaces.IUserRepository;
     }
 
     /**
-     * Saves all the {@link Admin} to the underlying repository.
-    * @param collection the list of {@link Admin} to be saved.
-    * @return the same reference to the collection of {@link Admin}.
-    */
+     * Saves a collection of {@link Admin}s to the repository.
+     * 
+     * @param collection the {@link List} of {@link Admin}s to save.
+     * @return the saved collection of {@link Admin}s.
+     */
     @Override
     public List<Admin> save(List<Admin> collection) {
         // Casts each Admin as a User then save to the underlying UserRepositoru.
@@ -171,16 +179,16 @@ import repository.interfaces.IUserRepository;
         return null;
     }
 
-/**
-* Clears all the {@link Admin} stored in the repository.
-*/
-@Override
-public void clear() {
-    repository.findBy(
-        // Filter out all patients
-        (User user) -> user.getRole() == UserRole.ADMIN).stream().forEach((User user) -> {
-            repository.deleteById(user.getId());
-        });
-}
+    /**
+    * Clears all the {@link Admin} stored in the repository.
+    */
+    @Override
+    public void clear() {
+        repository.findBy(
+            // Filter out all patients
+            (User user) -> user.getRole() == UserRole.ADMIN).stream().forEach((User user) -> {
+                repository.deleteById(user.getId());
+            });
+    }
 }
  

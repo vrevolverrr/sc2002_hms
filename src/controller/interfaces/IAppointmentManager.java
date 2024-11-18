@@ -11,6 +11,13 @@ import model.prescriptions.Prescription;
 import model.users.Doctor;
 import model.users.Patient;
 
+/**
+ * This interface provides methods to manage appointments in the system.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-16
+ */
 public interface IAppointmentManager {
     /**
      * Updates the appointment in the repository.

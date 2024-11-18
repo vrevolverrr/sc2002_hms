@@ -64,6 +64,13 @@ public class DoctorPatientMedicalRecordView extends View {
     /**
      * Renders the view for the doctor to view the patient's medical record.
      * The view displays the patient's details and their medical record, and allows the doctor to update the medical record.
+     * <p>
+     * This method sets up the following components in the user interface:
+     * <ol>
+     * <li>Displaying the patient's details.</li>
+     * <li>Displaying the patient's medical record.</li>
+     * <li>Providing an option to update the medical record.</li>
+     * </ol>
      */
     @Override
     public void render() {

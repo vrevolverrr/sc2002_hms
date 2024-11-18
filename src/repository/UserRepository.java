@@ -1,9 +1,3 @@
-/**
- * @author Bryan Soong
- * @version 1.0
- * @since 2024-10-29
- */
-
 package repository;
 
 import java.util.*;
@@ -13,29 +7,37 @@ import model.users.User;
 import repository.interfaces.IUserRepository;
 
 /**
- * A {@link IRepository} for {@link User} with specific functionality.
+ * A repository implementation for managing {@link User} data models.
+ * This class extends {@link BaseRepository} to provide additional functionality specific to 
+ * {@link User} objects, including ID generation based on user roles and searching by name.
+ * 
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-10-29
  */
 public class UserRepository extends BaseRepository<User> implements IUserRepository {
     /**
-     * The filename of the data file to load.
+     * The filename of the data file used to persist {@link User} information.
      */
     final static String FILENAME = "users.dat";
 
-    /**
-     * The prefix for the ID of a {@link User}, though it is not used since each specific
-     * user role has its own ID prefix.
+     /**
+     * The prefix used for generating generic {@link User} IDs.
+     * Note: This is typically overridden by specific prefixes for user roles.
      */
     final static String ID_PREFIX = "U";
     
     /**
-     * The constructor of a {@link UserRepository}.
+     * Constructs a new {@link UserRepository} instance.
      */
     public UserRepository() {
         super(FILENAME);
     }
 
     /**
-     * Generates a new ID for a {@link User}.
+     * Generates a new unique ID for a generic {@link User}.
+     * 
+     * @return the generated user ID in the format "U####", where #### is a 4-digit number.
      */
     @SuppressWarnings("unused")
 	@Override
@@ -44,6 +46,19 @@ public class UserRepository extends BaseRepository<User> implements IUserReposit
             last -> String.format("%04d", Integer.parseInt(last.substring(1)) + 1)).orElse("1001");
     }
 
+    /**
+     * Generates a new unique ID for a {@link User} based on their {@link UserRole}.
+     * 
+     * @param user the {@link User} object for which the ID is being generated.
+     * @return the generated ID prefixed with a letter corresponding to the user's role:
+     *         <ul>
+     *         <li>"A" for {@link UserRole#ADMIN}</li>
+     *         <li>"D" for {@link UserRole#DOCTOR}</li>
+     *         <li>"P" for {@link UserRole#PATIENT}</li>
+     *         <li>"F" for {@link UserRole#PHARMACIST}</li>
+     *         <li>"U" for other roles</li>
+     *         </ul>
+     */
     public String generateUserId(User user) {
         if (user.getRole() == UserRole.ADMIN) {
             return "A" + generateId().substring(1);
@@ -59,28 +74,31 @@ public class UserRepository extends BaseRepository<User> implements IUserReposit
     }
 
     /**
-     * Finds all the {@code Users} that matches the given name.
+     * Finds all {@link User} objects that match a given name.
+     * 
      * @param name the name to match against.
-     * @return a list of {@link User} with the same name.
+     * @return a list of {@link User} objects whose names match the given name.
      */
     public List<User> findByName(String name) {
         return findBy(user -> user.getName().equals(name));
     }
 
     /**
-     * Checks whether a {@link User} that matches a given name exists.
-     * @param name the name to match against.
-     * @return whether the user exists.
+     * Checks if any {@link User} with a given name exists in the repository.
+     * 
+     * @param name the name to check for.
+     * @return {@code true} if a user with the given name exists, {@code false} otherwise.
      */
     public boolean nameExists(String name) {
         return findByName(name).size() > 0;
     }
 
     /**
-     * Saves a single {@link User} object. If the user does not have an ID, a new ID is generated 
-     * and assigned to the user before saving it.
-     * @param item the {@link User} object to be saved.
-     * @return the saved {@link User} object, potentially with an auto-generated ID if one was not provided.
+     * Saves a single {@link User} to the repository.
+     * If the user does not have an ID, a new ID is generated and assigned based on their role.
+     * 
+     * @param item the {@link User} to save.
+     * @return the saved {@link User} object, potentially with an auto-generated ID.
      */
     @Override
     public User save(User item) {
@@ -92,11 +110,12 @@ public class UserRepository extends BaseRepository<User> implements IUserReposit
     }
 
     /**
-     * Saves a collection of {@link User} objects. For each user in the collection, if a user does 
-     * not have an ID, a new ID is generated and assigned before saving the entire collection.
-     * <p>
-     * @param collection the list of {@link User} objects to be saved.
-     * @return the list of saved {@link User} objects, with auto-generated IDs assigned to any new users.
+     * Saves a collection of {@link User} objects to the repository.
+     * For each user in the collection, if the user does not have an ID, a new ID is generated 
+     * based on their role before saving.
+     * 
+     * @param collection the list of {@link User} objects to save.
+     * @return the saved list of {@link User} objects, with IDs assigned where needed.
      */
     @Override
     public List<User> save(List<User> collection) {

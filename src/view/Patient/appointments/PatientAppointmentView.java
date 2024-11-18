@@ -14,6 +14,7 @@ import view.widgets.Title;
 
 /**
  * View for managing a patient's appointments.
+ * 
  * @author Bryan Soong
  * @version 1.0
  * @since 2024-11-10
@@ -31,6 +32,7 @@ public class PatientAppointmentView extends View {
 
     /**
      * Constructs a new view for managing a patient's appointments.
+     * 
      * @param patient The patient managing their appointments.
      */
     public PatientAppointmentView(Patient patient) {
@@ -39,6 +41,7 @@ public class PatientAppointmentView extends View {
 
     /**
      * Gets the name of the view for the breadcrumbs.
+     * 
      * @return The name of the view.
      */
     @Override

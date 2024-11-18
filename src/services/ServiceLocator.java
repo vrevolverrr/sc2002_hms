@@ -35,6 +35,10 @@ import repository.interfaces.IUserRepository;
 /**
  * A service locator that allows for the registration and retrieval of services, that is instances of manager classes.
  * The service locator centralises and manages all the dependencies on services into one class thus reduces coupling between classes.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-16
  */
 public class ServiceLocator {
     /**
@@ -44,6 +48,7 @@ public class ServiceLocator {
 
     /**
      * Register a service with the service locator.
+     * 
      * @param <T> The type of the service.
      * @param serviceClass The class of the service.
      * @param serviceInstance The instance of the service.
@@ -59,6 +64,7 @@ public class ServiceLocator {
 
     /**
      * Get a service from the service locator.
+     * 
      * @param <T> The type of the service.
      * @param serviceClass The class of the service.
      * @return The instance of the service.
@@ -74,6 +80,7 @@ public class ServiceLocator {
 
     /**
      * Unregister a service from the service locator.
+     * 
      * @param <T> The type of the service.
      * @param serviceClass The class of the service.
      */

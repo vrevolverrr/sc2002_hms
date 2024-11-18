@@ -11,7 +11,7 @@ import lib.uilib.widgets.base.EnumeratedTable;
 import lib.uilib.widgets.base.Table;
 
 /**
- * Widget to display a table of available appointment slots for selection.
+ * The {@link AppointmentSlotSelectionTable} is a {@link Widget} to display a table of available appointment slots for selection.
  * 
  * @author Bryan Soong & Joyce Lee
  * @version 1.0

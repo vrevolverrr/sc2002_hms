@@ -12,7 +12,7 @@ import lib.uilib.widgets.base.EnumeratedTable;
 import lib.uilib.widgets.base.Table;
 
 /**
- * Widget to display a table of appointments for a patient.
+ * The {@link AppointmentsTable} is a {@link Widget} to display a table of appointments for a patient.
  * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-17

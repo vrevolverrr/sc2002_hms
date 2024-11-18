@@ -4,6 +4,14 @@ import java.util.List;
 
 import model.users.User;
 
+/**
+ * The interface that defines the contract for a user repository.
+ * This interface extends the {@link IRepository} interface.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-16
+ */
 public interface IUserRepository extends IRepository<User> {
     /**
      * Finds all the {@code Users} that matches the given name.

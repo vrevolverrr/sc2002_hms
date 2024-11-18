@@ -9,7 +9,7 @@ import lib.uilib.widgets.base.EnumeratedTable;
 import model.users.Doctor;
 
 /**
- * Widget to display a table of doctors for selection.
+ * The {@link DoctorsSelectionTable} is a {@link Widget} to display a table of doctors for selection.
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0

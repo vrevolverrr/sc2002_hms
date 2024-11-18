@@ -9,19 +9,49 @@ import model.users.Patient;
 import repository.interfaces.IAppointmentRepository;
 import repository.interfaces.IPatientRepository;
 
+/**
+ * Manages operations related to patients.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-16
+ */
 public class PatientManager implements IPatientManager {
+    /**
+     * Repository for accessing appointment data.
+     */
     private final IAppointmentRepository appointmentRepository;
+
+    /**
+     * Repository for accessing patient data.
+     */
     private final IPatientRepository patientRepository;
 
+    /**
+     * Creates a new {@link PatientManager}.
+     * @param patientRepository the repository for accessing patient data.
+     * @param appointmentRepository the repository for accessing appointment data.
+     */
     public PatientManager(IPatientRepository patientRepository, IAppointmentRepository appointmentRepository) {
         this.patientRepository = patientRepository;
         this.appointmentRepository = appointmentRepository;
     };
 
+    /**
+     * Retrieves a patient by their ID.
+     *
+     * @param patientId the ID of the {@link Patient}.
+     * @return the {@link Patient} with the specified ID.
+     */
     public Patient getPatient(String patientId) {
         return patientRepository.findById(patientId);
     }
 
+    /**
+     * Updates the patient in the repository.
+     * 
+     * @param patient the {@link Patient} to update.
+     */
     public void updatePatient(Patient patient) {
         patientRepository.save(patient);
     }

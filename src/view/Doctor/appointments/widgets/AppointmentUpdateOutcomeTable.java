@@ -15,19 +15,12 @@ import model.prescriptions.Prescription;
 import view.widgets.Title;
 
 /**
- * {@code AppointmentUpdateOutcomeTable} is a {@link Widget} that displays the details of an updated
+ * {@link AppointmentUpdateOutcomeTable} is a {@link Widget} that displays the details of an updated
  * appointment outcome for a doctor. It includes the consultation notes, medical services provided,
  * and any prescriptions issued during the consultation.
- * <p>
- * The table displays:
- * <ul>
- *   <li>Date of the appointment</li>
- *   <li>Consultation notes</li>
- *   <li>Medical services provided</li>
- * </ul>
  * Additionally, the table includes a list of prescriptions issued during the appointment.
- * </p>
- * @author Bryan Soong & Joyce Lee
+ * 
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-16
  */
@@ -63,6 +56,12 @@ public class AppointmentUpdateOutcomeTable extends Widget {
 
     /**
      * Builds the UI layout displaying the appointment outcome details.
+     *  * The table displays:
+     * <ul>
+     *   <li>Date of the appointment</li>
+     *   <li>Consultation notes</li>
+     *   <li>Medical services provided</li>
+     * </ul>
      * @param context the {@link BuildContext} for rendering the widget.
      * @return the built UI as a {@link String}.
      */

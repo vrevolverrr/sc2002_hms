@@ -10,6 +10,7 @@ import lib.uilib.framework.*;
 /**
  * This abstract class represents a view of the application. Each actual view must implement all the methods
  * of this class.
+ * 
  * @author Bryan Soong
  * @version 1.0
  * @since 2024-11-10
@@ -106,6 +107,7 @@ public abstract class View {
 
     /**
      * Utility method to move the cursor up by n lines.
+     * 
      * @param n the number of lines to move up by.
      */
     public static void gotoPrevNthLine(int n) {
@@ -124,6 +126,7 @@ public abstract class View {
 
     /**
      * Utility method to clear the last {@code count} lines.
+     * 
      * @param count the number of previous lines to clear.
      */
     public static void clearLines(int count) {

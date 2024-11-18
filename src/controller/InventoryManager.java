@@ -9,7 +9,7 @@ import repository.interfaces.IInventoryRepository;
 
 /**
  * Manages operations related to inventory.
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-16
  */
@@ -19,6 +19,10 @@ public class InventoryManager implements IInventoryManager {
      */
     private final IInventoryRepository inventoryRepository;
 
+    /**
+     * Creates a new InventoryManager.
+     * @param inventoryRepository the repository for accessing inventory data.
+     */
     public InventoryManager(IInventoryRepository inventoryRepository) {
         this.inventoryRepository = inventoryRepository;
     }

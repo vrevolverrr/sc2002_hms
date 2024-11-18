@@ -24,6 +24,7 @@ import view.widgets.Title;
 /**
  * This view allows the pharmacist to request replenishment for low stock medications.
  * It displays a list of low stock medications and allows the pharmacist to request replenishment.
+ * 
  * @author Bryan Soong
  * @version 1.0
  * @since 2024-11-10

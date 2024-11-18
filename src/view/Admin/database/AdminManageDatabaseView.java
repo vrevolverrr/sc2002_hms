@@ -15,13 +15,41 @@ import utils.Database.LoadableFile;
 import view.View;
 import view.widgets.Title;
 
+/**
+ * The {@link AdminManageDatabaseView} class is responsible for providing an interface
+ * to manage the database from the admin's perspective. It allows the admin to load
+ * data from a file into the application.
+
+ * The class extends {@link View} and implements the rendering logic for the 
+ * "Manage Database" section of the application.
+ * 
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-10-29
+ */
 public class AdminManageDatabaseView extends View {
 
+    /**
+     * Returns the name of the view, which is "Manage Database".
+     * 
+     * @return The name of the view.
+     */
     @Override
     public String getViewName() {
         return "Manage Database";
     }
 
+    /**
+     * Renders the "Manage Database" view, which includes:
+     * <ul>
+     * <li>Breadcrumb navigation</li>
+     * <li>Title for "Manage Database"</li>
+     * <li>A menu with an option to load data from a file</li>
+     * </ul>
+     * 
+     * This method initializes and paints the user interface components for 
+     * managing the database.
+     */
     @Override
     public void render() {
         new Breadcrumbs().paint(context);
@@ -33,6 +61,15 @@ public class AdminManageDatabaseView extends View {
         ).readOption(context);
     }
 
+    /**
+     * Handles the loading of data from a file. It displays a list of available
+     * loadable files, allows the user to choose a file, and attempts to load the
+     * selected file into the database.
+     * 
+     * <p>If the load operation is successful, a success message is displayed. If
+     * the load operation fails, an error message is shown. After the operation is
+     * complete, the user can press any key to go back to the previous view.</p>
+     */
     private void loadFromFile() {
         clearLines(7);
         new VSpacer(1).paint(context);
@@ -58,8 +95,6 @@ public class AdminManageDatabaseView extends View {
                 .map(file -> new MenuOption(file.getFileName(), () -> status[0] = Database.load(file)))
                 .toArray(MenuOption[]::new)
         ).readOption(context);
-
-        // From here on out the Database class takes over for debug printing
         
         if (status[0]) {
             new Pause("Succesfully loaded data. Press any key to go back.").pause(context);

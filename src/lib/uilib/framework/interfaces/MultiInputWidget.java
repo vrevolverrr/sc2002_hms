@@ -1,9 +1,3 @@
-/**
- * @author Bryan Soong
- * @version 1.0
- * @since 2024-10-29
- */
-
 package lib.uilib.framework.interfaces;
 
 import java.util.function.*;
@@ -14,6 +8,10 @@ import lib.uilib.framework.BuildContext;
  * The interface for a generic widget that takes multiple inputs and validates them
  * together against the given predicate until the combination of inputs is valid.
  * For the basic single input widget, see {@link InputWidget}.
+ * 
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-10-29
  */
 public interface MultiInputWidget {
     /**

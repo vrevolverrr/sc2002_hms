@@ -5,6 +5,10 @@ import lib.uilib.framework.enums.TextStyle;
 /**
  * The abstract base class that represents the description of part of the user interface. 
  * Widgets can be composed together to build declarative user interfaces.
+ * 
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
  */
 public abstract class Widget {
     /**

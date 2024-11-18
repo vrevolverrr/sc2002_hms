@@ -1,5 +1,6 @@
 package view.Patient.appointments.widgets;
 
+import controller.UserManager;
 import controller.interfaces.IUserManager;
 import lib.uilib.framework.BuildContext;
 import lib.uilib.framework.TableRow;
@@ -9,7 +10,7 @@ import model.appointments.Appointment;
 import services.ServiceLocator;
 
 /**
- * Displays the details of a patient's appointment in a table format.
+ * The {@link PatientAppointmentDetailsTable} is a {@link Widget} that displays the details of a patient's appointment in a table format.
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0

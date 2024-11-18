@@ -7,8 +7,23 @@ import lib.uilib.framework.enums.Border;
 import lib.uilib.widgets.layout.Column;
 import services.Navigator;
 
+
+/**
+ * A widget that displays the breadcrumbs of the current view.
+ * The breadcrumbs are displayed as a text widget.
+ * 
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
+ */
 public class Breadcrumbs extends Widget{
 
+    /**
+     * Builds the breadcrumbs widget.
+     * 
+     * @param context The build context.
+     * @return The breadcrumbs widget.
+     */
     @Override
     public String build(BuildContext context) {
         return new Column(

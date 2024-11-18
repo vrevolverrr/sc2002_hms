@@ -21,16 +21,38 @@ import lib.uilib.widgets.layout.Align;
  *     new TableRow("P1001", "Bryan Soong", "05/02/2003", "Male", "O+")
  * ).paint(context);
  * </pre>
+ * 
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
  */
 public class Table extends Widget {
+
+    /**
+     * The rows of the table.
+     */
     protected final TableRow[] rows;
+
+    /**
+     * The widths of the columns.
+     */
     protected int[] columnWidths;
 
+    /**
+     * Constructs a new table widget.
+     * 
+     * @param rows The rows of the table.
+     */
     public Table(TableRow... rows) {
         this.rows = rows;
         assertRowDimensions(rows);
     }
 
+    /**
+     * Asserts that all rows have the same number of columns.
+     * 
+     * @param rows The rows to check.
+     */
     private static void assertRowDimensions(TableRow[] rows) {
         if (rows.length == 0) {
             return;
@@ -45,6 +67,11 @@ public class Table extends Widget {
         }
     }
  
+    /**
+     * Calculates the widths of the columns.
+     * 
+     * @param context The build context.
+     */
     protected void calculateWidths(BuildContext context) {
         columnWidths = new int[rows[0].getValues().length];
         
@@ -81,6 +108,12 @@ public class Table extends Widget {
         }
     }
 
+    /**
+     * Builds the table widget.
+     * 
+     * @param context The build context.
+     * @return The table widget.
+     */
     @Override
     public String build(BuildContext context) {
         if (this.rows.length == 0) {

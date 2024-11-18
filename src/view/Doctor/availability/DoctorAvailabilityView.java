@@ -30,8 +30,7 @@ import view.widgets.Title;
 
 /**
  * {@link DoctorAvailabilityView} is a {@link View} that allows doctors to manage
- * their availability. Doctors can view their general and specific availability,
- * update their availability, or clear their availability for a specific day or date.
+ * their availability. 
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0

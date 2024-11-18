@@ -1,9 +1,3 @@
-/**
- * @author Bryan Soong
- * @version 1.0
- * @since 2024-10-28
- */
-
 package lib.uilib.framework;
 
 /**
@@ -11,6 +5,10 @@ package lib.uilib.framework;
  * width and height of the canvas the widget can work with when calculating 
  * its dimensions.
  * @see Widget
+ * 
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-10-28
  */
 public class BuildContext {
     /**

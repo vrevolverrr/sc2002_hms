@@ -7,7 +7,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a time slot for appointments, encapsulating a specific {@link LocalDateTime}.
+* Represents a time slot for appointments, encapsulating a specific {@link LocalDateTime}.
 *
 * @author Bryan Soong, Joyce Lee
 * @version 1.0
@@ -94,22 +94,52 @@ public class TimeSlot implements Serializable, Comparable<TimeSlot> {
         return this.dateTime.equals(slot.getDateTime());
     }
 
+    /**
+     * Checks if this {@link TimeSlot} is before another.
+     * 
+     * @param slot the other {@link TimeSlot} to compare.
+     * @return true if this {@link TimeSlot} is before the other, false otherwise.
+     */
     public boolean isBefore(TimeSlot slot) {
         return this.dateTime.isBefore(slot.getDateTime());
     }
 
+    /**
+     * Checks if this {@link TimeSlot} is before a given {@link LocalDateTime}.
+     * 
+     * @param dateTime the {@link LocalDateTime} to compare.
+     * @return true if this {@link TimeSlot} is before the given {@link LocalDateTime}, false otherwise.
+     */
     public boolean isBefore(LocalDateTime dateTime) {
         return this.dateTime.isBefore(dateTime);
     }
 
+    /**
+     * Checks if this {@link TimeSlot} is after another.
+     * 
+     * @param slot the other {@link TimeSlot} to compare.
+     * @return true if this {@link TimeSlot} is after the other, false otherwise.
+     */
     public boolean isAfter(TimeSlot slot) {
         return this.dateTime.isAfter(slot.getDateTime());
     }
 
+    /**
+     * Checks if this {@link TimeSlot} is after a given {@link LocalDateTime}.
+     * 
+     * @param dateTime the {@link LocalDateTime} to compare.
+     * @return true if this {@link TimeSlot} is after the given {@link LocalDateTime}, false otherwise.
+     */
     public boolean isAfter(LocalDateTime dateTime) {
         return this.dateTime.isAfter(dateTime);
     }
 
+    /**
+     * Compares this {@link TimeSlot} with another based on the {@link LocalDateTime}.
+     * 
+     * @param o the other {@link TimeSlot} to compare.
+     * @return a negative integer, zero, or a positive integer as this {@link TimeSlot} is less than, equal to, or greater than the other.
+     */
     @Override
     public int compareTo(TimeSlot o) {
         return this.dateTime.compareTo(o.getDateTime());

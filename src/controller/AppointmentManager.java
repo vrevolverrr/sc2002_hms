@@ -17,6 +17,7 @@ import java.util.List;
 
 import controller.interfaces.IAppointmentManager;
 
+
 public class AppointmentManager implements IAppointmentManager {
     private final IAppointmentRepository appointmentRepository;
 

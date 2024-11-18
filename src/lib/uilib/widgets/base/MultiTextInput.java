@@ -10,20 +10,47 @@ import lib.uilib.framework.interfaces.MultiInputWidget;
 import view.View;
 
 /**
- * A widget
+ * A widget that displays multiple text input fields.
+ * 
+ * @author Bryan Soong
+ * @version 1.0
+ * @since 2024-11-10
  */
 public class MultiTextInput extends Widget implements MultiInputWidget {
+
+    /**
+     * The text input fields.
+     */
     private final TextInputField[] fields;
 
+
+    /**
+     * Constructs a new multi text input widget.
+     * 
+     * @param fields The text input fields.
+     */
     public MultiTextInput(TextInputField... fields) {
         this.fields = fields;
     }
 
+    /**
+     * Builds the multi text input widget.
+     * 
+     * @param context The build context.
+     * @return The multi text input widget.
+     */
     @Override
     public String build(BuildContext context) {
         return "";
     }
     
+    /**
+     * Reads all the text input fields.
+     * 
+     * @param context The build context.
+     * @param predicate The predicate to test the input.
+     * @param failedMessage The message to display if the input is invalid.
+     */
     @Override
     public void readAll(BuildContext context, Predicate<String[]> predicate, String failedMessage) {
         while (true) {

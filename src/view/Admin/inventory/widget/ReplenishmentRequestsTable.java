@@ -28,7 +28,7 @@ import services.ServiceLocator;
  * </ul>
  * </p>
  * 
- * @author Bryan Soong & Joyce Lee
+ * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-16
  */

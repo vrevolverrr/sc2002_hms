@@ -10,10 +10,11 @@ import model.users.Patient;
 
 /**
  * The interface that defines the contract for an appointment repository.
- * The repository is responsible for managing the appointments in the system, and therefore
- * must be able to store and retrieve appointments based on various criteria.
  * 
  * @see AppointmentRepository
+ * @author Bryan Soong, Joyce Lee
+ * @version 1.0
+ * @since 2024-11-16
  */
 public interface IAppointmentRepository extends IRepository<Appointment> {
     /**
