@@ -6,7 +6,7 @@
 <div align="center">
 	<img src="https://github.com/vrevolverrr/sc2002_hms/blob/main/res/preview.gif?raw=true" alt="preview of HMS App"  width="600"/>
 </div>
-
+<br />
 <div align="center">
    <p><b>Team Members</b></p>
    <p>Soong Jun Shen (SCEB 24)</p>
