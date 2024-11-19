@@ -202,8 +202,6 @@ public final class MockData {
             "Patient has mild fever. Advised to rest and drink plenty of fluids.");
         pA1.setOutcomeRecord(pA1O);
         appointmentRepository.save(pA1);
-
-        System.out.println(appointmentRepository.findById("Y1013").getOutcomeRecord().getConsultationNotes());
     }
 
     /**
