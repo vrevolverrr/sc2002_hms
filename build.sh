@@ -4,7 +4,7 @@ SOURCE_DIR="src"
 OUTPUT_DIR="out"
 
 OUTPUT_DIR_DOCS="docs"
-PACKAGES="controller model repository services utils view"
+PACKAGES="controller:model:repository:services:utils:view:lib"
 
 JAR_FILE="HMSApp.jar"
 MAIN_CLASS="HMSApp"
@@ -43,7 +43,7 @@ echo
 echo "Generating Javadocs..."
 
 # Generate Javadocs
-javadoc -d $OUTPUT_DIR_DOCS -sourcepath $SOURCE_DIR -subpackages $PACKAGES
+javadoc -d $OUTPUT_DIR_DOCS -sourcepath $SOURCE_DIR -subpackages $PACKAGES -private
 
 if [ $? -ne 0 ]; then
     echo "Javadoc generation failed."
