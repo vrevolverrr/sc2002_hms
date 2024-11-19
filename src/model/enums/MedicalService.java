@@ -56,11 +56,16 @@ public enum MedicalService {
 
     /**
      * The {@code String} value of the enum. This value is used for display.
+     * 
+     * @param value the value of the enum.
      */
     private MedicalService(String value) {
         this.value = value;
     }
 
+    /**
+     * The string value of the enum.
+     */
     private String value;
 
     /**

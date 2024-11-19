@@ -37,8 +37,6 @@ public final class PatientUpdateDetailsView extends View {
 
     /**
      * The patient whose details are being updated.
-     * 
-     * @param patient The patient whose details are being updated.
      */
     private final Patient patient;
 

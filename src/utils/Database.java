@@ -112,9 +112,9 @@ public class Database {
     }
 
     /**
-     * Get a list of files that can be loaded into the database in the specified directory.
-     * @param directory the directory to search for files.
-     * @return A list of files that can be loaded into the database.
+     * Checks the header of the CSV file to determine the type of model to load.
+     * @param headers the headers of the CSV file.
+     * @return the type of model to load if successful.
      */
     private static LoadableType checkHeader(String[] headers) {
         if (headers.length == 0) {
@@ -295,6 +295,10 @@ public class Database {
      * A class representing a loadable file.
      */
     public static class LoadableFile {
+        
+        /**
+         * The file to load.
+         */
         private File file;
 
         /**

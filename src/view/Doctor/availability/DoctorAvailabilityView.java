@@ -38,7 +38,7 @@ import view.widgets.Title;
  */
 public class DoctorAvailabilityView extends View {
     /**
-     * An instance of {@link DoctorManager} used to manage doctors.
+     * An instance of doctor manager used to manage doctors.
      */
     private final IDoctorManager doctorManager = ServiceLocator.getService(IDoctorManager.class);
 

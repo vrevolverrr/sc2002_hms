@@ -40,6 +40,9 @@ public enum DosageUnit {
      */
     SPRAY("spray");
 
+    /**
+     * The string value of the enum. This value is used for display.
+     */
     private final String value;
 
     /**

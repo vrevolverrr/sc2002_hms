@@ -50,7 +50,7 @@ public enum Specialisation {
 
     /**
      * The constructor for the Specialisation enum.
-     * @param value
+     * @param value the {@code String} value of the enum.
      */
     private Specialisation(String value) {
         this.value = value;

@@ -24,7 +24,7 @@ public class DoctorAppointmentsTable extends Widget {
     private final List<Appointment> appointments;
 
     /**
-     * The {@link PatientManager} instance used to retrieve patient details, such as patient names by their IDs.
+     * The patient manager instance used to retrieve patient details, such as patient names by their IDs.
      */
     private final IPatientManager patientManager = ServiceLocator.getService(IPatientManager.class);
 

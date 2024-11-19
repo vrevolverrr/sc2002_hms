@@ -32,7 +32,7 @@ public class DoctorView extends View {
     public DoctorView() {}
     
     /**
-     * Instance of {@link UserManager} used to manage users.
+     * Instance of user manager used to manage users.
      */
     private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
 

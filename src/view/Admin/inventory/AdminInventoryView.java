@@ -29,7 +29,7 @@ public class AdminInventoryView extends View {
     public AdminInventoryView() {};
     
     /**
-     * An instance of the {@link InventoryManager} class. Used to manage inventory operations.
+     * An instance of the Inventory bManager class. Used to manage inventory operations.
      */
     private final IInventoryManager inventoryManager = ServiceLocator.getService(IInventoryManager.class);
 

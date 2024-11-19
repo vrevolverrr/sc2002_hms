@@ -27,7 +27,7 @@ import view.View;
 public class LoginUpdatePasswordView extends View {
 
     /**
-     * Instance of {@link UserManager} for handling user-related operations.
+     * Instance of user manager for handling user-related operations.
      */
     private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
     

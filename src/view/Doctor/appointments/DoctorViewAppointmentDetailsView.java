@@ -31,7 +31,7 @@ public class DoctorViewAppointmentDetailsView extends View {
     private final Appointment appointment;
 
     /**
-     * The {@link PatientManager} instance used to retrieve patient details.
+     * The patient manager instance used to retrieve patient details.
      */
     private final IPatientManager patientManager = ServiceLocator.getService(IPatientManager.class);
 

@@ -19,7 +19,7 @@ import lib.uilib.widgets.base.Table;
  */
 public class AppointmentSlotSelectionTable extends Widget {
     /**
-     * The {@link List} of available {@AppointmentSlot}.
+     * The list of available appointment slot.
      */
     private final List<AppointmentSlot> appointmentSlots;
 

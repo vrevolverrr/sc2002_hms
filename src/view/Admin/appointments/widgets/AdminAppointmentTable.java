@@ -25,7 +25,7 @@ public class AdminAppointmentTable extends Widget {
     private final List<Appointment> appointments;
 
     /**
-     * An instance of {@link UserManager} used to fetch user details by ID.
+     * An instance of user manager used to fetch user details by ID.
      */
     private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
 

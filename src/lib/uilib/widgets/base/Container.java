@@ -70,12 +70,39 @@ public class Container extends Widget{
      * A builder class for the container widget.
      */
     public static class Builder {
+        /**
+         * The child widget.
+         */
         private Widget child;
+
+        /**
+         * The width of the container.
+         */
         private Integer width;
+
+        /**
+         * The height of the container.
+         */
         private Integer height;
+
+        /**
+         * The horizontal alignment of the child widget.
+         */
         private Alignment hAlignment;
+
+        /**
+         * The vertical alignment of the child widget.
+         */
         private Alignment vAlignment;
+
+        /**
+         * The border of the container.
+         */
         private Border border;
+
+        /**
+         * Whether the container should shrink to fit the child widget.
+         */
         private Boolean shrink;
 
         /**

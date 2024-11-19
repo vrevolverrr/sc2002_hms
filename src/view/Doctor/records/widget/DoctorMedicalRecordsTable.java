@@ -24,7 +24,7 @@ import services.ServiceLocator;
  */
 public class DoctorMedicalRecordsTable extends Widget {
     /**
-     * The {@link UserManager} instance used to retrieve user details, such as patient name by their ID.
+     * The user manager instance used to retrieve user details, such as patient name by their ID.
      */
     private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
     

@@ -26,7 +26,7 @@ import view.widgets.Title;
  */
 public class DoctorPatientsUnderCareView extends View {
     /**
-     * An instance of {@link PatientManager} used to manage patients.
+     * An instance of patient manager used to manage patients.
      */
     private final IPatientManager patientManager = ServiceLocator.getService(IPatientManager.class);
 

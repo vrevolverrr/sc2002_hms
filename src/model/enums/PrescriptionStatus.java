@@ -18,6 +18,9 @@ public enum PrescriptionStatus {
      */
     DISPENSED("Dispensed");
 
+    /**
+     * The {@code String} value of the enum. This value is used for display.
+     */
     private final String value;
 
     /**

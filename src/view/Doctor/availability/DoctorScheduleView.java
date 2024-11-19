@@ -31,7 +31,7 @@ import view.widgets.Title;
  */
 public class DoctorScheduleView extends View {
     /**
-     * An instance of {@link AppointmentManager} used to manage appointments.
+     * An instance of appointment manager used to manage appointments.
      */
     private final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
     

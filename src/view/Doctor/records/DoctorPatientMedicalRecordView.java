@@ -28,7 +28,7 @@ import view.widgets.Title;
  */
 public class DoctorPatientMedicalRecordView extends View {
     /**
-     * An instance of {@link MedicalRecordManager} used to manage medical records.
+     * An instance of medical record manager used to manage medical records.
      */
     private final IMedicalRecordManager medicalRecordManager = ServiceLocator.getService(IMedicalRecordManager.class);
 
