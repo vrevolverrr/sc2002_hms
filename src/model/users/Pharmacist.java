@@ -14,6 +14,13 @@ import model.enums.UserRole;
  */
 public class Pharmacist extends User {
     /**
+     * The serializable class version number to verify whether the serialized object have loaded classes 
+     * for that object that are compatible with respect to serialization. 
+     * @see https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html.
+     */
+    private static final long serialVersionUID = 42L;
+
+    /**
      * The constructor of a {@link Pharmacist}. Calls the constructor of {@link User}.
      * @param pharmacistId the unique ID of the pharmacist.
      * @param name the name of the pharmacist.

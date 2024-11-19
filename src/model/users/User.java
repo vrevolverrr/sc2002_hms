@@ -24,6 +24,13 @@ import model.enums.UserRole;
  */
 public abstract class User extends BaseModel {
     /**
+     * The serializable class version number to verify whether the serialized object have loaded classes 
+     * for that object that are compatible with respect to serialization. 
+     * @see https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html.
+     */
+    private static final long serialVersionUID = 42L;
+
+    /**
      * The {@link UserRole} of the user that decides the user's privilege. 
      */
     private final UserRole role;

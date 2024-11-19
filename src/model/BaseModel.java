@@ -18,7 +18,7 @@ public abstract class BaseModel implements SerializableCopyable {
      * for that object that are compatible with respect to serialization. 
      * @see https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html.
      */
-    static final long serialVersionUID = 42L;
+    private static final long serialVersionUID = 42L;
 
     /**
      * The unique ID of the data object.
