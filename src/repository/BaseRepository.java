@@ -229,6 +229,10 @@ public abstract class BaseRepository<T extends BaseModel> implements IRepository
      * @return {@code true} if the write succeeded, {@code false} otherwise.
      */
     protected boolean writeToSerialized() {
+        if (!new File(BASE_PATH).exists()) {
+            new File(BASE_PATH).mkdir();
+        }
+
         File file = new File(BASE_PATH + filename);
 
         try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
