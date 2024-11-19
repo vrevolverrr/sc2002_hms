@@ -48,8 +48,8 @@ public class LoginView extends View {
 
     /**
      * Event handler for the login action.
-     * @param userID
-     * @param password
+     * @param userID the user ID entered by the user.
+     * @param password the password entered by the user.
      * @return whether the login was succesful or not.
      */
     private boolean handleLogin(String userID, String password) {

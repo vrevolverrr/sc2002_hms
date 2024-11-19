@@ -47,22 +47,22 @@ import controller.interfaces.IAppointmentManager;
  */
 public class DoctorUpdateOutcomeDetailsView extends View {
     /**
-     * An instance of {@link UserManager} used to manage users.
+     * An instance of user manager used to manage users.
      */
     private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
 
     /**
-     * An instance of {@link MedicalRecordManager} used to manage medical records.
+     * An instance of medical record manager used to manage medical records.
      */
     private final IMedicalRecordManager recordManager = ServiceLocator.getService(IMedicalRecordManager.class);
 
     /**
-     * An instance of {@link InventoryManager} used to manage inventory items.
+     * An instance of inventory manager used to manage inventory items.
      */
     private final IInventoryManager inventoryManager = ServiceLocator.getService(IInventoryManager.class);
 
     /**
-     * An instance of {@link AppointmentManager} used to manage appointments.
+     * An instance of appointment manager used to manage appointments.
      */
     private final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
 

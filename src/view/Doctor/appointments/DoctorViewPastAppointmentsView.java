@@ -27,12 +27,12 @@ import controller.interfaces.IUserManager;
  */
 public class DoctorViewPastAppointmentsView extends View {
     /**
-     * An instance of {@link AppointmentManager} used to manage appointments.
+     * An instance of appointment manager used to manage appointments.
      */
     private final IAppointmentManager appointmentManager = ServiceLocator.getService(IAppointmentManager.class);
 
     /**
-     * An instance of {@link UserManager} used to manage users.
+     * An instance of user manager used to manage users.
      */
     private final IUserManager userManager = ServiceLocator.getService(IUserManager.class);
 
@@ -105,16 +105,6 @@ public class DoctorViewPastAppointmentsView extends View {
 
     /**
      * Filters the list of past appointments based on a search keyword.
-     * <p>
-     * The search matches against the following fields:
-     * <ul>
-     *   <li>Appointment ID</li>
-     *   <li>Patient ID</li>
-     *   <li>Patient name</li>
-     *   <li>Appointment date and time</li>
-     *   <li>Appointment status</li>
-     * </ul>
-     * </p>
      *
      * @param keyword the search keyword to filter appointments.
      * @return a {@link List} of appointments matching the keyword.

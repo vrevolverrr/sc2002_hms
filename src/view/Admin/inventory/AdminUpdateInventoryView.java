@@ -22,7 +22,7 @@ import view.widgets.Title;
  */
 public class AdminUpdateInventoryView extends View {
     /**
-     * An instance of the {@link InventoryManager} class. Used to manage inventory operations.
+     * An instance of the Inventory Manager class. Used to manage inventory operations.
      */
     private final IInventoryManager inventoryManager = ServiceLocator.getService(IInventoryManager.class);
 

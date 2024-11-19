@@ -22,7 +22,7 @@ import services.ServiceLocator;
  */
 public class PrescriptionsTable extends Widget {
     /**
-     * The {@link InventoryManager} instance used to retrieve inventory item names by their IDs.
+     * The Inventory Manager instance used to retrieve inventory item names by their IDs.
      */
     private final IInventoryManager inventoryManager = ServiceLocator.getService(IInventoryManager.class);
 
@@ -81,7 +81,7 @@ public class PrescriptionsTable extends Widget {
      * Parses the {@link MedicineDosage} object into a formatted string.
      *
      * @param dosage the {@link MedicineDosage} to parse.
-     * @return a {@link String} representing the {@link DosageUnit}.
+     * @return a string representing the dosage unit.
      */
     private String parseDosage(MedicineDosage dosage) {
         return dosage.getQuantity() + " " + dosage.getUnit();

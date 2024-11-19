@@ -19,7 +19,7 @@ import lib.uilib.widgets.base.Table;
  */
 public class AppointmentsTable extends Widget {
     /**
-     * The {@link DoctorManager} to retrieve doctor information.
+     * The instance of doctor manager to retrieve doctor information.
      */
     private final IDoctorManager doctorManager = ServiceLocator.getService(IDoctorManager.class);
 

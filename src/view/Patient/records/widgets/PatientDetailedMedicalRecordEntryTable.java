@@ -22,7 +22,7 @@ import services.ServiceLocator;
  */
 public class PatientDetailedMedicalRecordEntryTable extends Widget {
     /**
-     * {@link InventoryManager} instance for retrieving drug names.
+     * The inventory manager instance for retrieving drug names.
      */
     private final IInventoryManager inventoryManager = ServiceLocator.getService(IInventoryManager.class);
     

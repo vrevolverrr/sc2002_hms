@@ -36,6 +36,9 @@ public enum AppointmentStatus {
      */
     CANCELLED("Cancelled");
     
+    /**
+     * The string value of the enum. This value is used for display.
+     */
     final private String value;
 
     /**

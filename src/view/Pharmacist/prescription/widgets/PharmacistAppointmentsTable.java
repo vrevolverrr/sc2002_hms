@@ -22,7 +22,7 @@ import services.ServiceLocator;
  */
 public class PharmacistAppointmentsTable extends Widget {
     /**
-     * An instance of {@link UserManager} used to manage users.
+     * An instance of User Manager used to manage users.
      */
     private IUserManager userManager = ServiceLocator.getService(IUserManager.class);
 

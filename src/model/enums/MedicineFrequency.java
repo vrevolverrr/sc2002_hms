@@ -65,7 +65,8 @@ public enum MedicineFrequency {
     private String value;
 
     /**
-     * The {@code String} value of the enum. This value is used for display.
+     * The string value of the enum. This value is used for display.
+     * @param value the string value of the enum.
      */
     private MedicineFrequency(String value) {
         this.value = value;

@@ -41,12 +41,12 @@ import controller.interfaces.IMedicalRecordManager;
  */
 public class DoctorUpdateMedicalRecordDetailsView extends View {
     /**
-     * An instance of {@link InventoryManager} used to manage inventory items.
+     * An instance of inventory manager used to manage inventory items.
      */
     private final IInventoryManager inventoryManager = ServiceLocator.getService(IInventoryManager.class);
 
     /**
-     * An instance of {@link MedicalRecordManager} used to manage medical records.
+     * An instance of Medical Record  Manager} used to manage medical records.
      */
     private final IMedicalRecordManager recordManager = ServiceLocator.getService(IMedicalRecordManager.class);
 
