@@ -20,11 +20,19 @@ import repository.interfaces.IRepository;
  */
 
 public abstract class BaseRepository<T extends BaseModel> implements IRepository<T> {
+    /**
+     * The base path for the data files, constructed using the current working directory.
+     */
+    private static final String BASE_PATH = System.getProperty("user.dir") + File.separator + "data" + File.separator;
 
-    
-    private static final String BASE_PATH = "./data/";
-
+    /**
+     * The internal store of the maps of each of the items.
+     */
     private Map<String, T> items = null;
+
+    /**
+     * The name of the file where the repository's data is stored and loaded from.
+     */
     private final String filename;
 
     /**
@@ -221,6 +229,10 @@ public abstract class BaseRepository<T extends BaseModel> implements IRepository
      * @return {@code true} if the write succeeded, {@code false} otherwise.
      */
     protected boolean writeToSerialized() {
+        if (!new File(BASE_PATH).exists()) {
+            new File(BASE_PATH).mkdir();
+        }
+
         File file = new File(BASE_PATH + filename);
 
         try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {

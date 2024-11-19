@@ -6,14 +6,19 @@ import java.time.format.DateTimeFormatter;
 import model.SerializableCopyable;
 
 /**
- * Represents a time period.
+ * An immutable representation of a time period.
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-17
  */
 public class TimePeriod implements SerializableCopyable {
-    static final long serialVersionUID = 42L;
+    /**
+     * The serializable class version number to verify whether the serialized object have loaded classes 
+     * for that object that are compatible with respect to serialization. 
+     * @see https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html.
+     */
+    private static final long serialVersionUID = 42L;
 
     /**
      * The start time of the time period.

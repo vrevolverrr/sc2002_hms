@@ -12,8 +12,10 @@ import view.Login.LoginView;
  */
 public final class HMSApp {
     public static void main(String[] args) throws Exception {
-        // Mocks sample data for the repositories.
-        MockData.mockAllData();
+        // Mocks sample data for the repositories, if required.
+        if (args.length > 0 && args[0].equals("--mock")) {
+            MockData.mockAllData();
+        }
 
         // Registers services.
         ServiceLocator.registerHMSServices();

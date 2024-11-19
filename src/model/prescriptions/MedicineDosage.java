@@ -4,7 +4,9 @@ import model.SerializableCopyable;
 import model.enums.DosageUnit;
 
 /**
- * Represents the dosage of a medicine.
+ * An immutable representation of the dosage of a medicine.
+ * 
+ * A dosage consists of a quantity and a unit.
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0
@@ -12,6 +14,12 @@ import model.enums.DosageUnit;
  */
 
 public class MedicineDosage implements SerializableCopyable {
+    /**
+     * The serializable class version number to verify whether the serialized object have loaded classes 
+     * for that object that are compatible with respect to serialization. 
+     * @see https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html.
+     */
+    private static final long serialVersionUID = 42L;
     
     /**
      * The quantity of the dosage.

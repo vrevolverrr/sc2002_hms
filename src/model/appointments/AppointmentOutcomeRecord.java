@@ -17,9 +17,11 @@ import model.prescriptions.Prescription;
  */
 public class AppointmentOutcomeRecord implements SerializableCopyable {
     /**
-     * Serial version UID for ensuring compatibility during serialization.
+     * The serializable class version number to verify whether the serialized object have loaded classes 
+     * for that object that are compatible with respect to serialization. 
+     * @see https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html.
      */
-    static final long serialVersionUID = 42L;
+    private static final long serialVersionUID = 42L;
 
     /**
      * The date the outcome record was created.

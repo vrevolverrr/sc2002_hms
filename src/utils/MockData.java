@@ -100,7 +100,10 @@ public final class MockData {
         PharmacistRepository pharmacistRepository = new PharmacistRepository(userRepository);
         pharmacistRepository.clear();
 
-        pharmacistRepository.save(new Pharmacist("F1001", "Bryan Lee", 35, "bryan123", Gender.MALE, LocalDate.of(1989, 6, 10), "81234567", "bryan.lee@gmail.com"));
+        Pharmacist p1 = new Pharmacist("F1001", "Bryan Lee", 35, "bryan123", Gender.MALE, LocalDate.of(1989, 6, 10), "81234567", "bryan.lee@gmail.com");
+        p1.setDefaultPassword(false);
+        pharmacistRepository.save(p1);
+        
         pharmacistRepository.save(new Pharmacist("F1002", "Anna Kim", 28, "annaK!m", Gender.FEMALE, LocalDate.of(1995, 4, 22), "81234568", "anna.kim@example.com"));
         pharmacistRepository.save(new Pharmacist("F1003", "David Wong", 40, "davidWong456", Gender.MALE, LocalDate.of(1983, 11, 5), "81234569", "david.wong@example.com"));
         pharmacistRepository.save(new Pharmacist("F1004", "Sophia Tan", 32, "sophiaT@an", Gender.FEMALE, LocalDate.of(1991, 8, 15), "81234570", "sophia.tan@example.com"));
@@ -140,6 +143,7 @@ public final class MockData {
         d1A.setAvailability(LocalDate.now().plusDays(5), new TimePeriod(LocalTime.of(14, 0), LocalTime.of(18, 30)));
         d1A.setAvailability(LocalDate.now().plusDays(4), new TimePeriod(LocalTime.of(8, 0), LocalTime.of(12, 0)));
         d1.setAvailability(d1A);
+        d1.setDefaultPassword(false);
         doctorRepository.save(d1);
         
         doctorRepository.save(new Doctor("D1002", "Jane Smith", 38, "janeSmith456", Gender.FEMALE, LocalDate.of(1985, 2, 20), "81234568", "janesmith@email.com", Specialisation.DERMATOLOGIST));
@@ -198,8 +202,6 @@ public final class MockData {
             "Patient has mild fever. Advised to rest and drink plenty of fluids.");
         pA1.setOutcomeRecord(pA1O);
         appointmentRepository.save(pA1);
-
-        System.out.println(appointmentRepository.findById("Y1013").getOutcomeRecord().getConsultationNotes());
     }
 
     /**

@@ -199,17 +199,17 @@ public class Container extends Widget{
         int bottomPadding;
 
         switch (vAlignment) {
-            case Alignment.START:
+            case START:
                 topPadding = 1;
                 bottomPadding = this.height - childHeight - 1;
                 break;
             
-            case Alignment.CENTER:
+            case CENTER:
                 topPadding = (this.height - alignedChild.getHeight(containerContext)) / 2;
                 bottomPadding = this.height - topPadding - alignedChild.getHeight(containerContext);
                 break;
 
-            case Alignment.END:
+            case END:
                 topPadding = this.height - childHeight - 1;
                 bottomPadding = 1;
                 break;

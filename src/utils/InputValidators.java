@@ -3,6 +3,7 @@ package utils;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 
 /**
  * Utility class for validating user input.
@@ -19,7 +20,7 @@ public final class InputValidators {
      * @return whether the date is valid.
      */
     public static boolean validateFutureDate(String dateString, String pattern) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern).withResolverStyle(ResolverStyle.STRICT);
         try {
             final LocalDate date = LocalDate.parse(dateString, formatter);
             if (date.isBefore(LocalDate.now())) {
@@ -63,7 +64,7 @@ public final class InputValidators {
      * @return whether the date is valid.
      */
     public static boolean validateDate(String dateString, String pattern) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern).withResolverStyle(ResolverStyle.STRICT);
         try {
             LocalDate.parse(dateString, formatter);
             return true;

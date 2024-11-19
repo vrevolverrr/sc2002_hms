@@ -76,6 +76,7 @@ public class PatientMedicalRecordView extends View {
 
         new Title("Medical History").paint(context);
         new PatientMedicalRecordsTable(medicalRecods).paint(context);
+        new VSpacer(1).paint(context);
 
         if (medicalRecods.isEmpty()) {
             new Pause("No medical records found. Press any key to go back.").pause(context);
