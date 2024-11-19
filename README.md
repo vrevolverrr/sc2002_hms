@@ -33,5 +33,5 @@ Hospital Management System (HMS) program for SC2002 project.
    
    ```bash
    java -jar HMSApp.jar --mock  # to generate mock data before starting
-   java -jar HMSApp.jar  # run without generating mock data (use exisiting)
+   java -jar HMSApp.jar  # run without generating mock data (use exisiting data, if any)
     ```
