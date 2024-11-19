@@ -11,9 +11,14 @@ import view.Login.LoginView;
  * @since 2024-10-18
  */
 public final class HMSApp {
+    /**
+     * The flag to enable debug mode.
+     */
+    static boolean DEBUG = false;
+
     public static void main(String[] args) throws Exception {
         // Mocks sample data for the repositories, if required.
-        if (args.length > 0 && args[0].equals("--mock")) {
+        if (DEBUG || args.length > 0 && args[0].equals("--mock")) {
             MockData.mockAllData();
         }
 
