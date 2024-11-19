@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import model.SerializableCopyable;
 
 /**
- * Represents a time period.
+ * An immutable representation of a time period.
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0

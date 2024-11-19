@@ -3,7 +3,7 @@ package model.inventory;
 import java.io.Serializable;
 
 /**
- * Represents a replenishment request.
+ * An immutable representation of a replenishment request.
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0

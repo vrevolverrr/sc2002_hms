@@ -5,7 +5,8 @@ import model.enums.MedicineFrequency;
 import model.enums.PrescriptionStatus;
 
 /**
- * Represents a prescription for a medicine.
+ * An immutable representation a prescription for a medicine.
+ * 
  * A prescription consists of the drug ID, quantity, dosage and frequency of the medicine.
  * The status of the prescription can be either PENDING or COMPLETED.
  * 

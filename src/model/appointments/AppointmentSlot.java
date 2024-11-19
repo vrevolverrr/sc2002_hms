@@ -9,6 +9,8 @@ import model.users.Doctor;
  * allocated for it. It provides methods to retrieve detailed information such as the 
  * doctor's name, date, and time of the appointment.
  * 
+ * This class is immutable and not serializable.
+ * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0
  * @since 2024-11-16

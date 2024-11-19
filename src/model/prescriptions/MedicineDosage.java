@@ -4,7 +4,9 @@ import model.SerializableCopyable;
 import model.enums.DosageUnit;
 
 /**
- * Represents the dosage of a medicine.
+ * An immutable representation of the dosage of a medicine.
+ * 
+ * A dosage consists of a quantity and a unit.
  * 
  * @author Bryan Soong, Joyce Lee
  * @version 1.0
