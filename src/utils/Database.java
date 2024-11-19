@@ -35,12 +35,11 @@ public class Database {
     public static final String[] candidateFileNames = {
         "admin.csv", "doctor.csv", "pharmacist.csv", "patient.csv", "inventory.csv"};
 
+    
     /**
-     * Clears all data in the database.
+     * The private constructor of the {@link Database} class to prvent instantiation.
      */
-    public static void clear() {
-
-    }
+    private Database() {}
 
     /**
      * Loads data from the specified file into the database.

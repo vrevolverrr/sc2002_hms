@@ -42,6 +42,11 @@ import repository.interfaces.IUserRepository;
  */
 public class ServiceLocator {
     /**
+     * Private constructor of the {@link ServiceLocator} class to prevent instantiation.
+     */
+    private ServiceLocator() {}
+    
+    /**
      * A map of services registered with the service locator.
      */
     private final static Map<Class<?>, Object> services = new HashMap<>();

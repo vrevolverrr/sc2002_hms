@@ -41,6 +41,11 @@ import repository.UserRepository;
  */
 public final class MockData {
     /**
+     * Private constructor of the {@link MockData} class to prevent instantiation.
+     */
+    private MockData() {}
+
+    /**
      * Mocks all the data for the application.
      */
     public static void mockAllData() {

@@ -14,6 +14,11 @@ import java.time.format.ResolverStyle;
  */
 public final class InputValidators {
     /**
+     * Private constructor of the {@link InputValidators} class to prevent instantiation.
+     */
+    private InputValidators() {}
+
+    /**
      * Validates a date string to a given pattern.
      * @param dateString the date string to validate.
      * @param pattern the pattern to validate against.
