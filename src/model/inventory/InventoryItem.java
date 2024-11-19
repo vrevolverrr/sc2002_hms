@@ -2,7 +2,6 @@ package model.inventory;
 
 import model.BaseModel;
 import model.enums.ReplenishmentStatus;
-import model.users.Pharmacist;
 
 /**
  * Represents an inventory item.
