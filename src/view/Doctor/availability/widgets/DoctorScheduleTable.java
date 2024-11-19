@@ -138,19 +138,19 @@ public class DoctorScheduleTable extends Widget {
      */
     private String mapDayToString(DayOfWeek day) {
         switch (day) {
-            case DayOfWeek.MONDAY:
+            case MONDAY:
                 return "Mon";
-            case DayOfWeek.TUESDAY:
+            case TUESDAY:
                 return "Tue";
-            case DayOfWeek.WEDNESDAY:
+            case WEDNESDAY:
                 return "Wed";
-            case DayOfWeek.THURSDAY:
+            case THURSDAY:
                 return "Thu";
-            case DayOfWeek.FRIDAY:
+            case FRIDAY:
                 return "Fri";
-            case DayOfWeek.SATURDAY:
+            case SATURDAY:
                 return "Sat";
-            case DayOfWeek.SUNDAY:
+            case SUNDAY:
                 return "Sun";
             default:
                 return "";

@@ -20,7 +20,7 @@ public class Navigator {
     /**
      * The view stack, which stores the logical history of {@code Views} that were navigated to.
      */
-    private static List<View> stack = new ArrayList<View>();
+    private static Deque<View> stack = new ArrayDeque<View>();
 
     /**
      * The constructor is private since {@link Navigator} should be used statically.

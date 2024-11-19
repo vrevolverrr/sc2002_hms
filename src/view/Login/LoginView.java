@@ -12,7 +12,6 @@ import lib.uilib.widgets.base.MultiTextInput;
 import lib.uilib.widgets.base.Text;
 import lib.uilib.widgets.base.VSpacer;
 import lib.uilib.widgets.layout.Column;
-import model.enums.UserRole;
 import model.users.User;
 import services.Navigator;
 import services.ServiceLocator;
@@ -101,19 +100,19 @@ public class LoginView extends View {
         View nextView;
 
         switch (userManager.getActiveUser().getRole()) {
-            case UserRole.PATIENT:
+            case PATIENT:
                 nextView = new PatientView();
                 break;
 
-            case UserRole.ADMIN:
+            case ADMIN:
                 nextView = new AdminView();
                 break;
 
-            case UserRole.PHARMACIST:
+            case PHARMACIST:
                 nextView = new PharmacistView();
                 break;
 
-            case UserRole.DOCTOR:
+            case DOCTOR:
                 nextView = new DoctorView();
                 break;
         

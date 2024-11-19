@@ -82,18 +82,18 @@ public class AdminAddStaffView extends View {
         new VSpacer(1).paint(context);
 
         switch (userRole) {
-            case UserRole.DOCTOR:
+            case DOCTOR:
                 Specialisation specialisation = this.promptSpecialisation();
                 staffManager.addDoctor(name.getValue(), age.getAge(), password.getValue(), gender, 
                     birthday.getDate("yyyy-MM-dd"),emailAddress.getValue(), phoneNumber.getValue(), specialisation);
                 break;
             
-            case UserRole.PHARMACIST:
+            case PHARMACIST:
                 staffManager.addPharmacist(name.getValue(), age.getAge(), password.getValue(), gender, 
                     birthday.getDate("yyyy-MM-dd"),emailAddress.getValue(), phoneNumber.getValue());
                 break;
             
-            case UserRole.ADMIN:
+            case ADMIN:
                 staffManager.addAdmin(name.getValue(), age.getAge(), password.getValue(), 
                     gender, birthday.getDate("yyyy-MM-dd"), emailAddress.getValue(), phoneNumber.getValue());
                 break;
