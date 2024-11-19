@@ -1,10 +1,19 @@
 <h1 align="center">SC2002 Hospital Management System</h1>
 
 <p align="center">
-  <b><small>✨ Hospital Management System for SC2002 Object Oriented Design & Programming project. ✨</small></b>
+  <b><small>✨ Hospital Management System (HMS) program for SC2002 Object Oriented Design & Programming project.  ✨</small></b>
 </p>
 <div align="center">
 	<img src="https://github.com/vrevolverrr/sc2002_hms/blob/main/res/preview.gif?raw=true" alt="preview of HMS App"  width="600"/>
+</div>
+
+<div align="center">
+   <p><b>Team Members</b></p>
+   <p>Soong Jun Shen (SCEB 24)</p>
+   <p>Joyce Lee Jia Xuan (SCEB 13)</p>
+   <p> Chng Jiade (Zhuang Jiade) (SCEB 4) </p>
+   <p> Swaminathan Navitraa (SCEB 27) </p>
+   <p> Shu Yanjun (SCEB 23) </p>
 </div>
 
 ### Prerequisites 
