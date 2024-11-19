@@ -1,7 +1,7 @@
 <h1 align="center">SC2002 Hospital Management System</h1>
 
 <p align="center">
-  <b><small>✨ Hospital Management System (HMS) program for SC2002 Object Oriented Design & Programming project.  ✨</small></b>
+  <b><small>✨ Hospital Management System for SC2002 Object Oriented Design & Programming project. ✨</small></b>
 </p>
 <div align="center">
 	<img src="https://github.com/vrevolverrr/sc2002_hms/blob/main/res/preview.gif?raw=true" alt="preview of HMS App"  width="600"/>
