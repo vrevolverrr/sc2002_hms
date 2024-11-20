@@ -110,6 +110,12 @@ public final class PharmacistPrescribeMedicineView extends View {
 
         new VSpacer(1).paint(context);
 
+        if (inventoryManager.getItem(selectedPrescription.getDrugId()).getStock() < selectedPrescription.getQuantity()) {
+            new Pause("Insufficient stock, submit a replenishment request to refill. Press any key to continue.").pause(context);
+            repaint();
+            return;
+        }
+
         TextInputField confirmField = new TextInputField(
             String.format("Confirm dispense of %dx %s (Y/N)", 
                 selectedPrescription.getQuantity(), getDrugNameById(selectedPrescription.getDrugId())));
