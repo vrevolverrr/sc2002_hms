@@ -125,7 +125,9 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
             appointment.getDoctorId().equals(doctor.getDoctorId()) && 
             !appointment.getTimeSlot().getDate().isBefore(LocalDate.now()) &&
             appointment.isScheduled()
-        );
+        )
+        .stream()
+        .sorted((a, b) -> a.getTimeSlot().compareTo(b.getTimeSlot())).toList();
     }
 
     /**
@@ -139,7 +141,9 @@ public class AppointmentRepository extends BaseRepository<Appointment> implement
             appointment.getDoctorId().equals(doctor.getDoctorId()) && 
             appointment.getTimeSlot().getDate().equals(date) &&
             appointment.isScheduled()
-        );
+        )
+        .stream()
+        .sorted((a, b) -> a.getTimeSlot().compareTo(b.getTimeSlot())).toList();
     }
 
     /**
