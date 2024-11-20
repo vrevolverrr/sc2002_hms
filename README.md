@@ -17,6 +17,7 @@
 </div>
 
 <br />
+
 ### Prerequisites 
 1. **Java Development Kit (JDK) >= 16** 
 2. **Terminal with support for ANSI/VT Escape Sequences (Windows Only)**
